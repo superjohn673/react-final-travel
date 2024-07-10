@@ -98,8 +98,8 @@ const ThemeJapan = () => {
       {themeProducts.map((product) => {
         const isFavorite = favorites.some((item) => item.id === product.id);
         return (
-          <div className="col-sm-6 col-md-4 mb-5" key={product.id}>
-            <div className="card border-1 mb-4 position-relative">
+          <div className="col-md-6 col-lg-4 mb-4" key={product.id}>
+            <div className="card border-1 mb-4 position-relative h-100">
               <div
                 className="position-absolute top-0 end-0 m-2 text-danger"
                 onClick={() => handleFavorite(product)}

@@ -111,8 +111,8 @@ const CityJapan = () => {
       {cityProducts.map((product) => {
         const isFavorite = favorites.some((item) => item.id === product.id);
         return (
-          <div className="col-sm-6 col-md-4 mb-5" key={product.id}>
-            <div className="card border-1 mb-4 position-relative">
+          <div className="col-md-6 col-lg-4 mb-4" key={product.id}>
+            <div className="card border-1 mb-4 position-relative h-100">
               <div
                 className="position-absolute top-0 end-0 m-2 text-danger"
                 onClick={() => handleFavorite(product)}
@@ -131,18 +131,18 @@ const CityJapan = () => {
                   alt="..."
                 />
 
-                <div className="card-body p-2">
-                  <h5 className="mb-0 mt-2 card-title tour__name">
+                <div className="card-body p-2 ">
+                  <h5 className=" mt-2 card-title tour__name">
                     {product.title}
                   </h5>
-                  <div className="row justify-content-between mt-3">
-                    <div className="col-md-8 ">
+                  <div className="row justify-content-between ">
+                    <div className="col-lg-8 ">
                       <i className="bi bi-calendar2-date-fill text-muted"></i>
                       <span className="ms-2 text-muted">
                         07/02, 07/27, 08/06, 09/03...
                       </span>
                     </div>
-                    <div className=" col-md-4 text-end ">
+                    <div className=" col-lg-4 text-end ">
                       <span className="tour__price">NT$ {product.price}</span>
                     </div>
                   </div>

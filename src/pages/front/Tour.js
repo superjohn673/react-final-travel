@@ -64,7 +64,7 @@ const Tour = () => {
           <h4 className="text-center">日本主題之旅</h4>
         </div>
         <div className="row justify-content-center mb-7">
-          <div className="col-md-4 col-lg-2 d-flex justify-content-center align-items-center flex-column">
+          <div className="col-md-6 col-lg-3 text-center">
             <Link
               to="/tour/classic-japan"
               className="link"
@@ -77,7 +77,7 @@ const Tour = () => {
               <h6 className={getLinkClass("/tour/classic-japan")}>經典之旅</h6>
             </Link>
           </div>
-          <div className="col-md-4 col-lg-2 d-flex justify-content-center align-items-center flex-column">
+          <div className="col-md-6 col-lg-3 text-center">
             <Link
               to="/tour/shop-japan"
               className="link"
@@ -90,7 +90,7 @@ const Tour = () => {
               <h6 className={getLinkClass("/tour/shop-japan")}>美學之旅</h6>
             </Link>
           </div>
-          <div className="col-md-4 col-lg-2 d-flex justify-content-center align-items-center flex-column">
+          <div className="col-md-6 col-lg-3 text-center">
             <Link
               to="/tour/rail-japan"
               className="link"
@@ -103,7 +103,7 @@ const Tour = () => {
               <h6 className={getLinkClass("/tour/rail-japan")}>鐵道之旅</h6>
             </Link>
           </div>
-          <div className="col-md-4 col-lg-2 d-flex justify-content-center align-items-center flex-column">
+          <div className="col-md-6 col-lg-3 text-center">
             <Link
               to="/tour/vibe-japan"
               className="link"

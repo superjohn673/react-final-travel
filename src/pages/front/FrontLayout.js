@@ -36,17 +36,17 @@ const FrontLayout = () => {
           <div className="footer row justify-content-between align-items-center text-white py-5">
             <div className="col-lg-3 mb-2 ">
               <ul className=" list-unstyled mb-0  ms-5">
-                <li className="mb-2">
+                <li className="mb-3">
                   <Link className="text-white mx-3 link">
                     <span className="footer__about">服務據點</span>
                   </Link>
                 </li>
-                <li className="mb-2">
+                <li className="mb-3">
                   <Link className="text-white mx-3 link">
                     <span className="footer__about">旅遊資訊</span>
                   </Link>
                 </li>
-                <li className="mb-2">
+                <li className="mb-3">
                   <Link className="text-white mx-3 link">
                     <span className="footer__about">聯絡我們</span>
                   </Link>

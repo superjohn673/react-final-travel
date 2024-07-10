@@ -64,7 +64,7 @@ const AreaJapan = () => {
           <h4 className="text-center">日本地區之旅</h4>
         </div>
         <div className="row justify-content-center mb-7">
-          <div className="col-md-4 col-lg-2 d-flex justify-content-center align-items-center flex-column">
+          <div className=" col-lg-4 text-center">
             <Link
               to="/area-japan/kanto"
               className="link"
@@ -77,7 +77,7 @@ const AreaJapan = () => {
               <h6 className={getLinkClass("/area-japan/kanto")}>關東</h6>
             </Link>
           </div>
-          <div className="col-md-4 col-lg-2 d-flex justify-content-center align-items-center flex-column">
+          <div className=" col-lg-4 text-center">
             <Link
               to="/area-japan/kansai"
               className="link"
@@ -90,7 +90,7 @@ const AreaJapan = () => {
               <h6 className={getLinkClass("/area-japan/kansai")}>關西</h6>
             </Link>
           </div>
-          <div className="col-md-4 col-lg-2 d-flex justify-content-center align-items-center flex-column">
+          <div className=" col-lg-4 text-center">
             <Link
               to="/area-japan/hokkaido"
               className="link"
@@ -103,7 +103,7 @@ const AreaJapan = () => {
               <h6 className={getLinkClass("/area-japan/hokkaido")}>北海道</h6>
             </Link>
           </div>
-          <div className="col-md-4 col-lg-2 d-flex justify-content-center align-items-center flex-column">
+          <div className=" col-lg-4 text-center">
             <Link
               to="/area-japan/tohoku"
               className="link"
@@ -116,7 +116,7 @@ const AreaJapan = () => {
               <h6 className={getLinkClass("/area-japan/tohoku")}>東北</h6>
             </Link>
           </div>
-          <div className="col-md-4 col-lg-2 d-flex justify-content-center align-items-center flex-column">
+          <div className=" col-lg-4 text-center">
             <Link
               to="/area-japan/hokuriku"
               className="link"
@@ -131,7 +131,7 @@ const AreaJapan = () => {
               </h6>
             </Link>
           </div>
-          <div className="col-md-4 col-lg-2 d-flex justify-content-center align-items-center flex-column">
+          <div className=" col-lg-4 text-center">
             <Link
               to="/area-japan/kyushu"
               className="link"

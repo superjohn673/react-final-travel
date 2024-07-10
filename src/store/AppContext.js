@@ -1,4 +1,9 @@
-import React, { createContext, useReducer, useCallback } from "react";
+import React, {
+  createContext,
+  useReducer,
+  useCallback,
+  useEffect,
+} from "react";
 import axios from "axios";
 import appReducer from "./appReducer";
 
@@ -57,13 +62,21 @@ export const AppProvider = ({ children }) => {
 
   const addToFavorites = (product) => {
     dispatch({ type: "ADD_TO_FAVORITES", payload: product });
-    // localStorage.setItem("favorites", JSON.stringify(state.favorites));
+    //localStorage.setItem("favorites", JSON.stringify(state.favorites));
+    localStorage.setItem(
+      "favorites",
+      JSON.stringify([...state.favorites, product])
+    );
   };
 
   const removeFromFavorites = (productId) => {
     dispatch({ type: "REMOVE_FROM_FAVORITES", payload: productId });
-    // localStorage.setItem("favorites", JSON.stringify(state.favorites));
+    localStorage.setItem("favorites", JSON.stringify(state.favorites));
   };
+
+  useEffect(() => {
+    localStorage.setItem("favorites", JSON.stringify(state.favorites));
+  }, [state.favorites]);
 
   return (
     <AppContext.Provider

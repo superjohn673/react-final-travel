@@ -65,7 +65,7 @@ const SeasonJapan = () => {
           <h4 className="text-center">日本季節之旅</h4>
         </div>
         <div className="row justify-content-center mb-7">
-          <div className="col-md-4 col-lg-2 d-flex justify-content-center align-items-center flex-column">
+          <div className="col-md-6 col-lg-3 text-center">
             <Link
               to="/season-japan/spring"
               className="link"
@@ -78,7 +78,7 @@ const SeasonJapan = () => {
               <h6 className={getLinkClass("/season-japan/spring")}>春季旅遊</h6>
             </Link>
           </div>
-          <div className="col-md-4 col-lg-2 d-flex justify-content-center align-items-center flex-column">
+          <div className="col-md-6 col-lg-3 text-center">
             <Link
               to="/season-japan/summer"
               className="link"
@@ -91,7 +91,7 @@ const SeasonJapan = () => {
               <h6 className={getLinkClass("/season-japan/summer")}>夏季旅遊</h6>
             </Link>
           </div>
-          <div className="col-md-4 col-lg-2 d-flex justify-content-center align-items-center flex-column">
+          <div className="col-md-6 col-lg-3 text-center">
             <Link
               to="/season-japan/fall"
               className="link"
@@ -104,7 +104,7 @@ const SeasonJapan = () => {
               <h6 className={getLinkClass("/season-japan/fall")}>秋季旅遊</h6>
             </Link>
           </div>
-          <div className="col-md-4 col-lg-2 d-flex justify-content-center align-items-center flex-column">
+          <div className="col-md-6 col-lg-3 text-center">
             <Link
               to="/season-japan/winter"
               className="link"
