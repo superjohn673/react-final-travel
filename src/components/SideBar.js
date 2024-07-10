@@ -54,12 +54,12 @@ const Sidebar = ({ isOpen, onToggle }) => {
         </button>
         <div className="container px-5">
           <div className="row mt-4 mb-3  side-link justify-content-between">
-            <div className="  mb-3">
+            {/* <div className="  mb-3">
               <Link to="" className="link" onClick={onToggle}>
                 <i class="fa-solid fa-right-to-bracket me-2"></i>
                 <span>註冊會員</span>
               </Link>
-            </div>
+            </div> */}
             <div className="  mb-3">
               <Link to="member/orders" className="link" onClick={onToggle}>
                 <i class="fa-solid fa-user me-2"></i>

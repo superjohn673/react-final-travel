@@ -4,6 +4,7 @@ import {
   FaUser,
   FaListAlt,
   FaMoneyBillAlt,
+  FaHeart,
   FaSignOutAlt,
 } from "react-icons/fa";
 
@@ -35,16 +36,16 @@ const MemberLayout = () => {
                 to="/member/favorite"
                 className="list-group-item list-group-item-action d-flex align-items-center"
               >
-                <FaMoneyBillAlt className="me-2" />
+                <FaHeart className="me-2" />
                 我的最愛
               </Link>
-              <Link
+              {/* <Link
                 to="/logout"
                 className="list-group-item list-group-item-action d-flex align-items-center"
               >
                 <FaSignOutAlt className="me-2" />
                 登出
-              </Link>
+              </Link> */}
             </div>
           </div>
         </div>

@@ -4,11 +4,12 @@ import { useState } from "react";
 import { Link, useOutletContext } from "react-router-dom";
 import { AppContext } from "../../store/AppContext";
 import CartNavigator from "../../components/CartNavigator";
+import RecommendedProducts from "../../components/RecommendedProducts";
 // import TravelCalendar from "../../components/TravelCalendar";
 
 const Cart = () => {
   const { cartData, getCart } = useOutletContext();
-  const [product, setProduct] = useState({});
+  // const [product, setProduct] = useState({});
   const [couponCode, setCouponCode] = useState("");
   const [couponInf, setCouponInf] = useState({});
   const [loadingItems, setLoadingItem] = useState([]);
@@ -171,43 +172,44 @@ const Cart = () => {
   // };
 
   return (
-    <div className="container py-5 my-5">
-      <CartNavigator currentStep={1} nextStep={2} />
-      {/* {localStorage.getItem()} */}
-      {/* <p>Total: {total}</p>
+    <>
+      <div className="container py-5 mt-5">
+        <CartNavigator currentStep={1} nextStep={2} />
+        {/* {localStorage.getItem()} */}
+        {/* <p>Total: {total}</p>
       <p>Coupon Total: {couponTotal}</p> */}
-      <div className="row justify-content-center py-6">
-        {/* <div>
+        <div className="row justify-content-center pb-6">
+          {/* <div>
           {selectedDate && <p>出發日期: {selectedDate.format("YYYY-MM-DD")}</p>}
           <p>成人人數: {adultQuantity}</p>
           <p>小孩人數: {childrenQuantity}</p>
         </div> */}
-        <div className="col-md-8 bg-white full-height cart">
-          {cartData?.carts?.length === 0 ? (
-            <>
-              <div className="alert alert-secondary text-center py-6 cart__section">
-                <p>
-                  <i class="fa-solid fa-plane cart__section__icon mb-3"></i>
-                  {/* <i class="fa-solid fa-cart-plus cart__section__icon mb-3"></i> */}
-                </p>
-                <p className=" fs-2">還沒有選擇行程呦</p>
-              </div>
-              <div>
-                <Link
-                  to="/area-japan/kanto"
-                  className="btn btn-dark w-100 mt-4 rounded-0 py-3"
-                >
-                  選擇行程
-                </Link>
-              </div>
-            </>
-          ) : (
-            <>
-              {/* <div className="d-flex justify-content-center">
+          <div className="col-md-8 bg-white full-height cart">
+            {cartData?.carts?.length === 0 ? (
+              <>
+                <div className="alert alert-secondary text-center py-6 cart__section">
+                  <p>
+                    <i class="fa-solid fa-plane cart__section__icon mb-3"></i>
+                    {/* <i class="fa-solid fa-cart-plus cart__section__icon mb-3"></i> */}
+                  </p>
+                  <p className=" fs-2">還沒有選擇行程呦</p>
+                </div>
+                <div>
+                  <Link
+                    to="/area-japan/kanto"
+                    className="btn btn-dark w-100 mt-4 rounded-0 py-3"
+                  >
+                    選擇行程
+                  </Link>
+                </div>
+              </>
+            ) : (
+              <>
+                {/* <div className="d-flex justify-content-center">
                 <p className="fs-3">即將出發</p>
               </div> */}
-              {/* 原始資料 */}
-              {/* {cartData?.carts?.map((item) => {
+                {/* 原始資料 */}
+                {/* {cartData?.carts?.map((item) => {
                 return (
                   <div className="d-flex mt-4 bg-light" key={item.id}>
                     <img
@@ -264,32 +266,32 @@ const Cart = () => {
                   </div>
                 );
               })} */}
-              {cartData?.carts?.map((item) => {
-                return (
-                  <div className="  bg-light" key={item.id}>
-                    <div className="mb-4">
-                      <img
-                        src={item.product.imageUrl}
-                        alt=""
-                        className="object-cover img-fluid"
-                        // style={{
-                        //   width: "500px",
-                        // }}
-                      />
-                    </div>
-                    <div className="w-100 p-3 position-relative">
-                      <button
-                        type="button"
-                        className="position-absolute btn"
-                        style={{ top: "10px", right: "10px" }}
-                        onClick={() => {
-                          removeCartItem(item.id);
-                        }}
-                      >
-                        <i className="bi bi-x-lg"></i>
-                      </button>
-                      <h4 className="mb-3 fw-bold ">{item.product.title}</h4>
-                      {/* {selectedDate === null ? (
+                {cartData?.carts?.map((item) => {
+                  return (
+                    <div className="  bg-light" key={item.id}>
+                      <div className="mb-4">
+                        <img
+                          src={item.product.imageUrl}
+                          alt=""
+                          className="object-cover img-fluid"
+                          // style={{
+                          //   width: "500px",
+                          // }}
+                        />
+                      </div>
+                      <div className="w-100 p-3 position-relative">
+                        <button
+                          type="button"
+                          className="position-absolute btn"
+                          style={{ top: "10px", right: "10px" }}
+                          onClick={() => {
+                            removeCartItem(item.id);
+                          }}
+                        >
+                          <i className="bi bi-x-lg"></i>
+                        </button>
+                        <h4 className="mb-3 fw-bold ">{item.product.title}</h4>
+                        {/* {selectedDate === null ? (
                         <TravelCalendar
                           product={product}
                           onDateSelected={onDateSelected}
@@ -297,13 +299,13 @@ const Cart = () => {
                       ) : (
                         ""
                       )} */}
-                      <div className="mt-2 mb-3">
-                        <p>
-                          <span className="fw-bold">出發日期 : </span>
-                          {selectedDate}
-                        </p>
-                      </div>
-                      {/* <div className="mt-2 mb-3">
+                        <div className="mt-2 mb-3">
+                          <p>
+                            <span className="fw-bold">出發日期 : </span>
+                            {selectedDate}
+                          </p>
+                        </div>
+                        {/* <div className="mt-2 mb-3">
                         {selectedDate === null ? (
                           "請確認出發日期"
                         ) : (
@@ -313,117 +315,119 @@ const Cart = () => {
                           </p>
                         )}
                       </div> */}
-                      <div className="d-flex justify-content-start align-items-center w-100 mb-3 ">
-                        {/* 大人select */}
-                        <div className="input-group w-25 align-items-center me-3">
-                          <span className="fw-bold">大人</span> :
-                          <select
-                            name=""
-                            className="form-select ms-2"
-                            id=""
-                            value={adultQuantity}
-                            disabled={loadingItems.includes(item.id)}
-                            onChange={(e) => {
-                              updateCartItem(
-                                item,
-                                e.target.value * 1,
-                                childrenQuantity
-                              );
-                            }}
-                          >
-                            {[...new Array(16)].map((i, num) => {
-                              return (
-                                <option value={num} key={num}>
-                                  {num}
-                                </option>
-                              );
-                            })}
-                          </select>
+                        <div className="d-flex justify-content-start align-items-center w-100 mb-3 ">
+                          {/* 大人select */}
+                          <div className="input-group w-25 align-items-center me-3">
+                            <span className="fw-bold">大人</span> :
+                            <select
+                              name=""
+                              className="form-select ms-2"
+                              id=""
+                              value={adultQuantity}
+                              disabled={loadingItems.includes(item.id)}
+                              onChange={(e) => {
+                                updateCartItem(
+                                  item,
+                                  e.target.value * 1,
+                                  childrenQuantity
+                                );
+                              }}
+                            >
+                              {[...new Array(16)].map((i, num) => {
+                                return (
+                                  <option value={num} key={num}>
+                                    {num}
+                                  </option>
+                                );
+                              })}
+                            </select>
+                          </div>
+                          {/* 小孩select */}
+                          <div className="input-group w-25 align-items-center">
+                            <span className="fw-bold">小孩</span> :
+                            <select
+                              name=""
+                              className="form-select ms-2"
+                              id=""
+                              value={childrenQuantity}
+                              disabled={loadingItems.includes(item.id)}
+                              onChange={(e) => {
+                                updateCartItem(
+                                  item,
+                                  adultQuantity,
+                                  e.target.value * 1
+                                );
+                              }}
+                            >
+                              {[...new Array(16)].map((i, num) => {
+                                return (
+                                  <option value={num} key={num}>
+                                    {num}
+                                  </option>
+                                );
+                              })}
+                            </select>
+                          </div>
                         </div>
-                        {/* 小孩select */}
-                        <div className="input-group w-25 align-items-center">
-                          <span className="fw-bold">小孩</span> :
-                          <select
-                            name=""
-                            className="form-select ms-2"
-                            id=""
-                            value={childrenQuantity}
-                            disabled={loadingItems.includes(item.id)}
-                            onChange={(e) => {
-                              updateCartItem(
-                                item,
-                                adultQuantity,
-                                e.target.value * 1
-                              );
-                            }}
-                          >
-                            {[...new Array(16)].map((i, num) => {
-                              return (
-                                <option value={num} key={num}>
-                                  {num}
-                                </option>
-                              );
-                            })}
-                          </select>
-                        </div>
-                      </div>
-                      <div className="row justify-content-between mt-5">
-                        <div className="col-12 col-md-5 mb-3">
-                          <div className="row">
-                            <div className="col-12">
-                              {" "}
-                              <div className="input-group  w-75">
-                                <button
-                                  class="btn btn-secondary"
-                                  type="button"
-                                  id="button-addon1"
-                                  onClick={() => addCoupon(couponCode)}
-                                >
-                                  使用優惠碼
-                                </button>
-                                <input
-                                  type="text"
-                                  className="form-control "
-                                  placeholder=""
-                                  aria-label="Example text with button addon"
-                                  aria-describedby="button-addon1"
-                                  value={couponCode}
-                                  onChange={(e) =>
-                                    setCouponCode(e.target.value)
-                                  }
-                                  // onBlur={() => addCoupon(couponCode)}
-                                />
-                              </div>
-                              <div className="">
+                        <div className="row justify-content-between mt-5">
+                          <div className="col-12 col-md-5 mb-3">
+                            <div className="row">
+                              <div className="col-12">
                                 {" "}
-                                {localStorage.getItem("couponInfStorage") ? (
-                                  <p className="text-secondary mt-1">
-                                    {
-                                      JSON.parse(
-                                        localStorage.getItem("couponInfStorage")
-                                      ).message
+                                <div className="input-group  w-75">
+                                  <button
+                                    class="btn btn-secondary"
+                                    type="button"
+                                    id="button-addon1"
+                                    onClick={() => addCoupon(couponCode)}
+                                  >
+                                    使用優惠碼
+                                  </button>
+                                  <input
+                                    type="text"
+                                    className="form-control "
+                                    placeholder=""
+                                    aria-label="Example text with button addon"
+                                    aria-describedby="button-addon1"
+                                    value={couponCode}
+                                    onChange={(e) =>
+                                      setCouponCode(e.target.value)
                                     }
-                                  </p>
-                                ) : (
-                                  <p className="text-secondary mt-1">
-                                    {couponInf.message}
-                                  </p>
-                                )}
+                                    // onBlur={() => addCoupon(couponCode)}
+                                  />
+                                </div>
+                                <div className="">
+                                  {" "}
+                                  {localStorage.getItem("couponInfStorage") ? (
+                                    <p className="text-secondary mt-1">
+                                      {
+                                        JSON.parse(
+                                          localStorage.getItem(
+                                            "couponInfStorage"
+                                          )
+                                        ).message
+                                      }
+                                    </p>
+                                  ) : (
+                                    <p className="text-secondary mt-1">
+                                      {couponInf.message}
+                                    </p>
+                                  )}
+                                </div>
                               </div>
                             </div>
                           </div>
-                        </div>
-                        <div className="col-12 col-md-5 mt-5">
-                          <div className=" text-end">
-                            <p
-                              className={`mb-0 h5 fw-bold ${
-                                localStorage.getItem("couponInfStorage")
-                                  ? "text-decoration-line-through"
-                                  : ""
-                              }`}
-                            >
-                              總金額 :
-                              {/* {adultQuantity + childrenQuantity > 0
+                          <div className="col-12 col-md-5 mt-5">
+                            <div className=" text-end">
+                              <p
+                                className={`mb-0 h5 fw-bold ${
+                                  localStorage.getItem("couponInfStorage")
+                                    ? "text-decoration-line-through"
+                                    : ""
+                                }`}
+                              >
+                                總金額 :
+                                {/* {adultQuantity + childrenQuantity > 0
                                 ? `NT$${
                                     item.total -
                                     (item.total -
@@ -433,14 +437,14 @@ const Cart = () => {
                                           0.8))
                                   }`
                                 : ""} */}
-                              {adultQuantity + childrenQuantity > 0
-                                ? ` NT$${total}`
-                                : ""}
-                            </p>
-                            {localStorage.getItem("couponInfStorage") && (
-                              <p className="mb-0 h5 fw-bold text-danger mt-2">
-                                優惠總金額:
-                                {/* {adultQuantity + childrenQuantity > 0
+                                {adultQuantity + childrenQuantity > 0
+                                  ? ` NT$${total}`
+                                  : ""}
+                              </p>
+                              {localStorage.getItem("couponInfStorage") && (
+                                <p className="mb-0 h5 fw-bold text-danger mt-2">
+                                  優惠總金額:
+                                  {/* {adultQuantity + childrenQuantity > 0
                                   ? `NT$${
                                       (item.total -
                                         (item.total -
@@ -452,43 +456,55 @@ const Cart = () => {
                                       (item.final_total / item.total)
                                     }`
                                   : ""} */}
-                                {adultQuantity + childrenQuantity > 0
-                                  ? `NT$${couponTotal}`
-                                  : ""}
-                              </p>
-                            )}
+                                  {adultQuantity + childrenQuantity > 0
+                                    ? `NT$${couponTotal}`
+                                    : ""}
+                                </p>
+                              )}
+                            </div>
                           </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                );
-              })}
+                  );
+                })}
 
-              {(adultQuantity === 0 && childrenQuantity === 0) ||
-              selectedDate === null ? (
-                <button
-                  className="btn btn-dark w-100 mt-4 rounded-0 py-3"
-                  disabled
-                >
-                  請選擇人數
-                </button>
-              ) : (
-                <Link
-                  to="/checkout"
-                  className="btn btn-dark w-100 mt-4 rounded-0 py-3"
-                  onClick={submit}
-                >
-                  填寫資料
-                </Link>
-              )}
-            </>
-          )}
+                {(adultQuantity === 0 && childrenQuantity === 0) ||
+                selectedDate === null ? (
+                  <button
+                    className="btn btn-dark w-100 mt-4 rounded-0 py-3"
+                    disabled
+                  >
+                    請選擇人數
+                  </button>
+                ) : (
+                  <Link
+                    to="/checkout"
+                    className="btn btn-dark w-100 mt-4 rounded-0 py-3"
+                    onClick={submit}
+                  >
+                    填寫資料
+                  </Link>
+                )}
+              </>
+            )}
+          </div>
         </div>
       </div>
 
-      <div className="text-center mt-6 fs-3">推薦行程</div>
-    </div>
+      {cartData?.carts?.length !== 0 ? (
+        ""
+      ) : (
+        <div className="bg-light py-5">
+          <div className="container-fluid  index-list-section">
+            <div className="mb-5 ">
+              <p className="text-center fs-3">推薦行程</p>
+            </div>
+            <RecommendedProducts></RecommendedProducts>
+          </div>
+        </div>
+      )}
+    </>
   );
 };
 
