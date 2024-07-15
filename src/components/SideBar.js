@@ -214,18 +214,18 @@ const Sidebar = ({ isOpen, onToggle }) => {
             className="row  side-link flex-column"
             style={{ marginTop: "auto" }}
           >
-            <div className="col-md-3  mb-3">
-              <Link className="link">
+            <div className="col-md-3  mb-3" onClick={onToggle}>
+              <Link className="link" to="/location">
                 <h5>服務據點</h5>
               </Link>
             </div>
-            <div className="col-md-3  mb-3">
-              <Link className="link">
-                <h5>旅遊資訊</h5>
+            <div className="col-md-3  mb-3" onClick={onToggle}>
+              <Link className="link" to="/information">
+                <h5>常見問題</h5>
               </Link>
             </div>
-            <div className="col-md-3  mb-3">
-              <Link className="link">
+            <div className="col-md-3  mb-3" onClick={onToggle}>
+              <Link className="link" to="/contact">
                 <h5>聯絡我們</h5>
               </Link>
             </div>

@@ -37,17 +37,17 @@ const FrontLayout = () => {
             <div className="col-lg-3 mb-2 ">
               <ul className=" list-unstyled mb-0  ms-5">
                 <li className="mb-3">
-                  <Link className="text-white mx-3 link">
+                  <Link className="text-white mx-3 link" to="/location">
                     <span className="footer__about">服務據點</span>
                   </Link>
                 </li>
                 <li className="mb-3">
-                  <Link className="text-white mx-3 link">
-                    <span className="footer__about">旅遊資訊</span>
+                  <Link className="text-white mx-3 link " to="/information">
+                    <span className="footer__about">常見問題</span>
                   </Link>
                 </li>
                 <li className="mb-3">
-                  <Link className="text-white mx-3 link">
+                  <Link className="text-white mx-3 link" to="/contact">
                     <span className="footer__about">聯絡我們</span>
                   </Link>
                 </li>

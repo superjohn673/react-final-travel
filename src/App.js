@@ -1,7 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import { AppProvider } from "./store/AppContext";
 import ScrollToTop from "./components/ScrollToTop";
-import Login from "./pages/Login";
 import Dashboard from "./pages/admin/Dashboard";
 import AdminProducts from "./pages/admin/AdminProducts";
 import AdminCoupons from "./pages/admin/AdminCoupons";
@@ -24,6 +23,10 @@ import WeatherJapan from "./pages/front/WeatherJapan";
 import Cart from "./pages/front/Cart";
 import Checkout from "./pages/front/Checkout";
 import Success from "./pages/front/Success";
+import Login from "./pages/Login";
+import ServiceLocations from "./pages/front/ServiceLocation";
+import Information from "./pages/front/Information";
+import Contact from "./pages/front/Contact";
 
 function App() {
   return (
@@ -33,6 +36,9 @@ function App() {
         <Routes>
           <Route path="/" element={<FrontLayout />}>
             <Route path="" element={<Home />} />
+            <Route path="location" element={<ServiceLocations />} />
+            <Route path="information" element={<Information />} />
+            <Route path="contact" element={<Contact />} />
             <Route path="member" element={<MemberLayout />}>
               <Route path="orders" element={<Orders />} />
               <Route path="orders/:orderId" element={<OrderDetail />} />
