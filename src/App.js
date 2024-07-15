@@ -26,7 +26,7 @@ import Success from "./pages/front/Success";
 import Login from "./pages/Login";
 import ServiceLocations from "./pages/front/ServiceLocation";
 import Information from "./pages/front/Information";
-import Contact from "./pages/front/Contact";
+import ContactUs from "./pages/front/ContactUs";
 
 function App() {
   return (
@@ -38,7 +38,7 @@ function App() {
             <Route path="" element={<Home />} />
             <Route path="location" element={<ServiceLocations />} />
             <Route path="information" element={<Information />} />
-            <Route path="contact" element={<Contact />} />
+            <Route path="contact" element={<ContactUs />} />
             <Route path="member" element={<MemberLayout />}>
               <Route path="orders" element={<Orders />} />
               <Route path="orders/:orderId" element={<OrderDetail />} />
