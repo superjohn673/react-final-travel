@@ -11,24 +11,6 @@ const Tour = () => {
   );
   const { isLoading } = useContext(AppContext);
   const location = useLocation();
-  // const [products, setProducts] = useState([]);
-  // const [pagination, setPagination] = useState({});
-  // const [isLoading, setLoading] = useState(false);
-
-  // const getProducts = async (page = 1) => {
-  //   setLoading(true);
-  //   const productRes = await axios.get(
-  //     `/v2/api/${process.env.REACT_APP_API_PATH}/products?page=${page}`
-  //   );
-  //   console.log(productRes);
-  //   setProducts(productRes.data.products);
-  //   // setPagination(productRes.data.pagination);
-  //   setLoading(false);
-  // };
-
-  // useEffect(() => {
-  //   getProducts();
-  // }, []);
 
   //點擊更換照片
   const handleImageChange = (newImageUrl) => {

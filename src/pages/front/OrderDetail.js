@@ -57,7 +57,6 @@ const OrderDetail = () => {
           <div className="card-body py-3">
             <div className="row">
               <div className="col-12 border-bottom mb-3 ">
-                {/* <h5 className="mb-3">訂購的商品:</h5> */}
                 {Object.keys(order.products).map((productKey) => (
                   <div className="row mb-3" key={productKey}>
                     <div className="col-lg-6">
@@ -122,9 +121,6 @@ const OrderDetail = () => {
                     <span className="fw-bold">建立時間 :</span>{" "}
                     {new Date(order.create_at * 1000).toLocaleString()}
                   </p>
-                  {/* <p>
-                  <span className="fw-bold">訂單總金額:</span> {order.total}
-                </p> */}
                   <p>
                     <span className="fw-bold">訂單備註 :</span> {order.message}
                   </p>

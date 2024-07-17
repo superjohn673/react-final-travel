@@ -1,7 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
 import { Link, Outlet, useLocation } from "react-router-dom";
-// import axios from "axios";
-// import Pagination from "../../components/Pagination";
 import Loading from "../../components/Loading";
 import { AppContext } from "../../store/AppContext";
 
@@ -11,25 +9,6 @@ const SeasonJapan = () => {
   );
   const { isLoading } = useContext(AppContext);
   const location = useLocation();
-
-  // const [products, setProducts] = useState([]);
-  // const [pagination, setPagination] = useState({});
-  // const [isLoading, setLoading] = useState(false);
-
-  // const getProducts = async (page = 1) => {
-  //   setLoading(true);
-  //   const productRes = await axios.get(
-  //     `/v2/api/${process.env.REACT_APP_API_PATH}/products?page=${page}`
-  //   );
-  //   console.log(productRes);
-  //   setProducts(productRes.data.products);
-  //   // setPagination(productRes.data.pagination);
-  //   setLoading(false);
-  // };
-
-  // useEffect(() => {
-  //   getProducts();
-  // }, []);
 
   //點擊更換照片
   const handleImageChange = (newImageUrl) => {
@@ -119,12 +98,6 @@ const SeasonJapan = () => {
           </div>
         </div>
         <Outlet></Outlet>
-        {/* <nav className="d-flex justify-content-center">
-          <Pagination
-            changePage={getProducts}
-            pagination={pagination}
-          ></Pagination>
-        </nav> */}
       </div>
     </>
   );

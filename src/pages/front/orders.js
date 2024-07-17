@@ -4,13 +4,11 @@ import axios from "axios";
 import Pagination from "../../components/Pagination";
 import Loading from "../../components/Loading";
 import { AppContext } from "../../store/AppContext";
-// import OrderDetail from "./OrderDetail";
 
 const Orders = () => {
   const [orders, setOrders] = useState([]);
   const [pagination, setPagination] = useState({});
   const [isLoading, setIsloading] = useState(false);
-  //   const [shouldRefresh, setShouldRefresh] = useState(false);
 
   const getOrders = async (page = 1) => {
     setIsloading(true);
@@ -22,10 +20,6 @@ const Orders = () => {
     setPagination(orderRes.data.pagination);
     setIsloading(false);
   };
-
-  //   const handleOrderPaid = () => {
-  //     setShouldRefresh(true); // 設置需要刷新頁面
-  //   };
 
   useEffect(() => {
     getOrders();
@@ -70,10 +64,6 @@ const Orders = () => {
                         <h5 className="mb-1 fw-bold">
                           {order.products[productKey].product.title}
                         </h5>
-                        {/* <p>
-                            <span className="">建立時間 : </span>{" "}
-                            {new Date(order.create_at * 1000).toLocaleString()}
-                          </p> */}
 
                         <ul className="list-unstyled">
                           <li>
@@ -110,44 +100,14 @@ const Orders = () => {
                             前往付款
                           </button>
                         </div>
-                        {/* <p className="mb-0">
-                            總金額: {order.products[productKey].total}
-                          </p> */}
                       </div>
                     </div>
                   ))}
-
-                  {/* <p>
-                    <span className="fw-bold">訂單留言 : </span> {order.message}
-                  </p> */}
-                  {/* <h6>
-                    <span className="fw-bold">顧客資訊 : </span>
-                  </h6>
-                  <ul className="list-unstyled">
-                    <li>
-                      <span className="fw-bold">姓名 : </span> {order.user.name}
-                    </li>
-                    <li>
-                      <span className="fw-bold">電話 : </span> {order.user.tel}
-                    </li>
-                    <li>
-                      <span className="fw-bold">Email : </span>{" "}
-                      {order.user.email}
-                    </li>
-                    <li>
-                      <span className="fw-bold">地址 : </span>{" "}
-                      {order.user.address}
-                    </li>
-                  </ul> */}
                 </div>
-                {/* <div className="col-md-6">
-                  <h6 className="fw-bold">訂購的商品:</h6>
-                </div> */}
               </div>
             </div>
           </Link>
         ))}
-        {/* <OrderDetail /> */}
         <Pagination pagination={pagination} changePage={getOrders} />
       </div>
     </>

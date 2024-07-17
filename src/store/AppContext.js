@@ -62,7 +62,6 @@ export const AppProvider = ({ children }) => {
 
   const addToFavorites = (product) => {
     dispatch({ type: "ADD_TO_FAVORITES", payload: product });
-    //localStorage.setItem("favorites", JSON.stringify(state.favorites));
     localStorage.setItem(
       "favorites",
       JSON.stringify([...state.favorites, product])
@@ -96,58 +95,3 @@ export const AppProvider = ({ children }) => {
     </AppContext.Provider>
   );
 };
-
-// import React, { createContext, useState, useCallback } from "react";
-// import axios from "axios";
-
-// export const AppContext = createContext(null);
-
-// export const AppProvider = ({ children }) => {
-//   const [products, setProducts] = useState([]);
-//   const [isLoading, setLoading] = useState(false);
-//   const [pagination, setPagination] = useState({});
-//   const [selectedDate, setSelectedDate] = useState(null);
-//   const [adultQuantity, setAdultQuantity] = useState(0);
-//   const [childrenQuantity, setChildrenQuantity] = useState(0);
-
-//   //選完人數下拉選單歸0
-//   const resetSelectedQuantity = () => {
-//     setAdultQuantity(0);
-//     setChildrenQuantity(0);
-//   };
-
-//   //取得所有產品資料
-//   const getAllProducts = useCallback(async () => {
-//     setLoading(true);
-//     const productRes = await axios.get(
-//       `/v2/api/${process.env.REACT_APP_API_PATH}/products/all`
-//     );
-//     console.log(productRes);
-//     setProducts(productRes.data.products);
-//     setPagination(productRes.data.pagination);
-//     setLoading(false);
-//   }, []);
-
-//   return (
-//     <AppContext.Provider
-//       value={{
-//         products,
-//         setProducts,
-//         pagination,
-//         setPagination,
-//         isLoading,
-//         setLoading,
-//         selectedDate,
-//         setSelectedDate,
-//         adultQuantity,
-//         setAdultQuantity,
-//         childrenQuantity,
-//         setChildrenQuantity,
-//         resetSelectedQuantity,
-//         getAllProducts,
-//       }}
-//     >
-//       {children}
-//     </AppContext.Provider>
-//   );
-// };

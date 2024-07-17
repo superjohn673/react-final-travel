@@ -14,20 +14,6 @@ const WeatherJapan = () => {
     addToFavorites,
     removeFromFavorites,
   } = useContext(AppContext);
-  // const [products, setProducts] = useState([]);
-  // const [pagination, setPagination] = useState({});
-  // const [isLoading, setLoading] = useState(false);
-
-  // const getProducts = async () => {
-  //   setLoading(true);
-  //   const productRes = await axios.get(
-  //     `/v2/api/${process.env.REACT_APP_API_PATH}/products/all`
-  //   );
-  //   console.log(productRes);
-  //   setProducts(productRes.data.products);
-  //   // setPagination(productRes.data.pagination);
-  //   setLoading(false);
-  // };
 
   useEffect(() => {
     getAllProducts();

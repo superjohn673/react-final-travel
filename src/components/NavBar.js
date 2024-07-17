@@ -84,9 +84,6 @@ const NavBar = ({ cartData }) => {
               className="navbar-brand "
               to="/"
               style={{
-                // left: "50%",
-                // transform: "translate(-50%, -50%)",
-                // top: "50%",
                 fontFamily: "Kalam",
                 fontSize: "2rem",
               }}
@@ -95,14 +92,7 @@ const NavBar = ({ cartData }) => {
             </NavLink>
           </div>
           <div className="">
-            {" "}
-            <div
-            // className={`d-flex ${
-            //   isSmallScreen && isSidebarOpen
-            //     ? "position-absolute top-10 end-0 me-2"
-            //     : ""
-            // }`}
-            >
+            <div>
               <NavLink to="/cart" className="nav-link position-relative">
                 <i className="bi bi-bag-fill"></i>
                 <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">

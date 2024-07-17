@@ -21,10 +21,6 @@ const ProductDetail = () => {
   const [tempChildren, setTempChildren] = useState(0);
   const [tempSelectedDate, setTempEelectedDate] = useState(null);
   const navigate = useNavigate();
-  // const [cartQuantity, setCartQuantity] = useState(1);
-  // const [adultQuantity, setAdultQuantity] = useState(0);
-  // const [childrenQuantity, setChildrenQuantity] = useState(0);
-  // const [selectedDate, setSelectedDate] = useState(null);
   const { setSelectedDate, setAdultQuantity, setChildrenQuantity } =
     useContext(AppContext);
 
@@ -115,9 +111,6 @@ const ProductDetail = () => {
         <div className="row justify-content-between mt-5 mb-7">
           {/* 載入日曆 */}
           <div className="col-md-7 mb-3">
-            {/* <div className="">
-              <img src={product.imageUrl} alt="" className="img-fluid mt-4" />
-            </div> */}
             <h2 className="mb-3  d-md-none">{product.title}</h2>
             <TravelCalendar
               product={product}
@@ -129,11 +122,6 @@ const ProductDetail = () => {
             <h2 className="mb-3 d-none d-md-block">{product.title}</h2>
             <p className="d-none d-md-block">{product.description}</p>
             <p className="d-none d-md-block">{product.content}</p>
-            {/* <ul className="d-none d-md-block">
-              <li>1</li>
-              <li>2</li>
-            </ul> */}
-
             <div className="mt-auto mb-3">
               <div className="mb-3">
                 {tempSelectedDate ? (
@@ -154,48 +142,6 @@ const ProductDetail = () => {
                   </div>
                 )}
               </div>
-
-              {/* 原始加減欄位人數資料 */}
-              {/* <div className="row align-items-center justify-content-start">
-                <div className="col-md-2">
-                  <div>人數</div>
-                </div>
-                <div className="col-md-8">
-                  <div className="input-group mb-3 border mt-3 ">
-                    <div className="input-group-prepend">
-                      <button
-                        className="btn btn-outline-dark rounded-0 border-0 py-3"
-                        type="button"
-                        id="button-addon1"
-                        onClick={() =>
-                          setCartQuantity((pre) => (pre === 1 ? pre : pre - 1))
-                        }
-                      >
-                        <i className="bi bi-dash"></i>
-                      </button>
-                    </div>
-                    <input
-                      type="number"
-                      className="form-control border-0 text-center my-auto shadow-none"
-                      placeholder=""
-                      aria-label="Example text with button addon"
-                      aria-describedby="button-addon1"
-                      readOnly
-                      value={cartQuantity}
-                    />
-                    <div className="input-group-append">
-                      <button
-                        className="btn btn-outline-dark rounded-0 border-0 py-3"
-                        type="button"
-                        id="button-addon2"
-                        onClick={() => setCartQuantity((pre) => pre + 1)}
-                      >
-                        <i className="bi bi-plus"></i>
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div> */}
 
               <div className="row mb-3">
                 <div className="col-6">
@@ -279,7 +225,6 @@ const ProductDetail = () => {
                 type="button"
                 className="btn btn-dark w-100 rounded-0 py-3 "
                 onClick={() => addToCart()}
-                // disabled={isLoading}
                 disabled={isButtonDisabled || isLoading}
               >
                 報名

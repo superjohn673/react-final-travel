@@ -12,26 +12,6 @@ $text-color: #333;
   text-decoration: none;
 }
 
-//首頁動畫
-// .splash-text {
-//   font-size: 4rem; /* 或其他合適的字體大小 */
-//   font-family: "Kalam", cursive;
-//   font-weight: 300;
-//   font-style: normal;
-// }
-
-// .splash-screen {
-//   position: fixed;
-//   top: 0;
-//   left: 0;
-//   width: 100%;
-//   height: 100vh;
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-//   background-color: white;
-//   z-index: 9999; /* 設置較高的 z-index 以確保覆蓋在其他元素上方 */
-// }
 
 //navbar
 .sticky-top.show {
@@ -45,7 +25,6 @@ $text-color: #333;
 //index Banner
 .index-banner {
   height: 100vh;
-  // background-color: rgb(241, 240, 240);
 }
 .index-banner .img-container {
   height: 100vh;
@@ -94,10 +73,6 @@ $text-color: #333;
   transform: scale(1);
   transition: all 1s ease-out;
   overflow: hidden;
-  // &:hover {
-  //   transform: scale(1.1);
-  //   overflow: hidden;
-  // }
 }
 
 //index content-section
@@ -195,8 +170,6 @@ $text-color: #333;
 
 //index list-section
 .index-list-section {
-  // overflow: hidden;
-  // white-space: nowrap;
 
   .index-list-section__img {
     width: 300px;
@@ -238,26 +211,6 @@ $text-color: #333;
 .footer .footer__about:hover {
   color: #ced4da;
 }
-
-//products
-// .product-head-section__img {
-//   width: 150px;
-//   height: 150px;
-//   border-radius: 2%;
-//   background-repeat: no-repeat;
-//   background-position: center;
-//   background-size: 100%;
-//   overflow: hidden;
-//   &:hover {
-//     background-color: black;
-//     opacity: 0.8;
-//   }
-// }
-
-// .product-head-section__title {
-//   color: white;
-//   text-decoration: none;
-// }
 
 .product-head-list__title {
   color: black;
@@ -587,11 +540,6 @@ $text-color: #333;
 .cart__section__icon {
   font-size: 16rem;
 }
-// .cart__btn,
-// .product-detail-btn {
-//   outline-color: $primary-color !important;
-//   color: $primary-color !important;
-// }
 
 //login
 .login-title {

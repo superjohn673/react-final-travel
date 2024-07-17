@@ -58,40 +58,8 @@ function Success() {
                 <ul className="list-group list-group-flush">
                   {Object.values(orderData?.products || {}).map((item) => {
                     return (
-                      // <li className="list-group-item px-0" key={item.id}>
-                      //   <div className="d-flex mt-2">
-                      //     {/* <img
-                      //       src={item.product.imageUrl}
-                      //       alt=""
-                      //       className="me-2"
-                      //       style={{ width: "60px", height: "60px" }}
-                      //     /> */}
-                      //     <div className="w-100 d-flex flex-column">
-                      //       <div className="d-flex justify-content-between fw-bold">
-                      //         <h5>{item.product.title}</h5>
-                      //         <p className="mb-0">x{item.qty}</p>
-                      //       </div>
-                      //       <div className="d-flex justify-content-between mt-auto">
-                      //         <p className="text-muted mb-0">
-                      //           <small>NT${item.product.price}</small>
-                      //         </p>
-                      //         <p className="mb-0">NT${item.final_total}</p>
-                      //       </div>
-                      //     </div>
-                      //   </div>
-                      // </li>
                       <div className="border-top p-4 mb-4">
                         <div className="" key={item.id}>
-                          {/* <img
-                              src={item.product.imageUrl}
-                              alt=""
-                              className="me-2"
-                              style={{
-                                width: "48px",
-                                height: "48px",
-                                objectFit: "cover",
-                              }}
-                            /> */}
                           <h4 className="mb-4 fw-bold">{item.product.title}</h4>
                           <div className="row mb-4">
                             <div className="col-4 text-danger fw-bold">
@@ -131,18 +99,6 @@ function Success() {
                             <div className="col-4"></div>
                             <div className="col-8"></div>
                           </div>
-                          {/* <div className="w-100">
-                              <div className="d-flex justify-content-between fw-bold">
-                                <p className="mb-0">{item.product.title}</p>
-                                <p className="mb-0">x{item.qty}</p>
-                              </div>
-                              <div className="d-flex justify-content-between">
-                                <p className="text-muted mb-0">
-                                  <small>NT$ {item.product.price}</small>
-                                </p>
-                                <p className="mb-0">NT$ {item.final_total}</p>
-                              </div>
-                            </div> */}
                         </div>
 
                         <div className="row mt-4">
@@ -190,12 +146,6 @@ function Success() {
                       </div>
                     );
                   })}
-                  {/* <li className="list-group-item px-0 pb-0">
-                    <div className="d-flex justify-content-between mt-2">
-                      <p className="mb-0 h4 fw-bold">總計</p>
-                      <p className="mb-0 h4 fw-bold">NT${orderData.total}</p>
-                    </div>
-                  </li> */}
                 </ul>
               </div>
             </div>

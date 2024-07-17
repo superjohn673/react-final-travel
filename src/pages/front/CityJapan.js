@@ -1,7 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
 import { Link, useParams } from "react-router-dom";
-// import axios from "axios";
-// import Pagination from "../../components/Pagination";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
 import { AppContext } from "../../store/AppContext";
 
@@ -15,20 +13,6 @@ const CityJapan = () => {
     addToFavorites,
     removeFromFavorites,
   } = useContext(AppContext);
-  // const [products, setProducts] = useState([]);
-  //   const [pagination, setPagination] = useState({});
-  // const [isLoading, setLoading] = useState(false);
-
-  // const getProducts = async () => {
-  //   setLoading(true);
-  //   const productRes = await axios.get(
-  //     `/v2/api/${process.env.REACT_APP_API_PATH}/products/all`
-  //   );
-  //   console.log(productRes);
-  //   setProducts(productRes.data.products);
-  //   // setPagination(productRes.data.pagination);
-  //   setLoading(false);
-  // };
 
   useEffect(() => {
     getAllProducts();

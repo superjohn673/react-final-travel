@@ -108,9 +108,6 @@ const ProductModal = ({
     }
   };
 
-  // useEffect(() => {
-  //   console.log(message, dispatch);
-  // }, []);
   return (
     <div
       className="modal fade"

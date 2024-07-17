@@ -157,16 +157,6 @@ const Checkout = () => {
               {cartData?.carts?.map((item) => {
                 return (
                   <div className="" key={item.id}>
-                    {/* <img
-                      src={item.product.imageUrl}
-                      alt=""
-                      className="me-2"
-                      style={{
-                        width: "48px",
-                        height: "48px",
-                        objectFit: "cover",
-                      }}
-                    /> */}
                     <h4 className="mb-4 fw-bold">{item.product.title}</h4>
                     <div className="row mb-4">
                       <div className="col-4 text-danger fw-bold">出發日期</div>
@@ -198,18 +188,6 @@ const Checkout = () => {
                       <div className="col-4"></div>
                       <div className="col-8"></div>
                     </div>
-                    {/* <div className="w-100">
-                      <div className="d-flex justify-content-between fw-bold">
-                        <p className="mb-0">{item.product.title}</p>
-                        <p className="mb-0">x{item.qty}</p>
-                      </div>
-                      <div className="d-flex justify-content-between">
-                        <p className="text-muted mb-0">
-                          <small>NT$ {item.product.price}</small>
-                        </p>
-                        <p className="mb-0">NT$ {item.final_total}</p>
-                      </div>
-                    </div> */}
                   </div>
                 );
               })}
