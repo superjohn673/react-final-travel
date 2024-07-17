@@ -475,8 +475,9 @@ $text-color: #333;
 
   .progress-container {
     display: flex;
+    justify-content: center;
     align-items: center;
-    position: relative;
+    flex-wrap: wrap;
 
     .progress-step {
       display: flex;
@@ -484,6 +485,7 @@ $text-color: #333;
       align-items: center;
       flex: 1;
       position: relative;
+      margin-bottom: 3rem;
 
       .progress-icon {
         position: absolute;

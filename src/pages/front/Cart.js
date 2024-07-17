@@ -8,7 +8,6 @@ import RecommendedProducts from "../../components/RecommendedProducts";
 
 const Cart = () => {
   const { cartData, getCart } = useOutletContext();
-  // const [product, setProduct] = useState({});
   const [couponCode, setCouponCode] = useState("");
   const [couponInf, setCouponInf] = useState({});
   const [loadingItems, setLoadingItem] = useState([]);

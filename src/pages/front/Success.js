@@ -44,8 +44,11 @@ function Success() {
               親愛的顧客，感謝您在本平台訂購行程。我們非常感激您對我們的信任和支持，讓我們有機會為您提供優質的服務。
             </p>
             <p className="text-muted">感謝您選擇本平台，祝您旅途愉快！</p>
-            <Link to="/" className="btn btn-outline-dark me-2 rounded-0 mb-4">
-              回到首頁
+            <Link
+              to={`/member/orders/${orderId}`}
+              className="btn btn-outline-dark me-2 rounded-0 mb-4"
+            >
+              前往付款
             </Link>
           </div>
           <div className="col-md-6">

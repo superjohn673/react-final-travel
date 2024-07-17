@@ -2,7 +2,6 @@ import React, { useContext } from "react";
 import { MessageContext } from "../store/messageStore";
 
 const Message = () => {
-  // const [message, setMessage] = useState({});
   const [message] = useContext(MessageContext);
   return (
     <>
