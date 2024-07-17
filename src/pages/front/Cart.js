@@ -57,20 +57,17 @@ const Cart = () => {
       },
     };
     setLoadingItem([...loadingItems, item.id]);
-    console.log(loadingItems);
     try {
       const res = await axios.put(
         `/v2/api/${process.env.REACT_APP_API_PATH}/cart/${item.id}`,
         data
       );
-      console.log(res);
 
       setLoadingItem(
         loadingItems.filter((loadingObject) => {
           return loadingObject !== item.id;
         })
       );
-      console.log(loadingItems);
       getCart();
     } catch (error) {
       console.log(error);

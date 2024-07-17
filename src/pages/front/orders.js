@@ -3,7 +3,6 @@ import { Link, Outlet, useOutletContext } from "react-router-dom";
 import axios from "axios";
 import Pagination from "../../components/Pagination";
 import Loading from "../../components/Loading";
-import { AppContext } from "../../store/AppContext";
 
 const Orders = () => {
   const [orders, setOrders] = useState([]);
@@ -15,7 +14,6 @@ const Orders = () => {
     const orderRes = await axios.get(
       `/v2/api/${process.env.REACT_APP_API_PATH}/orders?page=${page}`
     );
-    console.log("訂單", orderRes);
     setOrders(orderRes.data.orders);
     setPagination(orderRes.data.pagination);
     setIsloading(false);

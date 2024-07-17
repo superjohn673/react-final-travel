@@ -19,8 +19,6 @@ const ContactUs = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // 这里可以添加提交表单的逻辑，例如发送数据到服务器
-    console.log("Form data submitted:", formData);
   };
 
   return (

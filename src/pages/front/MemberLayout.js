@@ -1,12 +1,6 @@
 import React, { useState } from "react";
 import { Outlet, Link } from "react-router-dom";
-import {
-  FaUser,
-  FaListAlt,
-  FaMoneyBillAlt,
-  FaHeart,
-  FaSignOutAlt,
-} from "react-icons/fa";
+import { FaUser, FaListAlt, FaHeart } from "react-icons/fa";
 
 const MemberLayout = () => {
   return (
@@ -39,13 +33,6 @@ const MemberLayout = () => {
                 <FaHeart className="me-2" />
                 我的最愛
               </Link>
-              {/* <Link
-                to="/logout"
-                className="list-group-item list-group-item-action d-flex align-items-center"
-              >
-                <FaSignOutAlt className="me-2" />
-                登出
-              </Link> */}
             </div>
           </div>
         </div>

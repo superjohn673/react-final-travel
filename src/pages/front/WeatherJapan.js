@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
 import { Link, useParams } from "react-router-dom";
-// import axios from "axios";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
 import { AppContext } from "../../store/AppContext";
 

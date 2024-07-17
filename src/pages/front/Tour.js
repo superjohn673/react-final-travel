@@ -1,7 +1,5 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useState, useContext } from "react";
 import { Link, Outlet, useLocation } from "react-router-dom";
-// import axios from "axios";
-// import Pagination from "../../components/Pagination";
 import Loading from "../../components/Loading";
 import { AppContext } from "../../store/AppContext";
 

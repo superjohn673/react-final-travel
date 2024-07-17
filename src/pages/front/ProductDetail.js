@@ -29,7 +29,6 @@ const ProductDetail = () => {
     const productRes = await axios.get(
       `/v2/api/${process.env.REACT_APP_API_PATH}/product/${id}`
     );
-    console.log(productRes);
     setProduct(productRes.data.product);
     setIsLoading(false);
   };
@@ -56,15 +55,12 @@ const ProductDetail = () => {
         qty: tempAdult + tempChildren,
       },
     };
-    // setIsLoading(true);
     try {
       const res = await axios.post(
         `/v2/api/${process.env.REACT_APP_API_PATH}/cart`,
         data
       );
-      console.log(res);
       getCart();
-      // setIsLoading(false);
       navigate("/cart");
     } catch (error) {
       console.log(error);

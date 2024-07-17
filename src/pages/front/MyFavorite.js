@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { AppContext } from "../../store/AppContext";
-import { FaHeart, FaRegHeart } from "react-icons/fa";
+import { FaHeart } from "react-icons/fa";
 
 const MyFavorite = () => {
   const { favorites, removeFromFavorites } = useContext(AppContext);

@@ -113,25 +113,6 @@ const Products = () => {
         <div className="row">
           {products.map((product) => {
             return (
-              // <div className="col-md-3" key={product.id}>
-              //   <div className="card border-0 mb-4 position-relative position-relative">
-              //     <img
-              //       src={product.imageUrl}
-              //       className="card-img-top rounded-0 object-cover"
-              //       height={300}
-              //       alt="..."
-              //     />
-              //     <div className="card-body p-0">
-              //       <h4 className="mb-0 mt-2">
-              //         <Link to={`/product/${product.id}`}>{product.title}</Link>
-              //       </h4>
-              //       <p className="card-text text-muted mb-0">
-              //         {product.content}
-              //       </p>
-              //       <p className="text-muted mt-1">NT$ {product.price}</p>
-              //     </div>
-              //   </div>
-              // </div>
               <div className="col-md-6" key={product.id}>
                 <div className="card mb-3" style={{ maxWidth: "540px" }}>
                   <div className="row g-0">

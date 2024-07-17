@@ -153,7 +153,6 @@ const Home = (isSidebarOpen) => {
 
   return (
     <>
-      {/* <SplashScreen></SplashScreen> */}
       <div className="container-fluid">
         <div className="row flex-md-row-reverse index-banner">
           <div
@@ -168,11 +167,6 @@ const Home = (isSidebarOpen) => {
             >
               <i class="fa-solid fa-angles-down "></i>
             </div>
-            {/* <img
-              src={imageUrl}
-              className="img-fluid index-banner--transition "
-              alt="..."
-            /> */}
           </div>
           <div className="col-lg-5 d-none d-lg-block">
             <div className="d-flex flex-row justify-content-evenly align-items-center h-100">

@@ -69,7 +69,6 @@ const NavBar = ({ cartData }) => {
                 <li className="nav-item active">
                   <NavLink
                     className="nav-link ps-0"
-                    // to="/area-japan"
                     style={{ fontSize: "1.5rem" }}
                     onClick={toggleSidebar}
                   >

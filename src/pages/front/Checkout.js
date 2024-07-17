@@ -9,11 +9,8 @@ import CartNavigator from "../../components/CartNavigator";
 const Checkout = () => {
   const { cartData, getCart } = useOutletContext();
   const {
-    setSelectedDate,
     selectedDate,
-    setAdultQuantity,
     adultQuantity,
-    setChildrenQuantity,
     childrenQuantity,
     finalTotal,
     finalCouponTotal,
@@ -33,7 +30,6 @@ const Checkout = () => {
       const res = await axios.delete(
         `/v2/api/${process.env.REACT_APP_API_PATH}/cart/${id}`
       );
-      // localStorage.removeItem("couponInfStorage");
       getCart();
     } catch (error) {
       console.log(error);
@@ -41,7 +37,6 @@ const Checkout = () => {
   };
 
   const onSubmit = async (data) => {
-    console.log(data);
     const { name, email, tel, address } = data;
     const form = {
       data: {
@@ -58,7 +53,6 @@ const Checkout = () => {
       form
     );
     removeCartItem();
-    console.log(res);
     navigate(`/success/${res.data.orderId}`);
   };
   return (

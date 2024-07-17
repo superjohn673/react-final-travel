@@ -1,4 +1,3 @@
-// src/store/appReducer.js
 const appReducer = (state, action) => {
   switch (action.type) {
     case "SET_PRODUCTS":
