@@ -171,6 +171,11 @@ $text-color: #333;
 //index list-section
 .index-list-section {
 
+  .slick-slider{
+    width: 100%;
+    overflow: hidden;
+  }
+  
   .index-list-section__img {
     width: 300px;
     height: 400px;

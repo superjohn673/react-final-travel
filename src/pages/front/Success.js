@@ -50,6 +50,9 @@ function Success() {
             >
               前往付款
             </Link>
+            <Link to="/" className="btn btn-outline-dark me-2 rounded-0 mb-4">
+              回到首頁
+            </Link>
           </div>
           <div className="col-md-6">
             <div className="card rounded-0 py-4">
