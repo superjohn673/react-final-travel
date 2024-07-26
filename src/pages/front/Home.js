@@ -240,12 +240,12 @@ const Home = (isSidebarOpen) => {
               </div>
             </div>
           </div>
-          <div className="row  gx-5">
+          <div className="row ">
             <div
               className="col-md-6 mt-md-4 season-section"
               ref={springSectionRef}
             >
-              <div className="card border-0 mb-4 position-relative bg-light">
+              <div className="card border-0 mb-4  bg-light">
                 <Link to="/season-japan/spring">
                   <img
                     src="https://images.unsplash.com/photo-1557409518-691ebcd96038?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
@@ -255,7 +255,7 @@ const Home = (isSidebarOpen) => {
                 </Link>
                 <div className="card-body p-0">
                   <h3 className="mb-0 mt-4 text-center">春季之旅</h3>
-                  <div className="d-flex justify-content-between mt-3">
+                  <div className="d-flex justify-content-center mt-3">
                     <p className="card-text text-muted mb-0 w-75">
                       滿園盛放的櫻花，紛飛的櫻花瓣，赴一場絢爛的春日盛宴。日本各地綻放的色彩，令人心曠神怡。
                     </p>
@@ -275,7 +275,7 @@ const Home = (isSidebarOpen) => {
               className="col-md-6 mt-md-4 season-section"
               ref={summerSectionRef}
             >
-              <div className="card border-0 mb-4 position-relative bg-light">
+              <div className="card border-0 mb-4  bg-light">
                 <Link to="/season-japan/summer">
                   <img
                     src="https://images.unsplash.com/photo-1526481280693-3bfa7568e0f3?q=80&w=1742&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
@@ -286,7 +286,7 @@ const Home = (isSidebarOpen) => {
 
                 <div className="card-body p-0">
                   <h3 className="mb-0 mt-4 text-center">夏季之旅</h3>
-                  <div className="d-flex justify-content-between mt-3">
+                  <div className="d-flex justify-content-center mt-3">
                     <p className="card-text text-muted mb-0 w-75">
                       炎炎夏日，海濱祭典熱鬧非凡。嚐美食、品美酒、賞煙花，感受夏日的悠閒休閒時光。
                     </p>
@@ -306,7 +306,7 @@ const Home = (isSidebarOpen) => {
               className="col-md-6 mt-md-4 season-section"
               ref={fallSectionRef}
             >
-              <div className="card border-0 mb-4 position-relative bg-light">
+              <div className="card border-0 mb-4  bg-light">
                 <Link to="/season-japan/fall">
                   {" "}
                   <img
@@ -318,7 +318,7 @@ const Home = (isSidebarOpen) => {
 
                 <div className="card-body p-0">
                   <h3 className="mb-0 mt-4 text-center">秋季之旅</h3>
-                  <div className="d-flex justify-content-between mt-3">
+                  <div className="d-flex justify-content-center mt-3">
                     <p className="card-text text-muted mb-0 w-75 ">
                       層林盡染的楓葉，映襯著古剎寺院，幽靜迷人。品嚐季節限定美食，徜徉在秋高氣爽的愜意時刻。
                     </p>
@@ -337,7 +337,7 @@ const Home = (isSidebarOpen) => {
               className="col-md-6 mt-md-4 season-section"
               ref={winterSectionRef}
             >
-              <div className="card border-0 mb-4 position-relative bg-light">
+              <div className="card border-0 mb-4  bg-light">
                 <Link to="/season-japan/winter">
                   {" "}
                   <img
@@ -349,7 +349,7 @@ const Home = (isSidebarOpen) => {
 
                 <div className="card-body p-0">
                   <h3 className="mb-0 mt-4 text-center">冬季之旅</h3>
-                  <div className="d-flex justify-content-between mt-3">
+                  <div className="d-flex justify-content-center mt-3">
                     <p className="card-text text-muted mb-0 w-75">
                       銀裝素裹的雪景，溫暖的溫泉浴，體驗日本獨特的冬日魅力。滑雪、赏雪、品嚐溫暖的料理，享受寒冬里的靜謐時光。
                     </p>

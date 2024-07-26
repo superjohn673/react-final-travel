@@ -26,12 +26,12 @@ const FrontLayout = () => {
   }, []);
 
   return (
-    <>
+    <div>
       <Loading isLoading={isLoading} />
       <Navbar cartData={cartData} />
       <Outlet context={{ getCart, cartData }}></Outlet>
       <div className="bg-dark py-3">
-        <div className="container p-2">
+        <div className="container ">
           <div className="footer row justify-content-between align-items-center text-white py-5">
             <div className="col-lg-3 mb-2 ">
               <ul className=" list-unstyled mb-0  ms-5">
@@ -92,7 +92,7 @@ const FrontLayout = () => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
