@@ -1,73 +1,95 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
+const cities = ["台北", "台中", "高雄"];
 const countries = [
   "東京",
   "京都",
   "大阪",
-  "北海道",
-  "沖繩",
+  "札幌",
+  "函館",
   "福岡",
   "名古屋",
   "神戶",
   "橫濱",
   "奈良",
-  "札幌",
   "鹿兒島",
   "熊本",
   "長崎",
-  "宮崎",
-  "宮城",
-  "新潟",
-  "長野",
+  "仙台",
   "岐阜",
   "靜岡",
-  "石川",
-  "福井",
-  "滋賀",
   "和歌山",
-  "愛媛",
-  "高知",
-  "德島",
-  "香川",
-  "鳥取",
-  "島根",
-  "岡山",
-  "廣島",
-  "山口",
   "山形",
   "岩手",
   "秋田",
   "青森",
   "富山",
   "福島",
-  "群馬",
-  "埼玉",
-  "千葉",
-  "茨城",
   "栃木",
   "山梨",
-  "愛知",
-  "三重",
-  "佐賀",
   "大分",
-  "沖繩",
 ];
 
-const TravelSearchForm = () => {
+const TravelSearchForm = ({ onToggle }) => {
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
   const [departure, setDeparture] = useState("");
   const [destination, setDestination] = useState("");
+  const navigate = useNavigate();
 
   const handleSearch = (e) => {
     e.preventDefault();
-    // 處理搜尋邏輯
-    console.log("Start Date:", startDate);
-    console.log("End Date:", endDate);
-    console.log("Departure:", departure);
-    console.log("Destination:", destination);
+
+    let url = "";
+    switch (destination) {
+      case "東京":
+      case "橫濱":
+      case "靜岡":
+      case "栃木":
+      case "山梨":
+        url = "/area-japan/kanto";
+        break;
+      case "京都":
+      case "大阪":
+      case "神戶":
+      case "奈良":
+      case "和歌山":
+        url = "/area-japan/kansai";
+        break;
+      case "札幌":
+      case "函館":
+        url = "/area-japan/hokkaido";
+        break;
+      case "仙台":
+      case "山形":
+      case "岩手":
+      case "秋田":
+      case "青森":
+      case "福島":
+        url = "/area-japan/tohoku";
+        break;
+      case "名古屋":
+      case "岐阜":
+      case "富山":
+        url = "/area-japan/hokuriku";
+        break;
+      case "福岡":
+      case "鹿兒島":
+      case "熊本":
+      case "長崎":
+      case "大分":
+        url = "/area-japan/kyushu";
+        break;
+      default:
+        console.log("目的地無效");
+        return;
+    }
+
+    // 使用 navigate 進行跳轉
+    navigate(url);
   };
 
   return (
@@ -109,9 +131,9 @@ const TravelSearchForm = () => {
               <option value="" disabled>
                 選擇出發地
               </option>
-              {countries.map((country, index) => (
-                <option key={index} value={country}>
-                  {country}
+              {cities.map((city, index) => (
+                <option key={index} value={city}>
+                  {city}
                 </option>
               ))}
             </select>
@@ -136,7 +158,11 @@ const TravelSearchForm = () => {
           </div>
         </div>
         <div className="travel-search-form__row">
-          <button type="submit" className="travel-search-form__button">
+          <button
+            type="submit"
+            className="travel-search-form__button"
+            onClick={onToggle}
+          >
             搜尋
           </button>
         </div>

@@ -60,7 +60,10 @@ const Sidebar = ({ isOpen, onToggle }) => {
                 <span>會員專區</span>
               </Link>
             </div>
-            <TravelSearchForm className="d-none d-md-block"></TravelSearchForm>
+            <TravelSearchForm
+              onToggle={onToggle}
+              className="d-none d-md-block"
+            ></TravelSearchForm>
             <div>
               {" "}
               <h5
