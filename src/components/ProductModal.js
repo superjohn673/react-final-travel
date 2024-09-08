@@ -5,6 +5,8 @@ import {
   handleSuccessMessage,
   handleErrorMessage,
 } from "../store/messageStore";
+// import ReactQuill from "react-quill";
+// import "react-quill/dist/quill.snow.css";
 
 const ProductModal = ({
   closeProductModal,
@@ -66,6 +68,10 @@ const ProductModal = ({
       });
     }
   };
+
+  // const handleTourChange = (value) => {
+  //   setTempData({ ...tempData, content: value });
+  // };
 
   const submit = async () => {
     try {
@@ -254,7 +260,20 @@ const ProductModal = ({
                 </div>
                 <div className="form-group mb-2">
                   <label className="w-100" htmlFor="content">
-                    說明內容
+                    行程內容
+                    {/* <ReactQuill
+                      value={tempData.content}
+                      onChange={handleTourChange}
+                      modules={{
+                        toolbar: [
+                          [{ header: [1, 2, false] }],
+                          ["bold", "italic", "underline"],
+                          ["link", "image"],
+                          [{ list: "ordered" }, { list: "bullet" }],
+                          ["clean"], // 清除格式按鈕
+                        ],
+                      }}
+                    /> */}
                     <textarea
                       type="text"
                       id="content"

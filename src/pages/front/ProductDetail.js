@@ -117,7 +117,7 @@ const ProductDetail = () => {
           <div className="col-md-5 d-flex flex-column  ">
             <h2 className="mb-3 d-none d-md-block">{product.title}</h2>
             <p className="d-none d-md-block">{product.description}</p>
-            <p className="d-none d-md-block">{product.content}</p>
+            {/* <p className="d-none d-md-block">{product.content}</p> */}
             <div className="mt-auto mb-3">
               <div className="mb-3">
                 {tempSelectedDate ? (

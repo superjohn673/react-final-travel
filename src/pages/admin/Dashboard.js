@@ -42,7 +42,7 @@ const Dashboard = () => {
       <Message />
       <nav className="navbar navbar-expand-lg bg-dark">
         <div className="container-fluid">
-          <p className="text-white mb-0">HEX EATS 後台管理系統</p>
+          <p className="text-white mb-0">Shiba Travel 後台管理系統</p>
           <button
             className="navbar-toggler"
             type="button"
