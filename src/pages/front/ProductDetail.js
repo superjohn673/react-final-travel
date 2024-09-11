@@ -11,8 +11,81 @@ import axios from "axios";
 import Loading from "../../components/Loading";
 import TravelCalendar from "../../components/TravelCalendar";
 
+const parseItinerary = (htmlContent) => {
+  // 檢查是否有內容
+  if (!htmlContent) {
+    console.error("內容為空，無法解析行程");
+    return [];
+  }
+
+  const parser = new DOMParser();
+  const doc = parser.parseFromString(htmlContent, "text/html");
+  const textContent = doc.body.textContent || "";
+
+  // 檢查是否有文本內容
+  if (!textContent.trim()) {
+    console.error("解析後的內容為空，無法解析行程");
+    return [];
+  }
+
+  const itinerary = [];
+
+  // 使用正則表達式來找到每一天的行程
+  const days = textContent.match(/Day \d+:.*?(?=(Day \d+:|$))/gs); // 匹配每一天的內容
+
+  // 檢查是否匹配到了任何天數行程
+  if (!days) {
+    console.error("找不到任何行程日");
+    return [];
+  }
+
+  days.forEach((dayText) => {
+    const match = dayText.match(/Day (\d+):\s*(.*)/s); // 匹配具體的行程
+    if (match) {
+      const dayNumber = match[1];
+      const route = match[2].trim().split(" → "); // 按 "→" 分割行程路線
+
+      // 檢查是否有路線資料
+      if (route.length === 0) {
+        console.warn(`Day ${dayNumber} 沒有找到路線`);
+      }
+
+      itinerary.push({ day: dayNumber, route });
+    } else {
+      console.warn(`Day 的格式不正確: ${dayText}`);
+    }
+  });
+
+  console.log(itinerary);
+  return itinerary;
+};
+
+// const parseItinerary = (htmlContent) => {
+//   const parser = new DOMParser();
+//   const doc = parser.parseFromString(htmlContent, "text/html");
+//   const textContent = doc.body.textContent || "";
+
+//   const itinerary = [];
+
+//   // 使用正則表達式來找到每一天的行程
+//   const days = textContent.match(/Day \d+:.*?((?=Day \d+:)|$)/gs); // 匹配每一天的內容
+
+//   days.forEach((dayText) => {
+//     const match = dayText.match(/Day (\d+): (.*)/s); // 匹配具體的行程
+//     if (match) {
+//       const dayNumber = match[1];
+//       const route = match[2].trim().split(" → "); // 按 "→" 分割行程路線
+//       itinerary.push({ day: dayNumber, route });
+//     }
+//   });
+
+//   console.log(itinerary);
+//   return itinerary;
+// };
+
 const ProductDetail = () => {
   const [product, setProduct] = useState({});
+  const [itinerary, setItinerary] = useState([]);
   const { id } = useParams();
   const [isLoading, setIsLoading] = useState(false);
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
@@ -30,6 +103,7 @@ const ProductDetail = () => {
       `/v2/api/${process.env.REACT_APP_API_PATH}/product/${id}`
     );
     setProduct(productRes.data.product);
+    setItinerary(parseItinerary(productRes.data.product.content)); // 解析行程
     setIsLoading(false);
   };
 
@@ -113,11 +187,16 @@ const ProductDetail = () => {
               onDateSelected={onDateSelected}
             ></TravelCalendar>
           </div>
-          {/* 載入日曆 */}
-          <div className="col-md-5 d-flex flex-column  ">
+          {/* 行程標題描述及人數選擇*/}
+          <div className="col-md-5 d-flex flex-column justify-content-between  ">
             <h2 className="mb-3 d-none d-md-block">{product.title}</h2>
             <p className="d-none d-md-block">{product.description}</p>
+            {/* <div
+              className="d-none d-md-block"
+              dangerouslySetInnerHTML={{ __html: product.content }}
+            ></div> */}
             {/* <p className="d-none d-md-block">{product.content}</p> */}
+            {/* 人數選擇 */}
             <div className="mt-auto mb-3">
               <div className="mb-3">
                 {tempSelectedDate ? (
@@ -347,6 +426,33 @@ const ProductDetail = () => {
             <br />
             <span className="fs-3 fw-bold">每日行程</span>
           </div>
+
+          <div>
+            {/* 測試開始*/}
+
+            <div className="tour-content" id="daily-itinerary">
+              {itinerary.map((day) => (
+                <div className="row mb-5 border-bottom" key={day.day}>
+                  <div className="col-12">
+                    <div className="row">
+                      <div className="col-md-2 mb-4">
+                        <div className="tour-daily"> DAY {day.day} </div>
+                      </div>
+                      <div className="col-md-10 d-flex align-items-center mb-4">
+                        <div className="tour-daily-route">
+                          {day.route.join(" → ")}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/*測試 結束*/}
+          </div>
+
+          {/* 每日行程內容*/}
           <div className="row mb-5 border-bottom">
             <div className="col-12">
               <div className="row  ">
@@ -432,7 +538,6 @@ const ProductDetail = () => {
               </div>
             </div>
           </div>
-
           <div className="row mb-5 border-bottom">
             <div className="col-12">
               <div className="row ">

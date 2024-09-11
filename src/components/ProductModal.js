@@ -5,8 +5,8 @@ import {
   handleSuccessMessage,
   handleErrorMessage,
 } from "../store/messageStore";
-// import ReactQuill from "react-quill";
-// import "react-quill/dist/quill.snow.css";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
 
 const ProductModal = ({
   closeProductModal,
@@ -69,9 +69,9 @@ const ProductModal = ({
     }
   };
 
-  // const handleTourChange = (value) => {
-  //   setTempData({ ...tempData, content: value });
-  // };
+  const handleTourChange = (value) => {
+    setTempData((prev) => ({ ...prev, content: value }));
+  };
 
   const submit = async () => {
     try {
@@ -261,7 +261,7 @@ const ProductModal = ({
                 <div className="form-group mb-2">
                   <label className="w-100" htmlFor="content">
                     行程內容
-                    {/* <ReactQuill
+                    <ReactQuill
                       value={tempData.content}
                       onChange={handleTourChange}
                       modules={{
@@ -273,8 +273,18 @@ const ProductModal = ({
                           ["clean"], // 清除格式按鈕
                         ],
                       }}
-                    /> */}
-                    <textarea
+                      formats={[
+                        "header",
+                        "bold",
+                        "italic",
+                        "underline",
+                        "link",
+                        "image",
+                        "list",
+                        "bullet",
+                      ]}
+                    />
+                    {/* <textarea
                       type="text"
                       id="content"
                       name="content"
@@ -282,7 +292,7 @@ const ProductModal = ({
                       className="form-control"
                       onChange={handleChange}
                       value={tempData.content}
-                    />
+                    /> */}
                   </label>
                 </div>
                 <div className="form-group mb-2">
