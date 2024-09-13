@@ -140,7 +140,7 @@ const ProductModal = ({
               <div className="col-sm-4">
                 <div className="form-group mb-2">
                   <label className="w-100" htmlFor="image">
-                    輸入圖片網址
+                    輸入主圖網址
                     <input
                       type="text"
                       name="imageUrl"

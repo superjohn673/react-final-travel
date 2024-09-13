@@ -12,7 +12,6 @@ import Loading from "../../components/Loading";
 import TravelCalendar from "../../components/TravelCalendar";
 
 const parseItinerary = (htmlContent) => {
-  // 檢查是否有內容
   if (!htmlContent) {
     console.error("內容為空，無法解析行程");
     return [];
@@ -22,7 +21,6 @@ const parseItinerary = (htmlContent) => {
   const doc = parser.parseFromString(htmlContent, "text/html");
   const textContent = doc.body.textContent || "";
 
-  // 檢查是否有文本內容
   if (!textContent.trim()) {
     console.error("解析後的內容為空，無法解析行程");
     return [];
@@ -30,29 +28,31 @@ const parseItinerary = (htmlContent) => {
 
   const itinerary = [];
 
-  // 使用正則表達式來找到每一天的行程
-  const days = textContent.match(/Day \d+:.*?(?=(Day \d+:|$))/gs); // 匹配每一天的內容
+  // 匹配每一天的行程，分別處理行程和特色重點
+  const days = textContent.match(/(Day \d+:.*?)(?=(Day \d+:|$))/gs);
 
-  // 檢查是否匹配到了任何天數行程
   if (!days) {
     console.error("找不到任何行程日");
     return [];
   }
 
   days.forEach((dayText) => {
-    const match = dayText.match(/Day (\d+):\s*(.*)/s); // 匹配具體的行程
+    // 匹配行程與可選的特色重點（\n分隔地點與行程路線）
+    const match = dayText.match(
+      /Day (\d+):\s*([\s\S]*?)(?:\n(.*?))?(?:\行程特色:\s*(.*))?\s*$/
+    );
+
     if (match) {
-      const dayNumber = match[1];
-      const route = match[2].trim().split(" → "); // 按 "→" 分割行程路線
+      const dayNumber = match[1]; // 提取第幾天
+      const routeText = match[2].trim(); // 提取行程路線
+      const route = routeText.split(" → "); // 按 "→" 分割行程路線
+      // const location = match[3] ? match[3].trim() : ""; // 提取行程中的地點
+      const highlight = match[4] ? match[4].trim() : ""; // 提取特色重點
 
-      // 檢查是否有路線資料
-      if (route.length === 0) {
-        console.warn(`Day ${dayNumber} 沒有找到路線`);
-      }
-
-      itinerary.push({ day: dayNumber, route });
+      // 添加每一天的行程與相關資訊
+      itinerary.push({ day: dayNumber, route, highlight });
     } else {
-      console.warn(`Day 的格式不正確: ${dayText}`);
+      console.warn(`Day 格式不正確: ${dayText}`);
     }
   });
 
@@ -61,21 +61,94 @@ const parseItinerary = (htmlContent) => {
 };
 
 // const parseItinerary = (htmlContent) => {
+//   if (!htmlContent) {
+//     console.error("內容為空，無法解析行程");
+//     return [];
+//   }
+
 //   const parser = new DOMParser();
 //   const doc = parser.parseFromString(htmlContent, "text/html");
 //   const textContent = doc.body.textContent || "";
 
+//   if (!textContent.trim()) {
+//     console.error("解析後的內容為空，無法解析行程");
+//     return [];
+//   }
+
+//   const itinerary = [];
+
+//   // 匹配每一天的行程，分別處理行程和特色重點
+//   const days = textContent.match(/(Day \d+:.*?)(?=(Day \d+:|$))/gs);
+
+//   if (!days) {
+//     console.error("找不到任何行程日");
+//     return [];
+//   }
+
+//   days.forEach((dayText) => {
+//     // 匹配每一天的行程與可選的特色重點
+//     const match = dayText.match(
+//       /Day (\d+):\s*([\s\S]*?)(?:\n\n(.*?))?\s*(?:行程特色:\s*(.*))?\s*$/
+//     );
+//     if (match) {
+//       const dayNumber = match[1]; // 提取第幾天
+//       const route = match[2].trim().split(" → "); // 提取行程路線
+//       const location = match[3] ? match[3].trim() : ""; // 提取行程中的景點
+//       const highlight = match[4] ? match[4].trim() : ""; // 提取特色重點
+
+//       // 將每一天的行程與相關資訊加入陣列
+//       itinerary.push({ day: dayNumber, route, location, highlight });
+//     } else {
+//       console.warn(`Day 格式不正確: ${dayText}`);
+//     }
+//   });
+
+//   console.log(itinerary);
+//   return itinerary;
+// };
+
+// const parseItinerary = (htmlContent) => {
+//   // 檢查是否有內容
+//   if (!htmlContent) {
+//     console.error("內容為空，無法解析行程");
+//     return [];
+//   }
+
+//   const parser = new DOMParser();
+//   const doc = parser.parseFromString(htmlContent, "text/html");
+//   const textContent = doc.body.textContent || "";
+
+//   // 檢查是否有文本內容
+//   if (!textContent.trim()) {
+//     console.error("解析後的內容為空，無法解析行程");
+//     return [];
+//   }
+
 //   const itinerary = [];
 
 //   // 使用正則表達式來找到每一天的行程
-//   const days = textContent.match(/Day \d+:.*?((?=Day \d+:)|$)/gs); // 匹配每一天的內容
+//   const days = textContent.match(/Day \d+:.*?(?=(Day \d+:|$))/gs); // 匹配每一天的內容
+
+//   // 檢查是否匹配到了任何天數行程
+//   if (!days) {
+//     console.error("找不到任何行程日");
+//     return [];
+//   }
 
 //   days.forEach((dayText) => {
-//     const match = dayText.match(/Day (\d+): (.*)/s); // 匹配具體的行程
+//     const match = dayText.match(/Day (\d+):\s*(.*)/s); // 匹配具體的行程
 //     if (match) {
 //       const dayNumber = match[1];
 //       const route = match[2].trim().split(" → "); // 按 "→" 分割行程路線
+
+//       // 檢查是否有路線資料
+//       if (route.length === 0) {
+//         console.warn(`Day ${dayNumber} 沒有找到路線`);
+//       }
+
 //       itinerary.push({ day: dayNumber, route });
+//     } else {
+//       console.warn(`Day 的格式不正確: ${dayText}`);
 //     }
 //   });
 
@@ -428,9 +501,63 @@ const ProductDetail = () => {
           </div>
 
           <div>
+            {/* 每日行程內容*/}
             {/* 測試開始*/}
 
             <div className="tour-content" id="daily-itinerary">
+              {itinerary.map((day) => (
+                <div className="row mb-5 border-bottom" key={day.day}>
+                  <div className="col-12">
+                    <div className="row">
+                      <div className="col-md-2 mb-4">
+                        <div className="tour-daily">DAY {day.day}</div>
+                      </div>
+                      <div className="col-md-10 d-flex align-items-center mb-4">
+                        <div className="tour-daily-route">
+                          {day.route.join(" → ")}
+                        </div>
+                      </div>
+                    </div>
+                    <div className="row">
+                      {/* <div className="col-md-2 mb-4">
+                        <div className="tour-location">{day.location}</div>
+                      </div> */}
+                      <div className="col-md-10 d-flex align-items-center my-4">
+                        <div className="tour-highlight">
+                          <strong>行程特色：</strong>
+                          <br /> <br />
+                          {day.highlight}
+                        </div>
+                      </div>
+                    </div>
+                    <div className="row mt-3">
+                      <div className="col-md-6">
+                        <div className="mb-1">
+                          <i class="fa-solid fa-utensils">
+                            <span className="ms-1">餐食</span>
+                          </i>
+                        </div>
+                        <ul>
+                          <li>飯店自助早餐</li>
+                          <li>當地特色餐廳</li>
+                          <li>日式懷石料理</li>
+                        </ul>
+                      </div>
+                      <div className="col-md-6">
+                        <div className="mb-1">
+                          <i class="fa-solid fa-bed">
+                            <span className="ms-1">住宿</span>
+                          </i>
+                        </div>
+                        <p>精選五星級酒店</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* <div className="tour-content" id="daily-itinerary">
               {itinerary.map((day) => (
                 <div className="row mb-5 border-bottom" key={day.day}>
                   <div className="col-12">
@@ -447,13 +574,13 @@ const ProductDetail = () => {
                   </div>
                 </div>
               ))}
-            </div>
+            </div> */}
 
             {/*測試 結束*/}
           </div>
 
-          {/* 每日行程內容*/}
-          <div className="row mb-5 border-bottom">
+          {/* 舊每日行程內容開始*/}
+          {/* <div className="row mb-5 border-bottom">
             <div className="col-12">
               <div className="row  ">
                 <div className="col-md-2 mb-4">
@@ -954,7 +1081,7 @@ const ProductDetail = () => {
                 </div>
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
         {/* 費用說明 */}
         <div className="mt-6 border-bottom" id="cost-description">
