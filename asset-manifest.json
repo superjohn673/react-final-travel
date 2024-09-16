@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/react-final-travel/static/css/main.9abbba2c.css",
-    "main.js": "/react-final-travel/static/js/main.9de923d6.js",
+    "main.css": "/react-final-travel/static/css/main.b379f563.css",
+    "main.js": "/react-final-travel/static/js/main.4df34cca.js",
     "static/media/bootstrap-icons.woff?": "/react-final-travel/static/media/bootstrap-icons.39795c0b4513de014cf8.woff",
     "static/media/bootstrap-icons.woff2?": "/react-final-travel/static/media/bootstrap-icons.b7bcc075b395c14ce8c2.woff2",
     "static/media/slick.svg": "/react-final-travel/static/media/slick.2630a3e3eab21c607e21.svg",
@@ -9,11 +9,11 @@
     "static/media/slick.ttf": "/react-final-travel/static/media/slick.c94f7671dcc99dce43e2.ttf",
     "static/media/slick.woff": "/react-final-travel/static/media/slick.295183786cd8a1389865.woff",
     "index.html": "/react-final-travel/index.html",
-    "main.9abbba2c.css.map": "/react-final-travel/static/css/main.9abbba2c.css.map",
-    "main.9de923d6.js.map": "/react-final-travel/static/js/main.9de923d6.js.map"
+    "main.b379f563.css.map": "/react-final-travel/static/css/main.b379f563.css.map",
+    "main.4df34cca.js.map": "/react-final-travel/static/js/main.4df34cca.js.map"
   },
   "entrypoints": [
-    "static/css/main.9abbba2c.css",
-    "static/js/main.9de923d6.js"
+    "static/css/main.b379f563.css",
+    "static/js/main.4df34cca.js"
   ]
 }
