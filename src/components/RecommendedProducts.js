@@ -81,7 +81,7 @@ export const RecommendedProducts = () => {
             <p className="text-muted">尋找宗教文化神之地</p>
           </div>
           <div className="col-md-4 col-lg-2 d-flex justify-content-center align-items-center flex-column">
-            <Link to="/product/-O6M1FkTIzUtE54sofRN" className="link">
+            <Link to="/product/-O6RcQ4B5ZCq5rLXS9UI" className="link">
               <div
                 className="index-list-section__img d-flex justify-content-center align-items-end"
                 style={{
@@ -92,11 +92,11 @@ export const RecommendedProducts = () => {
                 <p className=" index-list-section__inf">瞭解更多</p>
               </div>
             </Link>
-            <h4 className="mt-4">滑雪聖地</h4>
+            <h4 className="mt-4">滑雪勝地</h4>
             <p className="text-muted">來一場刺激的滑雪體驗吧</p>
           </div>
           <div className="col-md-4 col-lg-2 d-flex justify-content-center align-items-center flex-column">
-            <Link to="/product/-O6M0HQQWG_IrQOFrnal" className="link">
+            <Link to="/product/-O6fyXRd9dE_femm49rp" className="link">
               <div
                 className="index-list-section__img d-flex justify-content-center align-items-end"
                 style={{

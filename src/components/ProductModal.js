@@ -5,8 +5,8 @@ import {
   handleSuccessMessage,
   handleErrorMessage,
 } from "../store/messageStore";
-// import ReactQuill from "react-quill";
-// import "react-quill/dist/quill.snow.css";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
 
 const ProductModal = ({
   closeProductModal,
@@ -24,6 +24,7 @@ const ProductModal = ({
     content: "",
     is_enabled: 1,
     imageUrl: "",
+    imagesUrl: ["", "", "", "", ""],
   });
 
   //沒用到 message可以清掉,但要保留逗號
@@ -42,13 +43,17 @@ const ProductModal = ({
         content: "",
         is_enabled: 1,
         imageUrl: "",
+        imagesUrl: ["", "", "", "", ""],
       });
     } else if (type === "edit") {
-      setTempData(tempProduct);
+      setTempData({
+        ...tempProduct,
+        imagesUrl: tempProduct.imagesUrl || ["", "", "", "", ""], // 如果沒有 imagesUrl，則使用五個空字符串
+      });
     }
   }, [type, tempProduct]);
 
-  const handleChange = (e) => {
+  const handleChange = (e, index) => {
     const { value, name } = e.target;
     //判斷如果是價格就轉為數字型別
     if (["price", "origin_price"].includes(name)) {
@@ -61,6 +66,13 @@ const ProductModal = ({
         ...tempData,
         [name]: +e.target.checked, //將 boolean 轉型為 0,1
       });
+    } else if (name.startsWith("imagesUrl")) {
+      const newImagesUrl = [...tempData.imagesUrl];
+      newImagesUrl[index] = value; // 根據索引更新對應的圖片網址
+      setTempData({
+        ...tempData,
+        imagesUrl: newImagesUrl,
+      });
     } else {
       setTempData({
         ...tempData,
@@ -69,9 +81,9 @@ const ProductModal = ({
     }
   };
 
-  // const handleTourChange = (value) => {
-  //   setTempData({ ...tempData, content: value });
-  // };
+  const handleTourChange = (value) => {
+    setTempData((prev) => ({ ...prev, content: value }));
+  };
 
   const submit = async () => {
     try {
@@ -81,7 +93,10 @@ const ProductModal = ({
         api = `/v2/api/${process.env.REACT_APP_API_PATH}/admin/product/${tempProduct.id}`;
         method = "put";
       }
-      const res = await axios[method](api, { data: tempData });
+      const res = await axios[method](api, {
+        data: tempData,
+        imagesUrl: tempData.imagesUrl,
+      });
       console.log(res);
       handleSuccessMessage(dispatch, res);
       closeProductModal();
@@ -138,21 +153,63 @@ const ProductModal = ({
           <div className="modal-body">
             <div className="row">
               <div className="col-sm-4">
-                <div className="form-group mb-2">
-                  <label className="w-100" htmlFor="image">
-                    輸入圖片網址
+                <div className="form-group mb-5">
+                  <label className="w-100" htmlFor="imageUrl">
+                    首圖
                     <input
                       type="text"
                       name="imageUrl"
-                      id="image"
+                      id="imageUrl"
                       onChange={handleChange}
-                      placeholder="請輸入圖片連結"
+                      placeholder="請輸入首圖連結"
                       className="form-control"
                       value={tempData.imageUrl}
                     />
                   </label>
+                  {/* 顯示主圖 */}
+                  {tempData.imageUrl && (
+                    <img
+                      src={tempData.imageUrl}
+                      alt="主圖"
+                      style={{
+                        width: "100px",
+                        height: "100px",
+                        marginTop: "5px",
+                      }}
+                    />
+                  )}
                 </div>
-                <div className="form-group mb-2">
+                {/* 新增五個 imagesUrl 輸入欄位 */}
+                {Array.isArray(tempData.imagesUrl) &&
+                  tempData.imagesUrl.map((url, index) => (
+                    <div className="form-group mb-4" key={index}>
+                      <label className="w-100" htmlFor={`imagesUrl${index}`}>
+                        行程內容圖 {index + 1}
+                        <input
+                          type="text"
+                          name={`imagesUrl${index}`}
+                          id={`imagesUrl${index}`}
+                          onChange={(e) => handleChange(e, index)}
+                          placeholder={`請輸入圖片連結 ${index + 1}`}
+                          className="form-control"
+                          value={url}
+                        />
+                      </label>
+                      {/* 顯示圖片 */}
+                      {url && (
+                        <img
+                          src={url}
+                          alt={`Image ${index + 1}`}
+                          style={{
+                            width: "100px",
+                            height: "100px",
+                            marginTop: "5px",
+                          }}
+                        />
+                      )}
+                    </div>
+                  ))}
+                <div className="form-group my-5">
                   <label className="w-100" htmlFor="customFile">
                     或 上傳圖片
                     <input
@@ -246,7 +303,7 @@ const ProductModal = ({
                 <hr />
                 <div className="form-group mb-2">
                   <label className="w-100" htmlFor="description">
-                    產品描述
+                    行程重點
                     <textarea
                       type="text"
                       id="description"
@@ -261,7 +318,7 @@ const ProductModal = ({
                 <div className="form-group mb-2">
                   <label className="w-100" htmlFor="content">
                     行程內容
-                    {/* <ReactQuill
+                    <ReactQuill
                       value={tempData.content}
                       onChange={handleTourChange}
                       modules={{
@@ -273,8 +330,18 @@ const ProductModal = ({
                           ["clean"], // 清除格式按鈕
                         ],
                       }}
-                    /> */}
-                    <textarea
+                      formats={[
+                        "header",
+                        "bold",
+                        "italic",
+                        "underline",
+                        "link",
+                        "image",
+                        "list",
+                        "bullet",
+                      ]}
+                    />
+                    {/* <textarea
                       type="text"
                       id="content"
                       name="content"
@@ -282,7 +349,7 @@ const ProductModal = ({
                       className="form-control"
                       onChange={handleChange}
                       value={tempData.content}
-                    />
+                    /> */}
                   </label>
                 </div>
                 <div className="form-group mb-2">
