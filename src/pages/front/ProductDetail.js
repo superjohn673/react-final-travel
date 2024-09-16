@@ -155,6 +155,8 @@ const ProductDetail = () => {
           minHeight: "400px",
           backgroundImage: `url(${product.imageUrl})`,
           backgroundPosition: "center center",
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "cover",
         }}
       ></div>
       <div className="container full-height">
