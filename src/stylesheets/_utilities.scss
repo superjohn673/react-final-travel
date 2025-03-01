@@ -1,18 +1,29 @@
-$primary-color: rgb(151, 125, 6);
-$secondary-color: #ccc;
-$text-color: #333;
+/* ===================================================
+ * 基礎變數設定
+ * =================================================== */
+$primary-color: rgb(151, 125, 6); // 主色調：金黃色
+$primary-color-light: rgb(181, 155, 36); // 主色調亮色版
+$primary-color-dark: rgb(121, 95, 0); // 主色調暗色版
+$secondary-color: #ccc; // 次要色調：淺灰色
+$text-color: #333; // 文字顏色：深灰色
 
-//圖片樣式
+/* ===================================================
+ * 通用樣式設定
+ * =================================================== */
+// 圖片填充模式設定 - 用於確保圖片適當填充容器
 .object-cover {
   object-fit: cover;
 }
 
-//去除link標籤預設底線樣式
+// 移除連結標籤的預設底線樣式
 .link {
   text-decoration: none;
 }
 
-//navbar
+/* ===================================================
+ * 導航列樣式
+ * =================================================== */
+// 控制導航列在滾動時的顯示與隱藏效果
 .sticky-top.show {
   top: 0;
 }
@@ -21,12 +32,202 @@ $text-color: #333;
   top: -100px; /* 根據 NavBar 的高度調整這個值 */
 }
 
-//index Banner
+// 導航欄容器樣式
+.navbar-container {
+  box-shadow: 0 2px 8px rgba($primary-color, 0.08);
+  border-bottom: 1px solid rgba($primary-color, 0.15);
+  background-color: white;
+}
+
+// 導航項目樣式
+.nav-item {
+  transition: all 0.3s ease;
+  cursor: pointer;
+  color: $text-color;
+
+  &:hover {
+    transform: translateY(-3px);
+    color: $primary-color;
+  }
+}
+
+// 品牌名稱樣式
+.navbar-brand {
+  font-family: "Kalam", cursive !important;
+  font-size: 2rem !important;
+  transition: all 0.3s ease;
+  color: $primary-color !important;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+  font-weight: 600;
+  padding: 0;
+  margin: 0;
+  line-height: 1.2;
+
+  &:hover {
+    color: $primary-color-dark !important;
+    text-shadow: 2px 2px 4px rgba($primary-color, 0.2);
+  }
+}
+
+// 選單圖標樣式
+.menu-icon {
+  font-size: 2.5rem;
+  transition: all 0.3s ease;
+  color: $primary-color;
+
+  &:hover {
+    color: $primary-color-dark;
+    transform: scale(1.1);
+  }
+}
+
+// Layout 購物車圖標樣式
+.cart-icon {
+  color: $primary-color;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+
+  &:hover {
+    color: $primary-color-light;
+    transform: scale(1.1);
+  }
+}
+
+// Layout 購物車徽章樣式
+.cart-badge {
+  background-color: $primary-color-dark;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background-color: $primary-color-light;
+    transform: scale(1.1);
+  }
+}
+
+// 漢堡選單按鈕樣式
+.navbar-toggler {
+  border: 1px solid rgba($primary-color, 0.2);
+  transition: all 0.3s ease;
+
+  &:hover {
+    border-color: $primary-color;
+  }
+}
+
+/* ===================================================
+ * 首頁樣式
+ * =================================================== */
+// 旅遊類型選單樣式 - 顯示在首頁橫幅下方的分類選單
+.tour-menu {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(5px); // 背景模糊效果，增加層次感
+
+  // 中等螢幕尺寸的響應式調整 (1200px-992px)
+  @media (max-width: 1200px) and (min-width: 992px) {
+    .tour-menu__item {
+      padding: 0.75rem; // 減少間距以適應較小螢幕
+
+      .fas {
+        font-size: 1.75rem; // 縮小圖示尺寸
+      }
+
+      .tour-menu__title {
+        font-size: 1.25rem; // 縮小標題字體
+      }
+    }
+  }
+
+  // 在小螢幕上隱藏選單，避免重疊問題
+  @media (max-width: 991.98px) {
+    display: none;
+  }
+
+  // 選單項目樣式
+  &__item {
+    padding: 1rem;
+    transition: all 0.3s ease; // 平滑過渡效果
+
+    // 懸停效果 - 輕微上浮並放大圖示
+    &:hover {
+      transform: translateY(-5px);
+
+      .fas {
+        transform: scale(1.2);
+        color: $primary-color;
+      }
+
+      .tour-menu__title {
+        &:after {
+          width: 100%; // 懸停時底線伸展至100%寬度
+        }
+      }
+    }
+
+    .fas {
+      font-size: 2rem;
+      color: #333;
+      transition: all 0.3s ease;
+    }
+  }
+
+  // 選單標題樣式 - 使用垂直書寫模式
+  &__title {
+    writing-mode: vertical-lr; // 垂直書寫，由左至右
+    font-size: 1.5rem;
+    position: relative;
+    padding: 0.5rem;
+    color: #333;
+    transition: all 0.3s ease;
+
+    // 底線效果 - 懸停時顯示
+    &:after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0; // 初始時寬度為0
+      height: 2px;
+      background-color: $primary-color;
+      transition: width 0.3s ease; // 平滑過渡效果
+    }
+
+    &:hover {
+      color: $primary-color;
+    }
+  }
+}
+
+// 選單項目的進場動畫效果
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.tour-menu__item {
+  animation: fadeIn 0.5s ease forwards; // 應用動畫
+
+  // 為每個項目設定不同的延遲時間，製造階梯式進場效果
+  @for $i from 1 through 4 {
+    &:nth-child(#{$i}) {
+      animation-delay: #{$i * 0.1}s;
+    }
+  }
+}
+
+/* ===================================================
+ * 首頁橫幅樣式
+ * =================================================== */
 .index-banner {
-  height: 100vh;
+  height: calc(100vh - var(--navbar-height)); // 計算高度時扣除導航列高度
 }
 .index-banner .img-container {
-  height: 100vh;
+  height: 100%;
   background-size: cover;
   background-position: center;
   position: relative;
@@ -34,16 +235,17 @@ $text-color: #333;
 .index-banner img {
   height: 100%;
   width: 100%;
-  object-fit: cover;
+  object-fit: cover; // 確保圖片填滿容器但保持比例
   overflow: hidden;
 }
 .img-container__inf {
   position: absolute;
-  bottom: 100px;
+  bottom: 10%;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translateX(-50%); // 水平居中定位
 }
 
+// 下滑箭頭動畫效果
 @keyframes bounce {
   0% {
     transform: translateY(0);
@@ -57,15 +259,16 @@ $text-color: #333;
 }
 
 .fa-angles-down {
-  animation: bounce 2s infinite;
+  animation: bounce 2s infinite; // 持續彈跳動畫
 }
 
+// 橫幅標題樣式 - 垂直書寫
 .index-banner h2 {
   writing-mode: vertical-lr;
   transition: all 0.3s ease-in;
   font-size: 1.8rem;
   &:hover {
-    transform: scale(1.2);
+    transform: scale(1.2); // 懸停時放大效果
   }
 }
 .index-banner--transition {
@@ -74,16 +277,163 @@ $text-color: #333;
   overflow: hidden;
 }
 
-//index content-section
+/* ===================================================
+ * 首頁內容區塊樣式
+ * =================================================== */
 .index-content-section .card-img-top {
-  border-radius: 50%;
+  border-radius: 50%; // 圓形圖片
   transition: all 0.1s ease-in;
   padding: 0.4rem;
   &:hover {
-    border: 3px solid rgb(209, 218, 217);
+    border: 3px solid rgb(209, 218, 217); // 懸停時添加邊框
   }
 }
 
+// 區塊標題樣式
+.section-title {
+  text-align: center;
+  margin-bottom: 2.5rem;
+
+  &__main {
+    display: block;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 0.5rem;
+  }
+
+  &__sub {
+    display: block;
+    font-size: 1rem;
+    font-weight: 400;
+    color: $primary-color;
+    text-transform: uppercase; // 全部大寫
+    letter-spacing: 3px; // 字元間距增加
+  }
+}
+
+// 區段說明文字樣式
+.section-description {
+  text-align: center;
+  font-size: 1.2rem;
+  line-height: 1.8;
+  color: #666;
+  margin-bottom: 3rem;
+}
+
+/* ===================================================
+ * 季節卡片樣式 (首頁)
+ * =================================================== */
+.season-card {
+  transition: all 0.3s ease;
+  margin: 0 1rem; // 增加卡片間距
+  background-color: transparent !important; // 移除背景色
+  border-radius: 12px; // 增加卡片圓角
+  padding: 1.5rem 1rem; // 增加內邊距
+
+  // 懸停效果 - 輕微上浮並添加陰影
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    background-color: rgba(
+      255,
+      255,
+      255,
+      0.7
+    ) !important; // 懸停時添加半透明背景
+
+    .season-card__image-wrapper img {
+      transform: scale(1.05); // 圖片輕微放大
+    }
+
+    .season-card__title-main {
+      color: $primary-color; // 懸停時改變標題顏色
+    }
+  }
+
+  // 圖片容器樣式 - 圓形設計
+  &__image-wrapper {
+    overflow: hidden;
+    border-radius: 50%; // 完全圓形
+    aspect-ratio: 1/1; // 保持正方形比例
+    padding: 10px;
+    margin-bottom: 1.5rem;
+    max-width: 350px; // 限制最大寬度
+    max-height: 350px; // 限制最大高度
+    margin-left: auto; // 水平居中
+    margin-right: auto;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); // 添加陰影
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+      transition: transform 0.3s ease; // 平滑過渡效果
+    }
+  }
+
+  // 卡片標題樣式
+  &__title {
+    text-align: center;
+    margin-bottom: 1.2rem;
+
+    &-main {
+      display: block;
+      font-size: 1.6rem;
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 0.3rem;
+      transition: color 0.3s ease;
+    }
+
+    &-sub {
+      display: block;
+      font-size: 0.85rem;
+      color: $primary-color;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+  }
+
+  // 卡片內容樣式
+  &__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 1rem;
+  }
+
+  // 卡片文字樣式
+  &__text {
+    text-align: center;
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    font-size: 1rem;
+    max-width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  // 按鈕樣式優化
+  .btn-outline-dark {
+    padding: 0.6rem 1.5rem;
+    font-size: 1rem;
+    border-radius: 30px;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background-color: $primary-color;
+      border-color: $primary-color;
+    }
+  }
+}
+
+/* ===================================================
+ * 動畫效果 - 用於頁面滾動時顯示元素
+ * =================================================== */
+// 初始時元素不可見
 .index-content-section__text,
 .carousel-section__text,
 .index-list-section__text,
@@ -95,6 +445,7 @@ $text-color: #333;
   overflow: hidden;
 }
 
+// 淡入動畫效果
 .fade-in {
   animation: fade-in 0.5s ease-in-out;
   opacity: 1;
@@ -111,6 +462,7 @@ $text-color: #333;
   }
 }
 
+// 從左側滑入動畫
 .slide-in-left {
   animation: slide-in-left 0.8s ease-out forwards;
 }
@@ -141,6 +493,7 @@ $text-color: #333;
   }
 }
 
+// 從右側滑入動畫
 .slide-in-right {
   animation: slide-in-right 0.8s ease-out forwards;
 }
@@ -171,13 +524,249 @@ $text-color: #333;
   }
 }
 
-//index list-section
+/* ===================================================
+ * 輪播圖片樣式
+ * =================================================== */
+.carousel-section {
+  background-color: #f8f9fa;
+  position: relative;
+  overflow: hidden;
+  padding: 3rem 0;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(
+      circle,
+      rgba(0, 0, 0, 0.02) 1px,
+      transparent 1px
+    );
+    background-size: 20px 20px;
+    opacity: 0.5;
+    z-index: 0;
+  }
+
+  &__text {
+    position: relative;
+    z-index: 1;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  &__title {
+    margin-bottom: 2rem;
+    text-align: center;
+
+    &-main {
+      display: block;
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #333;
+      margin-bottom: 0.5rem;
+      position: relative;
+
+      &::after {
+        content: none; // 移除裝飾線
+      }
+    }
+
+    &-sub {
+      display: block;
+      font-size: 1rem;
+      color: $primary-color;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      margin-top: 1rem;
+    }
+  }
+
+  &__content {
+    p {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: #555;
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+  }
+
+  &__decoration {
+    width: 100px;
+    height: 100px;
+    background-image: url("../assets/images/home/home-fuji.jpg");
+    background-size: cover;
+    background-position: center;
+    border-radius: 50%;
+    margin: 0 auto;
+    position: relative;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: -10px;
+      left: -10px;
+      right: -10px;
+      bottom: -10px;
+      border: 2px dashed $primary-color;
+      border-radius: 50%;
+      animation: rotate 20s linear infinite;
+    }
+  }
+}
+
+.carousel-custom {
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+
+  .carousel-item {
+    position: relative;
+
+    img {
+      height: 500px;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    &:hover img {
+      transform: scale(1.05);
+    }
+  }
+
+  .carousel-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 50%;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+    z-index: 1;
+  }
+
+  .carousel-caption {
+    z-index: 2;
+    text-align: left;
+    left: 5%;
+    right: 5%;
+    bottom: 20px;
+
+    h3 {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    p {
+      font-size: 1.1rem;
+      max-width: 80%;
+      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+    }
+  }
+
+  .carousel-indicators {
+    margin-bottom: 0.5rem;
+
+    button {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background-color: rgba(255, 255, 255, 0.5);
+      margin: 0 5px;
+
+      &.active {
+        background-color: #fff;
+      }
+    }
+  }
+
+  .carousel-control-prev,
+  .carousel-control-next {
+    width: 10%;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  &:hover {
+    .carousel-control-prev,
+    .carousel-control-next {
+      opacity: 0.8;
+    }
+  }
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ===================================================
+ * 首頁列表區塊樣式
+ * =================================================== */
 .index-list-section {
   .slick-slider {
     width: 100%;
     overflow: hidden;
   }
 
+  // 增強標題樣式
+  .section-title {
+    &__main {
+      font-size: 2.5rem; // 增大字體
+      position: relative;
+      display: inline-block;
+
+      &:after {
+        content: none; // 移除裝飾線
+      }
+    }
+
+    &__sub {
+      font-size: 1.1rem; // 增大副標題
+      margin-top: 1rem;
+    }
+  }
+
+  // 增強描述文字樣式
+  .section-description {
+    font-size: 1.1rem; // 增大字體
+    line-height: 1.9;
+    color: #555;
+    margin-bottom: 3.5rem;
+    position: relative;
+    padding: 0 1.5rem;
+
+    &:before,
+    &:after {
+      content: '"';
+      font-size: 2.5rem;
+      color: rgba(151, 125, 6, 0.2);
+      position: absolute;
+    }
+
+    &:before {
+      top: -1rem;
+      left: 0;
+    }
+
+    &:after {
+      bottom: -2rem;
+      right: 0;
+    }
+  }
+
+  // 圖片容器樣式
   .index-list-section__img {
     width: 300px;
     height: 400px;
@@ -187,38 +776,236 @@ $text-color: #333;
     background-size: 100%;
     overflow: hidden;
 
+    // 懸停效果 - 暗化背景並顯示資訊
     &:hover {
       background-color: black;
       opacity: 0.8;
       .index-list-section__inf {
-        transform: translate(0px, -40px);
+        transform: translate(0px, -40px); // 資訊上移顯示
       }
     }
   }
 
+  // 資訊區塊樣式 - 默認隱藏，懸停時顯示
   .index-list-section__inf {
     color: white;
     padding: 0.5rem;
     border: 1px solid;
     border-radius: 10%;
-    transform: translate(0px, 60px);
-    transition: all 0.4s ease-in-out;
+    transform: translate(0px, 60px); // 初始位置在下方不可見
+    transition: all 0.4s ease-in-out; // 平滑過渡效果
     background-color: black;
     opacity: 0.8;
   }
 }
 
-//Carousel-img
-.carousel-section__text {
-  writing-mode: vertical-rl;
-  max-height: 400px;
+/* ===================================================
+ * 頁腳樣式
+ * =================================================== */
+.footer-section {
+  background: linear-gradient(to right, #1a2a3a, #2c3e50);
+  color: #f8f9fa;
+  position: relative;
+  overflow: hidden;
+
+  // 頂部裝飾元素
+  &:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(to right, #f1c40f, #e67e22, #f1c40f);
+  }
+
+  // 頂部區域
+  .footer-top {
+    position: relative;
+    z-index: 1;
+
+    // 背景圖案
+    &:after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      z-index: -1;
+      opacity: 0.1;
+    }
+  }
+
+  // Logo 區域
+  .footer-logo {
+    h3 {
+      font-weight: 700;
+      position: relative;
+      display: inline-block;
+
+      &:after {
+        content: "";
+        position: absolute;
+        bottom: -8px;
+        left: 0;
+        width: 40px;
+        height: 3px;
+        background-color: #f1c40f;
+        border-radius: 2px;
+      }
+    }
+  }
+
+  // 描述文字
+  .footer-description {
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.8;
+    font-size: 0.95rem;
+    max-width: 90%;
+  }
+
+  // 社交媒體圖標
+  .footer-social {
+    .social-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      background-color: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      margin-right: 12px;
+      color: #fff;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+
+      &:hover {
+        background-color: #f1c40f;
+        color: #2c3e50;
+        transform: translateY(-3px);
+      }
+    }
+  }
+
+  // 標題樣式
+  .footer-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    position: relative;
+    padding-bottom: 0.8rem;
+
+    &:after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 40px;
+      height: 3px;
+      background-color: #f1c40f;
+      border-radius: 2px;
+    }
+  }
+
+  // 連結列表
+  .footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+      margin-bottom: 0.8rem;
+    }
+
+    .footer-link {
+      color: rgba(255, 255, 255, 0.7);
+      text-decoration: none;
+      transition: all 0.3s ease;
+      display: inline-block;
+      font-size: 0.95rem;
+
+      i {
+        color: #f1c40f;
+        margin-right: 8px;
+        font-size: 0.85rem;
+      }
+
+      &:hover {
+        color: #fff;
+        transform: translateX(5px);
+      }
+    }
+  }
+
+  // 聯絡資訊
+  .footer-contact {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 1rem;
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 0.95rem;
+
+      i {
+        color: #f1c40f;
+        margin-right: 12px;
+        margin-top: 5px;
+      }
+    }
+  }
+
+  // 底部區域
+  .footer-bottom {
+    background-color: rgba(0, 0, 0, 0.2);
+    font-size: 0.9rem;
+
+    .copyright {
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    .footer-payment {
+      color: rgba(255, 255, 255, 0.6);
+
+      i {
+        font-size: 1.5rem;
+        color: rgba(255, 255, 255, 0.8);
+        transition: all 0.3s ease;
+
+        &:hover {
+          color: #f1c40f;
+        }
+      }
+    }
+  }
+
+  // 響應式調整
+  @media (max-width: 767.98px) {
+    .footer-title {
+      margin-top: 1.5rem;
+    }
+
+    .footer-bottom {
+      .copyright,
+      .footer-payment {
+        text-align: center;
+      }
+
+      .footer-payment {
+        margin-top: 1rem;
+      }
+    }
+  }
 }
 
-//footer
-.footer .footer__about:hover {
-  color: #ced4da;
-}
-
+/* ===================================================
+ * 產品主題頁面頭部列表樣式
+ * =================================================== */
 .product-head-list__title {
   color: black;
   padding: 1rem 3rem;
@@ -231,14 +1018,46 @@ $text-color: #333;
   }
 }
 
+// 啟用狀態的樣式
 .product-head-list__title.active {
   background-color: $primary-color;
   color: white;
 }
 
+/* ===================================================
+ * 旅遊產品卡片樣式
+ * =================================================== */
 .tour {
+  .card {
+    transition: all 0.3s ease;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+
+    // 懸停效果 - 上浮並添加陰影
+    &:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      border-color: $primary-color;
+
+      .card-img-top {
+        filter: brightness(1.05); // 圖片輕微增亮
+      }
+
+      .tour__name {
+        color: $primary-color;
+      }
+    }
+    .position-absolute {
+      z-index: 5;
+      transition: transform 0.2s;
+
+      &:hover {
+        transform: scale(1.2); // 絕對定位元素懸停時放大
+      }
+    }
+  }
   .tour__name {
     color: black;
+    transition: filter 0.3s ease;
   }
   .tour__price {
     color: black;
@@ -246,21 +1065,163 @@ $text-color: #333;
   }
 }
 
-//side-bar
-.side-link .link {
-  text-decoration: none;
-  color: black;
-  font-size: 1.2rem;
-  &:hover {
-    color: $primary-color;
+/* ===================================================
+ * 側邊導航樣式
+ * =================================================== */
+// 側邊欄基本樣式
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 70vw;
+  height: 100%;
+  background-color: #f1f1f1;
+  padding: 20px;
+  transition: all 0.5s ease-in-out;
+  z-index: 999;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  transform: translateX(-100%);
+
+  &.open {
+    transform: translateX(0);
   }
-  h4,
-  h5 {
-    font-size: 1rem;
+
+  // 關閉按鈕
+  .close-button {
+    width: 5rem;
+
+    i {
+      font-size: 3rem;
+    }
+  }
+
+  // 區塊標題
+  .section-title {
+    color: $primary-color;
+    font-weight: bold;
+    border-bottom: 1px solid rgba($primary-color, 0.3);
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    font-size: 1.25rem; // 統一區塊標題字體大小
+    text-align: left;
+    width: 100%;
+    display: block;
+  }
+
+  // 社交圖標
+  .social-icon {
+    color: $primary-color;
+    transition: all 0.3s ease;
+    font-size: 1.5rem; // 統一社交圖標大小
+
+    &:hover {
+      color: $primary-color-dark;
+      transform: scale(1.2);
+    }
+  }
+
+  // 側邊欄連結
+  .side-link {
+    .link {
+      color: $text-color;
+      transition: all 0.3s ease;
+      display: inline-block;
+      text-decoration: none;
+
+      &:hover {
+        color: $primary-color;
+        transform: translateX(5px);
+      }
+
+      // 統一字體大小
+      span {
+        font-size: 1.1rem;
+      }
+
+      h4 {
+        font-size: 1.1rem;
+        margin-bottom: 0.5rem;
+        font-weight: 500;
+      }
+
+      h5 {
+        font-size: 1.1rem;
+        margin-bottom: 0.5rem;
+        font-weight: 500;
+      }
+
+      // 圖標大小
+      i {
+        font-size: 1.1rem;
+      }
+    }
+  }
+
+  // 會員區域連結
+  .member-link {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+  }
+
+  // 底部導航連結
+  .footer-links {
+    border-top: 1px solid rgba($primary-color, 0.2);
+    padding-top: 1.5rem;
+    margin-top: 2rem;
+
+    .footer-link {
+      font-size: 1.1rem;
+      font-weight: 500;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      transition: all 0.3s ease;
+      display: inline-block;
+      color: $text-color; // 使用黑色文字顏色
+
+      &:hover {
+        background-color: rgba($text-color, 0.1); // 使用黑色的淺色背景
+        transform: translateY(-3px);
+        box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+        color: $text-color; // 懸停時保持黑色
+      }
+    }
+  }
+
+  // 社交媒體圖標容器
+  .social-icons-container {
+    margin-top: 1rem;
+    padding: 1rem 0;
+    border-top: 1px solid rgba($primary-color, 0.1);
+
+    .social-icon {
+      padding: 0.5rem;
+      border-radius: 50%;
+      transition: all 0.3s ease;
+
+      &:hover {
+        background-color: rgba($primary-color, 0.1);
+      }
+    }
   }
 }
 
-//TravelSearchForm
+// 遮罩層
+.sidebar-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 998;
+  pointer-events: auto;
+}
+
+/* ===================================================
+ * 旅遊搜索表單樣式
+ * =================================================== */
 .travel-search-form {
   max-width: 600px;
   margin: 2rem auto;
@@ -269,6 +1230,7 @@ $text-color: #333;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 
+  // 表單行樣式
   &__row {
     display: flex;
     flex-wrap: wrap;
@@ -280,6 +1242,7 @@ $text-color: #333;
     }
   }
 
+  // 表單組樣式
   &__group {
     flex: 1;
     min-width: 150px;
@@ -290,6 +1253,7 @@ $text-color: #333;
     }
   }
 
+  // 輸入框樣式
   &__input {
     width: 100%;
     padding: 0.75rem;
@@ -298,12 +1262,14 @@ $text-color: #333;
     font-size: 1rem;
     margin-top: 0.25rem;
     transition: border-color 0.3s, box-shadow 0.3s;
-    appearance: none;
+    appearance: none; // 移除默認樣式
+    // 添加自定義下拉箭頭
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'%3E%3Cpath fill='%23999' d='M2 0L0 2h4zm0 5L0 3h4z'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
     background-position: right 0.75rem center;
     background-size: 8px 10px;
 
+    // 焦點狀態樣式
     &:focus {
       border-color: #80bdff;
       outline: none;
@@ -311,6 +1277,7 @@ $text-color: #333;
     }
   }
 
+  // 按鈕樣式
   &__button {
     padding: 0.7rem 3.5rem;
     font-size: 1.25rem;
@@ -321,6 +1288,7 @@ $text-color: #333;
     cursor: pointer;
     transition: background-color 0.3s;
 
+    // 懸停效果 - 改變顏色和添加邊框
     &:hover {
       background-color: white;
       color: $primary-color;
@@ -328,12 +1296,14 @@ $text-color: #333;
     }
   }
 
+  // 標籤樣式
   label {
     display: block;
     font-weight: 500;
     margin-bottom: 0.5rem;
   }
 
+  // React Datepicker 樣式覆蓋
   .react-datepicker-wrapper {
     width: 100%;
   }
@@ -373,92 +1343,824 @@ $text-color: #333;
   }
 }
 
-//TravelCalendar
+/* ===================================================
+ * 旅遊日曆組件樣式
+ * =================================================== */
 .travel-calendar {
   font-family: Arial, sans-serif;
   width: 100%;
-  max-width: 500px;
   margin: 0 auto;
+  border: 1px solid rgba(151, 125, 6, 0.2);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  overflow: hidden; // 防止內容溢出
 
+  // 針對中等尺寸螢幕的額外調整，解決顯示問題
+  @media (max-width: 991.98px) and (min-width: 768px) {
+    width: 100%;
+    max-width: 100%;
+    overflow: visible; // 允許內容溢出，避免截斷
+  }
+
+  // 日曆頭部樣式 - 包含月份導航和當前月份顯示
   .calendar-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     background-color: $primary-color;
-    padding: 10px;
+    padding: 15px;
+    min-height: 60px; // 確保標題區域有最小高度
 
-    .prev-month-container {
-      flex-basis: 20%;
-      text-align: right;
+    // 小螢幕調整
+    @media (max-width: 576px) {
+      padding: 10px;
     }
 
-    .current-month-container {
-      flex-basis: 60%;
+    // 月份切換按鈕容器
+    .prev-month-container,
+    .next-month-container {
+      flex: 0 0 20%;
       text-align: center;
     }
 
-    .next-month-container {
-      flex-basis: 20%;
-      text-align: left;
+    // 當前月份容器
+    .current-month-container {
+      flex: 0 0 60%;
+      text-align: center;
+      white-space: nowrap; // 防止日期換行
+      overflow: hidden; // 防止溢出
+      text-overflow: ellipsis; // 文字溢出時顯示省略號
     }
 
+    // 月份切換按鈕樣式
     .prev-month,
     .next-month {
       background-color: transparent;
       border: none;
-      color: #333;
+      color: white;
       cursor: pointer;
-      font-size: 18px;
+      padding: 5px 10px;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      // 懸停效果 - 背景輕微變化
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+        border-radius: 50%;
+      }
     }
 
+    // 當前月份文字樣式
     .current-month {
       font-weight: bold;
       color: white;
+      font-size: 1.1rem;
+
+      // 小螢幕調整
+      @media (max-width: 576px) {
+        font-size: 1rem;
+      }
     }
   }
 
+  // 日曆主體樣式 - 使用網格佈局顯示日期
   .calendar-body {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
-    grid-gap: 5px;
+    gap: 4px;
     padding: 10px;
+    background-color: #fafafa;
+    min-height: 300px;
 
+    // 針對中等尺寸螢幕的調整，解決週六顯示不完整問題
+    @media (max-width: 991.98px) and (min-width: 768px) {
+      gap: 2px;
+      padding: 5px;
+    }
+
+    // 小螢幕調整
+    @media (max-width: 576px) {
+      gap: 2px;
+      padding: 5px;
+    }
+
+    // 星期名稱樣式
     .day-name {
       font-weight: bold;
       text-align: center;
       padding: 5px 0;
+      font-size: 0.9rem;
+
+      // 中等尺寸螢幕調整
+      @media (max-width: 991.98px) and (min-width: 768px) {
+        font-size: 0.8rem;
+        padding: 3px 0;
+      }
+
+      // 小螢幕調整
+      @media (max-width: 576px) {
+        font-size: 0.8rem;
+      }
     }
 
+    // 日期格子樣式
     .day-cell {
-      background-color: #f2f2f2;
-      text-align: center;
-      padding: 10px 0;
-      cursor: pointer;
+      aspect-ratio: 1; // 保持正方形比例
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background-color: white;
+      border-radius: 8px;
+      padding: 4px;
+      transition: all 0.2s ease;
+      border: 1px solid transparent;
+      font-size: 0.9rem;
 
+      // 針對中等尺寸螢幕的調整，優化顯示效果
+      @media (max-width: 991.98px) and (min-width: 768px) {
+        font-size: 0.8rem;
+        padding: 2px;
+      }
+
+      // 小螢幕調整
+      @media (max-width: 576px) {
+        font-size: 0.8rem;
+        padding: 2px;
+      }
+
+      // 可選日期的懸停效果
+      &:not(.past-date):not(.adjacent-month-date):hover {
+        background-color: rgba(151, 125, 6, 0.3);
+        transform: translateY(-4px) scale(1.05);
+        box-shadow: 0 4px 8px rgba(151, 125, 6, 0.3);
+        cursor: pointer;
+        border: 2px solid $primary-color;
+
+        // 日期數字懸停效果
+        .fw-bolder {
+          color: $primary-color;
+          transform: scale(1.1);
+          transition: transform 0.2s ease;
+        }
+
+        // 價格文字懸停效果
+        small {
+          color: darken($primary-color, 10%);
+          font-weight: bold;
+        }
+      }
+
+      // 不可選日期樣式（過去日期或非當月日期）
+      &.past-date,
+      &.adjacent-month-date {
+        background-color: #f8f8f8;
+        color: #bbb;
+        cursor: not-allowed;
+        opacity: 0.7;
+      }
+
+      // 已選中日期樣式
       &.selected {
         background-color: $primary-color;
-        color: #fff;
+        color: white;
+        transform: translateY(-2px);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        font-weight: bold;
+
+        small {
+          color: rgba(255, 255, 255, 0.9);
+        }
+
+        &:hover {
+          background-color: darken($primary-color, 5%);
+        }
       }
 
-      &:hover {
-        background-color: #e6e6e6;
-      }
+      // 價格顯示文字樣式
+      small {
+        display: block;
+        margin-top: 2px;
+        color: $primary-color;
+        font-size: 0.75rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 100%;
 
-      &.past-date {
-        background-color: #f2f2f2;
-        color: #999;
-        cursor: not-allowed;
-      }
+        // 中等尺寸螢幕調整
+        @media (max-width: 991.98px) and (min-width: 768px) {
+          font-size: 0.65rem;
+          margin-top: 1px;
+        }
 
-      &.adjacent-month-date {
-        background-color: #e0e0e0;
-        color: #b0b0b0;
+        // 小螢幕調整
+        @media (max-width: 576px) {
+          font-size: 0.7rem;
+        }
+      }
+    }
+
+    // 週六專用樣式 - 解決顯示不完整問題
+    .saturday {
+      @media (max-width: 991.98px) and (min-width: 768px) {
+        margin-right: 0; // 確保右側沒有邊距
+      }
+    }
+
+    // 週六日期格子專用樣式
+    .day-cell.saturday {
+      @media (max-width: 991.98px) and (min-width: 768px) {
+        padding-right: 1px;
+        box-sizing: border-box;
+        border-right-width: 0; // 移除右側邊框
       }
     }
   }
 }
 
-//productDeatail
+/* ===================================================
+ * 產品詳情頁側邊欄樣式
+ * =================================================== */
+.product-detail-sidebar {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem;
+  background-color: #fafafa;
+  border-radius: 8px;
+  border: 1px solid rgba(151, 125, 6, 0.1);
+
+  // 在中等螢幕尺寸下調整內邊距
+  @media (max-width: 991.98px) and (min-width: 768px) {
+    padding: 1.25rem;
+  }
+
+  // 產品標題樣式
+  .product-title {
+    margin-bottom: 1.5rem;
+
+    h2 {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+      color: #333;
+      word-wrap: break-word; // 長單詞自動換行
+      line-height: 1.3;
+
+      // 螢幕尺寸響應式調整
+      @media (max-width: 991.98px) {
+        font-size: 1.5rem;
+      }
+
+      @media (max-width: 767.98px) {
+        font-size: 1.3rem;
+      }
+    }
+  }
+}
+
+/* ===================================================
+ * 出發日期顯示樣式
+ * =================================================== */
+.departure-date {
+  padding: 1rem;
+  border-radius: 6px;
+  border-left: 4px solid $primary-color;
+  margin-bottom: 1.5rem;
+
+  // 尚未選擇日期時的佔位樣式
+  &__placeholder {
+    background-color: rgba(220, 53, 69, 0.1);
+    border-left: 4px solid #dc3545;
+    padding: 1rem;
+    border-radius: 6px;
+
+    p {
+      color: #dc3545;
+      font-weight: 500;
+      margin-bottom: 0;
+    }
+  }
+
+  // 已選擇日期的樣式
+  &__selected {
+    background-color: rgba(151, 125, 6, 0.1);
+
+    p {
+      margin-bottom: 0;
+      font-weight: 500;
+    }
+  }
+}
+
+/* ===================================================
+ * 人數選擇樣式
+ * =================================================== */
+.passenger-select {
+  margin-bottom: 2rem;
+
+  &__container {
+    border: 1px solid #e5e5e5;
+    border-radius: 8px;
+    padding: 1.25rem;
+    background-color: #fafafa;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+  }
+
+  &__item {
+    margin-bottom: 1rem;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.75rem;
+  }
+
+  &__type {
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+
+    i {
+      margin-right: 0.5rem;
+      color: $primary-color;
+    }
+  }
+
+  &__price {
+    font-weight: 700;
+    color: #dc3545;
+  }
+
+  .form-select {
+    border-color: rgba(151, 125, 6, 0.3);
+    transition: all 0.3s ease;
+
+    &:focus {
+      border-color: $primary-color;
+      box-shadow: 0 0 0 0.2rem rgba(151, 125, 6, 0.2);
+    }
+  }
+}
+
+/* ===================================================
+ * 旅遊特色樣式
+ * =================================================== */
+.tour-features {
+  background-color: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  border: 1px solid rgba(151, 125, 6, 0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+
+  // 在中等螢幕尺寸下減少內邊距
+  @media (max-width: 991.98px) and (min-width: 768px) {
+    padding: 1.25rem;
+  }
+
+  // 在小螢幕尺寸下進一步減少內邊距
+  @media (max-width: 767.98px) {
+    padding: 1rem;
+  }
+
+  h5 {
+    color: $primary-color;
+    font-weight: 600;
+    position: relative;
+    padding-left: 1rem;
+
+    &::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 4px;
+      height: 1.2em;
+      background-color: $primary-color;
+      border-radius: 2px;
+    }
+  }
+
+  &__list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+
+    // 在中等螢幕尺寸(768px-992px)下改為單列顯示
+    @media (max-width: 991.98px) and (min-width: 768px) {
+      grid-template-columns: 1fr;
+      gap: 0.75rem;
+    }
+
+    // 在小螢幕尺寸下保持單列顯示
+    @media (max-width: 767.98px) {
+      grid-template-columns: 1fr;
+      gap: 0.5rem;
+    }
+  }
+}
+
+.tour-feature-item {
+  display: flex;
+  align-items: center;
+  padding: 0.75rem;
+  background-color: #f8f9fa;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+
+  // 在中等螢幕尺寸下減少內邊距
+  @media (max-width: 991.98px) and (min-width: 768px) {
+    padding: 0.6rem;
+    margin-bottom: 0.5rem;
+  }
+
+  // 在小螢幕尺寸下調整樣式
+  @media (max-width: 767.98px) {
+    padding: 0.5rem;
+    margin-bottom: 0.4rem;
+  }
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  i,
+  .feature-icon {
+    color: $primary-color;
+    font-size: 1.2rem;
+    margin-right: 0.75rem;
+
+    // 在中等螢幕尺寸下減小圖標尺寸
+    @media (max-width: 991.98px) and (min-width: 768px) {
+      font-size: 1rem;
+      min-width: 20px;
+    }
+
+    // 在小螢幕尺寸下進一步調整圖標
+    @media (max-width: 767.98px) {
+      font-size: 0.9rem;
+      min-width: 18px;
+      margin-right: 0.5rem;
+    }
+  }
+
+  span,
+  .feature-text {
+    color: #666;
+    font-size: 0.95rem;
+
+    // 在中等螢幕尺寸下稍微減小字體大小
+    @media (max-width: 991.98px) and (min-width: 768px) {
+      font-size: 0.9rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 100%;
+    }
+
+    // 在小螢幕尺寸下允許文字換行以避免截斷
+    @media (max-width: 767.98px) {
+      font-size: 0.85rem;
+      white-space: normal;
+      overflow: visible;
+      line-height: 1.3;
+    }
+  }
+}
+
+/* ===================================================
+ * 價格高亮顯示樣式
+ * =================================================== */
+.price-highlight {
+  background-color: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  border: 1px solid rgba(151, 125, 6, 0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px dashed rgba(151, 125, 6, 0.2);
+
+    span {
+      &:first-child {
+        font-size: 1.1rem;
+        color: #333;
+      }
+    }
+
+    .price-amount {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #dc3545; // 使用紅色突出顯示價格
+    }
+  }
+
+  &__note {
+    display: flex;
+    align-items: center;
+    color: #666;
+    font-size: 0.9rem;
+
+    i {
+      color: $primary-color;
+    }
+  }
+}
+
+/* ===================================================
+ * 報名按鈕樣式
+ * =================================================== */
+.booking-btn {
+  background: linear-gradient(
+    45deg,
+    $primary-color,
+    darken($primary-color, 10%)
+  ); // 漸變背景
+  color: white;
+  font-weight: 600;
+  padding: 0.9rem 0;
+  border: none;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  letter-spacing: 1px;
+  font-size: 1.1rem;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+  text-decoration: none; // 確保作為連結時沒有下劃線
+  display: inline-block; // 確保作為連結時可以設置寬度和高度
+
+  // 禁用狀態樣式
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.7;
+    background: linear-gradient(45deg, #d0d0d0, #a0a0a0);
+    color: #f0f0f0;
+  }
+
+  // 啟用狀態的懸停效果
+  &:not(:disabled) {
+    &:hover {
+      transform: translateY(-5px); // 上浮效果
+      box-shadow: 0 5px 10px rgba(151, 125, 6, 0.3); // 增強陰影
+      color: white; // 確保懸停時文字顏色不變
+      text-decoration: none; // 確保懸停時沒有下劃線
+    }
+
+    &:active {
+      transform: translateY(0); // 點擊時回到原位
+      box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+    }
+  }
+
+  // 適應不同的圓角設置
+  &.rounded-0 {
+    border-radius: 0;
+  }
+}
+
+/* ===================================================
+ * 產品描述樣式
+ * =================================================== */
+.product-description {
+  background-color: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  border: 1px solid rgba(151, 125, 6, 0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+
+  h5 {
+    color: $primary-color;
+    font-weight: 600;
+    position: relative;
+    padding-left: 1rem;
+
+    &::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 4px;
+      height: 1.2em;
+      background-color: $primary-color;
+      border-radius: 2px;
+    }
+  }
+
+  .description-text {
+    color: #666;
+    line-height: 1.8;
+    font-size: 1rem;
+
+    @media (max-width: 991.98px) {
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: 767.98px) {
+      font-size: 0.9rem;
+    }
+  }
+}
+
+/* ===================================================
+ * 航班資訊區塊樣式
+ * =================================================== */
+.flight-info {
+  margin-bottom: 4rem;
+
+  // 航班資訊標題樣式
+  &__title {
+    position: relative;
+    text-align: center;
+    margin-bottom: 2.5rem;
+
+    h5 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    h6 {
+      font-size: 1rem;
+      color: $primary-color;
+      font-weight: 500;
+    }
+
+    &:after {
+      content: "";
+      position: absolute;
+      bottom: -1rem;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 3px;
+      background-color: $primary-color;
+      border-radius: 3px;
+    }
+  }
+
+  // 航班卡片樣式
+  &__card {
+    border: 1px solid #e5e5e5;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.08);
+    height: 100%;
+
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+    }
+
+    // 航班日期和航班號區塊
+    &-header {
+      background-color: #f8f9fa;
+      padding: 1rem;
+      border-bottom: 3px solid rgba(151, 125, 6, 0.3);
+
+      .day-number {
+        font-size: 0.9rem;
+        color: $primary-color;
+        font-weight: 600;
+      }
+
+      .destination {
+        font-size: 1.2rem;
+        font-weight: 600;
+        margin: 0.5rem 0;
+      }
+
+      .flight-number {
+        font-size: 1rem;
+        color: #666;
+      }
+    }
+
+    // 航班詳細資訊區塊
+    &-body {
+      padding: 1.5rem;
+
+      .flight-route {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .departure,
+        .arrival {
+          flex: 1;
+
+          .label {
+            font-size: 0.85rem;
+            color: #666;
+            margin-bottom: 0.5rem;
+          }
+
+          .location {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+          }
+
+          .time {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #333;
+          }
+        }
+
+        .flight-icon {
+          flex: 0 0 auto;
+          width: 50px;
+          height: 50px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: $primary-color;
+          position: relative;
+
+          &:before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: -20px;
+            right: -20px;
+            height: 2px;
+            background: linear-gradient(
+              to right,
+              #e5e5e5,
+              $primary-color,
+              #e5e5e5
+            );
+            z-index: 0;
+          }
+
+          i {
+            background-color: white;
+            padding: 0.5rem;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            position: relative;
+            z-index: 1;
+            transform: rotate(45deg);
+            transition: all 0.3s ease;
+          }
+        }
+
+        // 到達資訊右對齊
+        .arrival {
+          text-align: right;
+        }
+      }
+    }
+  }
+
+  // 響應式調整
+  @media (max-width: 991.98px) {
+    &__card {
+      margin-bottom: 2rem;
+
+      &-body {
+        .flight-route {
+          .departure,
+          .arrival {
+            .location {
+              font-size: 1rem;
+            }
+
+            .time {
+              font-size: 1.1rem;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  @media (max-width: 767.98px) {
+    &__card-body {
+      padding: 1rem;
+    }
+  }
+}
+
+/* ===================================================
+ * 行程內容樣式
+ * =================================================== */
 .tour-daily {
   background-color: $primary-color;
   color: white;
@@ -473,26 +2175,441 @@ $text-color: #333;
   object-fit: cover;
   height: 100%;
 }
+.booking-info-section {
+  max-width: 800px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
 
-//CartNavigator
+.booking-info-title {
+  color: #666;
+  font-weight: 500;
+}
+
+.booking-info-content {
+  color: #333;
+}
+
+/* ===================================================
+ * 麵包屑導航樣式
+ * =================================================== */
+.breadcrumb-nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin: 1.5rem 0;
+  font-size: 0.95rem;
+
+  &__item {
+    display: inline-flex;
+    align-items: center;
+    color: #666;
+    transition: all 0.3s ease;
+    position: relative;
+
+    &:hover {
+      color: $primary-color;
+    }
+
+    &:not(:last-child) {
+      margin-right: 1.2rem;
+
+      &:after {
+        content: "";
+        position: absolute;
+        right: -0.8rem;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 6px;
+        height: 6px;
+        border-top: 1px solid #999;
+        border-right: 1px solid #999;
+        transform: translateY(-50%) rotate(45deg);
+      }
+    }
+
+    &--active {
+      color: $primary-color;
+      font-weight: 600;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+      padding: 0.3rem 0;
+      border-bottom: 1px solid transparent;
+      transition: all 0.3s ease;
+
+      &:hover {
+        color: $primary-color;
+        border-bottom-color: $primary-color;
+      }
+    }
+  }
+
+  @media (max-width: 767.98px) {
+    font-size: 0.85rem;
+    margin: 1rem 0;
+
+    &__item {
+      &:not(:last-child) {
+        margin-right: 1rem;
+
+        &:after {
+          right: -0.7rem;
+          width: 5px;
+          height: 5px;
+        }
+      }
+    }
+  }
+}
+
+/* ===================================================
+ * 事項列表導航樣式
+ * =================================================== */
+.product-nav-tabs {
+  display: flex;
+  justify-content: center;
+  border-top: 1px solid rgba(151, 125, 6, 0.2);
+  border-bottom: 1px solid rgba(151, 125, 6, 0.2);
+  padding: 0;
+  margin: 3rem 0;
+  overflow-x: auto;
+
+  // 確保在小螢幕上可以水平滾動
+  @media (max-width: 767.98px) {
+    justify-content: flex-start;
+    padding-bottom: 5px; // 為滾動條留出空間
+  }
+
+  &__item {
+    list-style: none;
+    padding: 1rem 1.5rem;
+    position: relative;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+
+    &:not(:last-child) {
+      margin-right: 1rem;
+    }
+
+    &:hover {
+      color: $primary-color;
+
+      &:after {
+        width: 100%;
+      }
+    }
+
+    // 底部指示線
+    &:after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 3px;
+      background-color: $primary-color;
+      transition: width 0.3s ease;
+    }
+
+    // 活躍狀態
+    &.active {
+      color: $primary-color;
+      font-weight: 600;
+
+      &:after {
+        width: 100%;
+      }
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+      font-size: 1.1rem;
+
+      @media (max-width: 767.98px) {
+        font-size: 1rem;
+      }
+    }
+  }
+}
+
+/* ===================================================
+ * 每日行程樣式優化
+ * =================================================== */
+.tour-content {
+  margin-bottom: 4rem;
+
+  &__title {
+    position: relative;
+    text-align: center;
+    margin-bottom: 2.5rem;
+
+    &-main {
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+
+    &-sub {
+      font-size: 1rem;
+      color: $primary-color;
+      font-weight: 500;
+      display: block;
+    }
+
+    &:after {
+      content: "";
+      position: absolute;
+      bottom: -1rem;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 3px;
+      background-color: $primary-color;
+      border-radius: 3px;
+    }
+  }
+
+  .day-container {
+    margin-bottom: 3rem;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .day-header {
+      display: flex;
+      align-items: center;
+      background-color: #f8f9fa;
+      border-bottom: 3px solid rgba(151, 125, 6, 0.3);
+
+      .day-number {
+        background-color: $primary-color;
+        color: white;
+        padding: 1.2rem;
+        font-weight: 600;
+        font-size: 1.2rem;
+        min-width: 100px;
+        text-align: center;
+      }
+
+      .day-route {
+        padding: 1rem 1.5rem;
+        font-weight: 600;
+        font-size: 1.2rem;
+        flex-grow: 1;
+      }
+    }
+
+    .day-content {
+      padding: 1.5rem;
+
+      .highlight-section {
+        margin-bottom: 2rem;
+
+        .highlight-title {
+          font-weight: 600;
+          color: $primary-color;
+          margin-bottom: 1rem;
+          display: flex;
+          align-items: center;
+
+          i {
+            margin-right: 0.5rem;
+          }
+        }
+
+        .highlight-content {
+          padding-left: 1.5rem;
+          border-left: 3px solid rgba(151, 125, 6, 0.2);
+          color: #666;
+          line-height: 1.8;
+        }
+      }
+
+      .info-section {
+        display: flex;
+        flex-wrap: wrap;
+        margin-top: 2rem;
+
+        .meals-info,
+        .accommodation-info {
+          flex: 1;
+          min-width: 250px;
+          margin-bottom: 1.5rem;
+
+          .info-title {
+            font-weight: 600;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+
+            i {
+              color: $primary-color;
+              margin-right: 0.5rem;
+            }
+          }
+
+          ul {
+            padding-left: 1.5rem;
+
+            li {
+              margin-bottom: 0.5rem;
+              color: #666;
+            }
+          }
+
+          p {
+            padding-left: 1.5rem;
+            color: #666;
+            line-height: 1.6;
+          }
+        }
+      }
+    }
+  }
+}
+
+/* ===================================================
+ * 費用說明和預訂須知樣式優化
+ * =================================================== */
+.info-section {
+  margin-bottom: 4rem;
+
+  &__title {
+    position: relative;
+    text-align: center;
+    margin-bottom: 2.5rem;
+
+    &-text {
+      font-size: 1.8rem;
+      font-weight: 700;
+      position: relative;
+      display: inline-block;
+
+      &:after {
+        content: "";
+        position: absolute;
+        bottom: -0.8rem;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80px;
+        height: 3px;
+        background-color: $primary-color;
+        border-radius: 3px;
+      }
+    }
+  }
+
+  .info-container {
+    max-width: 900px;
+    margin: 0 auto;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+  }
+
+  .info-block {
+    margin-bottom: 2rem;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    .info-header {
+      background-color: #f8f9fa;
+      padding: 1rem 1.5rem;
+      border-left: 4px solid $primary-color;
+      margin-bottom: 1rem;
+
+      .info-title {
+        font-size: 1.3rem;
+        font-weight: 600;
+        color: #333;
+        margin: 0;
+      }
+    }
+
+    .info-content {
+      padding: 0 1.5rem 1rem;
+
+      ul {
+        padding-left: 1.5rem;
+        margin-bottom: 0;
+
+        li {
+          margin-bottom: 0.8rem;
+          color: #666;
+          line-height: 1.6;
+
+          &:last-child {
+            margin-bottom: 0;
+          }
+        }
+      }
+    }
+  }
+}
+
+/* ===================================================
+ * 購物車進度流程樣式
+ * =================================================== */
 .cart-navigator {
   display: flex;
   justify-content: center;
   margin-bottom: 3rem;
+  width: 100%;
 
   .progress-container {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
+    width: 100%;
+    max-width: 900px;
+    padding: 0;
+    margin: 0;
+    list-style: none;
 
     .progress-step {
       display: flex;
       flex-direction: column;
       align-items: center;
-      flex: 1;
       position: relative;
       margin-bottom: 3rem;
+      flex: 1;
+      min-width: 120px;
+
+      &.current {
+        .progress-label {
+          font-weight: 700;
+          color: $primary-color;
+        }
+      }
+
+      &.completed {
+        .progress-label {
+          color: $primary-color;
+        }
+      }
+
+      .progress-step-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+      }
 
       .progress-icon {
         position: absolute;
@@ -501,6 +2618,7 @@ $text-color: #333;
         transform: translateX(-50%);
         font-size: 20px;
         color: $primary-color;
+        animation: float 2s ease-in-out infinite;
       }
 
       .progress-circle {
@@ -515,24 +2633,39 @@ $text-color: #333;
         font-size: 18px;
         font-weight: bold;
         text-decoration: none;
-        transition: background-color 0.3s, color 0.3s;
+        transition: all 0.3s ease;
         z-index: 1;
         position: relative;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 
         &.active {
           background-color: $primary-color;
           color: #fff;
+          transform: scale(1.05);
         }
       }
 
       .progress-line {
         height: 4px;
         background-color: $secondary-color;
-        flex-grow: 1;
-        margin: 0 5rem;
+        width: calc(100% - 20px);
+        position: absolute;
+        top: 25px;
+        left: 60%;
+        z-index: 0;
 
         &.active {
           background-color: $primary-color;
+        }
+
+        &.next-step {
+          background: linear-gradient(
+            to right,
+            $primary-color 50%,
+            $secondary-color 50%
+          );
+          background-size: 200% 100%;
+          animation: progress-animation 1.5s ease-in-out infinite;
         }
       }
 
@@ -540,24 +2673,695 @@ $text-color: #333;
         font-size: 14px;
         color: $text-color;
         margin-top: 1rem;
+        text-align: center;
+        transition: all 0.3s ease;
+      }
+
+      .step-link {
+        color: $primary-color;
+        text-decoration: none;
+
+        &:hover {
+          text-decoration: underline;
+        }
       }
     }
   }
 }
 
-//cart
-.cart__section__icon {
-  font-size: 16rem;
+@keyframes float {
+  0% {
+    transform: translateX(-50%) translateY(0px);
+  }
+  50% {
+    transform: translateX(-50%) translateY(-10px);
+  }
+  100% {
+    transform: translateX(-50%) translateY(0px);
+  }
 }
 
-//login
-.login-title {
-  padding: 1.5rem 0;
-  background-color: black;
-  opacity: 0.7;
+@keyframes progress-animation {
+  0% {
+    background-position: 100% 0;
+  }
+  100% {
+    background-position: 0 0;
+  }
 }
 
-//ServiceLocation
+/* 響應式設計 */
+@media (max-width: 768px) {
+  .cart-navigator {
+    .progress-container {
+      .progress-step {
+        min-width: 80px;
+
+        .progress-circle {
+          width: 40px;
+          height: 40px;
+          font-size: 16px;
+        }
+
+        .progress-line {
+          top: 20px;
+        }
+
+        .progress-label {
+          font-size: 12px;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 576px) {
+  .cart-navigator {
+    .progress-container {
+      flex-direction: row; /* 保持橫向顯示 */
+      flex-wrap: nowrap; /* 防止換行 */
+      overflow-x: auto; /* 允許水平滾動 */
+      padding-bottom: 15px; /* 為滾動條留出空間 */
+      justify-content: flex-start; /* 從左側開始 */
+      padding-top: 30px; /* 為飛機圖標留出空間 */
+
+      .progress-step {
+        flex-direction: column; /* 恢復為縱向排列 */
+        width: auto; /* 自動寬度 */
+        min-width: 80px; /* 最小寬度 */
+        margin-right: 10px; /* 右側間距 */
+        margin-bottom: 0.5rem; /* 減少底部間距 */
+        flex-shrink: 0; /* 防止壓縮 */
+
+        .progress-step-content {
+          flex-direction: column; /* 恢復為縱向排列 */
+          align-items: center; /* 居中對齊 */
+          position: relative; /* 確保相對定位 */
+        }
+
+        .progress-circle {
+          margin-right: 0; /* 移除右側間距 */
+          width: 35px; /* 縮小圓圈 */
+          height: 35px; /* 縮小圓圈 */
+          font-size: 14px; /* 縮小字體 */
+        }
+
+        .progress-line {
+          height: 3px; /* 恢復為水平線 */
+          width: calc(100% - 10px); /* 調整寬度 */
+          position: absolute;
+          top: 17px; /* 調整位置 */
+          left: 60%; /* 調整位置 */
+        }
+
+        .progress-label {
+          margin-top: 0.5rem; /* 調整上邊距 */
+          margin-left: 0; /* 移除左邊距 */
+          font-size: 11px; /* 縮小字體 */
+          max-width: 80px; /* 限制寬度 */
+          white-space: normal; /* 允許換行 */
+          text-align: center; /* 文字居中 */
+        }
+
+        .progress-icon {
+          top: -25px; /* 調整位置，確保在圓圈上方 */
+          left: 50%; /* 水平居中 */
+          transform: translateX(-50%); /* 水平居中 */
+          font-size: 16px; /* 縮小字體 */
+          position: absolute; /* 確保絕對定位 */
+          display: block; /* 確保顯示 */
+          z-index: 2; /* 確保在其他元素上方 */
+        }
+
+        &.current {
+          .progress-icon {
+            display: block !important; /* 強制顯示當前步驟的飛機圖標 */
+            animation: float 2s ease-in-out infinite; /* 保持動畫 */
+          }
+        }
+      }
+    }
+  }
+}
+
+/* ===================================================
+ * 購物車樣式
+ * =================================================== */
+.cart {
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  transition: all 0.3s ease;
+
+  &__section {
+    padding: 3rem 1.5rem;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+
+    &__icon {
+      font-size: 10rem;
+      color: #adb5bd;
+      animation: float 3s ease-in-out infinite;
+    }
+  }
+
+  /* ===================================================
+ * 購物車移除按鈕樣式
+ * =================================================== */
+  .cart-remove-btn {
+    top: 15px;
+    right: 15px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba($primary-color, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 10;
+    padding: 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+
+    i {
+      font-size: 1.2rem;
+      color: $primary-color-dark;
+      transition: all 0.3s ease;
+    }
+
+    &:hover {
+      background-color: $primary-color-dark;
+      border-color: $primary-color-dark;
+      transform: scale(1.1);
+      box-shadow: 0 3px 8px rgba(220, 53, 69, 0.3);
+
+      i {
+        color: white;
+      }
+    }
+
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.3);
+    }
+  }
+
+  // 空購物車樣式
+  .alert-secondary {
+    background-color: #f8f9fa;
+    border: none;
+    border-radius: 12px;
+    padding: 3rem 2rem;
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.03);
+
+    p {
+      margin-bottom: 1rem;
+
+      &.fs-2 {
+        color: #6c757d;
+        font-weight: 500;
+        position: relative;
+        display: inline-block;
+
+        &::after {
+          content: "";
+          position: absolute;
+          bottom: -8px;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 50px;
+          height: 3px;
+          background-color: #adb5bd;
+          border-radius: 3px;
+        }
+      }
+    }
+
+    .cart__section__icon {
+      color: #6c757d;
+      opacity: 0.7;
+      filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
+    }
+  }
+
+  .bg-light {
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+
+    &:hover {
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      transform: translateY(-2px);
+    }
+
+    .img-fluid {
+      height: 250px;
+      width: 100%;
+      object-fit: cover;
+      transition: all 0.5s ease;
+
+      &:hover {
+        transform: scale(1.02);
+      }
+    }
+
+    .position-relative {
+      padding: 1.5rem !important;
+
+      .product-header {
+        position: relative;
+
+        .product-tag {
+          display: inline-block;
+          background: linear-gradient(
+            45deg,
+            $primary-color,
+            $primary-color-light
+          );
+          color: white;
+          font-size: 0.8rem;
+          font-weight: 600;
+          padding: 0.3rem 0.8rem;
+          border-radius: 20px;
+          margin-bottom: 0.8rem;
+          box-shadow: 0 2px 5px rgba($primary-color, 0.3);
+          letter-spacing: 1px;
+        }
+      }
+
+      h4 {
+        color: #333;
+        font-size: 1.4rem;
+        border-bottom: 2px solid #f8f9fa;
+        padding-bottom: 0.8rem;
+        margin-bottom: 1.2rem;
+        position: relative;
+
+        &::after {
+          content: "";
+          position: absolute;
+          bottom: -2px;
+          left: 0;
+          width: 60px;
+          height: 4px;
+          background: linear-gradient(
+            45deg,
+            $primary-color,
+            $primary-color-light
+          );
+          border-radius: 2px;
+        }
+      }
+    }
+
+    // 推薦行程區域樣式
+    .index-list-section {
+      padding: 2rem 0;
+
+      .fs-3 {
+        position: relative;
+        display: inline-block;
+        padding-bottom: 0.5rem;
+        font-weight: 600;
+
+        &::after {
+          content: "";
+          position: absolute;
+          bottom: 0;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 80px;
+          height: 3px;
+          background-color: #343a40;
+          border-radius: 3px;
+        }
+      }
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(0px);
+      }
+      50% {
+        transform: translateY(-10px);
+      }
+      100% {
+        transform: translateY(0px);
+      }
+    }
+
+    // 出發日期樣式
+    .mt-2.mb-3 {
+      p {
+        background-color: #f8f9fa;
+        padding: 0.8rem 1rem;
+        border-radius: 6px;
+        border-left: 4px solid $primary-color;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        display: flex;
+        align-items: center;
+
+        .fw-bold {
+          color: $primary-color;
+          margin-right: 0.5rem;
+        }
+
+        .date-value {
+          font-weight: 500;
+          color: #495057;
+          background-color: white;
+          padding: 0.3rem 0.6rem;
+          border-radius: 4px;
+          border: 1px solid rgba($primary-color, 0.2);
+          margin-left: 0.3rem;
+        }
+
+        i.bi-calendar-event {
+          color: $primary-color;
+          font-size: 1.1rem;
+        }
+      }
+    }
+
+    // 人數選擇區塊樣式
+    .d-flex.justify-content-start.align-items-center.w-100.mb-3 {
+      background-color: #f8f9fa;
+      padding: 1rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+
+      .input-group {
+        position: relative;
+        display: flex;
+        align-items: center;
+
+        span.fw-bold {
+          color: $primary-color;
+          background-color: rgba($primary-color, 0.1);
+          padding: 0.3rem 0.6rem;
+          border-radius: 4px;
+          margin-right: 0.5rem;
+          min-width: 45px;
+          text-align: center;
+        }
+
+        .form-select {
+          border: 1px solid rgba($primary-color, 0.2);
+          border-radius: 4px;
+          padding: 0.4rem 0.6rem;
+          background-color: white;
+          transition: all 0.3s ease;
+          width: auto;
+          min-width: 70px;
+
+          &:focus {
+            border-color: $primary-color;
+            box-shadow: 0 0 0 0.2rem rgba($primary-color, 0.25);
+          }
+
+          &:disabled {
+            background-color: #e9ecef;
+            opacity: 0.7;
+          }
+        }
+
+        i.bi-person-fill {
+          color: $primary-color;
+          font-size: 1.1rem;
+        }
+      }
+    }
+
+    .btn {
+      transition: all 0.3s ease;
+
+      &:hover {
+        background-color: #f8f9fa;
+        color: $primary-color-light;
+      }
+    }
+  }
+
+  .text-decoration-line-through {
+    position: relative;
+
+    &::after {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 2px;
+      background-color: #dc3545;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  }
+
+  .text-danger {
+    font-weight: bold;
+    animation: pulse 2s infinite;
+  }
+
+  // 優惠券區域樣式
+  .input-group {
+    margin-bottom: 0.5rem;
+
+    .btn-secondary {
+      background-color: $primary-color;
+      border: none;
+      border-radius: 6px 0 0 6px;
+      padding: 0.5rem 1rem;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      color: white;
+
+      &:hover {
+        background-color: $primary-color-light;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+        transform: translateY(-1px);
+        color: white;
+      }
+    }
+
+    .form-control {
+      border-radius: 0 6px 6px 0;
+      border: 1px solid #ced4da;
+      padding: 0.5rem 1rem;
+      transition: all 0.3s ease;
+
+      &:focus {
+        border-color: $primary-color-light;
+        box-shadow: 0 0 0 0.2rem rgba($primary-color, 0.25);
+      }
+    }
+  }
+
+  .text-secondary {
+    font-size: 0.85rem;
+    margin-left: 0.5rem;
+
+    &.mt-1 {
+      display: inline-block;
+      padding: 0.5rem 0.75rem 0.5rem 2rem;
+      background-color: #f0f8ff;
+      border-left: 3px solid $primary-color;
+      border-radius: 0 4px 4px 0;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+      color: #495057;
+      font-weight: 500;
+      position: relative;
+
+      &:empty {
+        display: none;
+      }
+
+      &::before {
+        content: "ℹ";
+        position: absolute;
+        left: 0.75rem;
+        color: $primary-color;
+        font-weight: bold;
+      }
+
+      // 添加自定義類來處理不同狀態
+      &.coupon-success {
+        background-color: #e8f5e9;
+        border-left-color: #4caf50;
+
+        &::before {
+          content: "✓";
+          color: #4caf50;
+        }
+      }
+
+      &.coupon-error {
+        background-color: #ffebee;
+        border-left-color: #f44336;
+
+        &::before {
+          content: "✗";
+          color: #f44336;
+        }
+      }
+    }
+  }
+
+  /* ===================================================
+ * 優惠碼狀態樣式
+ * =================================================== */
+  .coupon-success {
+    background-color: rgba(40, 167, 69, 0.1);
+    color: #28a745;
+    padding: 0.75rem 1rem;
+    border-radius: 6px;
+    border-left: 4px solid #28a745;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(40, 167, 69, 0.1);
+    animation: fadeIn 0.5s ease;
+
+    i {
+      font-size: 1.2rem;
+      color: #28a745;
+    }
+  }
+
+  .coupon-error {
+    background-color: rgba(220, 53, 69, 0.1);
+    color: #dc3545;
+    padding: 0.75rem 1rem;
+    border-radius: 6px;
+    border-left: 4px solid #dc3545;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(220, 53, 69, 0.1);
+    animation: fadeIn 0.5s ease;
+
+    i {
+      font-size: 1.2rem;
+      color: #dc3545;
+    }
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(5px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  // 總金額區域樣式
+  .text-end {
+    padding: 1.25rem;
+    background: linear-gradient(to right, #f8f9fa, #f0f8ff);
+    border-radius: 8px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    border-left: 4px solid $primary-color;
+
+    .h5 {
+      margin-bottom: 0.75rem;
+      transition: all 0.3s ease;
+
+      &.fw-bold:not(.text-decoration-line-through) {
+        font-size: 1.3rem;
+        color: #495057;
+      }
+    }
+
+    .text-decoration-line-through {
+      opacity: 0.7;
+
+      &::after {
+        height: 2px;
+        background-color: #6c757d;
+      }
+    }
+
+    .text-danger {
+      font-size: 1.5rem;
+      position: relative;
+      color: $primary-color !important;
+
+      &::before {
+        content: "🎉";
+        position: absolute;
+        left: -25px;
+        animation: bounce 1s infinite;
+      }
+    }
+  }
+}
+
+.btn-dark {
+  transition: all 0.3s ease;
+  letter-spacing: 1px;
+  font-weight: 500;
+  background-color: $primary-color;
+  border-color: $primary-color;
+
+  &:hover:not(:disabled) {
+    background-color: $primary-color-light;
+    border-color: $primary-color-light;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba($primary-color, 0.3);
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+/* ===================================================
+ * 服務據點頁面樣式
+ * =================================================== */
+
 .service-location-container {
   padding: 2rem;
   background-color: #f5f5f5;
@@ -592,55 +3396,366 @@ $text-color: #333;
   }
 }
 
-//information
+.service-location-hero {
+  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+    url("https://images.unsplash.com/photo-1464037866556-6812c9d1c72e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80");
+  background-size: cover;
+  background-position: center;
+  padding: 6rem 0;
+  text-align: center;
+  color: white;
+  position: relative;
+
+  &:before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(
+      to right,
+      $primary-color,
+      $primary-color-light,
+      $primary-color
+    );
+  }
+
+  .service-location-title {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  }
+
+  .service-location-subtitle {
+    font-size: 1.2rem;
+    max-width: 600px;
+    margin: 0 auto;
+    opacity: 0.9;
+  }
+}
+
+.service-location-container {
+  .location-section {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    margin-bottom: 3rem;
+    overflow: hidden;
+    transition: all 0.3s ease;
+
+    &:hover {
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      transform: translateY(-5px);
+    }
+
+    .location-header {
+      display: flex;
+      align-items: center;
+      padding: 1.5rem;
+      background: linear-gradient(to right, #f8f9fa, #e9ecef);
+      border-bottom: 1px solid #e9ecef;
+
+      .location-icon {
+        width: 50px;
+        height: 50px;
+        background-color: $primary-color;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 1rem;
+
+        i {
+          color: white;
+          font-size: 1.5rem;
+        }
+      }
+
+      h2 {
+        margin: 0;
+        font-weight: 600;
+        color: #2c3e50;
+      }
+    }
+
+    .location-info {
+      padding: 2rem;
+      border-bottom: 1px solid #e9ecef;
+
+      h3 {
+        font-size: 1.2rem;
+        font-weight: 600;
+        margin-bottom: 1.2rem;
+        color: #2c3e50;
+        display: flex;
+        align-items: center;
+
+        i {
+          color: $primary-color;
+          margin-right: 0.5rem;
+        }
+      }
+
+      p {
+        margin-bottom: 0.8rem;
+        color: #6c757d;
+        display: flex;
+        align-items: flex-start;
+
+        i {
+          color: $primary-color;
+          margin-top: 0.3rem;
+          min-width: 20px;
+        }
+      }
+
+      .contact-info,
+      .transportation-info,
+      .business-hours {
+        height: 100%;
+        padding: 1.5rem;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+
+        &:hover {
+          background-color: #f8f9fa;
+          box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+        }
+      }
+    }
+
+    .location-map {
+      padding: 1rem;
+
+      iframe {
+        border-radius: 8px;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+      }
+    }
+  }
+}
+
+// 響應式調整
+@media (max-width: 767.98px) {
+  .service-location-hero {
+    padding: 4rem 0;
+
+    .service-location-title {
+      font-size: 2.5rem;
+    }
+  }
+
+  .service-location-container {
+    .location-section {
+      .location-info {
+        .contact-info,
+        .transportation-info,
+        .business-hours {
+          margin-bottom: 1.5rem;
+        }
+      }
+    }
+  }
+}
+
+/* ===================================================
+ * 常見問題頁面樣式
+ * =================================================== */
+
+.faq-hero {
+  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+    url("../assets/images/information//information.jpg");
+  background-size: cover;
+  background-position: center;
+  padding: 6rem 0;
+  text-align: center;
+  color: white;
+  position: relative;
+
+  &:before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(
+      to right,
+      $primary-color,
+      $primary-color-light,
+      $primary-color
+    );
+  }
+
+  .faq-hero-title {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  }
+
+  .faq-hero-subtitle {
+    font-size: 1.2rem;
+    max-width: 600px;
+    margin: 0 auto 2rem;
+    opacity: 0.9;
+  }
+
+  .faq-search {
+    max-width: 600px;
+    margin: 0 auto;
+
+    .form-control {
+      height: 50px;
+      border-radius: 25px 0 0 25px;
+      padding-left: 1.5rem;
+      border: none;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .btn {
+      border-radius: 0 25px 25px 0;
+      background-color: $primary-color;
+      border-color: $primary-color;
+      color: #2c3e50;
+      padding: 0 1.5rem;
+      font-weight: 600;
+
+      &:hover {
+        background-color: $primary-color-dark;
+        border-color: $primary-color-dark;
+      }
+    }
+  }
+}
+
+.faq-category-tabs {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+  gap: 0.5rem;
+
+  .faq-category-tab {
+    background-color: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-radius: 25px;
+    padding: 0.75rem 1.5rem;
+    display: flex;
+    align-items: center;
+    color: #6c757d;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    outline: none;
+
+    i {
+      margin-right: 0.5rem;
+      color: $primary-color;
+    }
+
+    &:hover {
+      background-color: #e9ecef;
+      color: #495057;
+    }
+
+    &.active {
+      background-color: $primary-color;
+      border-color: $primary-color;
+      color: #2c3e50;
+
+      i {
+        color: #2c3e50;
+      }
+    }
+  }
+}
+
 .faq-container {
   font-family: "Roboto", sans-serif;
-  padding: 4rem 2rem;
+  padding: 2rem 0;
 
   .faq-section {
     margin-bottom: 3rem;
 
     h2 {
-      font-size: 2rem;
+      font-size: 1.8rem;
       margin-bottom: 2rem;
+      color: #2c3e50;
+      display: flex;
+      align-items: center;
+
+      i {
+        color: $primary-color;
+      }
     }
 
     .faq-item {
       border: 1px solid #e5e5e5;
       border-radius: 8px;
       margin-bottom: 1rem;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+      transition: all 0.3s ease;
+
+      &:hover {
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      }
 
       .faq-header {
-        background-color: #f5f5f5;
-        padding: 1rem 1.5rem;
+        background-color: #f8f9fa;
+        padding: 1.25rem 1.5rem;
         display: flex;
         justify-content: space-between;
         align-items: center;
         cursor: pointer;
+        border-radius: 8px 8px 0 0;
+        transition: all 0.3s ease;
 
         h3 {
-          font-size: 1.2rem;
+          font-size: 1.1rem;
+          margin: 0;
+          color: #2c3e50;
+          font-weight: 500;
         }
 
         .toggle-icon {
           font-size: 1.5rem;
           font-weight: bold;
           transition: transform 0.3s ease;
+          color: $primary-color;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 24px;
+          height: 24px;
         }
       }
 
       .faq-content {
         padding: 1.5rem;
         display: none;
+        border-top: 1px solid #e5e5e5;
 
         p {
-          color: #666;
+          color: #6c757d;
           line-height: 1.6;
+          margin-bottom: 0;
         }
       }
 
       &.active {
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+
         .faq-header {
+          background-color: #fff;
+          border-bottom: none;
+
+          h3 {
+            color: $primary-color;
+          }
+
           .toggle-icon {
             transform: rotate(45deg);
           }
@@ -654,70 +3769,2886 @@ $text-color: #333;
   }
 }
 
-//contactUs
-.contact-us-background {
-  background: url("https://images.unsplash.com/photo-1612343281188-d6954aa692fa?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")
-    no-repeat center center fixed;
-  background-size: cover;
-  padding: 2rem;
-}
-
-.contact-us-container {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 2rem;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+.faq-contact-card {
   background-color: #fff;
-  opacity: 0.9;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  padding: 2rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+
+  &:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(to right, $primary-color, $primary-color-light);
+  }
+
+  .faq-contact-icon {
+    width: 70px;
+    height: 70px;
+    background-color: rgba($primary-color, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+
+    i {
+      font-size: 2rem;
+      color: $primary-color;
+    }
+  }
+
+  h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #2c3e50;
+  }
+
+  p {
+    color: #6c757d;
+    margin-bottom: 1.5rem;
+  }
+
+  .faq-contact-info {
+    margin-bottom: 1.5rem;
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 0.75rem;
+      color: #6c757d;
+
+      i {
+        color: $primary-color;
+        margin-right: 0.75rem;
+        width: 20px;
+        text-align: center;
+      }
+    }
+  }
+
+  .btn-primary {
+    background-color: $primary-color;
+    border-color: $primary-color;
+    color: #2c3e50;
+    font-weight: 600;
+    padding: 0.75rem 1.5rem;
+    border-radius: 25px;
+
+    &:hover {
+      background-color: $primary-color-dark;
+      border-color: $primary-color-dark;
+    }
+  }
 }
 
-.contact-us-container h1 {
+.faq-popular-card {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  padding: 2rem;
+
+  h3 {
+    font-size: 1.3rem;
+    margin-bottom: 1.5rem;
+    color: #2c3e50;
+    position: relative;
+    padding-bottom: 0.75rem;
+
+    &:after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 40px;
+      height: 3px;
+      background-color: $primary-color;
+      border-radius: 2px;
+    }
+  }
+
+  .faq-popular-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+      margin-bottom: 1rem;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      a {
+        color: #6c757d;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        transition: all 0.3s ease;
+
+        i {
+          color: $primary-color;
+          margin-right: 0.5rem;
+        }
+
+        &:hover {
+          color: $primary-color;
+          transform: translateX(5px);
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 767.98px) {
+  .faq-hero {
+    padding: 4rem 0;
+
+    .faq-hero-title {
+      font-size: 2.5rem;
+    }
+  }
+
+  .faq-category-tabs {
+    .faq-category-tab {
+      padding: 0.5rem 1rem;
+      margin-bottom: 0.5rem;
+      font-size: 0.9rem;
+    }
+  }
+
+  .faq-contact-card,
+  .faq-popular-card {
+    margin-top: 2rem;
+  }
+}
+
+/* 搜尋結果樣式 */
+.faq-search {
+  position: relative;
+  max-width: 600px;
+  margin: 0 auto;
+
+  .form-control {
+    height: 50px;
+    border-radius: 25px 0 0 25px;
+    padding-left: 1.5rem;
+    border: none;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .btn-outline-secondary {
+    background-color: white;
+    border: none;
+    color: #6c757d;
+
+    &:hover {
+      background-color: #f8f9fa;
+      color: #343a40;
+    }
+  }
+
+  .btn-primary {
+    border-radius: 0 25px 25px 0;
+    background-color: $primary-color;
+    border-color: $primary-color;
+    color: #2c3e50;
+    padding: 0 1.5rem;
+    font-weight: 600;
+
+    &:hover {
+      background-color: $primary-color-dark;
+      border-color: $primary-color-dark;
+    }
+  }
+
+  .faq-search-results {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+    margin-top: 10px;
+    z-index: 1000;
+    max-height: 400px;
+    overflow-y: auto;
+
+    .search-results-header {
+      padding: 1rem;
+      border-bottom: 1px solid #e9ecef;
+      font-weight: 500;
+      color: #2c3e50;
+      background-color: #f8f9fa;
+      border-radius: 10px 10px 0 0;
+    }
+
+    .search-results-list {
+      padding: 0.5rem 0;
+    }
+
+    .search-result-item {
+      padding: 1rem;
+      border-bottom: 1px solid #f1f1f1;
+      cursor: pointer;
+      transition: all 0.2s ease;
+
+      &:last-child {
+        border-bottom: none;
+      }
+
+      &:hover {
+        background-color: #f8f9fa;
+      }
+
+      .search-result-category {
+        font-size: 0.85rem;
+        color: #6c757d;
+        margin-bottom: 0.25rem;
+
+        i {
+          color: $primary-color;
+        }
+      }
+
+      .search-result-question {
+        font-weight: 500;
+        color: #2c3e50;
+      }
+    }
+
+    .search-no-results {
+      padding: 2rem;
+      text-align: center;
+      color: #6c757d;
+
+      i {
+        color: $primary-color;
+        font-size: 1.2rem;
+      }
+    }
+  }
+}
+
+/* ===================================================
+ * 聯絡我們頁面樣式
+ * =================================================== */
+
+.contact-us-page {
+  background-color: #f8f9fa;
+  position: relative;
+}
+
+.contact-us-hero {
+  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+    url("../assets/images/contactus/contactus.jpg");
+  background-size: cover;
+  background-position: center;
+  padding: 5rem 0;
   text-align: center;
-  margin-bottom: 2rem;
+  color: white;
+  margin-bottom: 3rem;
+  position: relative;
+
+  &:before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(
+      to right,
+      $primary-color,
+      darken($primary-color, 10%),
+      $primary-color
+    );
+  }
+
+  h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    margin-bottom: 1rem;
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: all 0.8s ease;
+  }
+
+  p {
+    font-size: 1.2rem;
+    max-width: 700px;
+    margin: 0 auto;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.8s ease 0.2s;
+  }
+
+  &.animated {
+    h1,
+    p {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+.contact-us-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-bottom: 3rem;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 1s ease;
+
+  &.animated {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (max-width: 991.98px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.contact-info-section {
+  .contact-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 2.5rem;
+
+    @media (max-width: 767.98px) {
+      grid-template-columns: 1fr;
+    }
+  }
+}
+
+.contact-card {
+  background-color: white;
+  padding: 1.5rem;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  height: 100%;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  }
+
+  .contact-card-icon {
+    width: 60px;
+    height: 60px;
+    background-color: rgba($primary-color, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.25rem;
+    color: $primary-color;
+    font-size: 1.5rem;
+    transition: all 0.3s ease;
+
+    svg {
+      transition: all 0.3s ease;
+    }
+  }
+
+  &:hover .contact-card-icon {
+    background-color: $primary-color;
+    color: white;
+    transform: rotate(360deg);
+  }
+
+  h3 {
+    margin-bottom: 1rem;
+    font-weight: 600;
+    color: #333;
+  }
+
+  p {
+    color: #666;
+    margin-bottom: 0.5rem;
+
+    &:last-child {
+      margin-bottom: 0;
+      font-weight: 500;
+    }
+  }
+}
+
+.contact-us-map-section {
+  background-color: white;
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  margin-bottom: 1.5rem;
+
+  h3 {
+    font-size: 1.25rem;
+    margin-bottom: 1.25rem;
+    color: #333;
+    font-weight: 600;
+
+    svg {
+      color: $primary-color;
+      margin-right: 0.5rem;
+    }
+  }
+
+  .map-container {
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 1.25rem;
+    height: 300px; // 添加固定高度
+
+    img {
+      width: 100%;
+      height: 100%; // 確保圖片填滿容器
+      object-fit: cover; // 確保圖片適當填充
+      transition: all 0.3s ease;
+
+      &:hover {
+        transform: scale(1.02);
+      }
+    }
+
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      border-radius: 8px;
+    }
+  }
+
+  .map-info {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+
+    .map-info-item {
+      display: flex;
+      align-items: flex-start;
+      flex: 1;
+      min-width: 200px;
+
+      .map-icon {
+        color: $primary-color;
+        font-size: 1.2rem;
+        margin-right: 0.75rem;
+        margin-top: 0.25rem;
+      }
+
+      h4 {
+        font-size: 1rem;
+        margin-bottom: 0.5rem;
+        font-weight: 600;
+        color: #444;
+      }
+
+      p {
+        margin: 0;
+        color: #666;
+      }
+    }
+  }
+}
+
+.contact-form-section {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+
+  .contact-form-header {
+    text-align: center;
+    margin-bottom: 2rem;
+
+    h2 {
+      font-size: 1.75rem;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+      color: #333;
+    }
+
+    p {
+      color: #666;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+  }
 }
 
 .contact-us-form {
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+
+    @media (max-width: 767.98px) {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+  }
+
   .form-group {
     margin-bottom: 1.5rem;
 
     label {
       display: block;
       margin-bottom: 0.5rem;
+      font-weight: 500;
+      color: #444;
+
+      svg {
+        color: $primary-color;
+        margin-right: 0.5rem;
+      }
     }
 
     input,
-    textarea {
+    textarea,
+    select {
       width: 100%;
-      padding: 0.5rem;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      box-sizing: border-box;
+      padding: 0.75rem 1rem;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+      font-size: 1rem;
+
+      &:focus {
+        border-color: $primary-color;
+        box-shadow: 0 0 0 3px rgba($primary-color, 0.2);
+        outline: none;
+      }
+
+      &.error {
+        border-color: #dc3545;
+      }
     }
 
     textarea {
-      resize: vertical;
-      height: 150px;
+      min-height: 150px;
+    }
+
+    .error-message {
+      color: #dc3545;
+      font-size: 0.85rem;
+      margin-top: 0.5rem;
     }
   }
 
-  button {
-    display: block;
-    width: 100%;
-    padding: 0.75rem;
-    border: none;
-    border-radius: 5px;
-    background-color: rgb(151, 125, 6);
+  .submit-btn {
+    background-color: $primary-color;
     color: white;
-    font-size: 1rem;
+    border: none;
+    border-radius: 8px;
+    padding: 1rem 1.5rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    width: 100%;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: all 0.3s ease;
+
+    svg {
+      margin-right: 0.5rem;
+    }
 
     &:hover {
+      background-color: darken($primary-color, 10%);
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba($primary-color, 0.3);
+    }
+
+    &:active {
+      transform: translateY(0);
+    }
+  }
+
+  .form-success-message {
+    text-align: center;
+    padding: 2rem;
+
+    .success-icon-wrapper {
+      width: 60px;
+      height: 60px;
+      background-color: #28a745;
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.5rem;
+      font-size: 1.5rem;
+    }
+
+    h3 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      color: #28a745;
+    }
+
+    p {
+      margin-bottom: 1.5rem;
+      color: #666;
+    }
+
+    .reset-form-btn {
+      background-color: #f8f9fa;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 0.75rem 1.5rem;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+
+      &:hover {
+        background-color: #e9ecef;
+      }
+    }
+  }
+}
+
+.contact-faq-section {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  text-align: center;
+  margin-bottom: 3rem;
+
+  h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: #333;
+  }
+
+  p {
+    color: #666;
+    margin-bottom: 1.5rem;
+  }
+
+  .faq-links {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    text-align: left;
+
+    @media (max-width: 767.98px) {
+      grid-template-columns: 1fr;
+    }
+
+    .faq-link {
+      display: block;
+      padding: 1rem;
+      background-color: #f8f9fa;
+      border-radius: 8px;
+      color: #444;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      border-left: 3px solid transparent;
+
+      &:hover {
+        background-color: rgba($primary-color, 0.05);
+        border-left-color: $primary-color;
+        transform: translateX(5px);
+      }
+
+      &:last-child {
+        color: $primary-color;
+        font-weight: 500;
+      }
+    }
+  }
+}
+
+/* ===================================================
+ * 結帳頁面樣式
+ * =================================================== */
+.checkout-page {
+  .checkout-form-container {
+    border-radius: 8px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+    padding: 2rem !important;
+    transition: all 0.3s ease;
+
+    &:hover {
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .checkout-title {
+      color: $primary-color;
+      position: relative;
+      padding-bottom: 1rem;
+      margin-bottom: 2rem;
+
+      &::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 80px;
+        height: 3px;
+        background: linear-gradient(
+          45deg,
+          $primary-color,
+          $primary-color-light
+        );
+        border-radius: 2px;
+      }
+    }
+
+    .form-label {
+      color: #555;
+      font-weight: 500;
+    }
+
+    .form-control {
+      border: 1px solid rgba($primary-color, 0.2);
+      border-radius: 4px;
+      padding: 0.7rem 1rem;
+      transition: all 0.3s ease;
+
+      &:focus {
+        border-color: $primary-color;
+        box-shadow: 0 0 0 0.2rem rgba($primary-color, 0.25);
+      }
+    }
+
+    .invalid-feedback {
+      color: #dc3545;
+      font-size: 0.85rem;
+      margin-top: 0.25rem;
+    }
+  }
+
+  .back-link {
+    color: #555;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+
+    i {
+      transition: all 0.3s ease;
+    }
+
+    &:hover {
+      color: $primary-color;
+
+      i {
+        transform: translateX(-3px);
+      }
+    }
+  }
+
+  .checkout-summary-container {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+    padding: 2rem;
+    transition: all 0.3s ease;
+
+    &:hover {
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .checkout-product {
+      margin-bottom: 2rem;
+
+      .checkout-product-header {
+        margin-bottom: 1.5rem;
+
+        .product-tag {
+          display: inline-block;
+          background: linear-gradient(
+            45deg,
+            $primary-color,
+            $primary-color-light
+          );
+          color: white;
+          font-size: 0.8rem;
+          font-weight: 600;
+          padding: 0.3rem 0.8rem;
+          border-radius: 20px;
+          margin-bottom: 0.8rem;
+          box-shadow: 0 2px 5px rgba($primary-color, 0.3);
+          letter-spacing: 1px;
+        }
+
+        h4 {
+          color: #333;
+          font-size: 1.4rem;
+          border-bottom: 2px solid #f8f9fa;
+          padding-bottom: 0.8rem;
+          position: relative;
+
+          &::after {
+            content: "";
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(
+              45deg,
+              $primary-color,
+              $primary-color-light
+            );
+            border-radius: 2px;
+          }
+        }
+      }
+
+      .checkout-info-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1rem;
+        padding: 0.8rem 1rem;
+        background-color: #f8f9fa;
+        border-radius: 6px;
+        border-left: 4px solid $primary-color;
+
+        .checkout-info-label {
+          color: $primary-color;
+          font-weight: 600;
+          display: flex;
+          align-items: center;
+
+          i {
+            color: $primary-color;
+            margin-right: 0.5rem;
+          }
+        }
+
+        .checkout-info-value {
+          font-weight: 500;
+        }
+      }
+
+      .checkout-passenger-section {
+        background-color: #f8f9fa;
+        padding: 1.2rem;
+        border-radius: 6px;
+        margin-bottom: 1.5rem;
+
+        .checkout-info-label {
+          color: $primary-color;
+          font-weight: 600;
+          display: flex;
+          align-items: center;
+
+          i {
+            color: $primary-color;
+            margin-right: 0.5rem;
+          }
+        }
+
+        .checkout-passenger-row {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 0.8rem 0;
+          border-bottom: 1px dashed rgba($primary-color, 0.2);
+
+          &:last-child {
+            border-bottom: none;
+          }
+
+          .passenger-type {
+            display: flex;
+            align-items: center;
+            font-weight: 500;
+
+            i {
+              color: $primary-color;
+              margin-right: 0.7rem;
+              font-size: 1.1rem;
+            }
+          }
+
+          .passenger-price {
+            font-weight: 600;
+          }
+        }
+      }
+    }
+
+    .checkout-total-section {
+      border-top: 2px solid #f8f9fa;
+      padding-top: 1.5rem;
+
+      .checkout-total-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1rem;
+
+        .total-label {
+          font-size: 1.2rem;
+          font-weight: 600;
+        }
+
+        .total-value {
+          font-size: 1.2rem;
+          font-weight: 600;
+        }
+
+        &.strikethrough {
+          .total-label,
+          .total-value {
+            text-decoration: line-through;
+            color: #6c757d;
+          }
+        }
+
+        &.discount {
+          .total-label,
+          .total-value {
+            color: #dc3545;
+            font-weight: 700;
+          }
+        }
+
+        &.deposit {
+          margin-top: 1.5rem;
+          padding-top: 1rem;
+          border-top: 1px dashed rgba($primary-color, 0.3);
+
+          .total-label,
+          .total-value {
+            color: $primary-color;
+            font-weight: 700;
+          }
+        }
+      }
+    }
+  }
+}
+
+/* ===================================================
+ * 報名成功頁面樣式
+ * =================================================== */
+
+.success-page {
+  margin-bottom: 4rem;
+
+  .success-hero-section {
+    position: relative;
+    height: 300px;
+    background-image: url("../assets/images/success/success-default.jpg");
+    background-size: cover;
+    background-position: center;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 3rem;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 1s ease-in-out;
+
+    .success-hero-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.6));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .success-hero-content {
+      text-align: center;
+      color: white;
+
+      .success-icon {
+        width: 90px;
+        height: 90px;
+        background: linear-gradient(
+          45deg,
+          $primary-color,
+          $primary-color-light
+        );
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 1.5rem;
+        box-shadow: 0 5px 15px rgba($primary-color, 0.6);
+        animation: pulse 2.5s infinite, float 6s ease-in-out infinite;
+
+        i {
+          font-size: 3rem;
+          color: white;
+        }
+      }
+
+      .success-title {
+        font-size: 2.8rem;
+        font-weight: 700;
+        margin-bottom: 0.6rem;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+        animation: slideInUp 0.8s ease-out;
+      }
+
+      .success-subtitle {
+        font-size: 1.4rem;
+        opacity: 0.9;
+        animation: slideInUp 1s ease-out;
+      }
+    }
+  }
+
+  .success-content-section {
+    margin-bottom: 3rem;
+
+    .section-title {
+      color: $primary-color;
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      position: relative;
+      padding-bottom: 0.8rem;
+
+      &::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 60px;
+        height: 3px;
+        background: linear-gradient(
+          45deg,
+          $primary-color,
+          $primary-color-light
+        );
+        border-radius: 2px;
+      }
+    }
+
+    .success-message-container {
       background-color: white;
-      color: rgb(151, 125, 6);
-      border: 1px solid $primary-color;
+      border-radius: 10px;
+      padding: 2.5rem;
+      height: 100%;
+      box-shadow: 0 3px 15px rgba(0, 0, 0, 0.08);
+      transition: all 0.3s ease;
+      position: relative;
+      z-index: 1;
+      overflow: hidden;
+
+      &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 150px;
+        height: 150px;
+        background: linear-gradient(
+          45deg,
+          rgba($primary-color, 0.05),
+          rgba($primary-color-light, 0.1)
+        );
+        border-radius: 0 0 0 100%;
+        z-index: -1;
+      }
+
+      &:hover {
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+        transform: translateY(-5px);
+      }
+
+      p {
+        color: #555;
+        line-height: 1.7;
+        margin-bottom: 1.5rem;
+        font-size: 1.05rem;
+      }
+
+      .success-buttons {
+        display: flex;
+        flex-wrap: wrap;
+        margin-top: 2.5rem;
+        gap: 15px;
+
+        .payment-btn,
+        .home-btn {
+          padding: 0.9rem 1.8rem;
+          border-radius: 8px;
+          font-weight: 600;
+          text-decoration: none;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          transition: all 0.3s ease;
+          min-width: 160px;
+
+          i {
+            margin-right: 0.6rem;
+            font-size: 1.2rem;
+          }
+        }
+
+        .payment-btn {
+          background: linear-gradient(
+            45deg,
+            $primary-color,
+            $primary-color-light
+          );
+          color: white;
+          box-shadow: 0 4px 12px rgba($primary-color, 0.4);
+          position: relative;
+          overflow: hidden;
+
+          &::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+              90deg,
+              transparent,
+              rgba(255, 255, 255, 0.2),
+              transparent
+            );
+            transition: 0.5s;
+          }
+
+          &:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 6px 15px rgba($primary-color, 0.5);
+
+            &::before {
+              left: 100%;
+            }
+          }
+
+          &:active {
+            transform: translateY(0);
+            box-shadow: 0 4px 8px rgba($primary-color, 0.3);
+          }
+        }
+
+        .home-btn {
+          background-color: white;
+          color: $primary-color;
+          border: 2px solid $primary-color;
+          position: relative;
+          z-index: 1;
+
+          &::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(
+              45deg,
+              $primary-color,
+              $primary-color-light
+            );
+            border-radius: 6px;
+            z-index: -1;
+            opacity: 0;
+            transition: 0.3s;
+          }
+
+          &:hover {
+            color: white;
+            border-color: transparent;
+            transform: translateY(-4px);
+
+            &::before {
+              opacity: 1;
+            }
+          }
+
+          &:active {
+            transform: translateY(0);
+          }
+        }
+
+        @media (max-width: 576px) {
+          flex-direction: column;
+
+          .payment-btn,
+          .home-btn {
+            width: 100%;
+          }
+        }
+      }
+    }
+
+    .success-order-container {
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 3px 15px rgba(0, 0, 0, 0.08);
+      overflow: hidden;
+      transition: all 0.3s ease;
+      position: relative;
+      z-index: 1;
+
+      &:hover {
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+        transform: translateY(-5px);
+      }
+
+      .order-header {
+        padding: 1.8rem 2rem;
+        border-bottom: 1px solid #f0f0f0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        background: linear-gradient(
+          to right,
+          rgba($primary-color, 0.03),
+          rgba($primary-color-light, 0.05)
+        );
+
+        .section-title {
+          margin-bottom: 0;
+          padding-bottom: 0;
+
+          &::after {
+            display: none;
+          }
+        }
+
+        .order-id {
+          font-size: 0.95rem;
+          color: #666;
+          background-color: rgba($primary-color, 0.05);
+          padding: 0.5rem 1rem;
+          border-radius: 20px;
+          border: 1px dashed rgba($primary-color, 0.3);
+
+          .id-value {
+            font-weight: 600;
+            color: $primary-color;
+          }
+        }
+
+        @media (max-width: 576px) {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 15px;
+        }
+      }
+
+      .order-details {
+        padding: 2rem;
+
+        .order-product {
+          margin-bottom: 2rem;
+
+          .product-header {
+            margin-bottom: 1.8rem;
+
+            .product-tag {
+              display: inline-block;
+              background: linear-gradient(
+                45deg,
+                $primary-color,
+                $primary-color-light
+              );
+              color: white;
+              font-size: 0.8rem;
+              font-weight: 600;
+              padding: 0.3rem 1rem;
+              border-radius: 20px;
+              margin-bottom: 0.9rem;
+              box-shadow: 0 2px 5px rgba($primary-color, 0.3);
+              letter-spacing: 1px;
+            }
+
+            .product-title {
+              color: #333;
+              font-size: 1.6rem;
+              font-weight: 700;
+              border-bottom: 2px solid #f8f9fa;
+              padding-bottom: 1rem;
+              position: relative;
+
+              &::after {
+                content: "";
+                position: absolute;
+                bottom: -2px;
+                left: 0;
+                width: 80px;
+                height: 4px;
+                background: linear-gradient(
+                  45deg,
+                  $primary-color,
+                  $primary-color-light
+                );
+                border-radius: 2px;
+              }
+            }
+          }
+
+          .info-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding: 1rem 1.2rem;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid $primary-color;
+            transition: all 0.3s ease;
+
+            &:hover {
+              background-color: rgba($primary-color, 0.05);
+              transform: translateX(5px);
+            }
+
+            .info-label {
+              color: $primary-color;
+              font-weight: 600;
+              display: flex;
+              align-items: center;
+
+              i {
+                color: $primary-color;
+                margin-right: 0.8rem;
+                font-size: 1.1rem;
+              }
+            }
+
+            .info-value {
+              font-weight: 500;
+              color: #444;
+              padding: 0.4rem 0.8rem;
+              background-color: white;
+              border-radius: 4px;
+              border: 1px solid rgba($primary-color, 0.1);
+            }
+          }
+
+          .passenger-section {
+            background-color: #f8f9fa;
+            padding: 1.2rem;
+            border-radius: 6px;
+            margin-bottom: 1.5rem;
+
+            .section-label {
+              color: $primary-color;
+              font-weight: 600;
+              display: flex;
+              align-items: center;
+              margin-bottom: 1rem;
+
+              i {
+                color: $primary-color;
+                margin-right: 0.5rem;
+              }
+            }
+
+            .passenger-row {
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              padding: 0.8rem 0;
+              border-bottom: 1px dashed rgba($primary-color, 0.2);
+
+              &:last-child {
+                border-bottom: none;
+              }
+
+              .passenger-type {
+                display: flex;
+                align-items: center;
+                font-weight: 500;
+
+                &:first-child::before {
+                  content: "\f4fb"; /* Bootstrap Icons 的成人圖示 */
+                  font-family: "bootstrap-icons";
+                  margin-right: 0.7rem;
+                  color: $primary-color;
+                  font-size: 1rem;
+                }
+
+                &:contains("兒童")::before {
+                  content: "\f5c7"; /* Bootstrap Icons 的兒童圖示 */
+                  font-family: "bootstrap-icons";
+                  margin-right: 0.7rem;
+                  color: $primary-color;
+                  font-size: 1rem;
+                }
+              }
+
+              .passenger-price {
+                font-weight: 600;
+              }
+            }
+          }
+
+          .total-section {
+            border-top: 2px solid #f8f9fa;
+            padding-top: 1.8rem;
+            margin-top: 1rem;
+
+            .total-row {
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              margin-bottom: 1.2rem;
+              padding: 0.5rem 0;
+
+              .total-label {
+                font-size: 1.1rem;
+                font-weight: 600;
+                color: #444;
+              }
+
+              .total-value {
+                font-size: 1.1rem;
+                font-weight: 600;
+                color: #444;
+                background-color: rgba(0, 0, 0, 0.02);
+                padding: 0.5rem 1rem;
+                border-radius: 4px;
+              }
+
+              &.strikethrough {
+                .total-label,
+                .total-value {
+                  text-decoration: line-through;
+                  color: #888;
+                }
+              }
+
+              &.discount {
+                .total-label,
+                .total-value {
+                  color: #dc3545;
+                  font-weight: 700;
+                }
+              }
+
+              &.deposit {
+                margin-top: 1.5rem;
+                padding: 1.2rem 0;
+                border-top: 2px dashed rgba($primary-color, 0.3);
+
+                .total-label,
+                .total-value {
+                  color: $primary-color;
+                  font-weight: 700;
+                  font-size: 1.3rem;
+                }
+
+                .total-value {
+                  background: linear-gradient(
+                    to right,
+                    rgba($primary-color, 0.1),
+                    rgba($primary-color-light, 0.2)
+                  );
+                  border: 1px solid rgba($primary-color, 0.2);
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+// 訂單詳情區域的付款按鈕樣式
+.payment-button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+
+  .payment-btn {
+    padding: 0.9rem 1.8rem;
+    border-radius: 8px;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    min-width: 180px;
+    background: linear-gradient(45deg, $primary-color, $primary-color-light);
+    color: white;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+
+    &:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    i {
+      margin-right: 0.6rem;
+      font-size: 1.2rem;
+    }
+  }
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba($primary-color, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 20px rgba($primary-color, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba($primary-color, 0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+/* ===================================================
+ * 後台登入頁面樣式
+ * =================================================== */
+.login-container {
+  width: 100%;
+  max-width: 450px;
+  padding: 0 15px;
+
+  .login-card {
+    background-color: rgba(255, 255, 255, 0.95);
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    padding: 2.5rem;
+    transition: all 0.3s ease;
+
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+    }
+  }
+
+  .login-header {
+    text-align: center;
+    margin-bottom: 2rem;
+
+    .brand-logo {
+      width: 70px;
+      height: 70px;
+      margin: 0 auto 1rem;
+      background-color: $primary-color;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      i {
+        font-size: 2rem;
+        color: white;
+      }
+    }
+
+    .login-title {
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: #333;
+      margin-bottom: 0.5rem;
+    }
+
+    .login-subtitle {
+      color: #777;
+      font-size: 1rem;
+    }
+  }
+
+  .login-form {
+    .form-label {
+      font-weight: 600;
+      color: #555;
+      font-size: 0.9rem;
+    }
+
+    .input-group {
+      .input-group-text {
+        background-color: #f8f9fa;
+        border-right: none;
+        color: #6c757d;
+      }
+
+      .form-control {
+        border-left: none;
+        padding-left: 0;
+
+        &:focus {
+          box-shadow: none;
+          border-color: #ced4da;
+        }
+      }
+    }
+
+    .forgot-password {
+      font-size: 0.85rem;
+      color: $primary-color;
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
+    .form-check-label {
+      font-size: 0.9rem;
+      color: #555;
+    }
+
+    .login-btn {
+      padding: 0.75rem;
+      font-weight: 600;
+      background-color: $primary-color;
+      border-color: $primary-color;
+      transition: all 0.3s ease;
+
+      &:hover,
+      &:focus {
+        background-color: $primary-color-light;
+        border-color: $primary-color-light;
+        box-shadow: 0 5px 15px $primary-color-light;
+      }
+
+      &:disabled {
+        background-color: $primary-color-light;
+        border-color: $primary-color-light;
+      }
+    }
+  }
+
+  .login-footer {
+    text-align: center;
+    margin-top: 2rem;
+
+    p {
+      font-size: 0.85rem;
+      color: #777;
+      margin-bottom: 0;
+    }
+  }
+}
+
+// 響應式調整
+@media (max-width: 576px) {
+  .login-container {
+    .login-card {
+      padding: 1.5rem;
+    }
+
+    .login-header {
+      .brand-logo {
+        width: 60px;
+        height: 60px;
+
+        i {
+          font-size: 1.75rem;
+        }
+      }
+
+      .login-title {
+        font-size: 1.5rem;
+      }
+    }
+  }
+}
+
+// 動畫效果
+.animate__fadeInDown {
+  animation-duration: 0.5s;
+}
+
+/* ===================================================
+ * 會員中心樣式
+ * =================================================== */
+
+//會員中心
+.member-layout {
+  margin-top: 3rem;
+  margin-bottom: 5rem;
+}
+
+.member-sidebar {
+  transition: all 0.3s ease;
+
+  .card {
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba($primary-color, 0.08);
+    overflow: hidden;
+
+    .card-header {
+      background-color: $primary-color;
+      border-bottom: none;
+      padding: 1.25rem 1.5rem;
+
+      h5 {
+        color: white;
+        font-weight: 600;
+        margin: 0;
+        font-size: 1.25rem;
+      }
+    }
+
+    .list-group {
+      padding: 0.75rem 0;
+
+      .list-group-item {
+        border: none;
+        border-radius: 0;
+        padding: 0.75rem 1.5rem;
+        margin-bottom: 0.25rem;
+        transition: all 0.3s ease;
+        font-weight: 500;
+        color: $text-color;
+
+        &:hover,
+        &.active {
+          background-color: rgba($primary-color, 0.08);
+          color: $primary-color;
+          transform: translateX(5px);
+        }
+
+        svg {
+          color: $primary-color;
+          font-size: 1.1rem;
+          transition: all 0.3s ease;
+        }
+      }
+    }
+  }
+}
+
+.member-content {
+  .card {
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba($primary-color, 0.08);
+    overflow: hidden;
+
+    .card-header {
+      background-color: white;
+      border-bottom: 1px solid rgba($primary-color, 0.1);
+      padding: 1.25rem 1.5rem;
+
+      h5 {
+        color: $text-color;
+        font-weight: 600;
+        margin: 0;
+        font-size: 1.25rem;
+      }
+
+      .btn-primary {
+        background-color: $primary-color;
+        border-color: $primary-color;
+        transition: all 0.3s ease;
+
+        &:hover {
+          background-color: $primary-color-dark;
+          border-color: $primary-color-dark;
+          transform: translateY(-2px);
+          box-shadow: 0 4px 8px rgba($primary-color, 0.2);
+        }
+      }
+
+      .btn-secondary {
+        background-color: $secondary-color;
+        border-color: $secondary-color;
+        color: $text-color;
+        transition: all 0.3s ease;
+
+        &:hover {
+          background-color: darken($secondary-color, 10%);
+          border-color: darken($secondary-color, 10%);
+          transform: translateY(-2px);
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+      }
+    }
+
+    .card-body {
+      padding: 2rem;
+
+      .form-group {
+        margin-bottom: 1.5rem;
+
+        label {
+          font-weight: 500;
+          margin-bottom: 0.5rem;
+          color: $text-color;
+        }
+
+        .form-control {
+          border-radius: 8px;
+          padding: 0.75rem 1rem;
+          border: 1px solid rgba($primary-color, 0.2);
+          transition: all 0.3s ease;
+
+          &:focus {
+            border-color: $primary-color;
+            box-shadow: 0 0 0 0.2rem rgba($primary-color, 0.15);
+          }
+
+          &:disabled {
+            background-color: rgba($secondary-color, 0.1);
+          }
+        }
+      }
+    }
+  }
+}
+
+//個人資料
+.profile-avatar {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background-color: rgba($primary-color, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 2rem;
+  transition: all 0.3s ease;
+
+  svg {
+    color: $primary-color;
+    font-size: 5rem;
+    transition: all 0.3s ease;
+  }
+
+  &:hover {
+    background-color: rgba($primary-color, 0.15);
+    transform: scale(1.05);
+
+    svg {
+      color: $primary-color-dark;
+    }
+  }
+}
+
+//我的訂單
+.order-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+.order-card {
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 6px 16px rgba($primary-color, 0.08);
+  transition: all 0.3s ease;
+  overflow: hidden;
+  background-color: white;
+  position: relative;
+
+  &:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 5px;
+    height: 100%;
+    background: linear-gradient(
+      to bottom,
+      $primary-color,
+      $primary-color-light
+    );
+    border-radius: 12px 0 0 12px;
+  }
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 24px rgba($primary-color, 0.12);
+  }
+
+  .order-header {
+    padding: 1.25rem 1.5rem;
+    border-bottom: 1px dashed rgba($primary-color, 0.2);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba($primary-color, 0.03);
+
+    h5 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin: 0;
+      color: $text-color;
+    }
+
+    .order-status {
+      font-weight: 500;
+      padding: 0.25rem 0.75rem;
+      border-radius: 20px;
+      font-size: 0.85rem;
+
+      &.paid {
+        background-color: rgba(#198754, 0.1);
+        color: #198754;
+      }
+
+      &.unpaid {
+        background-color: rgba(#dc3545, 0.1);
+        color: #dc3545;
+      }
+    }
+  }
+
+  .order-body {
+    padding: 1.5rem;
+
+    .product-item {
+      display: flex;
+      align-items: center;
+      padding: 1.25rem;
+      border-radius: 8px;
+      background-color: rgba($primary-color, 0.02);
+      margin-bottom: 1rem;
+      border: 1px solid rgba($primary-color, 0.05);
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      .product-image {
+        width: 120px;
+        height: 120px;
+        border-radius: 8px;
+        overflow: hidden;
+        margin-right: 1.5rem;
+        flex-shrink: 0;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          transition: transform 0.5s ease;
+        }
+
+        &:hover img {
+          transform: scale(1.05);
+        }
+      }
+
+      .product-info {
+        flex: 1;
+
+        .product-title {
+          margin: 0 0 0.75rem;
+          font-weight: 600;
+          font-size: 1.2rem;
+          color: $text-color;
+        }
+
+        .product-details {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 1rem;
+
+          .detail-item {
+            display: flex;
+            align-items: center;
+            background-color: rgba($primary-color, 0.05);
+            padding: 0.5rem 0.75rem;
+            border-radius: 20px;
+
+            svg {
+              color: $primary-color;
+              margin-right: 0.5rem;
+            }
+
+            span {
+              font-weight: 500;
+              color: $text-color;
+            }
+          }
+        }
+      }
+    }
+
+    .customer-info {
+      margin-top: 1.5rem;
+      padding: 1.25rem;
+      border-radius: 8px;
+      background-color: rgba($primary-color, 0.02);
+      border: 1px solid rgba($primary-color, 0.05);
+
+      .info-title {
+        margin: 0 0 1rem;
+        font-weight: 600;
+        font-size: 1rem;
+        color: $text-color;
+        padding-bottom: 0.5rem;
+        border-bottom: 1px dashed rgba($primary-color, 0.2);
+      }
+
+      .info-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1rem;
+
+        .info-item {
+          display: flex;
+          align-items: center;
+          background-color: white;
+          padding: 0.75rem;
+          border-radius: 8px;
+          box-shadow: 0 2px 4px rgba($primary-color, 0.05);
+
+          svg {
+            color: $primary-color;
+            margin-right: 0.75rem;
+            font-size: 1.1rem;
+          }
+
+          span {
+            font-weight: 500;
+          }
+        }
+      }
+    }
+  }
+
+  .order-footer {
+    background-color: rgba($primary-color, 0.03);
+    padding: 1.25rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px dashed rgba($primary-color, 0.2);
+
+    .order-total {
+      font-weight: 600;
+      font-size: 1.2rem;
+
+      span {
+        color: #dc3545;
+        margin-left: 0.5rem;
+        font-size: 1.3rem;
+      }
+    }
+
+    .order-actions {
+      display: flex;
+
+      .btn {
+        padding: 0.5rem 1rem;
+        font-weight: 500;
+      }
+
+      .btn-primary {
+        background-color: $primary-color;
+        border-color: $primary-color;
+
+        &:hover {
+          background-color: $primary-color-dark;
+          border-color: $primary-color-dark;
+          transform: translateY(-2px);
+          box-shadow: 0 4px 8px rgba($primary-color, 0.2);
+        }
+      }
+
+      .btn-outline-primary {
+        color: $primary-color;
+        border-color: $primary-color;
+
+        &:hover {
+          background-color: $primary-color;
+          color: white;
+          transform: translateY(-2px);
+        }
+      }
+    }
+  }
+}
+
+.pagination-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+/* ===================================================
+ * 訂單細節樣式
+ * =================================================== */
+
+.order-detail-container {
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba($primary-color, 0.1);
+  overflow: visible;
+  position: relative;
+  margin-top: 55px;
+
+  &:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 6px;
+    height: 100%;
+    background: linear-gradient(
+      to bottom,
+      $primary-color,
+      $primary-color-light
+    );
+    border-radius: 12px 0 0 12px;
+  }
+}
+
+.order-detail-header {
+  padding: 1.75rem 2rem;
+  background-color: rgba($primary-color, 0.03);
+  border-bottom: 1px dashed rgba($primary-color, 0.2);
+  position: relative;
+
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    color: $text-color;
+    font-weight: 500;
+    position: absolute;
+    top: -55px;
+    left: 10px;
+    background-color: rgba($primary-color, 0.1);
+    padding: 0.6rem 1.5rem;
+    border-radius: 30px;
+    margin-bottom: 0;
+    transition: all 0.3s ease;
+    box-shadow: 0 3px 10px rgba($primary-color, 0.15);
+    z-index: 1;
+    border: 1px solid rgba($primary-color, 0.15);
+    text-decoration: none;
+
+    svg {
+      margin-right: 0.5rem;
+      font-size: 0.9rem;
+      color: $primary-color;
+    }
+
+    &:hover {
+      color: white;
+      background-color: $primary-color;
+      transform: translateY(-3px);
+      box-shadow: 0 5px 12px rgba($primary-color, 0.3);
+
+      svg {
+        color: white;
+      }
+    }
+  }
+
+  .order-detail-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: $text-color;
+    margin-bottom: 1.25rem;
+    position: relative;
+    display: inline-block;
+
+    &:after {
+      content: "";
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      width: 60px;
+      height: 3px;
+      background: linear-gradient(
+        to right,
+        $primary-color,
+        $primary-color-light
+      );
+      border-radius: 3px;
+    }
+  }
+
+  .order-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1rem;
+
+    .order-id {
+      .label {
+        font-weight: 600;
+        color: $text-color;
+        margin-right: 0.5rem;
+      }
+
+      .value {
+        font-family: monospace;
+        font-size: 1.1rem;
+        color: $primary-color;
+      }
+    }
+
+    .order-status {
+      padding: 0.5rem 1.25rem;
+      border-radius: 30px;
+      font-weight: 600;
+      font-size: 0.9rem;
+
+      &.paid {
+        background-color: rgba(#198754, 0.1);
+        color: #198754;
+      }
+
+      &.unpaid {
+        background-color: rgba(#dc3545, 0.1);
+        color: #dc3545;
+      }
+    }
+  }
+}
+
+.order-detail-content {
+  padding: 2rem;
+
+  .section-title {
+    display: flex;
+    align-items: center;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: $text-color;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px dashed rgba($primary-color, 0.2);
+
+    .section-icon {
+      color: $primary-color;
+      margin-right: 0.75rem;
+      font-size: 1.1rem;
+    }
+  }
+}
+
+.order-products {
+  margin-bottom: 2.5rem;
+
+  .product-card {
+    display: flex;
+    background-color: rgba($primary-color, 0.02);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba($primary-color, 0.05);
+    margin-bottom: 1.5rem;
+    transition: all 0.3s ease;
+    border: 1px solid rgba($primary-color, 0.05);
+
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 16px rgba($primary-color, 0.1);
+    }
+
+    .product-image {
+      width: 200px;
+      height: 200px;
+      flex-shrink: 0;
+      overflow: hidden;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+      }
+
+      &:hover img {
+        transform: scale(1.05);
+      }
+    }
+
+    .product-details {
+      flex: 1;
+      padding: 1.5rem;
+
+      .product-title {
+        font-size: 1.3rem;
+        font-weight: 600;
+        color: $text-color;
+        margin-bottom: 1.25rem;
+      }
+
+      .product-info-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1rem;
+      }
+    }
+  }
+}
+
+.order-customer-info {
+  margin-bottom: 2.5rem;
+  background-color: rgba($primary-color, 0.02);
+  padding: 1.5rem;
+  border-radius: 12px;
+  border: 1px solid rgba($primary-color, 0.05);
+
+  .customer-info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+  }
+}
+
+.order-additional-info {
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.info-item {
+  display: flex;
+  align-items: center;
+  background-color: white;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba($primary-color, 0.05);
+  transition: all 0.3s ease;
+
+  &:hover {
+    background-color: rgba($primary-color, 0.03);
+    transform: translateX(5px);
+  }
+
+  .info-icon {
+    color: $primary-color;
+    margin-right: 0.75rem;
+    font-size: 1rem;
+    flex-shrink: 0;
+  }
+
+  .info-label {
+    font-weight: 600;
+    color: $text-color;
+    margin-right: 0.5rem;
+    flex-shrink: 0;
+  }
+
+  .info-value {
+    color: $text-color;
+
+    &.price {
+      color: #dc3545;
+      font-weight: 600;
+    }
+  }
+}
+
+.order-detail-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 2rem;
+  background-color: rgba($primary-color, 0.03);
+  border-top: 1px dashed rgba($primary-color, 0.2);
+
+  .order-total {
+    .label {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: $text-color;
+      margin-right: 0.75rem;
+    }
+
+    .value {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #dc3545;
+    }
+  }
+
+  .btn-pay {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: $primary-color;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 0.75rem 1.5rem;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba($primary-color, 0.2);
+
+    .btn-icon {
+      margin-right: 0.5rem;
+    }
+
+    &:hover {
+      background-color: $primary-color-dark;
+      transform: translateY(-3px);
+      box-shadow: 0 6px 12px rgba($primary-color, 0.3);
+    }
+
+    &:active {
+      transform: translateY(-1px);
+    }
+  }
+}
+
+// 響應式調整
+@media (max-width: 768px) {
+  .order-products .product-card {
+    flex-direction: column;
+
+    .product-image {
+      width: 100%;
+      height: 200px;
+    }
+  }
+
+  .order-detail-footer {
+    flex-direction: column;
+    gap: 1.5rem;
+
+    .order-total {
+      text-align: center;
+    }
+  }
+
+  .order-detail-container {
+    margin-top: 70px;
+  }
+
+  .order-detail-header .back-link {
+    top: -70px;
+  }
+}
+
+@media (max-width: 768px) {
+  .order-detail-container {
+    margin-top: 110px;
+  }
+
+  .order-detail-header .back-link {
+    top: -85px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    &:hover {
+      transform: translateX(-50%) translateY(-3px);
+    }
+  }
+}
+
+//我的最愛
+.favorite-section {
+  margin-top: 2rem;
+  margin-bottom: 3rem;
+
+  .card {
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba($primary-color, 0.08);
+    overflow: hidden;
+    transition: all 0.3s ease;
+
+    .card-header {
+      background: linear-gradient(
+        to right,
+        $primary-color,
+        $primary-color-light
+      );
+      border-bottom: none;
+      padding: 1.5rem;
+      position: relative;
+
+      h5 {
+        color: white;
+        font-weight: 600;
+        margin: 0;
+        font-size: 1.5rem;
+        display: flex;
+        align-items: center;
+
+        svg {
+          margin-right: 0.75rem;
+        }
+      }
+
+      &:after {
+        content: "";
+        position: absolute;
+        bottom: -15px;
+        left: 0;
+        right: 0;
+        height: 15px;
+        background: linear-gradient(
+          to bottom,
+          rgba($primary-color, 0.1),
+          transparent
+        );
+      }
+    }
+
+    .card-body {
+      padding: 2rem;
+    }
+  }
+
+  .empty-favorites {
+    text-align: center;
+    padding: 5rem 2rem;
+    background-color: rgba($primary-color, 0.02);
+    border-radius: 12px;
+
+    svg {
+      color: rgba($primary-color, 0.2);
+      margin-bottom: 1.5rem;
+      transition: all 0.5s ease;
+    }
+
+    &:hover svg {
+      transform: scale(1.1);
+      color: rgba($primary-color, 0.3);
+    }
+
+    p {
+      color: $text-color;
+      font-size: 1.1rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .btn-explore {
+      background: linear-gradient(
+        to right,
+        $primary-color,
+        $primary-color-light
+      );
+      border: none;
+      color: white;
+      padding: 0.75rem 2rem;
+      border-radius: 50px;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba($primary-color, 0.3);
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 1rem;
+
+      &:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba($primary-color, 0.4);
+      }
+
+      &:active {
+        transform: translateY(-1px);
+      }
+    }
+  }
+
+  .favorite-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .favorite-item {
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba($primary-color, 0.08);
+    overflow: hidden;
+    transition: all 0.3s ease;
+    position: relative;
+
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 25px rgba($primary-color, 0.15);
+    }
+
+    .favorite-image {
+      height: 200px;
+      overflow: hidden;
+      position: relative;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+      }
+
+      &:hover img {
+        transform: scale(1.05);
+      }
+    }
+
+    .favorite-badge {
+      position: absolute;
+      top: 15px;
+      left: 0;
+      background: linear-gradient(
+        to right,
+        $primary-color,
+        $primary-color-light
+      );
+      color: white;
+      padding: 0.4rem 1rem 0.4rem 0.75rem;
+      font-size: 0.8rem;
+      font-weight: 500;
+      border-radius: 0 20px 20px 0;
+      box-shadow: 0 3px 8px rgba($primary-color, 0.2);
+      z-index: 1;
+    }
+
+    .favorite-content {
+      padding: 1.5rem;
+
+      h5 {
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: $text-color;
+        margin-bottom: 1rem;
+        line-height: 1.4;
+        height: 3.36rem;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+      }
+
+      .favorite-info {
+        display: flex;
+        align-items: center;
+        margin-bottom: 1rem;
+        color: $text-color;
+
+        svg {
+          color: $primary-color;
+          margin-right: 0.5rem;
+          flex-shrink: 0;
+        }
+
+        span {
+          font-size: 0.9rem;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+      }
+
+      .favorite-price {
+        font-size: 1.3rem;
+        font-weight: 700;
+        color: $primary-color-dark;
+        margin-bottom: 1.25rem;
+      }
+    }
+
+    .favorite-actions {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 0.5rem;
+      padding: 0 1.5rem 1.5rem;
+
+      .btn {
+        border-radius: 8px;
+        font-weight: 500;
+        font-size: 0.9rem;
+        padding: 0.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+
+        svg {
+          margin-right: 0.4rem;
+        }
+      }
+
+      .btn-view {
+        color: $primary-color;
+        border: 1px solid $primary-color;
+        background-color: white;
+
+        &:hover {
+          background-color: rgba($primary-color, 0.05);
+          transform: translateY(-2px);
+        }
+      }
+
+      .btn-cart {
+        background: linear-gradient(
+          to right,
+          $primary-color,
+          $primary-color-light
+        );
+        border: none;
+        color: white;
+        font-size: 1rem;
+        padding: 0.75rem;
+
+        &:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 4px 10px rgba($primary-color, 0.2);
+        }
+      }
+
+      .btn-remove {
+        background-color: #f8d7da;
+        border: none;
+        color: #dc3545;
+
+        &:hover {
+          background-color: #dc3545;
+          color: white;
+          transform: translateY(-2px);
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 991.98px) {
+  .favorite-section {
+    .favorite-grid {
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    }
+  }
+}
+
+@media (max-width: 767.98px) {
+  .favorite-section {
+    .favorite-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .favorite-item {
+      .favorite-actions {
+        grid-template-columns: 1fr 1fr;
+
+        .btn-remove {
+          grid-column: span 2;
+        }
+      }
+    }
+  }
+}
+
+/* ===================================================
+ * Pagination 樣式
+ * =================================================== */
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin: 2rem 0;
+
+  .page-item {
+    margin: 0 0.2rem;
+
+    .page-link {
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: $gray-700;
+      border: 1px solid $gray-300;
+      transition: all 0.3s ease;
+      font-weight: 500;
+
+      &:hover {
+        background-color: rgba(151, 125, 6, 0.1);
+        color: rgb(151, 125, 6);
+        border-color: rgba(151, 125, 6, 0.2);
+      }
+
+      &.active {
+        background-color: rgb(151, 125, 6);
+        color: $white;
+        border-color: rgb(151, 125, 6);
+        box-shadow: 0 4px 10px rgba(151, 125, 6, 0.3);
+      }
+
+      &.disabled {
+        color: $gray-400;
+        pointer-events: none;
+        background-color: $white;
+        border-color: $gray-200;
+      }
+    }
+
+    &:first-child,
+    &:last-child {
+      .page-link {
+        border-radius: 30px;
+        width: 45px;
+      }
+    }
+  }
+}
+
+@media (max-width: 767.98px) {
+  .pagination {
+    .page-item {
+      margin: 0 0.1rem;
+
+      .page-link {
+        width: 35px;
+        height: 35px;
+        font-size: 0.9rem;
+      }
+
+      &:first-child,
+      &:last-child {
+        .page-link {
+          width: 40px;
+        }
+      }
     }
   }
 }

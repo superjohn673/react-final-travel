@@ -30,7 +30,6 @@ const AdminProducts = () => {
     const productRes = await axios.get(
       `/v2/api/${process.env.REACT_APP_API_PATH}/admin/products?page=${page}`
     );
-    console.log("產品", productRes);
     setProducts(productRes.data.products);
     setPagination(productRes.data.pagination);
   };

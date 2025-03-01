@@ -1,14 +1,49 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useState } from "react";
 import { Link, Outlet, useLocation } from "react-router-dom";
-import Loading from "../../components/Loading";
-import { AppContext } from "../../store/AppContext";
+import defaultImg from "../../assets/images/area/area-default.jpg";
+import hokkaidoImg from "../../assets/images/area/area-hokkaido.jpg";
+import kantoImg from "../../assets/images/area/area-kanto.jpg";
+import kansaiImg from "../../assets/images/area/area-kansai.jpg";
+import kyushuImg from "../../assets/images/area/area-kyushu.jpg";
+import tohokuImg from "../../assets/images/area/area-tohoku.jpg";
+import hokurikuImg from "../../assets/images/area/area-hokuriku.jpg";
 
 const AreaJapan = () => {
-  const [imageUrl, setImageUrl] = useState(
-    "https://images.unsplash.com/photo-1570459027562-4a916cc6113f?q=80&w=1888&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-  );
-  const { isLoading } = useContext(AppContext);
+  const [imageUrl, setImageUrl] = useState(defaultImg);
   const location = useLocation();
+
+  const areaData = [
+    {
+      path: "/area-japan/kanto",
+      image: kantoImg,
+      title: "關東",
+    },
+    {
+      path: "/area-japan/kansai",
+      image: kansaiImg,
+      title: "關西",
+    },
+    {
+      path: "/area-japan/hokkaido",
+      image: hokkaidoImg,
+      title: "北海道",
+    },
+    {
+      path: "/area-japan/tohoku",
+      image: tohokuImg,
+      title: "東北",
+    },
+    {
+      path: "/area-japan/hokuriku",
+      image: hokurikuImg,
+      title: "北陸 中部",
+    },
+    {
+      path: "/area-japan/kyushu",
+      image: kyushuImg,
+      title: "九州",
+    },
+  ];
 
   //點擊更換照片
   const handleImageChange = (newImageUrl) => {
@@ -23,13 +58,12 @@ const AreaJapan = () => {
 
   return (
     <>
-      <Loading isLoading={isLoading} />
       <div className="bg-light">
         <div className="container">
           <img
             className="img-fluid d-none d-md-block "
             src={imageUrl}
-            alt=""
+            alt="日本地區之旅"
             style={{
               minHeight: "500px",
               maxHeight: "650px",
@@ -44,86 +78,17 @@ const AreaJapan = () => {
           <h4 className="text-center">日本地區之旅</h4>
         </div>
         <div className="row justify-content-center mb-7">
-          <div className=" col-lg-4 text-center">
-            <Link
-              to="/area-japan/kanto"
-              className="link"
-              onMouseDown={() =>
-                handleImageChange(
-                  "https://images.unsplash.com/photo-1606918801925-e2c914c4b503?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                )
-              }
-            >
-              <h6 className={getLinkClass("/area-japan/kanto")}>關東</h6>
-            </Link>
-          </div>
-          <div className=" col-lg-4 text-center">
-            <Link
-              to="/area-japan/kansai"
-              className="link"
-              onMouseDown={() =>
-                handleImageChange(
-                  "https://plus.unsplash.com/premium_photo-1664474450942-fcdaf3930b55?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                )
-              }
-            >
-              <h6 className={getLinkClass("/area-japan/kansai")}>關西</h6>
-            </Link>
-          </div>
-          <div className=" col-lg-4 text-center">
-            <Link
-              to="/area-japan/hokkaido"
-              className="link"
-              onMouseDown={() =>
-                handleImageChange(
-                  "https://images.unsplash.com/photo-1650377080454-141d3fd5a43d?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                )
-              }
-            >
-              <h6 className={getLinkClass("/area-japan/hokkaido")}>北海道</h6>
-            </Link>
-          </div>
-          <div className=" col-lg-4 text-center">
-            <Link
-              to="/area-japan/tohoku"
-              className="link"
-              onMouseDown={() =>
-                handleImageChange(
-                  "https://images.unsplash.com/photo-1598761494170-7d5fe80511e6?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                )
-              }
-            >
-              <h6 className={getLinkClass("/area-japan/tohoku")}>東北</h6>
-            </Link>
-          </div>
-          <div className=" col-lg-4 text-center">
-            <Link
-              to="/area-japan/hokuriku"
-              className="link"
-              onMouseDown={() =>
-                handleImageChange(
-                  "https://images.unsplash.com/photo-1559439080-b6037bc5f8fb?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                )
-              }
-            >
-              <h6 className={getLinkClass("/area-japan/hokuriku")}>
-                北陸 中部
-              </h6>
-            </Link>
-          </div>
-          <div className=" col-lg-4 text-center">
-            <Link
-              to="/area-japan/kyushu"
-              className="link"
-              onMouseDown={() =>
-                handleImageChange(
-                  "https://images.unsplash.com/photo-1624517607344-edd8277b1ba3?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                )
-              }
-            >
-              <h6 className={getLinkClass("/area-japan/kyushu")}>九州</h6>
-            </Link>
-          </div>
+          {areaData.map((area) => (
+            <div key={area.path} className="col-lg-4 text-center">
+              <Link
+                to={area.path}
+                className="link"
+                onMouseDown={() => handleImageChange(area.image)}
+              >
+                <h6 className={getLinkClass(area.path)}>{area.title}</h6>
+              </Link>
+            </div>
+          ))}
         </div>
         <Outlet></Outlet>
       </div>

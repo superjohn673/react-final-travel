@@ -1,14 +1,37 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import { Link, Outlet, useLocation } from "react-router-dom";
-import Loading from "../../components/Loading";
-import { AppContext } from "../../store/AppContext";
+import tourDefaultImg from "../../assets/images/tour/tour-default.jpg";
+import tourClassicImg from "../../assets/images/tour/tour-classic.jpg";
+import tourShopImg from "../../assets/images/tour/tour-shop.jpg";
+import tourRailImg from "../../assets/images/tour/tour-rail.jpg";
+import tourVibeImg from "../../assets/images/tour/tour-vibe.jpg";
 
 const Tour = () => {
-  const [imageUrl, setImageUrl] = useState(
-    "https://images.unsplash.com/photo-1505440484611-23c171ad6e96?q=80&w=1754&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-  );
-  const { isLoading } = useContext(AppContext);
+  const [imageUrl, setImageUrl] = useState(tourDefaultImg);
   const location = useLocation();
+
+  const tourData = [
+    {
+      path: "/tour/classic-japan",
+      image: tourClassicImg,
+      title: "經典之旅",
+    },
+    {
+      path: "/tour/shop-japan",
+      image: tourShopImg,
+      title: "美學之旅",
+    },
+    {
+      path: "/tour/rail-japan",
+      image: tourRailImg,
+      title: "鐵道之旅",
+    },
+    {
+      path: "/tour/vibe-japan",
+      image: tourVibeImg,
+      title: "深度之旅",
+    },
+  ];
 
   //點擊更換照片
   const handleImageChange = (newImageUrl) => {
@@ -23,13 +46,12 @@ const Tour = () => {
 
   return (
     <>
-      <Loading isLoading={isLoading} />
       <div className="bg-light">
         <div className="container">
           <img
             className="img-fluid d-none d-md-block "
             src={imageUrl}
-            alt=""
+            alt="日本主題之旅"
             style={{
               minHeight: "500px",
               maxHeight: "650px",
@@ -44,58 +66,17 @@ const Tour = () => {
           <h4 className="text-center">日本主題之旅</h4>
         </div>
         <div className="row justify-content-center mb-7">
-          <div className="col-md-6 col-lg-3 text-center">
-            <Link
-              to="/tour/classic-japan"
-              className="link"
-              onMouseDown={() =>
-                handleImageChange(
-                  "https://images.unsplash.com/photo-1493780474015-ba834fd0ce2f?q=80&w=1684&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                )
-              }
-            >
-              <h6 className={getLinkClass("/tour/classic-japan")}>經典之旅</h6>
-            </Link>
-          </div>
-          <div className="col-md-6 col-lg-3 text-center">
-            <Link
-              to="/tour/shop-japan"
-              className="link"
-              onMouseDown={() =>
-                handleImageChange(
-                  "https://images.unsplash.com/photo-1513407030348-c983a97b98d8?q=80&w=1744&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                )
-              }
-            >
-              <h6 className={getLinkClass("/tour/shop-japan")}>美學之旅</h6>
-            </Link>
-          </div>
-          <div className="col-md-6 col-lg-3 text-center">
-            <Link
-              to="/tour/rail-japan"
-              className="link"
-              onMouseDown={() =>
-                handleImageChange(
-                  "https://images.unsplash.com/photo-1618153231956-df23dcb21c07?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                )
-              }
-            >
-              <h6 className={getLinkClass("/tour/rail-japan")}>鐵道之旅</h6>
-            </Link>
-          </div>
-          <div className="col-md-6 col-lg-3 text-center">
-            <Link
-              to="/tour/vibe-japan"
-              className="link"
-              onMouseDown={() =>
-                handleImageChange(
-                  "https://images.unsplash.com/photo-1541840518972-700a0bde0c6b?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                )
-              }
-            >
-              <h6 className={getLinkClass("/tour/vibe-japan")}>深度之旅</h6>
-            </Link>
-          </div>
+          {tourData.map((tour) => (
+            <div key={tour.path} className="col-md-6 col-lg-3 text-center">
+              <Link
+                to={tour.path}
+                className="link"
+                onMouseDown={() => handleImageChange(tour.image)}
+              >
+                <h6 className={getLinkClass(tour.path)}>{tour.title}</h6>
+              </Link>
+            </div>
+          ))}
         </div>
         <Outlet></Outlet>
         {/* <nav className="d-flex justify-content-center">

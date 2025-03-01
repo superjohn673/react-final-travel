@@ -57,7 +57,7 @@ const CouponModal = ({ closeModal, getCoupons, type, tempCoupon }) => {
         api = `/v2/api/${process.env.REACT_APP_API_PATH}/admin/coupon/${tempCoupon.id}`;
         method = "put";
       }
-      const res = await axios[method](api, {
+      const _res = await axios[method](api, {
         data: { ...tempData, due_date: date.getTime() }, //轉換成unix timestamp
       });
       closeModal();

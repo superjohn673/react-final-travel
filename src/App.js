@@ -8,7 +8,7 @@ import AdminOrders from "./pages/admin/AdminOrders";
 import FrontLayout from "./pages/front/FrontLayout";
 import Home from "./pages/front/Home";
 import MemberLayout from "./pages/front/MemberLayout";
-import Orders from "./pages/front/orders";
+import Orders from "./pages/front/Orders.js";
 import OrderDetail from "./pages/front/OrderDetail.js";
 import UserProfile from "./pages/front/UserProfile.js";
 import MyFavorite from "./pages/front/MyFavorite.js";
@@ -46,7 +46,7 @@ function App() {
               <Route path="favorite" element={<MyFavorite />} />
             </Route>
 
-            <Route path="products" element={<Products />} />
+            {/* <Route path="products" element={<Products />} /> */}
             <Route path="product/:id" element={<ProductDetail />} />
             <Route path="area-japan" element={<AreaJapan />}>
               <Route path=":name" element={<CityJapan />} />

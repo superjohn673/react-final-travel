@@ -79,7 +79,7 @@ const Dashboard = () => {
               className="list-group-item list-group-item-action py-3"
               to="/admin/products"
             >
-              <i class="fa-solid fa-plane me-2"></i>
+              <i className="fa-solid fa-plane me-2"></i>
               產品列表
             </Link>
             <Link

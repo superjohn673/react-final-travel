@@ -16,7 +16,7 @@ const OrderModal = ({ closeOrderModal, getOrders, tempOrder }) => {
     num: 2,
   });
 
-  const [message, dispatch] = useContext(MessageContext); //沒用到 message可以清掉,但要保留逗號
+  const [, dispatch] = useContext(MessageContext); //沒用到 message可以清掉,但要保留逗號
 
   useEffect(() => {
     if (tempOrder) {
@@ -63,7 +63,6 @@ const OrderModal = ({ closeOrderModal, getOrders, tempOrder }) => {
     try {
       const api = `/v2/api/${process.env.REACT_APP_API_PATH}/admin/order/${tempOrder.id}`;
       const res = await axios.put(api, { data: tempData });
-      console.log(res);
       handleSuccessMessage(dispatch, res);
       closeOrderModal();
       getOrders();
@@ -118,7 +117,6 @@ const OrderModal = ({ closeOrderModal, getOrders, tempOrder }) => {
                     className="form-check-input"
                   />
                 </div>
-                <img src="" alt="" className="img-fluid" />
               </div>
               <div className="col-sm-8">
                 <div className="form-group mb-2">

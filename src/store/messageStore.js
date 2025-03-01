@@ -1,4 +1,3 @@
-import { type } from "@testing-library/user-event/dist/type";
 import { createContext } from "react";
 
 //useContext 跨元件傳遞

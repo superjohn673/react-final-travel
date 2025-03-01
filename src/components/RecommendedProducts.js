@@ -1,6 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Slider from "react-slick";
+import foodImg from "../assets/images/recommend/rmd-food.jpg";
+import coffeeImg from "../assets/images/recommend/rmd-coffee.jpg";
+import templeImg from "../assets/images/recommend/rmd-temple.jpg";
+import skiImg from "../assets/images/recommend/rmd-snow.jpg";
+import universalImg from "../assets/images/recommend/rmd-universal.jpg";
+import shoppingImg from "../assets/images/recommend/rmd-shopping.jpg";
 
 export const RecommendedProducts = () => {
   //listsection 左右滑
@@ -40,8 +46,7 @@ export const RecommendedProducts = () => {
               <div
                 className="index-list-section__img d-flex justify-content-center align-items-end"
                 style={{
-                  backgroundImage:
-                    "URL('https://images.unsplash.com/photo-1573806439793-82aa612294b2?q=80&w=1587&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')",
+                  backgroundImage: `url(${foodImg})`,
                 }}
               >
                 <p className=" index-list-section__inf">瞭解更多</p>
@@ -55,8 +60,7 @@ export const RecommendedProducts = () => {
               <div
                 className="index-list-section__img d-flex justify-content-center align-items-end"
                 style={{
-                  backgroundImage:
-                    "URL('https://images.unsplash.com/photo-1667560615919-837fe9001e58?q=80&w=1472&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')",
+                  backgroundImage: `url(${coffeeImg})`,
                 }}
               >
                 <p className=" index-list-section__inf">瞭解更多</p>
@@ -70,8 +74,7 @@ export const RecommendedProducts = () => {
               <div
                 className="index-list-section__img d-flex justify-content-center align-items-end"
                 style={{
-                  backgroundImage:
-                    "URL('https://images.unsplash.com/photo-1601823984263-b87b59798b70?q=80&w=1587&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')",
+                  backgroundImage: `url(${templeImg})`,
                 }}
               >
                 <p className=" index-list-section__inf">瞭解更多</p>
@@ -85,8 +88,7 @@ export const RecommendedProducts = () => {
               <div
                 className="index-list-section__img d-flex justify-content-center align-items-end"
                 style={{
-                  backgroundImage:
-                    "URL('https://images.unsplash.com/photo-1611124601110-f804e03a2a6a?q=80&w=1587&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')",
+                  backgroundImage: `url(${skiImg})`,
                 }}
               >
                 <p className=" index-list-section__inf">瞭解更多</p>
@@ -100,8 +102,7 @@ export const RecommendedProducts = () => {
               <div
                 className="index-list-section__img d-flex justify-content-center align-items-end"
                 style={{
-                  backgroundImage:
-                    "URL('https://images.unsplash.com/photo-1621445944472-f252571005b6?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')",
+                  backgroundImage: `url(${universalImg})`,
                 }}
               >
                 <p className=" index-list-section__inf">瞭解更多</p>
@@ -115,8 +116,7 @@ export const RecommendedProducts = () => {
               <div
                 className="index-list-section__img d-flex justify-content-center align-items-end"
                 style={{
-                  backgroundImage:
-                    "URL('https://images.unsplash.com/photo-1503899036084-c55cdd92da26?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')",
+                  backgroundImage: `url(${shoppingImg})`,
                 }}
               >
                 <p className=" index-list-section__inf">瞭解更多</p>

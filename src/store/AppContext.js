@@ -11,7 +11,6 @@ export const AppContext = createContext(null);
 
 const initialState = {
   products: [],
-  isLoading: false,
   pagination: {},
   selectedDate: localStorage.getItem("selectedDateStorage"),
   adultQuantity: parseInt(localStorage.getItem("adultQuantityStorage")),
@@ -25,11 +24,9 @@ export const AppProvider = ({ children }) => {
   const [state, dispatch] = useReducer(appReducer, initialState);
 
   const getAllProducts = useCallback(async () => {
-    dispatch({ type: "SET_LOADING", payload: true });
     const productRes = await axios.get(
       `/v2/api/${process.env.REACT_APP_API_PATH}/products/all`
     );
-    console.log(productRes);
     dispatch({
       type: "SET_PRODUCTS",
       payload: {
@@ -37,7 +34,6 @@ export const AppProvider = ({ children }) => {
         pagination: productRes.data.pagination,
       },
     });
-    dispatch({ type: "SET_LOADING", payload: false });
   }, []);
 
   const setSelectedDate = (date) => {

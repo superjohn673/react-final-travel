@@ -6,10 +6,33 @@ const NavBar = ({ cartData }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [showNavBar, setShowNavBar] = useState(false);
   const [isSmallScreen, setIsSmallScreen] = useState(false);
+  const [isMediumScreen, setIsMediumScreen] = useState(false);
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
+
+  useEffect(() => {
+    const updateNavbarHeight = () => {
+      const navbar = document.querySelector(".navbar");
+      if (navbar) {
+        const navbarHeight = navbar.offsetHeight;
+        document.documentElement.style.setProperty(
+          "--navbar-height",
+          `${navbarHeight}px`
+        );
+      }
+    };
+
+    // 監聽視窗大小改變
+    window.addEventListener("resize", updateNavbarHeight);
+    // 初始化設定
+    updateNavbarHeight();
+
+    return () => {
+      window.removeEventListener("resize", updateNavbarHeight);
+    };
+  }, []);
 
   useEffect(() => {
     let lastScrollY = window.scrollY;
@@ -26,12 +49,14 @@ const NavBar = ({ cartData }) => {
     };
 
     const handleResize = () => {
-      setIsSmallScreen(window.innerWidth < 768);
+      const width = window.innerWidth;
+      setIsSmallScreen(width < 768);
+      setIsMediumScreen(width >= 768 && width < 992);
     };
 
     window.addEventListener("scroll", handleScroll);
     window.addEventListener("resize", handleResize);
-    handleResize(); // 初始化 isSmallScreen 狀態
+    handleResize(); // 初始化螢幕尺寸狀態
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
@@ -44,11 +69,11 @@ const NavBar = ({ cartData }) => {
       className={`bg-white sticky-top ${showNavBar ? "show" : "hide"}`}
       style={{ transition: "top 0.3s" }}
     >
-      <div className="container-fluid shadow">
-        <nav className="navbar px-3 navbar-expand-lg navbar-light bg-white d-flex justify-content-between">
+      <div className="container-fluid navbar-container">
+        <nav className="navbar px-3 navbar-expand-lg navbar-light d-flex justify-content-between">
           <div className="">
             <button
-              className="navbar-toggler"
+              className="navbar-toggler d-md-none nav-item"
               type="button"
               data-bs-toggle="collapse"
               data-bs-target="#navbarNav"
@@ -59,42 +84,28 @@ const NavBar = ({ cartData }) => {
             >
               <span className="navbar-toggler-icon"></span>
             </button>
-            <div
-              className={`collapse navbar-collapse bg-white custom-header-md-open ${
-                isSmallScreen && isSidebarOpen ? "d-none" : ""
-              }`}
-              id="navbarNav"
-            >
-              <ul className="navbar-nav d-none d-md-block">
-                <li className="nav-item active">
-                  <NavLink
-                    className="nav-link ps-0"
-                    style={{ fontSize: "1.5rem" }}
-                    onClick={toggleSidebar}
-                  >
-                    <i class="bi bi-list" style={{ fontSize: "2.5rem" }}></i>
-                  </NavLink>
-                </li>
-              </ul>
+            <div className="d-none d-md-block">
+              <NavLink
+                className="nav-link ps-0 nav-item"
+                onClick={toggleSidebar}
+              >
+                <i className="bi bi-list menu-icon"></i>
+              </NavLink>
             </div>
           </div>
-          <div className="">
-            <NavLink
-              className="navbar-brand "
-              to="/"
-              style={{
-                fontFamily: "Kalam",
-                fontSize: "2rem",
-              }}
-            >
+          <div className="d-flex align-items-center">
+            <NavLink className="navbar-brand" to="/">
               Shiba Travel
             </NavLink>
           </div>
           <div className="">
             <div>
-              <NavLink to="/cart" className="nav-link position-relative">
-                <i className="bi bi-bag-fill"></i>
-                <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+              <NavLink
+                to="/cart"
+                className="nav-link position-relative nav-item"
+              >
+                <i className="bi bi-bag-fill cart-icon"></i>
+                <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill cart-badge">
                   {cartData?.carts?.length}
                 </span>
               </NavLink>
