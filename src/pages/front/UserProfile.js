@@ -25,93 +25,87 @@ const UserProfile = () => {
   };
 
   return (
-    <div className="container my-5 ">
-      <div className="row justify-content-center ">
-        <div className="col-md-8">
-          <div className="card">
-            <div className="card-header d-flex justify-content-between align-items-center">
-              <h5 className="mb-0">個人資料</h5>
-              {user.isEditing ? (
-                <button className="btn btn-primary" onClick={handleSave}>
-                  <FaSave className="me-2" />
-                  儲存
-                </button>
-              ) : (
-                <button className="btn btn-secondary" onClick={handleEdit}>
-                  <FaEdit className="me-2" />
-                  編輯
-                </button>
-              )}
-            </div>
-            <div className="card-body py-5">
-              <div className="text-center mb-4">
-                <FaUserCircle size={150} />
-              </div>
-              <form>
-                <div className="form-group mb-3">
-                  <label htmlFor="name">姓名</label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="name"
-                    name="name"
-                    value={user.name}
-                    onChange={handleChange}
-                    disabled={!user.isEditing}
-                  />
-                </div>
-                <div className="form-group mb-3">
-                  <label htmlFor="email">Email</label>
-                  <input
-                    type="email"
-                    className="form-control"
-                    id="email"
-                    name="email"
-                    value={user.email}
-                    onChange={handleChange}
-                    disabled={!user.isEditing}
-                  />
-                </div>
-                <div className="form-group mb-3">
-                  <label htmlFor="phone">電話</label>
-                  <input
-                    type="tel"
-                    className="form-control"
-                    id="phone"
-                    name="phone"
-                    value={user.phone}
-                    onChange={handleChange}
-                    disabled={!user.isEditing}
-                  />
-                </div>
-                <div className="form-group mb-3">
-                  <label htmlFor="address">地址</label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="address"
-                    name="address"
-                    value={user.address}
-                    onChange={handleChange}
-                    disabled={!user.isEditing}
-                  />
-                </div>
-                <div className="form-group">
-                  <label htmlFor="birthday">生日</label>
-                  <input
-                    type="date"
-                    className="form-control"
-                    id="birthday"
-                    name="birthday"
-                    value={user.birthday}
-                    onChange={handleChange}
-                    disabled={!user.isEditing}
-                  />
-                </div>
-              </form>
-            </div>
-          </div>
+    <div className="card">
+      <div className="card-header d-flex justify-content-between align-items-center">
+        <h5 className="mb-0">個人資料</h5>
+        {user.isEditing ? (
+          <button className="btn btn-primary" onClick={handleSave}>
+            <FaSave className="me-2" />
+            儲存
+          </button>
+        ) : (
+          <button className="btn btn-secondary" onClick={handleEdit}>
+            <FaEdit className="me-2" />
+            編輯
+          </button>
+        )}
+      </div>
+      <div className="card-body">
+        <div className="profile-avatar">
+          <FaUserCircle />
         </div>
+        <form>
+          <div className="form-group mb-3">
+            <label htmlFor="name">姓名</label>
+            <input
+              type="text"
+              className="form-control"
+              id="name"
+              name="name"
+              value={user.name}
+              onChange={handleChange}
+              disabled={!user.isEditing}
+            />
+          </div>
+          <div className="form-group mb-3">
+            <label htmlFor="email">Email</label>
+            <input
+              type="email"
+              className="form-control"
+              id="email"
+              name="email"
+              value={user.email}
+              onChange={handleChange}
+              disabled={!user.isEditing}
+            />
+          </div>
+          <div className="form-group mb-3">
+            <label htmlFor="phone">電話</label>
+            <input
+              type="tel"
+              className="form-control"
+              id="phone"
+              name="phone"
+              value={user.phone}
+              onChange={handleChange}
+              disabled={!user.isEditing}
+            />
+          </div>
+          <div className="form-group mb-3">
+            <label htmlFor="address">地址</label>
+            <input
+              type="text"
+              className="form-control"
+              id="address"
+              name="address"
+              value={user.address}
+              onChange={handleChange}
+              disabled={!user.isEditing}
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="birthday">生日</label>
+            <input
+              type="date"
+              className="form-control"
+              id="birthday"
+              name="birthday"
+              value={user.birthday}
+              onChange={handleChange}
+              disabled={!user.isEditing}
+            />
+          </div>
+        </form>
       </div>
     </div>
   );

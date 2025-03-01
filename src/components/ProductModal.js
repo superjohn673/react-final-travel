@@ -28,10 +28,9 @@ const ProductModal = ({
   });
 
   //沒用到 message可以清掉,但要保留逗號
-  const [message, dispatch] = useContext(MessageContext);
+  const [, dispatch] = useContext(MessageContext);
 
   useEffect(() => {
-    console.log("tempProduct", tempProduct);
     if (type === "create") {
       setTempData({
         title: "",
@@ -97,7 +96,6 @@ const ProductModal = ({
         data: tempData,
         imagesUrl: tempData.imagesUrl,
       });
-      console.log(res);
       handleSuccessMessage(dispatch, res);
       closeProductModal();
       getProducts();
@@ -108,7 +106,6 @@ const ProductModal = ({
   };
 
   const uploadFile = async (file) => {
-    console.log(file);
     if (!file) {
       return;
     }
@@ -119,7 +116,6 @@ const ProductModal = ({
         `/v2/api/${process.env.REACT_APP_API_PATH}/admin/upload`,
         formData
       );
-      console.log(res);
       setTempData({
         ...tempData,
         imageUrl: res.data.imageUrl, // 假設回傳的圖片網址在res.data.imageUrl中
@@ -222,7 +218,6 @@ const ProductModal = ({
                     />
                   </label>
                 </div>
-                <img src="" alt="" className="img-fluid" />
               </div>
               <div className="col-sm-8">
                 <pre>{JSON.stringify(tempData)}</pre>

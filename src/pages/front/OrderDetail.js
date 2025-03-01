@@ -1,7 +1,22 @@
 import React, { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 import Loading from "../../components/Loading";
+import { formatNumberWithCommas } from "../../utils/helpers";
+import {
+  FaCalendarAlt,
+  FaUser,
+  FaPhone,
+  FaEnvelope,
+  FaMapMarkerAlt,
+  FaUsers,
+  FaMoneyBillWave,
+  FaCreditCard,
+  FaClipboardCheck,
+  FaCommentDots,
+  FaClock,
+  FaArrowLeft,
+} from "react-icons/fa";
 
 const OrderDetail = () => {
   const { orderId } = useParams();
@@ -38,100 +53,152 @@ const OrderDetail = () => {
     }
   };
 
+  // 格式化日期函數
+  const formatDate = (timestamp) => {
+    const date = new Date(timestamp * 1000);
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const day = String(date.getDate()).padStart(2, "0");
+    const hours = String(date.getHours()).padStart(2, "0");
+    const minutes = String(date.getMinutes()).padStart(2, "0");
+    return `${year}/${month}/${day} ${hours}:${minutes}`;
+  };
+
   return (
     <div className="container my-5">
       <Loading isLoading={isLoading} />
-      <p className="fs-4 text-center fw-bold mb-4">訂單細節</p>
-      {order && (
-        <div className="card">
-          <div className="card-header d-flex justify-content-between align-items-center py-4">
-            <h4 className="mb-0">訂單編號: {order.id}</h4>
-            <p
-              className={`mb-0 ${
-                order.is_paid ? "text-success" : "text-danger"
-              }`}
-            >
-              {order.is_paid ? "已付款" : "未付款"}
-            </p>
-          </div>
-          <div className="card-body py-3">
-            <div className="row">
-              <div className="col-12 border-bottom mb-3 ">
-                {Object.keys(order.products).map((productKey) => (
-                  <div className="row mb-3" key={productKey}>
-                    <div className="col-lg-6">
-                      {" "}
-                      <p className="fw-bold fs-5">
-                        {order.products[productKey].product.title}
-                      </p>
-                      <img
-                        src={order.products[productKey].product.imageUrl}
-                        alt={order.products[productKey].product.title}
-                        className="img-fluid mb-2"
-                        style={{ maxHeight: "300px" }}
-                      />
-                    </div>
-                    <div className="col-lg-6 d-flex flex-column justify-content-end align-items-end">
-                      <div className="">
-                        <p>
-                          <span className="fw-bold fs-5">總人數:</span>{" "}
-                          {order.products[productKey].qty}
-                        </p>
-                        <p className="fw-bold text-danger fs-5">
-                          <span>訂單總金額:</span>{" "}
-                          {order.products[productKey].final_total}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-              <div className="col-12 border-bottom py-3">
-                <div className="row">
-                  <div className="col-md-6">
-                    {" "}
-                    <h5 className=" fw-bold mb-2">顧客資訊:</h5>
-                    <ul className="list-unstyled mb-3">
-                      <li>
-                        <span className="fw-bold">姓名 :</span>{" "}
-                        {order.user.name}
-                      </li>
-                      <li>
-                        <span className="fw-bold">電話 :</span> {order.user.tel}
-                      </li>
-                      <li>
-                        <span className="fw-bold">Email :</span>{" "}
-                        {order.user.email}
-                      </li>
-                      <li>
-                        <span className="fw-bold">地址 :</span>{" "}
-                        {order.user.address}
-                      </li>
-                    </ul>
-                  </div>
-                  <div className="col-md-6"> </div>
-                </div>
-              </div>
 
-              <div className="col-12 py-3">
-                {" "}
-                <div className="">
-                  {" "}
-                  <p>
-                    <span className="fw-bold">建立時間 :</span>{" "}
-                    {new Date(order.create_at * 1000).toLocaleString()}
-                  </p>
-                  <p>
-                    <span className="fw-bold">訂單備註 :</span> {order.message}
-                  </p>
-                </div>
+      {order && (
+        <div className="order-detail-container">
+          <div className="order-detail-header">
+            <Link to="/member/orders" className="back-link">
+              <FaArrowLeft /> 返回訂單列表
+            </Link>
+            <h2 className="order-detail-title">訂單詳情</h2>
+            <div className="order-meta">
+              <div className="order-id">
+                <span className="label">訂單編號:</span>
+                <span className="value">{order.id}</span>
+              </div>
+              <div
+                className={`order-status ${order.is_paid ? "paid" : "unpaid"}`}
+              >
+                {order.is_paid ? "已付款" : "未付款"}
               </div>
             </div>
           </div>
-          <div className="card-footer d-flex justify-content-end py-3">
+
+          <div className="order-detail-content">
+            <div className="order-products">
+              <h3 className="section-title">
+                <FaClipboardCheck className="section-icon" />
+                訂購商品
+              </h3>
+
+              {Object.keys(order.products).map((productKey) => (
+                <div className="product-card" key={productKey}>
+                  <div className="product-image">
+                    <img
+                      src={order.products[productKey].product.imageUrl}
+                      alt={order.products[productKey].product.title}
+                    />
+                  </div>
+                  <div className="product-details">
+                    <h4 className="product-title">
+                      {order.products[productKey].product.title}
+                    </h4>
+                    <div className="product-info-grid">
+                      <div className="info-item">
+                        <FaUsers className="info-icon" />
+                        <span className="info-label">人數:</span>
+                        <span className="info-value">
+                          {order.products[productKey].qty} 人
+                        </span>
+                      </div>
+                      <div className="info-item">
+                        <FaMapMarkerAlt className="info-icon" />
+                        <span className="info-label">目的地:</span>
+                        <span className="info-value">日本東京</span>
+                      </div>
+                      <div className="info-item">
+                        <FaClock className="info-icon" />
+                        <span className="info-label">行程:</span>
+                        <span className="info-value">5天4夜</span>
+                      </div>
+                      <div className="info-item">
+                        <FaMoneyBillWave className="info-icon" />
+                        <span className="info-label">金額:</span>
+                        <span className="info-value price">
+                          NT${" "}
+                          {formatNumberWithCommas(
+                            order.products[productKey].final_total
+                          )}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div className="order-customer-info">
+              <h3 className="section-title">
+                <FaUser className="section-icon" />
+                訂購人資訊
+              </h3>
+              <div className="customer-info-grid">
+                <div className="info-item">
+                  <FaUser className="info-icon" />
+                  <span className="info-label">姓名:</span>
+                  <span className="info-value">{order.user.name}</span>
+                </div>
+                <div className="info-item">
+                  <FaPhone className="info-icon" />
+                  <span className="info-label">電話:</span>
+                  <span className="info-value">{order.user.tel}</span>
+                </div>
+                <div className="info-item">
+                  <FaEnvelope className="info-icon" />
+                  <span className="info-label">Email:</span>
+                  <span className="info-value">{order.user.email}</span>
+                </div>
+                <div className="info-item">
+                  <FaMapMarkerAlt className="info-icon" />
+                  <span className="info-label">地址:</span>
+                  <span className="info-value">{order.user.address}</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="order-additional-info">
+              <div className="info-item">
+                <FaCalendarAlt className="info-icon" />
+                <span className="info-label">建立時間:</span>
+                <span className="info-value">
+                  {formatDate(order.create_at)}
+                </span>
+              </div>
+              {order.message && (
+                <div className="info-item">
+                  <FaCommentDots className="info-icon" />
+                  <span className="info-label">訂單備註:</span>
+                  <span className="info-value">{order.message}</span>
+                </div>
+              )}
+            </div>
+          </div>
+
+          <div className="order-detail-footer">
+            <div className="order-total">
+              <span className="label">訂單總金額:</span>
+              <span className="value">
+                NT$ {formatNumberWithCommas(order.total)}
+              </span>
+            </div>
             {!order.is_paid && (
-              <button className="btn btn-primary" onClick={handlePay}>
-                付款
+              <button className="btn-pay" onClick={handlePay}>
+                <FaCreditCard className="btn-icon" />
+                立即付款
               </button>
             )}
           </div>

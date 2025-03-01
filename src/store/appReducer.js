@@ -6,11 +6,6 @@ const appReducer = (state, action) => {
         products: action.payload.products,
         pagination: action.payload.pagination,
       };
-    case "SET_LOADING":
-      return {
-        ...state,
-        isLoading: action.payload,
-      };
     case "SET_SELECTED_DATE":
       return {
         ...state,

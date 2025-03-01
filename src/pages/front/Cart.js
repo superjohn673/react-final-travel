@@ -1,10 +1,11 @@
 import axios from "axios";
-import React, { useContext, useEffect, useMemo } from "react";
+import React, { useContext, useMemo, useCallback } from "react";
 import { useState } from "react";
 import { Link, useOutletContext } from "react-router-dom";
 import { AppContext } from "../../store/AppContext";
 import CartNavigator from "../../components/CartNavigator";
 import RecommendedProducts from "../../components/RecommendedProducts";
+import { formatNumberWithCommas } from "../../utils/helpers";
 
 const Cart = () => {
   const { cartData, getCart } = useOutletContext();
@@ -34,7 +35,7 @@ const Cart = () => {
     setChildrenQuantity(0);
     setSelectedDate(null);
     try {
-      const res = await axios.delete(
+      const _res = await axios.delete(
         `/v2/api/${process.env.REACT_APP_API_PATH}/cart/${id}`
       );
       getCart();
@@ -57,7 +58,7 @@ const Cart = () => {
     };
     setLoadingItem([...loadingItems, item.id]);
     try {
-      const res = await axios.put(
+      const _res = await axios.put(
         `/v2/api/${process.env.REACT_APP_API_PATH}/cart/${item.id}`,
         data
       );
@@ -74,31 +75,32 @@ const Cart = () => {
   };
 
   //計算價格
-  const countPrice = (item) => {
-    console.log("countPrice called 2");
-    const total =
-      item.total -
-      (item.total -
-        ((item.total / item.qty) * adultQuantity +
-          (item.total / item.qty) * childrenQuantity * 0.8));
-
-    const couponTotal =
-      (item.total -
+  const countPrice = useCallback(
+    (item) => {
+      const total =
+        item.total -
         (item.total -
           ((item.total / item.qty) * adultQuantity +
-            (item.total / item.qty) * childrenQuantity * 0.8))) *
-      (item.final_total / item.total);
+            (item.total / item.qty) * childrenQuantity * 0.8));
 
-    return { total, couponTotal };
-  };
+      const couponTotal =
+        (item.total -
+          (item.total -
+            ((item.total / item.qty) * adultQuantity +
+              (item.total / item.qty) * childrenQuantity * 0.8))) *
+        (item.final_total / item.total);
+
+      return { total, couponTotal };
+    },
+    [adultQuantity, childrenQuantity]
+  );
 
   const { total, couponTotal } = useMemo(() => {
-    console.log("useMemo calculated 1");
     if (cartData?.carts?.length > 0) {
       return countPrice(cartData.carts[0]);
     }
     return { total: 0, couponTotal: 0 };
-  }, [cartData, adultQuantity, childrenQuantity]);
+  }, [cartData, countPrice]);
 
   //套用優惠券
   const addCoupon = async (code) => {
@@ -113,7 +115,6 @@ const Cart = () => {
         `/v2/api/${process.env.REACT_APP_API_PATH}/coupon`,
         coupon
       );
-      console.log(res.data.message);
       localStorage.setItem("couponInfStorage", JSON.stringify(res.data));
       setCouponInf(res.data);
       getCart();
@@ -141,14 +142,14 @@ const Cart = () => {
               <>
                 <div className="alert alert-secondary text-center py-6 cart__section">
                   <p>
-                    <i class="fa-solid fa-plane cart__section__icon mb-3"></i>
+                    <i className="fa-solid fa-plane cart__section__icon mb-3"></i>
                   </p>
                   <p className=" fs-2">還沒有選擇行程呦</p>
                 </div>
                 <div>
                   <Link
                     to="/area-japan/kanto"
-                    className="btn btn-dark w-100 mt-4 rounded-0 py-3"
+                    className="booking-btn w-100 mt-4 rounded-0 py-3 d-block text-center"
                   >
                     選擇行程
                   </Link>
@@ -162,32 +163,37 @@ const Cart = () => {
                       <div className="mb-4">
                         <img
                           src={item.product.imageUrl}
-                          alt=""
+                          alt={item.product.title}
                           className="object-cover img-fluid"
                         />
                       </div>
                       <div className="w-100 p-3 position-relative">
                         <button
                           type="button"
-                          className="position-absolute btn"
-                          style={{ top: "10px", right: "10px" }}
+                          className="position-absolute cart-remove-btn"
                           onClick={() => {
                             removeCartItem(item.id);
                           }}
                         >
                           <i className="bi bi-x-lg"></i>
                         </button>
-                        <h4 className="mb-3 fw-bold ">{item.product.title}</h4>
+                        <div className="product-header mb-4">
+                          <span className="product-tag">日本行程</span>
+                          <h4 className="mb-3 fw-bold ">
+                            {item.product.title}
+                          </h4>
+                        </div>
                         <div className="mt-2 mb-3">
                           <p>
                             <span className="fw-bold">出發日期 : </span>
-                            {selectedDate}
+                            <span className="date-value">{selectedDate}</span>
+                            <i className="bi bi-calendar-event ms-2 cart-icon"></i>
                           </p>
                         </div>
                         <div className="d-flex justify-content-start align-items-center w-100 mb-3 ">
                           {/* 大人select */}
                           <div className="input-group w-25 align-items-center me-3">
-                            <span className="fw-bold">大人</span> :
+                            <span className="fw-bold">大人</span>
                             <select
                               name=""
                               className="form-select ms-2"
@@ -210,10 +216,11 @@ const Cart = () => {
                                 );
                               })}
                             </select>
+                            <i className="bi bi-person-fill ms-2 cart-icon"></i>
                           </div>
                           {/* 小孩select */}
                           <div className="input-group w-25 align-items-center">
-                            <span className="fw-bold">小孩</span> :
+                            <span className="fw-bold">小孩</span>
                             <select
                               name=""
                               className="form-select ms-2"
@@ -236,6 +243,7 @@ const Cart = () => {
                                 );
                               })}
                             </select>
+                            <i className="bi bi-person-fill ms-2 cart-icon"></i>
                           </div>
                         </div>
                         <div className="row justify-content-between mt-5">
@@ -245,7 +253,7 @@ const Cart = () => {
                                 {" "}
                                 <div className="input-group  w-75">
                                   <button
-                                    class="btn btn-secondary"
+                                    className="btn btn-secondary"
                                     type="button"
                                     id="button-addon1"
                                     onClick={() => addCoupon(couponCode)}
@@ -268,7 +276,8 @@ const Cart = () => {
                                 <div className="">
                                   {" "}
                                   {localStorage.getItem("couponInfStorage") ? (
-                                    <p className="text-secondary mt-1">
+                                    <p className="coupon-success mt-1">
+                                      <i className="bi bi-check-circle-fill me-2"></i>
                                       {
                                         JSON.parse(
                                           localStorage.getItem(
@@ -278,9 +287,12 @@ const Cart = () => {
                                       }
                                     </p>
                                   ) : (
-                                    <p className="text-secondary mt-1">
-                                      {couponInf.message}
-                                    </p>
+                                    couponInf.message && (
+                                      <p className="coupon-error mt-1">
+                                        <i className="bi bi-exclamation-circle-fill me-2"></i>
+                                        {couponInf.message}
+                                      </p>
+                                    )
                                   )}
                                 </div>
                               </div>
@@ -297,14 +309,16 @@ const Cart = () => {
                               >
                                 總金額 :
                                 {adultQuantity + childrenQuantity > 0
-                                  ? ` NT$${total}`
+                                  ? ` NT$${formatNumberWithCommas(total)}`
                                   : ""}
                               </p>
                               {localStorage.getItem("couponInfStorage") && (
                                 <p className="mb-0 h5 fw-bold text-danger mt-2">
                                   優惠總金額:
                                   {adultQuantity + childrenQuantity > 0
-                                    ? `NT$${couponTotal}`
+                                    ? `NT$${formatNumberWithCommas(
+                                        couponTotal
+                                      )}`
                                     : ""}
                                 </p>
                               )}
@@ -319,7 +333,7 @@ const Cart = () => {
                 {(adultQuantity === 0 && childrenQuantity === 0) ||
                 selectedDate === null ? (
                   <button
-                    className="btn btn-dark w-100 mt-4 rounded-0 py-3"
+                    className="booking-btn w-100 mt-4 rounded-0 py-3"
                     disabled
                   >
                     請選擇人數
@@ -327,7 +341,7 @@ const Cart = () => {
                 ) : (
                   <Link
                     to="/checkout"
-                    className="btn btn-dark w-100 mt-4 rounded-0 py-3"
+                    className="booking-btn w-100 mt-4 rounded-0 py-3 d-block text-center"
                     onClick={submit}
                   >
                     填寫資料

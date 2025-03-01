@@ -1,27 +1,31 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import moment from "moment";
 
 const TravelCalendar = ({ product, onDateSelected }) => {
   const [selectedDate, setSelectedDate] = useState(moment());
+  const [calendarDates, setCalendarDates] = useState([]);
+  const calendarRef = useRef(null);
   const currentDate = moment();
 
+  // 設定日曆的結束日期為 2025 年底
+  const endDate = moment("2025-12-31");
+
   // 取得當前月份的所有日期
-  const datesInMonth = () => {
+  const getDatesInMonth = () => {
     const date = selectedDate.clone().startOf("month");
     const datesArray = [];
 
-    // 從當前月份的第一天開始
     while (date.month() === selectedDate.month()) {
       datesArray.push(date.clone());
       date.add(1, "day");
     }
 
-    // 將日期補到第一天是星期日
+    // 確保第一週從週日開始
     while (datesArray[0].day() !== 0) {
       datesArray.unshift(datesArray[0].clone().subtract(1, "day"));
     }
 
-    // 將日期補到最後一天是星期六
+    // 確保最後一週到週六結束
     while (datesArray[datesArray.length - 1].day() !== 6) {
       datesArray.push(datesArray[datesArray.length - 1].clone().add(1, "day"));
     }
@@ -29,32 +33,67 @@ const TravelCalendar = ({ product, onDateSelected }) => {
     return datesArray;
   };
 
+  // 當月份變更時，更新日期陣列
+  useEffect(() => {
+    setCalendarDates(getDatesInMonth());
+  }, [selectedDate]);
+
   // 處理日期選擇
   const handleDateClick = (date) => {
-    if (date.isBefore(currentDate, "day") || date.isAfter(moment("2024-12-31")))
-      return; // 如果日期在當前日期之前或2024年12月31日之後,不做任何操作
+    if (date.isBefore(currentDate, "day") || date.isAfter(endDate)) return;
     setSelectedDate(date);
-    // 調用父組件傳遞的 onDateSelected 回調函數
     onDateSelected(date);
-    // 在這裡添加你的價格查詢邏輯
-    console.log(`選擇的日期: ${date.format("YYYY-MM-DD")}`);
   };
 
-  // 渲染日曆
+  // 判斷日期是否可點選
+  const isDateSelectable = (date) => {
+    return !date.isBefore(currentDate, "day") && !date.isAfter(endDate);
+  };
+
+  // 切換到上個月
+  const goToPreviousMonth = () => {
+    setSelectedDate(selectedDate.clone().subtract(1, "month"));
+  };
+
+  // 切換到下個月
+  const goToNextMonth = () => {
+    setSelectedDate(selectedDate.clone().add(1, "month").startOf("month"));
+  };
+
+  // 確保每個月份渲染完成後重新計算佈局
+  useEffect(() => {
+    if (calendarRef.current) {
+      // 強制重新計算佈局，確保所有日期格子能正確顯示
+      const cells = calendarRef.current.querySelectorAll(".day-cell");
+      if (cells.length > 0) {
+        // 觸發重繪
+        setTimeout(() => {
+          cells.forEach((cell) => {
+            cell.style.display = "flex";
+          });
+        }, 0);
+      }
+    }
+  }, [calendarDates]);
+
+  // 計算日期格子的類名
+  const getDateCellClassName = (date) => {
+    return `day-cell ${date.isSame(selectedDate, "day") ? "selected" : ""} ${
+      !isDateSelectable(date) ? "past-date" : ""
+    } ${date.month() !== selectedDate.month() ? "adjacent-month-date" : ""} ${
+      date.day() === 6 ? "saturday" : ""
+    }`;
+  };
+
   return (
-    <div className="travel-calendar">
+    <div className="travel-calendar" ref={calendarRef}>
       <div className="calendar-header">
         <div className="prev-month-container">
           <button
             className={`prev-month ${
               selectedDate.isSame(currentDate, "month") ? "d-none" : ""
             }`}
-            onClick={
-              selectedDate.isSame(currentDate, "month")
-                ? () => {}
-                : () =>
-                    setSelectedDate(selectedDate.clone().subtract(1, "month"))
-            }
+            onClick={goToPreviousMonth}
             disabled={selectedDate.isSame(currentDate, "month")}
           >
             <i className="fas fa-chevron-left text-white"></i>
@@ -68,59 +107,44 @@ const TravelCalendar = ({ product, onDateSelected }) => {
         <div className="next-month-container">
           <button
             className={`next-month ${
-              selectedDate.isSame(moment("2024-12-01"), "month") ? "d-none" : ""
+              selectedDate.isSame(endDate, "month") ? "d-none" : ""
             }`}
-            onClick={() =>
-              setSelectedDate(
-                selectedDate.clone().add(1, "month").startOf("month")
-              )
-            }
+            onClick={goToNextMonth}
+            disabled={selectedDate.isSame(endDate, "month")}
           >
             <i
               className={`fas fa-chevron-right ${
-                selectedDate.isSame(moment("2024-12-01"), "month")
-                  ? "d-none"
-                  : "text-white"
+                selectedDate.isSame(endDate, "month") ? "d-none" : "text-white"
               }`}
             ></i>
           </button>
         </div>
       </div>
       <div className="calendar-body">
-        {["日", "一", "二", "三", "四", "五", "六"].map((day) => (
-          <div className="day-name" key={day}>
+        {["日", "一", "二", "三", "四", "五", "六"].map((day, index) => (
+          <div
+            className={`day-name ${index === 6 ? "saturday" : ""}`}
+            key={day}
+          >
             {day}
           </div>
         ))}
-        {datesInMonth().map((date) => (
+        {calendarDates.map((date) => (
           <div
             key={date.format("YYYY-MM-DD")}
-            className={`day-cell ${
-              date.isSame(selectedDate, "day") ? "selected" : ""
-            } ${
-              date.isBefore(currentDate, "day") ||
-              date.isAfter(moment("2024-12-31"))
-                ? "past-date"
-                : ""
-            } ${
-              date.month() !== selectedDate.month() ? "adjacent-month-date" : ""
-            }`}
+            className={getDateCellClassName(date)}
             onClick={
-              date.isBefore(currentDate, "day") ||
-              date.isAfter(moment("2024-12-31"))
-                ? null
-                : () => handleDateClick(date)
+              isDateSelectable(date) ? () => handleDateClick(date) : null
             }
           >
             <div className="fw-bolder">{date.date()}</div>
-            {!date.isBefore(currentDate, "day") &&
-              !date.isAfter(moment("2024-12-31")) && (
-                <small>
-                  {typeof product.price === "number"
-                    ? product.price.toLocaleString()
-                    : ""}
-                </small>
-              )}
+            {isDateSelectable(date) && (
+              <small>
+                {typeof product.price === "number"
+                  ? product.price.toLocaleString()
+                  : ""}
+              </small>
+            )}
           </div>
         ))}
       </div>

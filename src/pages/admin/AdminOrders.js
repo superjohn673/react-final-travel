@@ -41,14 +41,12 @@ const AdminOrders = () => {
     const orderRes = await axios.get(
       `/v2/api/${process.env.REACT_APP_API_PATH}/admin/orders?page=${page}`
     );
-    console.log("訂單", orderRes);
     setOrders(orderRes.data.orders);
     setPagination(orderRes.data.pagination);
   };
 
   const openOrderModal = (order) => {
     if (order) {
-      console.log("order", order);
       setTempOrder(order);
       orderModal.current.show();
     }
@@ -85,7 +83,7 @@ const AdminOrders = () => {
     allDeleteModal.current.hide();
   };
 
-  const deleteAllOrders = async (id) => {
+  const deleteAllOrders = async () => {
     try {
       const res = await axios.delete(
         `/v2/api/${process.env.REACT_APP_API_PATH}/admin/orders/all`

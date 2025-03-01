@@ -1,49 +1,68 @@
 import { useContext } from "react";
 import { AppContext } from "../../store/AppContext";
-import { FaHeart } from "react-icons/fa";
+import { FaHeart, FaCalendarAlt, FaEye, FaTrashAlt } from "react-icons/fa";
+import { Link } from "react-router-dom";
+import { formatNumberWithCommas } from "../../utils/helpers";
 
 const MyFavorite = () => {
   const { favorites, removeFromFavorites } = useContext(AppContext);
 
   return (
-    <div className="container my-5">
-      <p className="fs-4 text-center fw-bold mb-4">我的最愛</p>
+    <div className="favorite-section">
+      <div className="card">
+        <div className="card-header">
+          <h5>
+            <FaHeart className="me-2" /> 我的最愛
+          </h5>
+        </div>
+        <div className="card-body">
+          {favorites.length === 0 && (
+            <div className="empty-favorites">
+              <FaHeart size={60} />
+              <p className="mb-0">您的收藏列表是空的</p>
+              <Link to="/" className="btn-explore">
+                開始探索旅遊行程
+              </Link>
+            </div>
+          )}
 
-      <div className="row ">
-        {favorites.map((product) => (
-          <div className="col-sm-6 col-lg-4 mb-5" key={product.id}>
-            <div className="card border-1 mb-4 position-relative h-100">
-              <img
-                src={product.imageUrl}
-                className="card-img-top rounded-1 object-cover"
-                height={300}
-                alt="..."
-              />
-              <div className="card-body p-2 d-flex flex-column justify-content-between">
-                <h5 className="mb-0 mt-2 card-title tour__name">
-                  {product.title}
-                </h5>
-                <div className="row justify-content-between ">
-                  <div className="col-md-8 ">
-                    <i className="bi bi-calendar2-date-fill text-muted"></i>
-                    <span className="ms-2 text-muted">
-                      07/02, 07/27, 08/06, 09/03...
-                    </span>
+          {favorites.length > 0 && (
+            <div className="favorite-grid">
+              {favorites.map((product) => (
+                <div className="favorite-item" key={product.id}>
+                  <div className="favorite-image">
+                    <img src={product.imageUrl} alt={product.title} />
                   </div>
-                  <div className=" col-md-4 text-end ">
-                    <span className="tour__price">NT$ {product.price}</span>
+                  <div className="favorite-badge">熱門行程</div>
+                  <div className="favorite-content">
+                    <h5>{product.title}</h5>
+                    <div className="favorite-info">
+                      <FaCalendarAlt />
+                      <span>07/02, 07/27, 08/06, 09/03...</span>
+                    </div>
+                    <div className="favorite-price">
+                      NT$ {formatNumberWithCommas(product.price)}
+                    </div>
+                  </div>
+                  <div className="favorite-actions">
+                    <Link
+                      to={`/product/${product.id}`}
+                      className="btn btn-cart"
+                    >
+                      <FaEye /> 查看行程內容
+                    </Link>
+                    <button
+                      className="btn btn-remove"
+                      onClick={() => removeFromFavorites(product.id)}
+                    >
+                      <FaTrashAlt />
+                    </button>
                   </div>
                 </div>
-              </div>
-              <div
-                className="position-absolute top-0 end-0 m-2 text-danger"
-                onClick={() => removeFromFavorites(product.id)}
-              >
-                <FaHeart size={20} />
-              </div>
+              ))}
             </div>
-          </div>
-        ))}
+          )}
+        </div>
       </div>
     </div>
   );

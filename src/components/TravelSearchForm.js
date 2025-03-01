@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -34,8 +34,10 @@ const countries = [
 ];
 
 const TravelSearchForm = ({ onToggle }) => {
-  const [startDate, setStartDate] = useState(null);
-  const [endDate, setEndDate] = useState(null);
+  // 設定今天的日期作為預設值
+  const today = new Date();
+  const [startDate, setStartDate] = useState(today);
+  const [endDate, setEndDate] = useState(today);
   const [departure, setDeparture] = useState("");
   const [destination, setDestination] = useState("");
   const navigate = useNavigate();
@@ -84,7 +86,6 @@ const TravelSearchForm = ({ onToggle }) => {
         url = "/area-japan/kyushu";
         break;
       default:
-        console.log("目的地無效");
         return;
     }
 
@@ -105,6 +106,7 @@ const TravelSearchForm = ({ onToggle }) => {
               dateFormat="yyyy-MM-dd"
               placeholderText="選擇出發日期"
               className="travel-search-form__input"
+              minDate={today} // 設定最小可選日期為今天
             />
           </div>
           <div className="travel-search-form__group">
@@ -116,6 +118,7 @@ const TravelSearchForm = ({ onToggle }) => {
               dateFormat="yyyy-MM-dd"
               placeholderText="選擇結束日期"
               className="travel-search-form__input"
+              minDate={startDate || today} // 設定最小可選日期為出發日期或今天
             />
           </div>
         </div>
