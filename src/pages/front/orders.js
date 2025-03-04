@@ -89,7 +89,9 @@ const Orders = () => {
                       className="me-2"
                       style={{ color: "rgb(151, 125, 6)" }}
                     />
-                    <span className="me-3">下單日期：{formatDate()}</span>
+                    <span className="me-3 order-date">
+                      下單日期：{formatDate()}
+                    </span>
                     <span
                       className={`order-status ${
                         order.is_paid ? "paid" : "unpaid"
@@ -120,7 +122,7 @@ const Orders = () => {
                           </div>
                           <div className="detail-item">
                             <FaMapMarkerAlt />
-                            <span>日本東京</span>
+                            <span>東京</span>
                           </div>
                           <div className="detail-item">
                             <FaClock />

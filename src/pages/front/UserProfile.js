@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FaUserCircle, FaEdit, FaSave } from "react-icons/fa";
+import { FaUserCircle, FaEdit, FaSave, FaUser } from "react-icons/fa";
 
 const UserProfile = () => {
   const [user, setUser] = useState({
@@ -27,7 +27,10 @@ const UserProfile = () => {
   return (
     <div className="card">
       <div className="card-header d-flex justify-content-between align-items-center">
-        <h5 className="mb-0">個人資料</h5>
+        <h5 className="mb-0 d-flex align-items-center">
+          <FaUser className="me-2" style={{ color: "rgb(151, 125, 6)" }} />
+          個人資料
+        </h5>
         {user.isEditing ? (
           <button className="btn btn-primary" onClick={handleSave}>
             <FaSave className="me-2" />

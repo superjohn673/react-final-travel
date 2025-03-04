@@ -227,7 +227,7 @@ const ContactUs = () => {
                   <>
                     <div className="form-row">
                       <div className="form-group">
-                        <label htmlFor="name">
+                        <label htmlFor="name" className="required">
                           <FontAwesomeIcon icon={faUser} /> 聯絡人姓名
                         </label>
                         <input
@@ -246,7 +246,7 @@ const ContactUs = () => {
                       </div>
 
                       <div className="form-group">
-                        <label htmlFor="email">
+                        <label htmlFor="email" className="required">
                           <FontAwesomeIcon icon={faEnvelope} /> 電子信箱
                         </label>
                         <input
@@ -269,7 +269,7 @@ const ContactUs = () => {
 
                     <div className="form-row">
                       <div className="form-group">
-                        <label htmlFor="phone">
+                        <label htmlFor="phone" className="required">
                           <FontAwesomeIcon icon={faPhone} /> 聯絡電話
                         </label>
                         <input
@@ -305,7 +305,7 @@ const ContactUs = () => {
                     </div>
 
                     <div className="form-group">
-                      <label htmlFor="subject">
+                      <label htmlFor="subject" className="required">
                         <FontAwesomeIcon icon={faComments} /> 諮詢主題
                       </label>
                       <select
@@ -324,7 +324,7 @@ const ContactUs = () => {
                     </div>
 
                     <div className="form-group">
-                      <label htmlFor="message">
+                      <label htmlFor="message" className="required">
                         <FontAwesomeIcon icon={faComments} /> 需求說明
                       </label>
                       <textarea

@@ -6,12 +6,15 @@ import { AppContext } from "../../store/AppContext";
 import CartNavigator from "../../components/CartNavigator";
 import RecommendedProducts from "../../components/RecommendedProducts";
 import { formatNumberWithCommas } from "../../utils/helpers";
+import ButtonWithLoading from "../../components/ButtonWithLoading";
 
 const Cart = () => {
   const { cartData, getCart } = useOutletContext();
   const [couponCode, setCouponCode] = useState("");
   const [couponInf, setCouponInf] = useState({});
   const [loadingItems, setLoadingItem] = useState([]);
+  const [isCouponLoading, setIsCouponLoading] = useState(false);
+  const [isRemovingItem, setIsRemovingItem] = useState(null);
 
   const {
     selectedDate,
@@ -25,6 +28,9 @@ const Cart = () => {
   } = useContext(AppContext);
 
   const removeCartItem = async (id) => {
+    // 設置正在移除的項目 ID
+    setIsRemovingItem(id);
+
     localStorage.removeItem("selectedDateStorage");
     localStorage.removeItem("adultQuantityStorage");
     localStorage.removeItem("childrenQuantityStorage");
@@ -41,6 +47,9 @@ const Cart = () => {
       getCart();
     } catch (error) {
       console.log(error);
+    } finally {
+      // 無論成功或失敗，都清除正在移除的項目 ID
+      setIsRemovingItem(null);
     }
   };
 
@@ -104,6 +113,9 @@ const Cart = () => {
 
   //套用優惠券
   const addCoupon = async (code) => {
+    // 設置 loading 狀態為 true
+    setIsCouponLoading(true);
+
     const coupon = {
       data: {
         code,
@@ -120,8 +132,11 @@ const Cart = () => {
       getCart();
     } catch (error) {
       console.log(error);
-
+      localStorage.removeItem("couponInfStorage");
       setCouponInf(error.response.data);
+    } finally {
+      // 無論成功或失敗，都將 loading 狀態設為 false
+      setIsCouponLoading(false);
     }
   };
 
@@ -168,15 +183,16 @@ const Cart = () => {
                         />
                       </div>
                       <div className="w-100 p-3 position-relative">
-                        <button
+                        <ButtonWithLoading
                           type="button"
                           className="position-absolute cart-remove-btn"
-                          onClick={() => {
-                            removeCartItem(item.id);
-                          }}
+                          onClick={() => removeCartItem(item.id)}
+                          isLoading={isRemovingItem === item.id}
+                          loadingText=""
+                          isIconButton={true}
                         >
                           <i className="bi bi-x-lg"></i>
-                        </button>
+                        </ButtonWithLoading>
                         <div className="product-header mb-4">
                           <span className="product-tag">日本行程</span>
                           <h4 className="mb-3 fw-bold ">
@@ -252,25 +268,35 @@ const Cart = () => {
                               <div className="col-12">
                                 {" "}
                                 <div className="input-group  w-75">
-                                  <button
+                                  <ButtonWithLoading
                                     className="btn btn-secondary"
                                     type="button"
                                     id="button-addon1"
                                     onClick={() => addCoupon(couponCode)}
+                                    isLoading={isCouponLoading}
+                                    disabled={
+                                      (adultQuantity === 0 &&
+                                        childrenQuantity === 0) ||
+                                      !couponCode.trim()
+                                    }
+                                    loadingText="處理中..."
                                   >
                                     使用優惠碼
-                                  </button>
+                                  </ButtonWithLoading>
                                   <input
                                     type="text"
-                                    className="form-control "
-                                    placeholder=""
+                                    className="form-control"
+                                    placeholder="請輸入優惠碼"
                                     aria-label="Example text with button addon"
                                     aria-describedby="button-addon1"
                                     value={couponCode}
                                     onChange={(e) =>
                                       setCouponCode(e.target.value)
                                     }
-                                    // onBlur={() => addCoupon(couponCode)}
+                                    disabled={
+                                      adultQuantity === 0 &&
+                                      childrenQuantity === 0
+                                    }
                                   />
                                 </div>
                                 <div className="">
@@ -287,10 +313,12 @@ const Cart = () => {
                                       }
                                     </p>
                                   ) : (
-                                    couponInf.message && (
+                                    (couponInf.message ||
+                                      (!couponCode.trim() &&
+                                        couponCode !== "")) && (
                                       <p className="coupon-error mt-1">
                                         <i className="bi bi-exclamation-circle-fill me-2"></i>
-                                        {couponInf.message}
+                                        {couponInf.message || "請輸入優惠碼"}
                                       </p>
                                     )
                                   )}
@@ -317,7 +345,7 @@ const Cart = () => {
                                   優惠總金額:
                                   {adultQuantity + childrenQuantity > 0
                                     ? `NT$${formatNumberWithCommas(
-                                        couponTotal
+                                        Math.round(couponTotal)
                                       )}`
                                     : ""}
                                 </p>

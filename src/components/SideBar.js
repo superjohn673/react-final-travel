@@ -148,7 +148,7 @@ const Sidebar = ({ isOpen, onToggle }) => {
         >
           <i className="bi bi-x"></i>
         </button>
-        <div className="container px-5">
+        <div className="container px-3">
           <div className="row mt-4 mb-3 side-link justify-content-between">
             <div className="mb-3 member-link">
               <Link to="member/orders" className="link" onClick={onToggle}>

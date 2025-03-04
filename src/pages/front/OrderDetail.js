@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 import Loading from "../../components/Loading";
+import ButtonWithLoading from "../../components/ButtonWithLoading";
 import { formatNumberWithCommas } from "../../utils/helpers";
 import {
   FaCalendarAlt,
@@ -22,6 +23,7 @@ const OrderDetail = () => {
   const { orderId } = useParams();
   const [order, setOrder] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [isPaymentLoading, setIsPaymentLoading] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -41,15 +43,18 @@ const OrderDetail = () => {
   }, [orderId]);
 
   const handlePay = async () => {
+    setIsPaymentLoading(true);
+
     try {
       await axios.post(
         `/v2/api/${process.env.REACT_APP_API_PATH}/pay/${order.id}`
       );
-      // 更新訂單狀態
       setOrder({ ...order, is_paid: true });
       navigate("/member/orders");
     } catch (error) {
       console.error("Error paying order:", error);
+      alert("付款失敗，請稍後再試");
+      setIsPaymentLoading(false);
     }
   };
 
@@ -75,10 +80,10 @@ const OrderDetail = () => {
               <FaArrowLeft /> 返回訂單列表
             </Link>
             <h2 className="order-detail-title">訂單詳情</h2>
-            <div className="order-meta">
+            <div className="order-meta d-flex flex-md-row flex-column text-nowrap">
               <div className="order-id">
-                <span className="label">訂單編號:</span>
-                <span className="value">{order.id}</span>
+                <span className="label ">訂單編號:</span>
+                <span className="value ">{order.id}</span>
               </div>
               <div
                 className={`order-status ${order.is_paid ? "paid" : "unpaid"}`}
@@ -196,10 +201,15 @@ const OrderDetail = () => {
               </span>
             </div>
             {!order.is_paid && (
-              <button className="btn-pay" onClick={handlePay}>
+              <ButtonWithLoading
+                className="btn-pay"
+                onClick={handlePay}
+                isLoading={isPaymentLoading}
+                loadingText="付款中..."
+              >
                 <FaCreditCard className="btn-icon" />
                 立即付款
-              </button>
+              </ButtonWithLoading>
             )}
           </div>
         </div>

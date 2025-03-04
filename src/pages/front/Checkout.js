@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Link, useOutletContext, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { AppContext } from "../../store/AppContext";
@@ -6,9 +6,11 @@ import { Input } from "../../components/FormElements";
 import axios from "axios";
 import CartNavigator from "../../components/CartNavigator";
 import { formatNumberWithCommas } from "../../utils/helpers";
+import ButtonWithLoading from "../../components/ButtonWithLoading";
 
 const Checkout = () => {
   const { cartData, getCart } = useOutletContext();
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const {
     selectedDate,
     adultQuantity,
@@ -38,23 +40,31 @@ const Checkout = () => {
   };
 
   const onSubmit = async (data) => {
-    const { name, email, tel, address } = data;
-    const form = {
-      data: {
-        user: {
-          name,
-          email,
-          tel,
-          address,
+    setIsSubmitting(true);
+
+    try {
+      const { name, email, tel, address } = data;
+      const form = {
+        data: {
+          user: {
+            name,
+            email,
+            tel,
+            address,
+          },
         },
-      },
-    };
-    const res = await axios.post(
-      `/v2/api/${process.env.REACT_APP_API_PATH}/order`,
-      form
-    );
-    removeCartItem();
-    navigate(`/success/${res.data.orderId}`);
+      };
+      const res = await axios.post(
+        `/v2/api/${process.env.REACT_APP_API_PATH}/order`,
+        form
+      );
+      removeCartItem();
+      navigate(`/success/${res.data.orderId}`);
+    } catch (error) {
+      console.log(error);
+      alert("報名失敗，請稍後再試");
+      setIsSubmitting(false);
+    }
   };
   return (
     <div className="bg-light py-6 my-6 full-height checkout-page">
@@ -138,12 +148,14 @@ const Checkout = () => {
               </div>
               <div className="col-7 col-md-5 text-end">
                 {" "}
-                <button
+                <ButtonWithLoading
                   type="submit"
                   className="booking-btn py-3 px-4 rounded-0"
+                  isLoading={isSubmitting}
+                  loadingText="報名中..."
                 >
                   確認報名
-                </button>
+                </ButtonWithLoading>
               </div>
             </div>
           </form>
@@ -231,7 +243,7 @@ const Checkout = () => {
                 >
                   <div className="total-label">優惠總金額</div>
                   <div className="total-value">
-                    NT$ {formatNumberWithCommas(finalCouponTotal)}
+                    NT$ {formatNumberWithCommas(Math.round(finalCouponTotal))}
                   </div>
                 </div>
                 <div className="checkout-total-row deposit">
