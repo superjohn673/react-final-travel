@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/react-final-travel/static/css/main.94857a4b.css",
-    "main.js": "/react-final-travel/static/js/main.74d867e9.js",
+    "main.css": "/react-final-travel/static/css/main.ed3ec56c.css",
+    "main.js": "/react-final-travel/static/js/main.3dc97309.js",
     "static/media/rmd-temple.jpg": "/react-final-travel/static/media/rmd-temple.0b9e7d2ac3724aa28e83.jpg",
     "static/media/rmd-shopping.jpg": "/react-final-travel/static/media/rmd-shopping.0055aaa22bcb48c20b48.jpg",
     "static/media/area-tohoku.jpg": "/react-final-travel/static/media/area-tohoku.c6dbf4e8843be29a3876.jpg",
@@ -37,6 +37,7 @@
     "static/media/season-winter.jpg": "/react-final-travel/static/media/season-winter.84675350147cc5f9be38.jpg",
     "static/media/bootstrap-icons.woff?": "/react-final-travel/static/media/bootstrap-icons.39795c0b4513de014cf8.woff",
     "static/media/home-vibe.jpg": "/react-final-travel/static/media/home-vibe.de5c7f769c903b4aa855.jpg",
+    "static/media/servicelocation.jpg": "/react-final-travel/static/media/servicelocation.588195a853f46f10a98c.jpg",
     "static/media/home-fuji.jpg": "/react-final-travel/static/media/home-fuji.8f622f4ea1ffcf2eb335.jpg",
     "static/media/season-summer.jpg": "/react-final-travel/static/media/season-summer.6d5bbb66bc04782cc1eb.jpg",
     "static/media/tour-rail.jpg": "/react-final-travel/static/media/tour-rail.35bdb4f811d6314c3a01.jpg",
@@ -49,11 +50,11 @@
     "static/media/slick.eot": "/react-final-travel/static/media/slick.a4e97f5a2a64f0ab1323.eot",
     "static/media/slick.ttf": "/react-final-travel/static/media/slick.c94f7671dcc99dce43e2.ttf",
     "static/media/slick.woff": "/react-final-travel/static/media/slick.295183786cd8a1389865.woff",
-    "main.94857a4b.css.map": "/react-final-travel/static/css/main.94857a4b.css.map",
-    "main.74d867e9.js.map": "/react-final-travel/static/js/main.74d867e9.js.map"
+    "main.ed3ec56c.css.map": "/react-final-travel/static/css/main.ed3ec56c.css.map",
+    "main.3dc97309.js.map": "/react-final-travel/static/js/main.3dc97309.js.map"
   },
   "entrypoints": [
-    "static/css/main.94857a4b.css",
-    "static/js/main.74d867e9.js"
+    "static/css/main.ed3ec56c.css",
+    "static/js/main.3dc97309.js"
   ]
 }
