@@ -1,16 +1,28 @@
 import { Link, useParams } from "react-router-dom";
 import axios from "axios";
+<<<<<<< HEAD
+import React, { useEffect, useState, useContext, useCallback } from "react";
+import { Spinner } from "react-bootstrap";
+import { formatDate, formatNumberWithCommas } from "../../utils/helpers";
+import CartNavigator from "../../components/CartNavigator";
+import { AppContext } from "../../store/AppContext";
+=======
 import React, { useEffect, useState, useContext } from "react";
 import { Spinner } from "react-bootstrap";
 import { formatDate } from "../../utils/helpers";
 import CartNavigator from "../../components/CartNavigator";
 import { AppContext } from "../../store/AppContext";
 import { formatNumberWithCommas } from "../../utils/helpers";
+>>>>>>> main
 
 function Success() {
   const [orderData, setOrderData] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
+<<<<<<< HEAD
+  const [recommendedTours, setRecommendedTours] = useState([]);
+=======
+>>>>>>> main
   const { orderId } = useParams();
 
   const {
@@ -45,14 +57,47 @@ function Success() {
     }
   };
 
+  // 獲取推薦行程
+  const getRecommendedTours = useCallback(async () => {
+    try {
+      const res = await axios.get(
+        `/v2/api/${process.env.REACT_APP_API_PATH}/products/all`
+      );
+      const allTours = res.data.products;
+      // 過濾掉當前行程，並隨機選擇3個推薦行程
+      const filteredTours = allTours.filter(
+        (tour) => tour.id !== orderData?.products?.[0]?.product?.id
+      );
+      const randomTours = filteredTours
+        .sort(() => 0.5 - Math.random())
+        .slice(0, 3);
+      setRecommendedTours(randomTours);
+    } catch (error) {
+      console.log(error);
+    }
+  }, [orderData]);
+
   useEffect(() => {
     getOrder(orderId);
   }, [orderId]);
+
+<<<<<<< HEAD
+  useEffect(() => {
+    if (orderData?.products) {
+      getRecommendedTours();
+    }
+  }, [orderData, getRecommendedTours]);
 
   return (
     <div className="container py-5 success-page">
       <CartNavigator currentStep={3} />
 
+=======
+  return (
+    <div className="container py-5 success-page">
+      <CartNavigator currentStep={3} />
+
+>>>>>>> main
       {isLoading ? (
         <div
           className="d-flex justify-content-center align-items-center"
@@ -189,7 +234,14 @@ function Success() {
                         <div className="total-row">
                           <div className="total-label">總金額</div>
                           <div className="total-value">
+<<<<<<< HEAD
+                            NT${" "}
+                            {formatNumberWithCommas(
+                              Math.round(finalCouponTotal)
+                            )}
+=======
                             NT$ {formatNumberWithCommas(finalCouponTotal)}
+>>>>>>> main
                           </div>
                         </div>
 
@@ -206,14 +258,25 @@ function Success() {
                               <div className="total-value">
                                 - NT${" "}
                                 {formatNumberWithCommas(
+<<<<<<< HEAD
+                                  Math.round(finalTotal - finalCouponTotal)
+=======
                                   finalTotal - finalCouponTotal
+>>>>>>> main
                                 )}
                               </div>
                             </div>
                             <div className="total-row">
                               <div className="total-label">折扣後總金額</div>
                               <div className="total-value">
+<<<<<<< HEAD
+                                NT${" "}
+                                {formatNumberWithCommas(
+                                  Math.round(finalCouponTotal)
+                                )}
+=======
                                 NT$ {formatNumberWithCommas(finalCouponTotal)}
+>>>>>>> main
                               </div>
                             </div>
                           </>
@@ -243,6 +306,59 @@ function Success() {
               </div>
             </div>
           </div>
+<<<<<<< HEAD
+
+          {/* 新增推薦行程區塊 */}
+          <div className="recommended-tours-section">
+            <div className="section-header">
+              <h2 className="section-title">您可能也喜歡</h2>
+              <p className="section-subtitle">探索更多精彩行程</p>
+            </div>
+
+            <div className="row">
+              {recommendedTours.map((tour) => (
+                <div className="col-md-4 mb-4" key={tour.id}>
+                  <div className="tour-card">
+                    <div
+                      className="tour-image"
+                      style={{
+                        backgroundImage: `url(${tour.imageUrl})`,
+                      }}
+                    >
+                      <div className="tour-overlay">
+                        <Link
+                          to={`/product/${tour.id}`}
+                          className="view-tour-btn"
+                        >
+                          查看行程
+                        </Link>
+                      </div>
+                    </div>
+                    <div className="tour-content">
+                      <h3 className="tour-title">{tour.title}</h3>
+                      <div className="tour-info">
+                        <span className="tour-price">
+                          NT$ {formatNumberWithCommas(tour.price)}
+                        </span>
+                        <span className="tour-duration">
+                          <i className="bi bi-clock"></i>熱門行程
+                        </span>
+                      </div>
+                      <p className="tour-description">{tour.description}</p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div className="text-center mt-5">
+              <Link to="/tour/classic-japan" className="explore-more-btn">
+                <i className="bi bi-compass"></i> 探索更多行程
+              </Link>
+            </div>
+          </div>
+=======
+>>>>>>> main
         </>
       )}
     </div>

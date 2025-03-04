@@ -1,5 +1,18 @@
+import React from "react";
 import ReactLoading from "react-loading";
-function Loading({ isLoading }) {
+
+function Loading({ isLoading, isButtonLoading = false, text = "處理中..." }) {
+  // 按鈕內部使用的小型 loading 元件
+  if (isButtonLoading) {
+    return isLoading ? (
+      <div className="d-flex align-items-center justify-content-center">
+        <ReactLoading type="spin" color="white" height={20} width={20} />
+        <span className="ms-2">{text}</span>
+      </div>
+    ) : null;
+  }
+
+  // 原有的全頁面 loading 元件
   return (
     <>
       {isLoading && (

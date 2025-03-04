@@ -12,6 +12,7 @@ import axios from "axios";
 import Loading from "../../components/Loading";
 import TravelCalendar from "../../components/TravelCalendar";
 import { formatNumberWithCommas } from "../../utils/helpers";
+import ButtonWithLoading from "../../components/ButtonWithLoading";
 
 const parseItinerary = (htmlContent) => {
   if (!htmlContent) {
@@ -160,9 +161,13 @@ const ProductDetail = () => {
   };
 
   const addToCart = async () => {
+    // 設置 loading 狀態為 true，防止重複點擊
+    setIsLoading(true);
+
     if (cartData?.carts?.length > 0) {
-      alert("尚有未確認的行程");
+      alert("購物車尚有未確認的行程");
       navigate("/cart");
+      setIsLoading(false); // 設置 loading 狀態為 false
       return;
     }
     localStorage.removeItem("couponInfStorage");
@@ -190,7 +195,11 @@ const ProductDetail = () => {
       navigate("/cart");
     } catch (error) {
       console.log(error);
-      setIsLoading(true);
+      // 已經設置了 isLoading 為 true，但在這裡可能需要顯示錯誤提示
+      alert("加入購物車失敗，請稍後再試");
+    } finally {
+      // 無論成功或失敗，都將 loading 狀態設為 false
+      setIsLoading(false);
     }
   };
 
@@ -199,19 +208,19 @@ const ProductDetail = () => {
   };
 
   // 格式化星期幾
-  const formatWeekday = (date) => {
-    const weekdays = ["日", "一", "二", "三", "四", "五", "六"];
-    return weekdays[date.day()];
-  };
+  // const formatWeekday = (date) => {
+  //   const weekdays = ["日", "一", "二", "三", "四", "五", "六"];
+  //   return weekdays[date.day()];
+  // };
 
   // 格式化日期顯示
-  const formatSelectedDate = (date) => {
-    if (!date) return null;
-    return {
-      formatted: date.format("YYYY-MM-DD"),
-      weekday: formatWeekday(date),
-    };
-  };
+  // const formatSelectedDate = (date) => {
+  //   if (!date) return null;
+  //   return {
+  //     formatted: date.format("YYYY-MM-DD"),
+  //     weekday: formatWeekday(date),
+  //   };
+  // };
 
   // 檢查是否可以報名
   const canRegister = (adult, children, selectedDate) => {
@@ -447,14 +456,15 @@ const ProductDetail = () => {
                 </div>
               </div>
 
-              <button
-                type="button"
-                className=" w-100 booking-btn"
-                onClick={() => addToCart()}
-                disabled={isButtonDisabled || isLoading}
+              <ButtonWithLoading
+                className="w-100 booking-btn"
+                onClick={addToCart}
+                isLoading={isLoading}
+                disabled={isButtonDisabled}
+                loadingText="報名中..."
               >
                 {isButtonDisabled ? "請選擇日期和人數" : "報名"}
-              </button>
+              </ButtonWithLoading>
             </div>
           </div>
         </div>
@@ -561,7 +571,8 @@ const ProductDetail = () => {
           {/* 顯示行程內容圖片 */}
           <div className="row mb-5">
             <div className="col-12 text-center">
-              <div className="row justify-content-center">
+              {/* 桌面版顯示 */}
+              <div className="row justify-content-center d-none d-sm-flex">
                 {product.imagesUrl &&
                   product.imagesUrl.map((url, index) => (
                     <div className="col-md-4 mb-3" key={index}>
@@ -577,6 +588,74 @@ const ProductDetail = () => {
                       />
                     </div>
                   ))}
+              </div>
+              {/* 手機版輪播 */}
+              <div className="d-block d-sm-none">
+                <div
+                  id="tourImageCarousel"
+                  className="carousel slide"
+                  data-bs-ride="carousel"
+                >
+                  <div className="carousel-indicators">
+                    {product.imagesUrl &&
+                      product.imagesUrl.map((_, index) => (
+                        <button
+                          key={index}
+                          type="button"
+                          data-bs-target="#tourImageCarousel"
+                          data-bs-slide-to={index}
+                          className={index === 0 ? "active" : ""}
+                          aria-current={index === 0 ? "true" : "false"}
+                          aria-label={`Slide ${index + 1}`}
+                        ></button>
+                      ))}
+                  </div>
+                  <div className="carousel-inner">
+                    {product.imagesUrl &&
+                      product.imagesUrl.map((url, index) => (
+                        <div
+                          key={index}
+                          className={`carousel-item ${
+                            index === 0 ? "active" : ""
+                          }`}
+                        >
+                          <img
+                            src={url}
+                            alt={`Image ${index + 1}`}
+                            className="d-block w-100"
+                            style={{
+                              height: "300px",
+                              objectFit: "cover",
+                            }}
+                          />
+                        </div>
+                      ))}
+                  </div>
+                  <button
+                    className="carousel-control-prev"
+                    type="button"
+                    data-bs-target="#tourImageCarousel"
+                    data-bs-slide="prev"
+                  >
+                    <span
+                      className="carousel-control-prev-icon"
+                      aria-hidden="true"
+                    ></span>
+                    <span className="visually-hidden">Previous</span>
+                  </button>
+                  <button
+                    className="carousel-control-next"
+                    type="button"
+                    data-bs-target="#tourImageCarousel"
+                    data-bs-slide="next"
+                  >
+                    <span
+                      className="carousel-control-next-icon"
+                      aria-hidden="true"
+                    ></span>
+                    <span className="visually-hidden">Next</span>
+                  </button>
+                </div>
               </div>
             </div>
           </div>
