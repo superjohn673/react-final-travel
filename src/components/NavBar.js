@@ -134,6 +134,28 @@ const NavBar = ({ cartData }) => {
   }, [closeCartPreviewTimer]);
 
   useEffect(() => {
+    const updateNavbarHeight = () => {
+      const navbar = document.querySelector(".navbar");
+      if (navbar) {
+        const navbarHeight = navbar.offsetHeight;
+        document.documentElement.style.setProperty(
+          "--navbar-height",
+          `${navbarHeight}px`
+        );
+      }
+    };
+
+    // 監聽視窗大小改變
+    window.addEventListener("resize", updateNavbarHeight);
+    // 初始化設定
+    updateNavbarHeight();
+
+    return () => {
+      window.removeEventListener("resize", updateNavbarHeight);
+    };
+  }, []);
+
+  useEffect(() => {
     let lastScrollY = window.scrollY;
 
     const handleScroll = () => {

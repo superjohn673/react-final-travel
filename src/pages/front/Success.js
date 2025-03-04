@@ -1,16 +1,28 @@
 import { Link, useParams } from "react-router-dom";
 import axios from "axios";
+<<<<<<< HEAD
 import React, { useEffect, useState, useContext, useCallback } from "react";
 import { Spinner } from "react-bootstrap";
 import { formatDate, formatNumberWithCommas } from "../../utils/helpers";
 import CartNavigator from "../../components/CartNavigator";
 import { AppContext } from "../../store/AppContext";
+=======
+import React, { useEffect, useState, useContext } from "react";
+import { Spinner } from "react-bootstrap";
+import { formatDate } from "../../utils/helpers";
+import CartNavigator from "../../components/CartNavigator";
+import { AppContext } from "../../store/AppContext";
+import { formatNumberWithCommas } from "../../utils/helpers";
+>>>>>>> main
 
 function Success() {
   const [orderData, setOrderData] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
+<<<<<<< HEAD
   const [recommendedTours, setRecommendedTours] = useState([]);
+=======
+>>>>>>> main
   const { orderId } = useParams();
 
   const {
@@ -69,6 +81,7 @@ function Success() {
     getOrder(orderId);
   }, [orderId]);
 
+<<<<<<< HEAD
   useEffect(() => {
     if (orderData?.products) {
       getRecommendedTours();
@@ -79,6 +92,12 @@ function Success() {
     <div className="container py-5 success-page">
       <CartNavigator currentStep={3} />
 
+=======
+  return (
+    <div className="container py-5 success-page">
+      <CartNavigator currentStep={3} />
+
+>>>>>>> main
       {isLoading ? (
         <div
           className="d-flex justify-content-center align-items-center"
@@ -215,10 +234,14 @@ function Success() {
                         <div className="total-row">
                           <div className="total-label">總金額</div>
                           <div className="total-value">
+<<<<<<< HEAD
                             NT${" "}
                             {formatNumberWithCommas(
                               Math.round(finalCouponTotal)
                             )}
+=======
+                            NT$ {formatNumberWithCommas(finalCouponTotal)}
+>>>>>>> main
                           </div>
                         </div>
 
@@ -235,17 +258,25 @@ function Success() {
                               <div className="total-value">
                                 - NT${" "}
                                 {formatNumberWithCommas(
+<<<<<<< HEAD
                                   Math.round(finalTotal - finalCouponTotal)
+=======
+                                  finalTotal - finalCouponTotal
+>>>>>>> main
                                 )}
                               </div>
                             </div>
                             <div className="total-row">
                               <div className="total-label">折扣後總金額</div>
                               <div className="total-value">
+<<<<<<< HEAD
                                 NT${" "}
                                 {formatNumberWithCommas(
                                   Math.round(finalCouponTotal)
                                 )}
+=======
+                                NT$ {formatNumberWithCommas(finalCouponTotal)}
+>>>>>>> main
                               </div>
                             </div>
                           </>
@@ -275,6 +306,7 @@ function Success() {
               </div>
             </div>
           </div>
+<<<<<<< HEAD
 
           {/* 新增推薦行程區塊 */}
           <div className="recommended-tours-section">
@@ -325,6 +357,8 @@ function Success() {
               </Link>
             </div>
           </div>
+=======
+>>>>>>> main
         </>
       )}
     </div>

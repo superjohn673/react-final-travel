@@ -21,7 +21,11 @@ $text-color: #333; // 文字顏色：深灰色
 }
 
 /* ===================================================
+<<<<<<< HEAD
  * Navbar 導航列樣式
+=======
+ * 導航列樣式
+>>>>>>> main
  * =================================================== */
 // 控制導航列在滾動時的顯示與隱藏效果
 .sticky-top.show {
@@ -104,6 +108,7 @@ $text-color: #333; // 文字顏色：深灰色
   }
 }
 
+<<<<<<< HEAD
 // 購物車容器樣式
 .cart-container {
   position: relative;
@@ -344,6 +349,8 @@ $text-color: #333; // 文字顏色：深灰色
   }
 }
 
+=======
+>>>>>>> main
 // 漢堡選單按鈕樣式
 .navbar-toggler {
   border: 1px solid rgba($primary-color, 0.2);
@@ -355,7 +362,11 @@ $text-color: #333; // 文字顏色：深灰色
 }
 
 /* ===================================================
+<<<<<<< HEAD
  * Home 首頁樣式
+=======
+ * 首頁樣式
+>>>>>>> main
  * =================================================== */
 // 旅遊類型選單樣式 - 顯示在首頁橫幅下方的分類選單
 .tour-menu {
@@ -461,7 +472,11 @@ $text-color: #333; // 文字顏色：深灰色
 }
 
 /* ===================================================
+<<<<<<< HEAD
  * Home首頁橫幅樣式
+=======
+ * 首頁橫幅樣式
+>>>>>>> main
  * =================================================== */
 .index-banner {
   height: calc(100vh - var(--navbar-height)); // 計算高度時扣除導航列高度
@@ -518,7 +533,11 @@ $text-color: #333; // 文字顏色：深灰色
 }
 
 /* ===================================================
+<<<<<<< HEAD
  * Home首頁內容區塊樣式
+=======
+ * 首頁內容區塊樣式
+>>>>>>> main
  * =================================================== */
 .index-content-section .card-img-top {
   border-radius: 50%; // 圓形圖片
@@ -562,7 +581,11 @@ $text-color: #333; // 文字顏色：深灰色
 }
 
 /* ===================================================
+<<<<<<< HEAD
  * Home季節卡片樣式 (首頁)
+=======
+ * 季節卡片樣式 (首頁)
+>>>>>>> main
  * =================================================== */
 .season-card {
   transition: all 0.3s ease;
@@ -765,7 +788,11 @@ $text-color: #333; // 文字顏色：深灰色
 }
 
 /* ===================================================
+<<<<<<< HEAD
  * Home 輪播圖片樣式
+=======
+ * 輪播圖片樣式
+>>>>>>> main
  * =================================================== */
 .carousel-section {
   background-color: #f8f9fa;
@@ -952,7 +979,11 @@ $text-color: #333; // 文字顏色：深灰色
 }
 
 /* ===================================================
+<<<<<<< HEAD
  * Home 首頁列表區塊樣式
+=======
+ * 首頁列表區塊樣式
+>>>>>>> main
  * =================================================== */
 .index-list-section {
   .slick-slider {
@@ -1040,7 +1071,11 @@ $text-color: #333; // 文字顏色：深灰色
 }
 
 /* ===================================================
+<<<<<<< HEAD
  * Footer 頁腳樣式
+=======
+ * 頁腳樣式
+>>>>>>> main
  * =================================================== */
 .footer-section {
   background: linear-gradient(to right, #1a2a3a, #2c3e50);
@@ -1244,7 +1279,11 @@ $text-color: #333; // 文字顏色：深灰色
 }
 
 /* ===================================================
+<<<<<<< HEAD
  * Product 產品主題頁面頭部列表樣式
+=======
+ * 產品主題頁面頭部列表樣式
+>>>>>>> main
  * =================================================== */
 .product-head-list__title {
   color: black;
@@ -1265,7 +1304,11 @@ $text-color: #333; // 文字顏色：深灰色
 }
 
 /* ===================================================
+<<<<<<< HEAD
  * Travel Product Card 旅遊產品卡片樣式
+=======
+ * 旅遊產品卡片樣式
+>>>>>>> main
  * =================================================== */
 .tour {
   .card {
@@ -1306,7 +1349,11 @@ $text-color: #333; // 文字顏色：深灰色
 }
 
 /* ===================================================
+<<<<<<< HEAD
  * Sidebar Navigation 側邊導航樣式
+=======
+ * 側邊導航樣式
+>>>>>>> main
  * =================================================== */
 // 側邊欄基本樣式
 .sidebar {
@@ -1411,6 +1458,7 @@ $text-color: #333; // 文字顏色：深灰色
     padding-top: 1.5rem;
     margin-top: 2rem;
 
+<<<<<<< HEAD
     .row {
       @media (max-width: 520px) {
         display: grid;
@@ -1446,6 +1494,22 @@ $text-color: #333; // 文字顏色：深灰色
         transform: translateY(-3px);
         box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
         color: $text-color;
+=======
+    .footer-link {
+      font-size: 1.1rem;
+      font-weight: 500;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      transition: all 0.3s ease;
+      display: inline-block;
+      color: $text-color; // 使用黑色文字顏色
+
+      &:hover {
+        background-color: rgba($text-color, 0.1); // 使用黑色的淺色背景
+        transform: translateY(-3px);
+        box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+        color: $text-color; // 懸停時保持黑色
+>>>>>>> main
       }
     }
   }
@@ -1481,7 +1545,11 @@ $text-color: #333; // 文字顏色：深灰色
 }
 
 /* ===================================================
+<<<<<<< HEAD
  * Travel Search Form 旅遊搜索表單樣式
+=======
+ * 旅遊搜索表單樣式
+>>>>>>> main
  * =================================================== */
 .travel-search-form {
   max-width: 600px;
@@ -1491,11 +1559,14 @@ $text-color: #333; // 文字顏色：深灰色
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 
+<<<<<<< HEAD
   @media (max-width: 400px) {
     padding: 1rem;
     margin: 1rem auto;
   }
 
+=======
+>>>>>>> main
   // 表單行樣式
   &__row {
     display: flex;
@@ -1622,7 +1693,11 @@ $text-color: #333; // 文字顏色：深灰色
 }
 
 /* ===================================================
+<<<<<<< HEAD
  * Travel Calendar Component 旅遊日曆組件樣式
+=======
+ * 旅遊日曆組件樣式
+>>>>>>> main
  * =================================================== */
 .travel-calendar {
   font-family: Arial, sans-serif;
@@ -1861,7 +1936,11 @@ $text-color: #333; // 文字顏色：深灰色
 }
 
 /* ===================================================
+<<<<<<< HEAD
  * Product Detail Page Sidebar 產品詳情頁側邊欄樣式
+=======
+ * 產品詳情頁側邊欄樣式
+>>>>>>> main
  * =================================================== */
 .product-detail-sidebar {
   height: 100%;
@@ -1901,7 +1980,11 @@ $text-color: #333; // 文字顏色：深灰色
 }
 
 /* ===================================================
+<<<<<<< HEAD
  * Departure Date Display 出發日期顯示樣式
+=======
+ * 出發日期顯示樣式
+>>>>>>> main
  * =================================================== */
 .departure-date {
   padding: 1rem;
@@ -1935,7 +2018,11 @@ $text-color: #333; // 文字顏色：深灰色
 }
 
 /* ===================================================
+<<<<<<< HEAD
  * Passenger Selection 人數選擇樣式
+=======
+ * 人數選擇樣式
+>>>>>>> main
  * =================================================== */
 .passenger-select {
   margin-bottom: 2rem;
@@ -1990,7 +2077,11 @@ $text-color: #333; // 文字顏色：深灰色
 }
 
 /* ===================================================
+<<<<<<< HEAD
  * Travel Features 旅遊特色樣式
+=======
+ * 旅遊特色樣式
+>>>>>>> main
  * =================================================== */
 .tour-features {
   background-color: white;
@@ -2117,7 +2208,11 @@ $text-color: #333; // 文字顏色：深灰色
 }
 
 /* ===================================================
+<<<<<<< HEAD
  * Price Highlight 價格高亮顯示樣式
+=======
+ * 價格高亮顯示樣式
+>>>>>>> main
  * =================================================== */
 .price-highlight {
   background-color: white;
@@ -2161,7 +2256,11 @@ $text-color: #333; // 文字顏色：深灰色
 }
 
 /* ===================================================
+<<<<<<< HEAD
  * Booking Button 報名按鈕樣式
+=======
+ * 報名按鈕樣式
+>>>>>>> main
  * =================================================== */
 .booking-btn {
   background: linear-gradient(
@@ -2211,7 +2310,11 @@ $text-color: #333; // 文字顏色：深灰色
 }
 
 /* ===================================================
+<<<<<<< HEAD
  * Product Description 產品描述樣式
+=======
+ * 產品描述樣式
+>>>>>>> main
  * =================================================== */
 .product-description {
   background-color: white;
@@ -2255,7 +2358,11 @@ $text-color: #333; // 文字顏色：深灰色
 }
 
 /* ===================================================
+<<<<<<< HEAD
  * Flight Information Block 航班資訊區塊樣式
+=======
+ * 航班資訊區塊樣式
+>>>>>>> main
  * =================================================== */
 .flight-info {
   margin-bottom: 4rem;
@@ -2437,7 +2544,11 @@ $text-color: #333; // 文字顏色：深灰色
 }
 
 /* ===================================================
+<<<<<<< HEAD
  * Tour Daily Content 行程內容樣式
+=======
+ * 行程內容樣式
+>>>>>>> main
  * =================================================== */
 .tour-daily {
   background-color: $primary-color;
@@ -2469,7 +2580,11 @@ $text-color: #333; // 文字顏色：深灰色
 }
 
 /* ===================================================
+<<<<<<< HEAD
  * Breadcrumb Navigation Prodetail 麵包屑導航樣式
+=======
+ * 麵包屑導航樣式
+>>>>>>> main
  * =================================================== */
 .breadcrumb-nav {
   display: flex;
@@ -2544,7 +2659,11 @@ $text-color: #333; // 文字顏色：深灰色
 }
 
 /* ===================================================
+<<<<<<< HEAD
  * Product Navigation 事項列表導航樣式
+=======
+ * 事項列表導航樣式
+>>>>>>> main
  * =================================================== */
 .product-nav-tabs {
   display: flex;
@@ -2616,6 +2735,7 @@ $text-color: #333; // 文字顏色：深灰色
 }
 
 /* ===================================================
+<<<<<<< HEAD
  * 行程內容圖片輪播樣式
  * =================================================== */
 .carousel {
@@ -2704,6 +2824,9 @@ $text-color: #333; // 文字顏色：深灰色
 
 /* ===================================================
  * Daily Itinerary 每日行程樣式優化
+=======
+ * 每日行程樣式優化
+>>>>>>> main
  * =================================================== */
 .tour-content {
   margin-bottom: 4rem;
@@ -2928,7 +3051,11 @@ $text-color: #333; // 文字顏色：深灰色
 }
 
 /* ===================================================
+<<<<<<< HEAD
  * Cart Progress Flow 購物車進度流程樣式
+=======
+ * 購物車進度流程樣式
+>>>>>>> main
  * =================================================== */
 .cart-navigator {
   display: flex;
@@ -3184,14 +3311,22 @@ $text-color: #333; // 文字顏色：深灰色
     transition: all 0.3s ease;
 
     &__icon {
+<<<<<<< HEAD
       font-size: 6rem;
+=======
+      font-size: 10rem;
+>>>>>>> main
       color: #adb5bd;
       animation: float 3s ease-in-out infinite;
     }
   }
 
   /* ===================================================
+<<<<<<< HEAD
  * Cart Remove Button 購物車移除按鈕樣式
+=======
+ * 購物車移除按鈕樣式
+>>>>>>> main
  * =================================================== */
   .cart-remove-btn {
     top: 15px;
@@ -3343,6 +3478,45 @@ $text-color: #333; // 文字顏色：深灰色
       }
     }
 
+<<<<<<< HEAD
+=======
+    // 推薦行程區域樣式
+    .index-list-section {
+      padding: 2rem 0;
+
+      .fs-3 {
+        position: relative;
+        display: inline-block;
+        padding-bottom: 0.5rem;
+        font-weight: 600;
+
+        &::after {
+          content: "";
+          position: absolute;
+          bottom: 0;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 80px;
+          height: 3px;
+          background-color: #343a40;
+          border-radius: 3px;
+        }
+      }
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(0px);
+      }
+      50% {
+        transform: translateY(-10px);
+      }
+      100% {
+        transform: translateY(0px);
+      }
+    }
+
+>>>>>>> main
     // 出發日期樣式
     .mt-2.mb-3 {
       p {
@@ -3362,7 +3536,11 @@ $text-color: #333; // 文字顏色：深灰色
         .date-value {
           font-weight: 500;
           color: #495057;
+<<<<<<< HEAD
           background-color: #f8f9fa;
+=======
+          background-color: white;
+>>>>>>> main
           padding: 0.3rem 0.6rem;
           border-radius: 4px;
           border: 1px solid rgba($primary-color, 0.2);
@@ -3382,13 +3560,17 @@ $text-color: #333; // 文字顏色：深灰色
       padding: 1rem;
       border-radius: 8px;
       box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+<<<<<<< HEAD
       flex-wrap: wrap;
       gap: 1rem;
+=======
+>>>>>>> main
 
       .input-group {
         position: relative;
         display: flex;
         align-items: center;
+<<<<<<< HEAD
         flex: 0 0 auto;
         min-width: 180px;
 
@@ -3400,6 +3582,8 @@ $text-color: #333; // 文字顏色：深灰色
           width: 100%;
           justify-content: space-between;
         }
+=======
+>>>>>>> main
 
         span.fw-bold {
           color: $primary-color;
@@ -3409,7 +3593,10 @@ $text-color: #333; // 文字顏色：深灰色
           margin-right: 0.5rem;
           min-width: 45px;
           text-align: center;
+<<<<<<< HEAD
           flex-shrink: 0;
+=======
+>>>>>>> main
         }
 
         .form-select {
@@ -3420,11 +3607,14 @@ $text-color: #333; // 文字顏色：深灰色
           transition: all 0.3s ease;
           width: auto;
           min-width: 70px;
+<<<<<<< HEAD
           flex: 1;
 
           @media (max-width: 576px) {
             max-width: 120px;
           }
+=======
+>>>>>>> main
 
           &:focus {
             border-color: $primary-color;
@@ -3440,7 +3630,10 @@ $text-color: #333; // 文字顏色：深灰色
         i.bi-person-fill {
           color: $primary-color;
           font-size: 1.1rem;
+<<<<<<< HEAD
           flex-shrink: 0;
+=======
+>>>>>>> main
         }
       }
     }
@@ -3708,6 +3901,7 @@ $text-color: #333; // 文字顏色：深灰色
 }
 
 /* ===================================================
+<<<<<<< HEAD
  * 推薦行程區域樣式
  * =================================================== */
 .index-list-section {
@@ -3747,6 +3941,9 @@ $text-color: #333; // 文字顏色：深灰色
 
 /* ===================================================
  * Service Location Page 服務據點頁面樣式
+=======
+ * 服務據點頁面樣式
+>>>>>>> main
  * =================================================== */
 
 .service-location-container {
@@ -3785,7 +3982,11 @@ $text-color: #333; // 文字顏色：深灰色
 
 .service-location-hero {
   background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+<<<<<<< HEAD
     url("../assets/images/servicelocation/servicelocation.jpg");
+=======
+    url("https://images.unsplash.com/photo-1464037866556-6812c9d1c72e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80");
+>>>>>>> main
   background-size: cover;
   background-position: center;
   padding: 6rem 0;
@@ -3935,6 +4136,7 @@ $text-color: #333; // 文字顏色：深灰色
   }
 
   .service-location-container {
+<<<<<<< HEAD
     padding: 1rem;
 
     .location-section {
@@ -3969,10 +4171,15 @@ $text-color: #333; // 文字顏色：深灰色
           padding: 0;
         }
 
+=======
+    .location-section {
+      .location-info {
+>>>>>>> main
         .contact-info,
         .transportation-info,
         .business-hours {
           margin-bottom: 1.5rem;
+<<<<<<< HEAD
           padding: 1rem;
 
           h3 {
@@ -4001,6 +4208,8 @@ $text-color: #333; // 文字顏色：深灰色
 
         iframe {
           height: 250px;
+=======
+>>>>>>> main
         }
       }
     }
@@ -4008,7 +4217,11 @@ $text-color: #333; // 文字顏色：深灰色
 }
 
 /* ===================================================
+<<<<<<< HEAD
  * FAQ Page 常見問題頁面樣式
+=======
+ * 常見問題頁面樣式
+>>>>>>> main
  * =================================================== */
 
 .faq-hero {
@@ -4485,7 +4698,11 @@ $text-color: #333; // 文字顏色：深灰色
 }
 
 /* ===================================================
+<<<<<<< HEAD
  * Contact Us Page 聯絡我們頁面樣式
+=======
+ * 聯絡我們頁面樣式
+>>>>>>> main
  * =================================================== */
 
 .contact-us-page {
@@ -4682,6 +4899,10 @@ $text-color: #333; // 文字顏色：深灰色
     display: flex;
     flex-wrap: wrap;
     gap: 1.5rem;
+<<<<<<< HEAD
+=======
+
+>>>>>>> main
     .map-info-item {
       display: flex;
       align-items: flex-start;
@@ -4761,12 +4982,15 @@ $text-color: #333; // 文字顏色：深灰色
         color: $primary-color;
         margin-right: 0.5rem;
       }
+<<<<<<< HEAD
 
       &.required:after {
         content: "*";
         color: #dc3545;
         margin-left: 4px;
       }
+=======
+>>>>>>> main
     }
 
     input,
@@ -4927,7 +5151,11 @@ $text-color: #333; // 文字顏色：深灰色
 }
 
 /* ===================================================
+<<<<<<< HEAD
  * Checkout Page 結帳頁面樣式
+=======
+ * 結帳頁面樣式
+>>>>>>> main
  * =================================================== */
 .checkout-page {
   .checkout-form-container {
@@ -5800,6 +6028,7 @@ $text-color: #333; // 文字顏色：深灰色
   }
 }
 
+<<<<<<< HEAD
 /* 報名成功推薦行程區塊樣式 */
 .recommended-tours-section {
   margin-top: 4rem;
@@ -6024,6 +6253,10 @@ $text-color: #333; // 文字顏色：深灰色
 
 /* ===================================================
  * Admin Login Page 後台登入頁面樣式
+=======
+/* ===================================================
+ * 後台登入頁面樣式
+>>>>>>> main
  * =================================================== */
 .login-container {
   width: 100%;
@@ -6179,7 +6412,11 @@ $text-color: #333; // 文字顏色：深灰色
 }
 
 /* ===================================================
+<<<<<<< HEAD
  * Member Center 會員中心樣式
+=======
+ * 會員中心樣式
+>>>>>>> main
  * =================================================== */
 
 //會員中心
@@ -6389,6 +6626,7 @@ $text-color: #333; // 文字顏色：深灰色
     justify-content: space-between;
     align-items: center;
     background-color: rgba($primary-color, 0.03);
+<<<<<<< HEAD
     flex-wrap: wrap;
     gap: 1rem;
 
@@ -6400,12 +6638,15 @@ $text-color: #333; // 文字顏色：深灰色
         align-self: flex-start;
       }
     }
+=======
+>>>>>>> main
 
     h5 {
       font-size: 1.1rem;
       font-weight: 600;
       margin: 0;
       color: $text-color;
+<<<<<<< HEAD
       display: flex;
       align-items: center;
       white-space: nowrap;
@@ -6421,10 +6662,13 @@ $text-color: #333; // 文字顏色：深灰色
       @media (max-width: 576px) {
         font-size: 0.8rem;
       }
+=======
+>>>>>>> main
     }
 
     .order-status {
       font-weight: 500;
+<<<<<<< HEAD
       padding: 0.25rem 1rem;
       border-radius: 20px;
       font-size: 0.85rem;
@@ -6435,6 +6679,11 @@ $text-color: #333; // 文字顏色：深灰色
       align-items: center;
       justify-content: center;
       margin-left: auto;
+=======
+      padding: 0.25rem 0.75rem;
+      border-radius: 20px;
+      font-size: 0.85rem;
+>>>>>>> main
 
       &.paid {
         background-color: rgba(#198754, 0.1);
@@ -6460,11 +6709,14 @@ $text-color: #333; // 文字顏色：深灰色
       margin-bottom: 1rem;
       border: 1px solid rgba($primary-color, 0.05);
 
+<<<<<<< HEAD
       @media (max-width: 768px) {
         flex-direction: column;
         align-items: stretch;
       }
 
+=======
+>>>>>>> main
       &:last-child {
         margin-bottom: 0;
       }
@@ -6478,6 +6730,7 @@ $text-color: #333; // 文字顏色：深灰色
         flex-shrink: 0;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 
+<<<<<<< HEAD
         @media (max-width: 768px) {
           width: 100%;
           height: 200px;
@@ -6485,6 +6738,8 @@ $text-color: #333; // 文字顏色：深灰色
           margin-bottom: 1rem;
         }
 
+=======
+>>>>>>> main
         img {
           width: 100%;
           height: 100%;
@@ -6512,10 +6767,13 @@ $text-color: #333; // 文字顏色：深灰色
           flex-wrap: wrap;
           gap: 1rem;
 
+<<<<<<< HEAD
           @media (max-width: 768px) {
             gap: 0.5rem;
           }
 
+=======
+>>>>>>> main
           .detail-item {
             display: flex;
             align-items: center;
@@ -6523,12 +6781,15 @@ $text-color: #333; // 文字顏色：深灰色
             padding: 0.5rem 0.75rem;
             border-radius: 20px;
 
+<<<<<<< HEAD
             @media (max-width: 768px) {
               flex: 1;
               min-width: calc(50% - 0.25rem);
               justify-content: center;
             }
 
+=======
+>>>>>>> main
             svg {
               color: $primary-color;
               margin-right: 0.5rem;
@@ -6564,11 +6825,14 @@ $text-color: #333; // 文字顏色：深灰色
         grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
         gap: 1rem;
 
+<<<<<<< HEAD
         @media (max-width: 576px) {
           grid-template-columns: 1fr;
           gap: 0.5rem;
         }
 
+=======
+>>>>>>> main
         .info-item {
           display: flex;
           align-items: center;
@@ -6599,20 +6863,26 @@ $text-color: #333; // 文字顏色：深灰色
     align-items: center;
     border-top: 1px dashed rgba($primary-color, 0.2);
 
+<<<<<<< HEAD
     @media (max-width: 576px) {
       flex-direction: column;
       gap: 1rem;
       align-items: stretch;
     }
 
+=======
+>>>>>>> main
     .order-total {
       font-weight: 600;
       font-size: 1.2rem;
 
+<<<<<<< HEAD
       @media (max-width: 576px) {
         text-align: center;
       }
 
+=======
+>>>>>>> main
       span {
         color: #dc3545;
         margin-left: 0.5rem;
@@ -6622,20 +6892,26 @@ $text-color: #333; // 文字顏色：深灰色
 
     .order-actions {
       display: flex;
+<<<<<<< HEAD
       gap: 0.5rem;
 
       @media (max-width: 576px) {
         flex-direction: column;
       }
+=======
+>>>>>>> main
 
       .btn {
         padding: 0.5rem 1rem;
         font-weight: 500;
+<<<<<<< HEAD
 
         @media (max-width: 576px) {
           width: 100%;
           justify-content: center;
         }
+=======
+>>>>>>> main
       }
 
       .btn-primary {
@@ -6671,7 +6947,11 @@ $text-color: #333; // 文字顏色：深灰色
 }
 
 /* ===================================================
+<<<<<<< HEAD
  * Order Detail 訂單細節樣式
+=======
+ * 訂單細節樣式
+>>>>>>> main
  * =================================================== */
 
 .order-detail-container {
@@ -6721,7 +7001,10 @@ $text-color: #333; // 文字顏色：深灰色
     z-index: 1;
     border: 1px solid rgba($primary-color, 0.15);
     text-decoration: none;
+<<<<<<< HEAD
     text-wrap: nowrap;
+=======
+>>>>>>> main
 
     svg {
       margin-right: 0.5rem;
@@ -6780,7 +7063,11 @@ $text-color: #333; // 文字顏色：深灰色
 
       .value {
         font-family: monospace;
+<<<<<<< HEAD
         font-size: 1.2rem;
+=======
+        font-size: 1.1rem;
+>>>>>>> main
         color: $primary-color;
       }
     }
@@ -6790,7 +7077,10 @@ $text-color: #333; // 文字顏色：深灰色
       border-radius: 30px;
       font-weight: 600;
       font-size: 0.9rem;
+<<<<<<< HEAD
       text-wrap: nowrap;
+=======
+>>>>>>> main
 
       &.paid {
         background-color: rgba(#198754, 0.1);
@@ -6893,8 +7183,11 @@ $text-color: #333; // 文字顏色：深灰色
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 1rem;
+<<<<<<< HEAD
     overflow: auto;
     text-wrap: nowrap;
+=======
+>>>>>>> main
   }
 }
 
@@ -7044,6 +7337,10 @@ $text-color: #333; // 文字顏色：深灰色
 
 //我的最愛
 .favorite-section {
+<<<<<<< HEAD
+=======
+  margin-top: 2rem;
+>>>>>>> main
   margin-bottom: 3rem;
 
   .card {
@@ -7325,6 +7622,7 @@ $text-color: #333; // 文字顏色：深灰色
 
     .favorite-item {
       .favorite-actions {
+<<<<<<< HEAD
         grid-template-columns: 1fr;
         gap: 0.8rem;
 
@@ -7340,6 +7638,12 @@ $text-color: #333; // 文字顏色：深灰色
 
         .btn-remove {
           order: 2;
+=======
+        grid-template-columns: 1fr 1fr;
+
+        .btn-remove {
+          grid-column: span 2;
+>>>>>>> main
         }
       }
     }
@@ -7347,7 +7651,11 @@ $text-color: #333; // 文字顏色：深灰色
 }
 
 /* ===================================================
+<<<<<<< HEAD
  * Pagination 分頁樣式
+=======
+ * Pagination 樣式
+>>>>>>> main
  * =================================================== */
 .pagination {
   display: flex;
