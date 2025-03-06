@@ -17,7 +17,7 @@ const FrontLayout = () => {
       setCartData(res.data.data);
       setIsLoading(false);
     } catch (error) {
-      console.log(error);
+      console.error("獲取購物車資料失敗:", error);
     }
   };
 

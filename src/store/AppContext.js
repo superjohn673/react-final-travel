@@ -24,16 +24,20 @@ export const AppProvider = ({ children }) => {
   const [state, dispatch] = useReducer(appReducer, initialState);
 
   const getAllProducts = useCallback(async () => {
-    const productRes = await axios.get(
-      `/v2/api/${process.env.REACT_APP_API_PATH}/products/all`
-    );
-    dispatch({
-      type: "SET_PRODUCTS",
-      payload: {
-        products: productRes.data.products,
-        pagination: productRes.data.pagination,
-      },
-    });
+    try {
+      const productRes = await axios.get(
+        `/v2/api/${process.env.REACT_APP_API_PATH}/products/all`
+      );
+      dispatch({
+        type: "SET_PRODUCTS",
+        payload: {
+          products: productRes.data.products,
+          pagination: productRes.data.pagination,
+        },
+      });
+    } catch (error) {
+      console.error("獲取產品資料失敗:", error);
+    }
   }, []);
 
   const setSelectedDate = (date) => {

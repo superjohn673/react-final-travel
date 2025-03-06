@@ -66,7 +66,7 @@ const MenuItem = memo(({ path, label, icon, onClick, size = "h4" }) => {
 MenuItem.displayName = "MenuItem";
 
 // 菜單區塊組件
-const MenuSection = memo(({ title, items, colSize, onClick, size }) => {
+const MenuSection = memo(({ title, items, onClick, size }) => {
   return (
     <div className="row mb-3 side-link">
       {title && (

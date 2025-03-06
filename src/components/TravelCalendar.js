@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import moment from "moment";
 
 const TravelCalendar = ({ product, onDateSelected }) => {
@@ -11,11 +11,13 @@ const TravelCalendar = ({ product, onDateSelected }) => {
   const endDate = moment("2025-12-31");
 
   // 取得當前月份的所有日期
-  const getDatesInMonth = () => {
-    const date = selectedDate.clone().startOf("month");
+  const getDatesInMonth = useCallback(() => {
+    const startOfMonth = selectedDate.clone().startOf("month");
+    const endOfMonth = selectedDate.clone().endOf("month");
+    const date = startOfMonth.clone();
     const datesArray = [];
 
-    while (date.month() === selectedDate.month()) {
+    while (date.isSameOrBefore(endOfMonth, "day")) {
       datesArray.push(date.clone());
       date.add(1, "day");
     }
@@ -31,12 +33,12 @@ const TravelCalendar = ({ product, onDateSelected }) => {
     }
 
     return datesArray;
-  };
+  }, [selectedDate]);
 
   // 當月份變更時，更新日期陣列
   useEffect(() => {
     setCalendarDates(getDatesInMonth());
-  }, [selectedDate]);
+  }, [getDatesInMonth]);
 
   // 處理日期選擇
   const handleDateClick = (date) => {

@@ -5,8 +5,8 @@ import Sidebar from "./SideBar";
 const NavBar = ({ cartData }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [showNavBar, setShowNavBar] = useState(false);
-  const [isSmallScreen, setIsSmallScreen] = useState(false);
-  const [isMediumScreen, setIsMediumScreen] = useState(false);
+  const [_isSmallScreen, setIsSmallScreen] = useState(false);
+  const [_isMediumScreen, setIsMediumScreen] = useState(false);
   const [showCartPreview, setShowCartPreview] = useState(false);
   const [closeCartPreviewTimer, setCloseCartPreviewTimer] = useState(null);
   const cartPreviewRef = useRef(null);
