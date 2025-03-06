@@ -39,7 +39,7 @@ function Success() {
       }
       setIsLoading(false);
     } catch (error) {
-      console.log(error);
+      console.error("訂單資料獲取失敗:", error);
       setError("載入訂單時發生錯誤");
       setIsLoading(false);
     }
@@ -61,7 +61,7 @@ function Success() {
         .slice(0, 3);
       setRecommendedTours(randomTours);
     } catch (error) {
-      console.log(error);
+      console.error("載入推薦行程時發生錯誤:", error);
     }
   }, [orderData]);
 

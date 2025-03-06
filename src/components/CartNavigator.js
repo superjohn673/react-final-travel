@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const CartNavigator = ({ currentStep, nextStep }) => {
+const CartNavigator = ({ currentStep }) => {
   const steps = [
     { label: "購物車", path: "/cart", icon: "fa-shopping-cart" },
     { label: "填寫資料", path: "/checkout", icon: "fa-address-card" },

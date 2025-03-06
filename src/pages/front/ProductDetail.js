@@ -1,12 +1,10 @@
-import React, { useContext } from "react";
+import React, { useContext, useMemo, useState, useEffect } from "react";
 import { AppContext } from "../../store/AppContext";
-import { useEffect, useState } from "react";
 import {
   useOutletContext,
   useParams,
   useNavigate,
   Link,
-  useLocation,
 } from "react-router-dom";
 import axios from "axios";
 import Loading from "../../components/Loading";
@@ -87,16 +85,18 @@ const ProductDetail = () => {
   const [tempSelectedDate, setTempEelectedDate] = useState(null);
   const [activeNavItem, setActiveNavItem] = useState("flight-info");
   const navigate = useNavigate();
-  const location = useLocation();
   const { setSelectedDate, setAdultQuantity, setChildrenQuantity } =
     useContext(AppContext);
 
-  const navItems = [
-    { id: "flight-info", text: "航班資訊" },
-    { id: "daily-itinerary", text: "每日行程" },
-    { id: "cost-description", text: "費用說明" },
-    { id: "booking-info", text: "預訂須知" },
-  ];
+  const navItems = useMemo(
+    () => [
+      { id: "flight-info", text: "航班資訊" },
+      { id: "daily-itinerary", text: "每日行程" },
+      { id: "cost-description", text: "費用說明" },
+      { id: "booking-info", text: "預訂須知" },
+    ],
+    []
+  );
 
   const costDescriptionData = [
     {
@@ -151,13 +151,18 @@ const ProductDetail = () => {
   ];
 
   const getProduct = async (id) => {
-    setIsLoading(true);
-    const productRes = await axios.get(
-      `/v2/api/${process.env.REACT_APP_API_PATH}/product/${id}`
-    );
-    setProduct(productRes.data.product);
-    setItinerary(parseItinerary(productRes.data.product.content)); // 解析行程
-    setIsLoading(false);
+    try {
+      setIsLoading(true);
+      const productRes = await axios.get(
+        `/v2/api/${process.env.REACT_APP_API_PATH}/product/${id}`
+      );
+      setProduct(productRes.data.product);
+      setItinerary(parseItinerary(productRes.data.product.content)); // 解析行程
+    } catch (error) {
+      console.error("產品詳情獲取失敗:", error);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const addToCart = async () => {
@@ -194,7 +199,7 @@ const ProductDetail = () => {
       getCart();
       navigate("/cart");
     } catch (error) {
-      console.log(error);
+      console.error("加入購物車失敗:", error);
       // 已經設置了 isLoading 為 true，但在這裡可能需要顯示錯誤提示
       alert("加入購物車失敗，請稍後再試");
     } finally {

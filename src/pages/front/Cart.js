@@ -46,7 +46,7 @@ const Cart = () => {
       );
       getCart();
     } catch (error) {
-      console.log(error);
+      console.error("刪除購物車產品失敗:", error);
     } finally {
       // 無論成功或失敗，都清除正在移除的項目 ID
       setIsRemovingItem(null);
@@ -79,7 +79,7 @@ const Cart = () => {
       );
       getCart();
     } catch (error) {
-      console.log(error);
+      console.error("更新購物車產品失敗:", error);
     }
   };
 

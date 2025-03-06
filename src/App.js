@@ -12,7 +12,6 @@ import Orders from "./pages/front/Orders.js";
 import OrderDetail from "./pages/front/OrderDetail.js";
 import UserProfile from "./pages/front/UserProfile.js";
 import MyFavorite from "./pages/front/MyFavorite.js";
-import Products from "./pages/front/Products";
 import ProductDetail from "./pages/front/ProductDetail";
 import AreaJapan from "./pages/front/AreaJapan";
 import CityJapan from "./pages/front/CityJapan";
@@ -45,8 +44,6 @@ function App() {
               <Route path="profile" element={<UserProfile />} />
               <Route path="favorite" element={<MyFavorite />} />
             </Route>
-
-            {/* <Route path="products" element={<Products />} /> */}
             <Route path="product/:id" element={<ProductDetail />} />
             <Route path="area-japan" element={<AreaJapan />}>
               <Route path=":name" element={<CityJapan />} />

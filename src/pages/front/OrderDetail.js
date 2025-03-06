@@ -35,7 +35,7 @@ const OrderDetail = () => {
         setOrder(res.data.order);
         setIsLoading(false);
       } catch (error) {
-        console.error("Error fetching order details:", error);
+        console.error("訂單詳情獲取失敗:", error);
         setIsLoading(false);
       }
     };
@@ -52,7 +52,7 @@ const OrderDetail = () => {
       setOrder({ ...order, is_paid: true });
       navigate("/member/orders");
     } catch (error) {
-      console.error("Error paying order:", error);
+      console.error("付款失敗:", error);
       alert("付款失敗，請稍後再試");
       setIsPaymentLoading(false);
     }

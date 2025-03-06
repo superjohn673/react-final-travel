@@ -35,7 +35,7 @@ const Checkout = () => {
       );
       getCart();
     } catch (error) {
-      console.log(error);
+      console.error("刪除購物車產品失敗:", error);
     }
   };
 
@@ -61,7 +61,7 @@ const Checkout = () => {
       removeCartItem();
       navigate(`/success/${res.data.orderId}`);
     } catch (error) {
-      console.log(error);
+      console.error("報名失敗:", error);
       alert("報名失敗，請稍後再試");
       setIsSubmitting(false);
     }
