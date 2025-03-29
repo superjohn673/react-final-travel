@@ -185,6 +185,7 @@ const ProductDetail = () => {
       navigate("/cart");
     } catch (error) {
       console.error("加入購物車失敗:", error);
+      console.error("加入購物車失敗:", error);
       // 已經設置了 isLoading 為 true，但在這裡可能需要顯示錯誤提示
       alert("加入購物車失敗，請稍後再試");
     } finally {

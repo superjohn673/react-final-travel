@@ -38,6 +38,7 @@ function Success() {
       setRecommendedTours(randomTours);
     } catch (error) {
       console.error("載入推薦行程時發生錯誤:", error);
+      console.error("載入推薦行程時發生錯誤:", error);
     }
   }, [orderData]);
 

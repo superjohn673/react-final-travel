@@ -124,6 +124,7 @@ const Information = () => {
   };
 
   // 搜尋功能
+
   const handleSearch = useCallback(() => {
     if (!searchQuery.trim()) {
       setIsSearching(false);
