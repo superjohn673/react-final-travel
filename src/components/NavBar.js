@@ -156,15 +156,12 @@ const NavBar = ({ cartData }) => {
   }, []);
 
   useEffect(() => {
-    let lastScrollY = window.scrollY;
-
     const handleScroll = () => {
       if (window.scrollY === 0) {
         setShowNavBar(false);
       } else {
         setShowNavBar(true);
       }
-      lastScrollY = window.scrollY;
     };
 
     const handleResize = () => {
