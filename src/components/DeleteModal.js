@@ -1,5 +1,3 @@
-import React from "react";
-
 const DeleteModal = ({ closeDeleteModal, productText, handleDelete, id }) => {
   return (
     <div

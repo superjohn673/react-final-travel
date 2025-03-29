@@ -1,6 +1,6 @@
 import { Link, useParams } from "react-router-dom";
 import axios from "axios";
-import React, { useEffect, useState, useContext, useCallback } from "react";
+import { useEffect, useState, useContext, useCallback } from "react";
 import { Spinner } from "react-bootstrap";
 import { formatDate, formatNumberWithCommas } from "../../utils/helpers";
 import CartNavigator from "../../components/CartNavigator";
@@ -20,30 +20,6 @@ function Success() {
     finalTotal,
     finalCouponTotal,
   } = useContext(AppContext);
-
-  const getOrder = async (orderId) => {
-    if (!orderId) {
-      setError("訂單 ID 不存在");
-      setIsLoading(false);
-      return;
-    }
-
-    try {
-      const res = await axios.get(
-        `/v2/api/${process.env.REACT_APP_API_PATH}/order/${orderId}`
-      );
-      if (res.data.order) {
-        setOrderData(res.data.order);
-      } else {
-        setError("找不到訂單資料");
-      }
-      setIsLoading(false);
-    } catch (error) {
-      console.error("訂單資料獲取失敗:", error);
-      setError("載入訂單時發生錯誤");
-      setIsLoading(false);
-    }
-  };
 
   // 獲取推薦行程
   const getRecommendedTours = useCallback(async () => {
@@ -66,7 +42,30 @@ function Success() {
   }, [orderData]);
 
   useEffect(() => {
-    getOrder(orderId);
+    const getOrder = async () => {
+      if (!orderId) {
+        setError("訂單 ID 不存在");
+        setIsLoading(false);
+        return;
+      }
+
+      try {
+        const res = await axios.get(
+          `/v2/api/${process.env.REACT_APP_API_PATH}/order/${orderId}`
+        );
+        if (res.data.order) {
+          setOrderData(res.data.order);
+        } else {
+          setError("找不到訂單資料");
+        }
+        setIsLoading(false);
+      } catch (error) {
+        console.error("訂單資料獲取失敗:", error);
+        setError("載入訂單時發生錯誤");
+        setIsLoading(false);
+      }
+    };
+    getOrder();
   }, [orderId]);
 
   useEffect(() => {

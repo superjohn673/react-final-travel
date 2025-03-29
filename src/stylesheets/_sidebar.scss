@@ -1,0 +1,276 @@
+/* ===================================================
+ * Sidebar Navigation 側邊導航樣式
+ * =================================================== */
+// 側邊欄基本樣式
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 75vw;
+    height: 100%;
+    background-color: #ffffff;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    z-index: 999;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    transform: translateX(-100%);
+    
+    @media (max-width: 576px) {
+      width: 85vw;
+    }
+  
+    &.open {
+      transform: translateX(0);
+    }
+  
+    // 關閉按鈕
+    .close-button {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: rgba($primary-color, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      
+      &:hover {
+        background-color: rgba($primary-color, 0.2);
+      }
+  
+      i {
+        font-size: 1.5rem;
+        color: $primary-color;
+      }
+    }
+    
+    // 側邊欄內容容器
+    .sidebar-content {
+      padding: 20px;
+      margin-top: 20px;
+      height: 100%;
+      overflow-y: auto;
+    }
+    
+    // 會員區域
+    .member-section {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-bottom: 25px;
+      padding-bottom: 15px;
+      border-bottom: 1px solid rgba($primary-color, 0.1);
+      
+      .member-item {
+        .link {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          color: $text-color;
+          font-weight: 500;
+          padding: 10px 15px;
+          border-radius: 8px;
+          background-color: rgba($primary-color, 0.05);
+          transition: all 0.3s ease;
+          text-decoration: none;
+          
+          &:hover {
+            background-color: rgba($primary-color, 0.1);
+            transform: translateY(-2px);
+          }
+          
+          i {
+            font-size: 1.1rem;
+            color: $primary-color;
+          }
+          
+          span {
+            font-size: 1rem;
+          }
+        }
+      }
+    }
+  
+    // 菜單區塊
+    .menu-section {
+      margin-bottom: 25px;
+      
+      .section-header {
+        margin-bottom: 15px;
+      }
+      
+      // 區塊標題
+      .section-title {
+        color: $primary-color;
+        font-weight: 600;
+        border-bottom: 2px solid rgba($primary-color, 0.2);
+        margin-bottom: 0.8rem;
+        padding-bottom: 0.5rem;
+        font-size: 1.25rem;
+        text-align: left;
+        width: 100%;
+        display: block;
+        position: relative;
+        
+        &:after {
+          content: '';
+          position: absolute;
+          bottom: -2px;
+          left: 0;
+          width: 50px;
+          height: 2px;
+          background-color: $primary-color;
+        }
+      }
+      
+      // 菜單網格
+      .menu-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+        
+        @media (min-width: 576px) {
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
+      
+      // 菜單項目
+      .menu-item-wrapper {
+        .menu-item {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          padding: 10px;
+          border-radius: 8px;
+          background-color: rgba($primary-color, 0.03);
+          transition: all 0.3s ease;
+          text-decoration: none;
+          color: $text-color;
+          border: 1px solid transparent;
+          
+          &:hover {
+            background-color: rgba($primary-color, 0.08);
+            border-color: rgba($primary-color, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.05);
+          }
+          
+          .menu-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            border-radius: 6px;
+            background-color: rgba($primary-color, 0.1);
+            color: $primary-color;
+            
+            i {
+              font-size: 1rem;
+            }
+          }
+          
+          .menu-label {
+            font-size: 0.95rem;
+            font-weight: 500;
+            flex: 1;
+          }
+        }
+      }
+    }
+  
+    // 底部導航連結
+    .footer-links {
+      margin-top: 30px;
+      padding-top: 20px;
+      border-top: 1px solid rgba($primary-color, 0.1);
+      
+      .footer-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+        
+        @media (min-width: 576px) {
+          grid-template-columns: repeat(4, 1fr);
+        }
+      }
+      
+      .footer-item {
+        .footer-link {
+          display: block;
+          text-align: center;
+          font-size: 0.9rem;
+          font-weight: 500;
+          padding: 10px;
+          border-radius: 6px;
+          transition: all 0.3s ease;
+          color: $text-color;
+          background-color: rgba($text-color, 0.05);
+          text-decoration: none;
+          
+          &:hover {
+            background-color: rgba($primary-color, 0.1);
+            transform: translateY(-3px);
+            box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+            color: $primary-color;
+          }
+        }
+      }
+    }
+  
+    // 社交媒體圖標容器
+    .social-icons-container {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 20px;
+      padding: 20px 0;
+      border-top: 1px solid rgba($primary-color, 0.1);
+      
+      .social-item {
+        .social-link {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+          background-color: rgba($primary-color, 0.1);
+          color: $primary-color;
+          transition: all 0.3s ease;
+          text-decoration: none;
+          
+          i {
+            font-size: 1.2rem;
+          }
+          
+          &:hover {
+            background-color: $primary-color;
+            color: white;
+            transform: translateY(-3px) scale(1.1);
+            box-shadow: 0 5px 10px rgba($primary-color, 0.3);
+          }
+        }
+      }
+    }
+  }
+  
+  // 遮罩層
+  .sidebar-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 998;
+    pointer-events: auto;
+    backdrop-filter: blur(2px);
+    transition: all 0.3s ease;
+  }
+  

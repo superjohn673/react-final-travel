@@ -1,0 +1,156 @@
+/* ===================================================
+ * Admin Login Page 後台登入頁面樣式
+ * =================================================== */
+ .login-container {
+    width: 100%;
+    max-width: 450px;
+    padding: 0 15px;
+  
+    .login-card {
+      background-color: rgba(255, 255, 255, 0.95);
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      padding: 2.5rem;
+      transition: all 0.3s ease;
+  
+      &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+      }
+    }
+  
+    .login-header {
+      text-align: center;
+      margin-bottom: 2rem;
+  
+      .brand-logo {
+        width: 70px;
+        height: 70px;
+        margin: 0 auto 1rem;
+        background-color: $primary-color;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+  
+        i {
+          font-size: 2rem;
+          color: white;
+        }
+      }
+  
+      .login-title {
+        font-size: 1.75rem;
+        font-weight: 700;
+        color: #333;
+        margin-bottom: 0.5rem;
+      }
+  
+      .login-subtitle {
+        color: #777;
+        font-size: 1rem;
+      }
+    }
+  
+    .login-form {
+      .form-label {
+        font-weight: 600;
+        color: #555;
+        font-size: 0.9rem;
+      }
+  
+      .input-group {
+        .input-group-text {
+          background-color: #f8f9fa;
+          border-right: none;
+          color: #6c757d;
+        }
+  
+        .form-control {
+          border-left: none;
+          padding-left: 0;
+  
+          &:focus {
+            box-shadow: none;
+            border-color: #ced4da;
+          }
+        }
+      }
+  
+      .forgot-password {
+        font-size: 0.85rem;
+        color: $primary-color;
+        text-decoration: none;
+  
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+  
+      .form-check-label {
+        font-size: 0.9rem;
+        color: #555;
+      }
+  
+      .login-btn {
+        padding: 0.75rem;
+        font-weight: 600;
+        background-color: $primary-color;
+        border-color: $primary-color;
+        transition: all 0.3s ease;
+  
+        &:hover,
+        &:focus {
+          background-color: $primary-color-light;
+          border-color: $primary-color-light;
+          box-shadow: 0 5px 15px $primary-color-light;
+        }
+  
+        &:disabled {
+          background-color: $primary-color-light;
+          border-color: $primary-color-light;
+        }
+      }
+    }
+  
+    .login-footer {
+      text-align: center;
+      margin-top: 2rem;
+  
+      p {
+        font-size: 0.85rem;
+        color: #777;
+        margin-bottom: 0;
+      }
+    }
+  }
+  
+  // 響應式調整
+  @media (max-width: 576px) {
+    .login-container {
+      .login-card {
+        padding: 1.5rem;
+      }
+  
+      .login-header {
+        .brand-logo {
+          width: 60px;
+          height: 60px;
+  
+          i {
+            font-size: 1.75rem;
+          }
+        }
+  
+        .login-title {
+          font-size: 1.5rem;
+        }
+      }
+    }
+  }
+  
+  // 動畫效果
+  .animate__fadeInDown {
+    animation-duration: 0.5s;
+  }
+  

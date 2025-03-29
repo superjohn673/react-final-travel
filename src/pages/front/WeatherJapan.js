@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from "react";
+import { useEffect, useState, useContext } from "react";
 import { Link, useParams } from "react-router-dom";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
 import Loading from "../../components/Loading";
@@ -8,7 +8,6 @@ import { formatNumberWithCommas } from "../../utils/helpers";
 const WeatherJapan = () => {
   const { season } = useParams();
   const [isLoading, setIsLoading] = useState(false);
-  const [seasonProducts, setSeasonProducts] = useState([]);
   const {
     products,
     getAllProducts,
@@ -30,20 +29,17 @@ const WeatherJapan = () => {
     fetchProducts();
   }, [getAllProducts]);
 
-  useEffect(() => {
-    const seasonMap = {
-      spring: "春季旅遊",
-      summer: "夏季旅遊",
-      fall: "秋季旅遊",
-      winter: "冬季旅遊",
-    };
+  const seasonMap = {
+    spring: "春季旅遊",
+    summer: "夏季旅遊",
+    fall: "秋季旅遊",
+    winter: "冬季旅遊",
+  };
 
-    const filterCityProducts = products.filter(
-      (product) => product.category === seasonMap[season]
-    );
-
-    setSeasonProducts(filterCityProducts);
-  }, [products, season]);
+  // 直接計算過濾後的產品列表
+  const filterSeasonProducts = products.filter(
+    (product) => product.category === seasonMap[season]
+  );
 
   const handleFavorite = (product) => {
     if (favorites && favorites.some((item) => item.id === product.id)) {
@@ -57,7 +53,7 @@ const WeatherJapan = () => {
       {" "}
       <Loading isLoading={isLoading} />
       <div className="row tour">
-        {seasonProducts.map((product) => {
+        {filterSeasonProducts.map((product) => {
           const isFavorite = favorites.some((item) => item.id === product.id);
           return (
             <div className="col-md-6 col-lg-4 mb-4" key={product.id}>

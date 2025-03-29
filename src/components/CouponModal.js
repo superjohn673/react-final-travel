@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
+import { formatDate } from "../utils/helpers";
 
 const CouponModal = ({ closeModal, getCoupons, type, tempCoupon }) => {
   const [tempData, setTempData] = useState({
@@ -127,14 +128,7 @@ const CouponModal = ({ closeModal, getCoupons, type, tempCoupon }) => {
                     name="due_date"
                     placeholder="請輸入到期日"
                     className="form-control mt-1"
-                    value={`${date.getFullYear().toString()}-${(
-                      date.getMonth() + 1
-                    )
-                      .toString()
-                      .padStart(2, 0)}-${date
-                      .getDate()
-                      .toString()
-                      .padStart(2, 0)}`}
+                    value={formatDate(date)} // 使用工具函數
                     onChange={(e) => {
                       setDate(new Date(e.target.value));
                     }}

@@ -31,16 +31,27 @@ export const CheckboxRadio = ({
   );
 };
 
-export const Input = ({ id, labelText, register, type, errors, rules }) => {
+export const Input = ({
+  id,
+  labelText,
+  register,
+  type,
+  errors,
+  rules,
+  placeholder,
+  isRequired = false,
+}) => {
   return (
     <>
       <label htmlFor={id} className="form-label">
         {labelText}
+        {isRequired && <span className="text-danger ms-1">*</span>}
       </label>
       <input
         id={id}
         type={type}
         className={`form-control ${errors[id] && "is-invalid"}`}
+        placeholder={placeholder}
         {...register(id, rules)}
       />
       {errors[id] && (

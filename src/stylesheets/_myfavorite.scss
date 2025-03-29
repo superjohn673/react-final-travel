@@ -1,0 +1,308 @@
+/* ===================================================
+ * 我的最愛
+ * =================================================== */
+.favorite-section {
+    margin-bottom: 3rem;
+  
+    .card {
+      border: none;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba($primary-color, 0.08);
+      overflow: hidden;
+      transition: all 0.3s ease;
+  
+      .card-header {
+        background: linear-gradient(
+          to right,
+          $primary-color,
+          $primary-color-light
+        );
+        border-bottom: none;
+        padding: 1.5rem;
+        position: relative;
+  
+        h5 {
+          color: white;
+          font-weight: 600;
+          margin: 0;
+          font-size: 1.5rem;
+          display: flex;
+          align-items: center;
+  
+          svg {
+            margin-right: 0.75rem;
+          }
+        }
+  
+        &:after {
+          content: "";
+          position: absolute;
+          bottom: -15px;
+          left: 0;
+          right: 0;
+          height: 15px;
+          background: linear-gradient(
+            to bottom,
+            rgba($primary-color, 0.1),
+            transparent
+          );
+        }
+      }
+  
+      .card-body {
+        padding: 2rem;
+      }
+    }
+  
+    .empty-favorites {
+      text-align: center;
+      padding: 5rem 2rem;
+      background-color: rgba($primary-color, 0.02);
+      border-radius: 12px;
+  
+      svg {
+        color: rgba($primary-color, 0.2);
+        margin-bottom: 1.5rem;
+        transition: all 0.5s ease;
+      }
+  
+      &:hover svg {
+        transform: scale(1.1);
+        color: rgba($primary-color, 0.3);
+      }
+  
+      p {
+        color: $text-color;
+        font-size: 1.1rem;
+        margin-bottom: 2.5rem;
+      }
+  
+      .btn-explore {
+        background: linear-gradient(
+          to right,
+          $primary-color,
+          $primary-color-light
+        );
+        border: none;
+        color: white;
+        padding: 0.75rem 2rem;
+        border-radius: 50px;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba($primary-color, 0.3);
+        text-decoration: none;
+        display: inline-block;
+        margin-top: 1rem;
+  
+        &:hover {
+          transform: translateY(-3px);
+          box-shadow: 0 8px 20px rgba($primary-color, 0.4);
+        }
+  
+        &:active {
+          transform: translateY(-1px);
+        }
+      }
+    }
+  
+    .favorite-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+  
+    .favorite-item {
+      background-color: white;
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba($primary-color, 0.08);
+      overflow: hidden;
+      transition: all 0.3s ease;
+      position: relative;
+  
+      &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 25px rgba($primary-color, 0.15);
+      }
+  
+      .favorite-image {
+        height: 200px;
+        overflow: hidden;
+        position: relative;
+  
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          transition: transform 0.5s ease;
+        }
+  
+        &:hover img {
+          transform: scale(1.05);
+        }
+      }
+  
+      .favorite-badge {
+        position: absolute;
+        top: 15px;
+        left: 0;
+        background: linear-gradient(
+          to right,
+          $primary-color,
+          $primary-color-light
+        );
+        color: white;
+        padding: 0.4rem 1rem 0.4rem 0.75rem;
+        font-size: 0.8rem;
+        font-weight: 500;
+        border-radius: 0 20px 20px 0;
+        box-shadow: 0 3px 8px rgba($primary-color, 0.2);
+        z-index: 1;
+      }
+  
+      .favorite-content {
+        padding: 1.5rem;
+  
+        h5 {
+          font-size: 1.2rem;
+          font-weight: 600;
+          color: $text-color;
+          margin-bottom: 1rem;
+          line-height: 1.4;
+          height: 3.36rem;
+          overflow: hidden;
+          display: -webkit-box;
+          -webkit-line-clamp: 2;
+          -webkit-box-orient: vertical;
+        }
+  
+        .favorite-info {
+          display: flex;
+          align-items: center;
+          margin-bottom: 1rem;
+          color: $text-color;
+  
+          svg {
+            color: $primary-color;
+            margin-right: 0.5rem;
+            flex-shrink: 0;
+          }
+  
+          span {
+            font-size: 0.9rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+          }
+        }
+  
+        .favorite-price {
+          font-size: 1.3rem;
+          font-weight: 700;
+          color: $primary-color-dark;
+          margin-bottom: 1.25rem;
+        }
+      }
+  
+      .favorite-actions {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 0.5rem;
+        padding: 0 1.5rem 1.5rem;
+  
+        .btn {
+          border-radius: 8px;
+          font-weight: 500;
+          font-size: 0.9rem;
+          padding: 0.5rem;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          transition: all 0.3s ease;
+  
+          svg {
+            margin-right: 0.4rem;
+          }
+        }
+  
+        .btn-view {
+          color: $primary-color;
+          border: 1px solid $primary-color;
+          background-color: white;
+  
+          &:hover {
+            background-color: rgba($primary-color, 0.05);
+            transform: translateY(-2px);
+          }
+        }
+  
+        .btn-cart {
+          background: linear-gradient(
+            to right,
+            $primary-color,
+            $primary-color-light
+          );
+          border: none;
+          color: white;
+          font-size: 1rem;
+          padding: 0.75rem;
+  
+          &:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba($primary-color, 0.2);
+          }
+        }
+  
+        .btn-remove {
+          background-color: #f8d7da;
+          border: none;
+          color: #dc3545;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+  
+          &:hover {
+            background-color: #dc3545;
+            color: white;
+            transform: translateY(-2px);
+          }
+        }
+      }
+    }
+  }
+  
+  @media (max-width: 991.98px) {
+    .favorite-section {
+      .favorite-grid {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      }
+    }
+  }
+  
+  @media (max-width: 767.98px) {
+    .favorite-section {
+      .favorite-grid {
+        grid-template-columns: 1fr;
+      }
+  
+      .favorite-item {
+        .favorite-actions {
+          grid-template-columns: 1fr;
+          gap: 0.8rem;
+  
+          .btn {
+            width: 100%;
+            padding: 0.8rem;
+            font-size: 1rem;
+          }
+  
+          .btn-cart {
+            order: 1;
+          }
+  
+          .btn-remove {
+            order: 2;
+          }
+        }
+      }
+    }
+  }

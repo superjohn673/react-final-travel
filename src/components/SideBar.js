@@ -1,37 +1,61 @@
 // Sidebar.js
-import React, { useEffect, useCallback, memo } from "react";
+import { useEffect, useCallback, memo } from "react";
 import { Link } from "react-router-dom";
 import TravelSearchForm from "./TravelSearchForm";
 
 // 菜單數據
 const MENU_DATA = {
   areas: [
-    { path: "area-japan/kanto", label: "關東" },
-    { path: "area-japan/kansai", label: "關西" },
-    { path: "area-japan/hokkaido", label: "北海道" },
-    { path: "area-japan/tohoku", label: "東北" },
-    { path: "area-japan/hokuriku", label: "北陸" },
-    { path: "area-japan/kyushu", label: "九州" },
+    { path: "area-japan/kanto", label: "關東", icon: "bi bi-geo-alt" },
+    { path: "area-japan/kansai", label: "關西", icon: "bi bi-geo-alt" },
+    { path: "area-japan/hokkaido", label: "北海道", icon: "bi bi-geo-alt" },
+    { path: "area-japan/tohoku", label: "東北", icon: "bi bi-geo-alt" },
+    { path: "area-japan/hokuriku", label: "北陸", icon: "bi bi-geo-alt" },
+    { path: "area-japan/kyushu", label: "九州", icon: "bi bi-geo-alt" },
   ],
   themes: [
-    { path: "tour/classic-japan", label: "經典之旅" },
-    { path: "tour/shop-japan", label: "美學之旅" },
-    { path: "tour/rail-japan", label: "鐵道之旅" },
-    { path: "tour/vibe-japan", label: "深度之旅" },
+    { path: "tour/classic-japan", label: "經典之旅", icon: "bi bi-stars" },
+    { path: "tour/shop-japan", label: "美學之旅", icon: "bi bi-brush" },
+    { path: "tour/rail-japan", label: "鐵道之旅", icon: "bi bi-train-front" },
+    { path: "tour/vibe-japan", label: "深度之旅", icon: "bi bi-compass" },
   ],
   seasons: [
-    { path: "season-japan/spring", label: "春季之旅" },
-    { path: "season-japan/summer", label: "夏季之旅" },
-    { path: "season-japan/fall", label: "秋季之旅" },
-    { path: "season-japan/winter", label: "冬季之旅" },
+    { path: "season-japan/spring", label: "春季之旅", icon: "bi bi-flower1" },
+    { path: "season-japan/summer", label: "夏季之旅", icon: "bi bi-sun" },
+    { path: "season-japan/fall", label: "秋季之旅", icon: "bi bi-tree" },
+    { path: "season-japan/winter", label: "冬季之旅", icon: "bi bi-snow" },
   ],
   featured: [
-    { path: "/product/-Nzf__o2dpmQ_VfkPwnw", label: "美食饗宴" },
-    { path: "/product/-Nzf_nF5zhwOzwl2z_hi", label: "咖啡品味" },
-    { path: "/product/-Nzf_yFq40JTwB0WB4-V", label: "寺廟之旅" },
-    { path: "/product/-Nzfa9hKlZ5znzway6Ni", label: "購物之都" },
-    { path: "/product/-O-5Hoy0jCcQdrdh9lCY", label: "滑雪勝地" },
-    { path: "/product/-NzfaHOVNwBYrJ18yzZd", label: "環球影城" },
+    {
+      path: "/product/-Nzf__o2dpmQ_VfkPwnw",
+      label: "美食饗宴",
+      icon: "bi bi-cup-hot",
+    },
+    {
+      path: "/product/-Nzf_nF5zhwOzwl2z_hi",
+      label: "咖啡品味",
+      icon: "bi bi-cup",
+    },
+    {
+      path: "/product/-Nzf_yFq40JTwB0WB4-V",
+      label: "寺廟之旅",
+      icon: "bi bi-building",
+    },
+    {
+      path: "/product/-Nzfa9hKlZ5znzway6Ni",
+      label: "購物之都",
+      icon: "bi bi-bag",
+    },
+    {
+      path: "/product/-O-5Hoy0jCcQdrdh9lCY",
+      label: "滑雪勝地",
+      icon: "bi bi-snow2",
+    },
+    {
+      path: "/product/-NzfaHOVNwBYrJ18yzZd",
+      label: "環球影城",
+      icon: "bi bi-camera",
+    },
   ],
   footer: [
     { path: "/location", label: "服務據點" },
@@ -40,24 +64,20 @@ const MENU_DATA = {
     { path: "login", label: "後台登入" },
   ],
   social: [
-    { icon: "fa-brands fa-facebook" },
-    { icon: "fab fa-instagram" },
-    { icon: "fab fa-line" },
-    { icon: "bi bi-telephone-fill" },
+    { icon: "fa-brands fa-facebook", label: "Facebook" },
+    { icon: "fab fa-instagram", label: "Instagram" },
+    { icon: "fab fa-line", label: "Line" },
+    { icon: "bi bi-telephone-fill", label: "電話" },
   ],
 };
 
 // 菜單項目組件
-const MenuItem = memo(({ path, label, icon, onClick, size = "h4" }) => {
-  const Tag = size;
+const MenuItem = memo(({ path, label, icon, onClick }) => {
   return (
-    <div
-      className={`col-md-${size === "h5" ? "3" : "2"} mb-2`}
-      onClick={onClick}
-    >
-      <Link to={path || "#"} className="link">
-        {icon && <i className={`${icon} me-2`}></i>}
-        {size ? <Tag>{label}</Tag> : <span>{label}</span>}
+    <div className="menu-item-wrapper" onClick={onClick}>
+      <Link to={path || "#"} className="menu-item">
+        <div className="menu-icon">{icon && <i className={icon}></i>}</div>
+        <span className="menu-label">{label}</span>
       </Link>
     </div>
   );
@@ -66,15 +86,15 @@ const MenuItem = memo(({ path, label, icon, onClick, size = "h4" }) => {
 MenuItem.displayName = "MenuItem";
 
 // 菜單區塊組件
-const MenuSection = memo(({ title, items, onClick, size }) => {
+const MenuSection = memo(({ title, items, onClick }) => {
   return (
-    <div className="row mb-3 side-link">
+    <div className="menu-section">
       {title && (
-        <div className="col-12 mb-2">
+        <div className="section-header">
           <h5 className="section-title">{title}</h5>
         </div>
       )}
-      <div className="row justify-content-between">
+      <div className="menu-grid">
         {items.map((item, idx) => (
           <MenuItem
             key={idx}
@@ -82,7 +102,6 @@ const MenuSection = memo(({ title, items, onClick, size }) => {
             label={item.label}
             icon={item.icon}
             onClick={onClick}
-            size={size}
           />
         ))}
       </div>
@@ -148,17 +167,17 @@ const Sidebar = ({ isOpen, onToggle }) => {
         >
           <i className="bi bi-x"></i>
         </button>
-        <div className="container px-3">
-          <div className="row mt-4 mb-3 side-link justify-content-between">
-            <div className="mb-3 member-link">
+        <div className="sidebar-content">
+          <div className="member-section">
+            <div className="member-item">
               <Link to="member/orders" className="link" onClick={onToggle}>
-                <i className="fa-solid fa-user me-2"></i>
+                <i className="fa-solid fa-user"></i>
                 <span>會員專區</span>
               </Link>
             </div>
-            <div className="mb-3 member-link">
+            <div className="member-item">
               <Link to="/member/favorite" className="link" onClick={onToggle}>
-                <i className="fa-solid fa-heart me-2"></i>
+                <i className="fa-solid fa-heart"></i>
                 <span>我的最愛</span>
               </Link>
             </div>
@@ -178,32 +197,25 @@ const Sidebar = ({ isOpen, onToggle }) => {
             title="主題之旅"
             items={MENU_DATA.themes}
             onClick={onToggle}
-            colSize={3}
           />
 
           <MenuSection
             title="季節之旅"
             items={MENU_DATA.seasons}
             onClick={onToggle}
-            colSize={3}
           />
 
           <MenuSection
             title="精選之旅"
             items={MENU_DATA.featured}
             onClick={onToggle}
-            colSize={2}
           />
 
           {/* 底部導航連結 */}
-          <div className="footer-links mt-5">
-            <div className="row justify-content-center">
+          <div className="footer-links">
+            <div className="footer-grid">
               {MENU_DATA.footer.map((item, idx) => (
-                <div
-                  key={idx}
-                  className="col-6 col-md-3 text-center mb-3"
-                  onClick={onToggle}
-                >
+                <div key={idx} className="footer-item" onClick={onToggle}>
                   <Link className="footer-link" to={item.path}>
                     {item.label}
                   </Link>
@@ -213,11 +225,11 @@ const Sidebar = ({ isOpen, onToggle }) => {
           </div>
 
           {/* 社交媒體圖標 */}
-          <div className="row py-4 justify-content-center social-icons-container">
+          <div className="social-icons-container">
             {MENU_DATA.social.map((item, idx) => (
-              <div key={idx} className="col-3 col-md-2 text-center mb-2">
-                <Link className="link">
-                  <i className={`${item.icon} social-icon`}></i>
+              <div key={idx} className="social-item">
+                <Link className="social-link" aria-label={item.label}>
+                  <i className={`${item.icon}`}></i>
                 </Link>
               </div>
             ))}

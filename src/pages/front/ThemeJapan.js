@@ -1,6 +1,5 @@
-import React, { useEffect, useState, useContext } from "react";
+import { useEffect, useState, useContext } from "react";
 import { Link, useParams } from "react-router-dom";
-// import axios from "axios";
 import Loading from "../../components/Loading";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
 import { AppContext } from "../../store/AppContext";
@@ -9,7 +8,6 @@ import { formatNumberWithCommas } from "../../utils/helpers";
 const ThemeJapan = () => {
   const { theme } = useParams();
   const [isLoading, setIsLoading] = useState(false);
-  const [themeProducts, setThemeProducts] = useState([]);
   const {
     products,
     getAllProducts,
@@ -31,22 +29,18 @@ const ThemeJapan = () => {
     fetchProducts();
   }, [getAllProducts]);
 
-  useEffect(() => {
-    const themeMap = {
-      "classic-japan": "經典",
-      "shop-japan": "美學",
-      "rail-japan": "鐵道",
-      "vibe-japan": "深度",
-    };
+  const themeMap = {
+    "classic-japan": "經典",
+    "shop-japan": "美學",
+    "rail-japan": "鐵道",
+    "vibe-japan": "深度",
+  };
+  const cities = ["關東", "關西", "北海道", "東北", "北陸", "九州"];
 
-    const cities = ["關東", "關西", "北海道", "東北", "北陸", "九州"];
-
-    const filterCityProducts = products.filter((product) =>
-      cities.some((city) => product.category === `${themeMap[theme]}${city}`)
-    );
-
-    setThemeProducts(filterCityProducts);
-  }, [products, theme]);
+  // 直接計算過濾後的產品列表
+  const filterThemeProducts = products.filter((product) =>
+    cities.some((city) => product.category === `${themeMap[theme]}${city}`)
+  );
 
   const handleFavorite = (product) => {
     if (favorites && favorites.some((item) => item.id === product.id)) {
@@ -61,7 +55,7 @@ const ThemeJapan = () => {
       {" "}
       <Loading isLoading={isLoading} />
       <div className="row tour">
-        {themeProducts.map((product) => {
+        {filterThemeProducts.map((product) => {
           const isFavorite = favorites.some((item) => item.id === product.id);
           return (
             <div className="col-md-6 col-lg-4 mb-4" key={product.id}>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import Sidebar from "./SideBar";
 
@@ -161,9 +161,7 @@ const NavBar = ({ cartData }) => {
     const handleScroll = () => {
       if (window.scrollY === 0) {
         setShowNavBar(false);
-      } else if (window.scrollY > lastScrollY) {
-        setShowNavBar(false);
-      } else if (window.scrollY < lastScrollY) {
+      } else {
         setShowNavBar(true);
       }
       lastScrollY = window.scrollY;

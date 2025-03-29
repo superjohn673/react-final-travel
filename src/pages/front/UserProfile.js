@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { FaUserCircle, FaEdit, FaSave, FaUser } from "react-icons/fa";
 
 const UserProfile = () => {

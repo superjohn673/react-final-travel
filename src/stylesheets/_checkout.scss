@@ -1,0 +1,265 @@
+/* ===================================================
+ * Checkout Page 結帳頁面樣式
+ * =================================================== */
+ .checkout-page {
+    .checkout-form-container {
+      border-radius: 8px;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+      padding: 2rem !important;
+      transition: all 0.3s ease;
+  
+      &:hover {
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      }
+  
+      .checkout-title {
+        color: $primary-color;
+        position: relative;
+        padding-bottom: 1rem;
+        margin-bottom: 2rem;
+  
+        &::after {
+          content: "";
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 80px;
+          height: 3px;
+          background: linear-gradient(
+            45deg,
+            $primary-color,
+            $primary-color-light
+          );
+          border-radius: 2px;
+        }
+      }
+  
+      .form-label {
+        color: #555;
+        font-weight: 500;
+      }
+  
+      .form-control {
+        border: 1px solid rgba($primary-color, 0.2);
+        border-radius: 4px;
+        padding: 0.7rem 1rem;
+        transition: all 0.3s ease;
+  
+        &:focus {
+          border-color: $primary-color;
+          box-shadow: 0 0 0 0.2rem rgba($primary-color, 0.25);
+        }
+      }
+  
+      .invalid-feedback {
+        color: #dc3545;
+        font-size: 0.85rem;
+        margin-top: 0.25rem;
+      }
+    }
+  
+    .back-link {
+      color: #555;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+  
+      i {
+        transition: all 0.3s ease;
+      }
+  
+      &:hover {
+        color: $primary-color;
+  
+        i {
+          transform: translateX(-3px);
+        }
+      }
+    }
+  
+    .checkout-summary-container {
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+      padding: 2rem;
+      transition: all 0.3s ease;
+  
+      &:hover {
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      }
+  
+      .checkout-product {
+        margin-bottom: 2rem;
+  
+        .checkout-product-header {
+          margin-bottom: 1.5rem;
+  
+          .product-tag {
+            display: inline-block;
+            background: linear-gradient(
+              45deg,
+              $primary-color,
+              $primary-color-light
+            );
+            color: white;
+            font-size: 0.8rem;
+            font-weight: 600;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            margin-bottom: 0.8rem;
+            box-shadow: 0 2px 5px rgba($primary-color, 0.3);
+            letter-spacing: 1px;
+          }
+  
+          h4 {
+            color: #333;
+            font-size: 1.4rem;
+            border-bottom: 2px solid #f8f9fa;
+            padding-bottom: 0.8rem;
+            position: relative;
+  
+            &::after {
+              content: "";
+              position: absolute;
+              bottom: -2px;
+              left: 0;
+              width: 60px;
+              height: 4px;
+              background: linear-gradient(
+                45deg,
+                $primary-color,
+                $primary-color-light
+              );
+              border-radius: 2px;
+            }
+          }
+        }
+  
+        .checkout-info-row {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-bottom: 1rem;
+          padding: 0.8rem 1rem;
+          background-color: #f8f9fa;
+          border-radius: 6px;
+          border-left: 4px solid $primary-color;
+  
+          .checkout-info-label {
+            color: $primary-color;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+  
+            i {
+              color: $primary-color;
+              margin-right: 0.5rem;
+            }
+          }
+  
+          .checkout-info-value {
+            font-weight: 500;
+          }
+        }
+  
+        .checkout-passenger-section {
+          background-color: #f8f9fa;
+          padding: 1.2rem;
+          border-radius: 6px;
+          margin-bottom: 1.5rem;
+  
+          .checkout-info-label {
+            color: $primary-color;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+  
+            i {
+              color: $primary-color;
+              margin-right: 0.5rem;
+            }
+          }
+  
+          .checkout-passenger-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.8rem 0;
+            border-bottom: 1px dashed rgba($primary-color, 0.2);
+  
+            &:last-child {
+              border-bottom: none;
+            }
+  
+            .passenger-type {
+              display: flex;
+              align-items: center;
+              font-weight: 500;
+  
+              i {
+                color: $primary-color;
+                margin-right: 0.7rem;
+                font-size: 1.1rem;
+              }
+            }
+  
+            .passenger-price {
+              font-weight: 600;
+            }
+          }
+        }
+      }
+  
+      .checkout-total-section {
+        border-top: 2px solid #f8f9fa;
+        padding-top: 1.5rem;
+  
+        .checkout-total-row {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-bottom: 1rem;
+  
+          .total-label {
+            font-size: 1.2rem;
+            font-weight: 600;
+          }
+  
+          .total-value {
+            font-size: 1.2rem;
+            font-weight: 600;
+          }
+  
+          &.strikethrough {
+            .total-label,
+            .total-value {
+              text-decoration: line-through;
+              color: #6c757d;
+            }
+          }
+  
+          &.discount {
+            .total-label,
+            .total-value {
+              color: #dc3545;
+              font-weight: 700;
+            }
+          }
+  
+          &.deposit {
+            margin-top: 1.5rem;
+            padding-top: 1rem;
+            border-top: 1px dashed rgba($primary-color, 0.3);
+  
+            .total-label,
+            .total-value {
+              color: $primary-color;
+              font-weight: 700;
+            }
+          }
+        }
+      }
+    }
+  }

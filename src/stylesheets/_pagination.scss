@@ -1,0 +1,75 @@
+/* ===================================================
+ * Pagination 分頁樣式
+ * =================================================== */
+ .pagination {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+  
+    .page-item {
+      margin: 0 0.2rem;
+  
+      .page-link {
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: $gray-700;
+        border: 1px solid $gray-300;
+        transition: all 0.3s ease;
+        font-weight: 500;
+  
+        &:hover {
+          background-color: rgba(151, 125, 6, 0.1);
+          color: rgb(151, 125, 6);
+          border-color: rgba(151, 125, 6, 0.2);
+        }
+  
+        &.active {
+          background-color: rgb(151, 125, 6);
+          color: $white;
+          border-color: rgb(151, 125, 6);
+          box-shadow: 0 4px 10px rgba(151, 125, 6, 0.3);
+        }
+  
+        &.disabled {
+          color: $gray-400;
+          pointer-events: none;
+          background-color: $white;
+          border-color: $gray-200;
+        }
+      }
+  
+      &:first-child,
+      &:last-child {
+        .page-link {
+          border-radius: 30px;
+          width: 45px;
+        }
+      }
+    }
+  }
+  
+  @media (max-width: 767.98px) {
+    .pagination {
+      .page-item {
+        margin: 0 0.1rem;
+  
+        .page-link {
+          width: 35px;
+          height: 35px;
+          font-size: 0.9rem;
+        }
+  
+        &:first-child,
+        &:last-child {
+          .page-link {
+            width: 40px;
+          }
+        }
+      }
+    }
+  }
+  

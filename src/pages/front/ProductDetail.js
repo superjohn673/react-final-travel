@@ -1,4 +1,4 @@
-import React, { useContext, useMemo, useState, useEffect } from "react";
+import { useContext, useMemo, useState, useEffect } from "react";
 import { AppContext } from "../../store/AppContext";
 import {
   useOutletContext,
@@ -150,21 +150,6 @@ const ProductDetail = () => {
     },
   ];
 
-  const getProduct = async (id) => {
-    try {
-      setIsLoading(true);
-      const productRes = await axios.get(
-        `/v2/api/${process.env.REACT_APP_API_PATH}/product/${id}`
-      );
-      setProduct(productRes.data.product);
-      setItinerary(parseItinerary(productRes.data.product.content)); // 解析行程
-    } catch (error) {
-      console.error("產品詳情獲取失敗:", error);
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
   const addToCart = async () => {
     // 設置 loading 狀態為 true，防止重複點擊
     setIsLoading(true);
@@ -212,27 +197,26 @@ const ProductDetail = () => {
     setTempEelectedDate(date);
   };
 
-  // 格式化星期幾
-  // const formatWeekday = (date) => {
-  //   const weekdays = ["日", "一", "二", "三", "四", "五", "六"];
-  //   return weekdays[date.day()];
-  // };
-
-  // 格式化日期顯示
-  // const formatSelectedDate = (date) => {
-  //   if (!date) return null;
-  //   return {
-  //     formatted: date.format("YYYY-MM-DD"),
-  //     weekday: formatWeekday(date),
-  //   };
-  // };
-
   // 檢查是否可以報名
   const canRegister = (adult, children, selectedDate) => {
     return adult + children > 0 && selectedDate !== null;
   };
 
   useEffect(() => {
+    const getProduct = async (id) => {
+      try {
+        setIsLoading(true);
+        const productRes = await axios.get(
+          `/v2/api/${process.env.REACT_APP_API_PATH}/product/${id}`
+        );
+        setProduct(productRes.data.product);
+        setItinerary(parseItinerary(productRes.data.product.content)); // 解析行程
+      } catch (error) {
+        console.error("產品詳情獲取失敗:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
     getProduct(id);
   }, [id]);
 
@@ -336,9 +320,9 @@ const ProductDetail = () => {
         {/* 預訂區塊 */}
         <div className="row justify-content-between mt-5 mb-7">
           {/* 載入日曆 */}
-          <div className="col-md-6 mb-3">
+          <div className="col-md-5 mb-3">
             <h2 className="mb-3 d-md-none">{product.title}</h2>
-            <div className="calendar-wrapper">
+            <div className="calendar-wrapper w-100">
               <TravelCalendar
                 product={product}
                 onDateSelected={onDateSelected}
@@ -351,7 +335,7 @@ const ProductDetail = () => {
             </div>
           </div>
           {/* 行程標題描述及人數選擇*/}
-          <div className="col-md-6 d-flex flex-column justify-content-between">
+          <div className="col-md-7 d-flex flex-column justify-content-between">
             <div className="product-detail-sidebar">
               <div className="product-title">
                 <h2 className="mb-3 d-none d-md-block">{product.title}</h2>
@@ -431,7 +415,7 @@ const ProductDetail = () => {
                   <div className="passenger-select__item">
                     <div className="passenger-select__header">
                       <div className="passenger-select__type">
-                        <i className="fas fa-child"></i>
+                        <i className="fas fa-child fs-4"></i>
                         小孩
                       </div>
                       <div className="passenger-select__price">

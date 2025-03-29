@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Link, Outlet, useLocation } from "react-router-dom";
 import tourDefaultImg from "../../assets/images/tour/tour-default.jpg";
 import tourClassicImg from "../../assets/images/tour/tour-classic.jpg";

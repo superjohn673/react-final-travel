@@ -1,5 +1,3 @@
-import React from "react";
-
 const Pagination = ({ pagination, changePage }) => {
   return (
     <nav aria-label="Page navigation example">

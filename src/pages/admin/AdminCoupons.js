@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import CouponModal from "../../components/CouponModal";
 import DeleteModal from "../../components/DeleteModal";

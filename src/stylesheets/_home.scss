@@ -1,0 +1,685 @@
+/* ===================================================
+ * Home 首頁樣式
+ * =================================================== */
+// 旅遊類型選單樣式 - 顯示在首頁橫幅下方的分類選單
+.tour-menu {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(5px); // 背景模糊效果，增加層次感
+  
+    // 中等螢幕尺寸的響應式調整 (1200px-992px)
+    @media (max-width: 1200px) and (min-width: 992px) {
+      .tour-menu__item {
+        padding: 0.75rem; // 減少間距以適應較小螢幕
+  
+        .fas {
+          font-size: 1.75rem; // 縮小圖示尺寸
+        }
+  
+        .tour-menu__title {
+          font-size: 1.25rem; // 縮小標題字體
+        }
+      }
+    }
+  
+    // 在小螢幕上隱藏選單，避免重疊問題
+    @media (max-width: 991.98px) {
+      display: none;
+    }
+  
+    // 選單項目樣式
+    &__item {
+      padding: 1rem;
+      transition: all 0.3s ease; // 平滑過渡效果
+  
+      // 懸停效果 - 輕微上浮並放大圖示
+      &:hover {
+        transform: translateY(-5px);
+  
+        .fas {
+          transform: scale(1.2);
+          color: $primary-color;
+        }
+  
+        .tour-menu__title {
+          &:after {
+            width: 100%; // 懸停時底線伸展至100%寬度
+          }
+        }
+      }
+  
+      .fas {
+        font-size: 2rem;
+        color: #333;
+        transition: all 0.3s ease;
+      }
+    }
+  
+    // 選單標題樣式 - 使用垂直書寫模式
+    &__title {
+      writing-mode: vertical-lr; // 垂直書寫，由左至右
+      font-size: 1.5rem;
+      position: relative;
+      padding: 0.5rem;
+      color: #333;
+      transition: all 0.3s ease;
+  
+      // 底線效果 - 懸停時顯示
+      &:after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0; // 初始時寬度為0
+        height: 2px;
+        background-color: $primary-color;
+        transition: width 0.3s ease; // 平滑過渡效果
+      }
+  
+      &:hover {
+        color: $primary-color;
+      }
+    }
+  }
+  
+  // 選單項目的進場動畫效果
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .tour-menu__item {
+    animation: fadeIn 0.5s ease forwards; // 應用動畫
+  
+    // 為每個項目設定不同的延遲時間，製造階梯式進場效果
+    @for $i from 1 through 4 {
+      &:nth-child(#{$i}) {
+        animation-delay: #{$i * 0.1}s;
+      }
+    }
+  }
+  
+  /* ===================================================
+   * Home首頁橫幅樣式
+   * =================================================== */
+  .index-banner {
+    height: calc(100vh - var(--navbar-height)); // 計算高度時扣除導航列高度
+  }
+  .index-banner .img-container {
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+  }
+  .index-banner img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover; // 確保圖片填滿容器但保持比例
+    overflow: hidden;
+  }
+  .img-container__inf {
+    position: absolute;
+    bottom: 10%;
+    left: 50%;
+    transform: translateX(-50%); // 水平居中定位
+  }
+  
+  // 下滑箭頭動畫效果
+  @keyframes bounce {
+    0% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+  
+  .fa-angles-down {
+    animation: bounce 2s infinite; // 持續彈跳動畫
+  }
+  
+  // 橫幅標題樣式 - 垂直書寫
+  .index-banner h2 {
+    writing-mode: vertical-lr;
+    transition: all 0.3s ease-in;
+    font-size: 1.8rem;
+    &:hover {
+      transform: scale(1.2); // 懸停時放大效果
+    }
+  }
+  .index-banner--transition {
+    transform: scale(1);
+    transition: all 1s ease-out;
+    overflow: hidden;
+  }
+  
+  /* ===================================================
+   * Home首頁內容區塊樣式
+   * =================================================== */
+  .index-content-section .card-img-top {
+    border-radius: 50%; // 圓形圖片
+    transition: all 0.1s ease-in;
+    padding: 0.4rem;
+    &:hover {
+      border: 3px solid rgb(209, 218, 217); // 懸停時添加邊框
+    }
+  }
+  
+  // 區塊標題樣式
+  .section-title {
+    text-align: center;
+    margin-bottom: 2.5rem;
+  
+    &__main {
+      display: block;
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #333;
+      margin-bottom: 0.5rem;
+    }
+  
+    &__sub {
+      display: block;
+      font-size: 1rem;
+      font-weight: 400;
+      color: $primary-color;
+      text-transform: uppercase; // 全部大寫
+      letter-spacing: 3px; // 字元間距增加
+    }
+  }
+  
+  // 區段說明文字樣式
+  .section-description {
+    text-align: center;
+    font-size: 1.2rem;
+    line-height: 1.8;
+    color: #666;
+    margin-bottom: 3rem;
+  }
+  
+  /* ===================================================
+   * Home季節卡片樣式 (首頁)
+   * =================================================== */
+  .season-card {
+    transition: all 0.3s ease;
+    margin: 0 1rem; // 增加卡片間距
+    background-color: transparent !important; // 移除背景色
+    border-radius: 12px; // 增加卡片圓角
+    padding: 1.5rem 1rem; // 增加內邊距
+  
+    // 懸停效果 - 輕微上浮並添加陰影
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      background-color: rgba(
+        255,
+        255,
+        255,
+        0.7
+      ) !important; // 懸停時添加半透明背景
+  
+      .season-card__image-wrapper img {
+        transform: scale(1.05); // 圖片輕微放大
+      }
+  
+      .season-card__title-main {
+        color: $primary-color; // 懸停時改變標題顏色
+      }
+    }
+  
+    // 圖片容器樣式 - 圓形設計
+    &__image-wrapper {
+      overflow: hidden;
+      border-radius: 50%; // 完全圓形
+      aspect-ratio: 1/1; // 保持正方形比例
+      padding: 10px;
+      margin-bottom: 1.5rem;
+      max-width: 350px; // 限制最大寬度
+      max-height: 350px; // 限制最大高度
+      margin-left: auto; // 水平居中
+      margin-right: auto;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); // 添加陰影
+  
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 50%;
+        transition: transform 0.3s ease; // 平滑過渡效果
+      }
+    }
+  
+    // 卡片標題樣式
+    &__title {
+      text-align: center;
+      margin-bottom: 1.2rem;
+  
+      &-main {
+        display: block;
+        font-size: 1.6rem;
+        font-weight: 600;
+        color: #333;
+        margin-bottom: 0.3rem;
+        transition: color 0.3s ease;
+      }
+  
+      &-sub {
+        display: block;
+        font-size: 0.85rem;
+        color: $primary-color;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+      }
+    }
+  
+    // 卡片內容樣式
+    &__content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 0 1rem;
+    }
+  
+    // 卡片文字樣式
+    &__text {
+      text-align: center;
+      color: #666;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+      font-size: 1rem;
+      max-width: 90%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  
+    // 按鈕樣式優化
+    .btn-outline-dark {
+      padding: 0.6rem 1.5rem;
+      font-size: 1rem;
+      border-radius: 30px;
+      transition: all 0.3s ease;
+  
+      &:hover {
+        background-color: $primary-color;
+        border-color: $primary-color;
+      }
+    }
+  }
+  
+  /* ===================================================
+   * 動畫效果 - 用於頁面滾動時顯示元素
+   * =================================================== */
+  // 初始時元素不可見
+  .index-content-section__text,
+  .carousel-section__text,
+  .index-list-section__text,
+  .season-section {
+    opacity: 0;
+  }
+  
+  .index-content-section {
+    overflow: hidden;
+  }
+  
+  // 淡入動畫效果
+  .fade-in {
+    animation: fade-in 0.5s ease-in-out;
+    opacity: 1;
+  }
+  
+  @keyframes fade-in {
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  // 從左側滑入動畫
+  .slide-in-left {
+    animation: slide-in-left 0.8s ease-out forwards;
+  }
+  
+  .slide-out-left {
+    animation: slide-out-left 0.8s ease-out forwards;
+  }
+  
+  @keyframes slide-in-left {
+    0% {
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+    100% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+  
+  @keyframes slide-out-left {
+    0% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+    100% {
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+  }
+  
+  // 從右側滑入動畫
+  .slide-in-right {
+    animation: slide-in-right 0.8s ease-out forwards;
+  }
+  
+  .slide-out-right {
+    animation: slide-out-right 0.8s ease-out forwards;
+  }
+  
+  @keyframes slide-in-right {
+    0% {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+    100% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+  
+  @keyframes slide-out-right {
+    0% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+    100% {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+  }
+  
+  /* ===================================================
+   * Home 輪播圖片樣式
+   * =================================================== */
+  .carousel-section {
+    background-color: #f8f9fa;
+    position: relative;
+    overflow: hidden;
+    padding: 3rem 0;
+  
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(
+        circle,
+        rgba(0, 0, 0, 0.02) 1px,
+        transparent 1px
+      );
+      background-size: 20px 20px;
+      opacity: 0.5;
+      z-index: 0;
+    }
+  
+    &__text {
+      position: relative;
+      z-index: 1;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+  
+    &__title {
+      margin-bottom: 2rem;
+      text-align: center;
+  
+      &-main {
+        display: block;
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: #333;
+        margin-bottom: 0.5rem;
+        position: relative;
+  
+        &::after {
+          content: none; // 移除裝飾線
+        }
+      }
+  
+      &-sub {
+        display: block;
+        font-size: 1rem;
+        color: $primary-color;
+        text-transform: uppercase;
+        letter-spacing: 3px;
+        margin-top: 1rem;
+      }
+    }
+  
+    &__content {
+      p {
+        font-size: 1.1rem;
+        line-height: 1.8;
+        color: #555;
+        text-align: center;
+        margin-bottom: 2rem;
+      }
+    }
+  
+    &__decoration {
+      width: 100px;
+      height: 100px;
+      background-image: url("../assets/images/home/home-fuji.jpg");
+      background-size: cover;
+      background-position: center;
+      border-radius: 50%;
+      margin: 0 auto;
+      position: relative;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  
+      &::before {
+        content: "";
+        position: absolute;
+        top: -10px;
+        left: -10px;
+        right: -10px;
+        bottom: -10px;
+        border: 2px dashed $primary-color;
+        border-radius: 50%;
+        animation: rotate 20s linear infinite;
+      }
+    }
+  }
+  
+  .carousel-custom {
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  
+    .carousel-item {
+      position: relative;
+  
+      img {
+        height: 500px;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+      }
+  
+      &:hover img {
+        transform: scale(1.05);
+      }
+    }
+  
+    .carousel-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 50%;
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+      z-index: 1;
+    }
+  
+    .carousel-caption {
+      z-index: 2;
+      text-align: left;
+      left: 5%;
+      right: 5%;
+      bottom: 20px;
+  
+      h3 {
+        font-size: 2rem;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+      }
+  
+      p {
+        font-size: 1.1rem;
+        max-width: 80%;
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+      }
+    }
+  
+    .carousel-indicators {
+      margin-bottom: 0.5rem;
+  
+      button {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background-color: rgba(255, 255, 255, 0.5);
+        margin: 0 5px;
+  
+        &.active {
+          background-color: #fff;
+        }
+      }
+    }
+  
+    .carousel-control-prev,
+    .carousel-control-next {
+      width: 10%;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+  
+    &:hover {
+      .carousel-control-prev,
+      .carousel-control-next {
+        opacity: 0.8;
+      }
+    }
+  }
+  
+  @keyframes rotate {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  
+  /* ===================================================
+   * Home 首頁列表區塊樣式
+   * =================================================== */
+  .index-list-section {
+    .slick-slider {
+      width: 100%;
+      overflow: hidden;
+    }
+  
+    // 增強標題樣式
+    .section-title {
+      &__main {
+        font-size: 2.5rem; // 增大字體
+        position: relative;
+        display: inline-block;
+  
+        &:after {
+          content: none; // 移除裝飾線
+        }
+      }
+  
+      &__sub {
+        font-size: 1.1rem; // 增大副標題
+        margin-top: 1rem;
+      }
+    }
+  
+    // 增強描述文字樣式
+    .section-description {
+      font-size: 1.1rem; // 增大字體
+      line-height: 1.9;
+      color: #555;
+      margin-bottom: 3.5rem;
+      position: relative;
+      padding: 0 1.5rem;
+  
+      &:before,
+      &:after {
+        content: '"';
+        font-size: 2.5rem;
+        color: rgba(151, 125, 6, 0.2);
+        position: absolute;
+      }
+  
+      &:before {
+        top: -1rem;
+        left: 0;
+      }
+  
+      &:after {
+        bottom: -2rem;
+        right: 0;
+      }
+    }
+  
+    // 圖片容器樣式
+    .index-list-section__img {
+      width: 300px;
+      height: 400px;
+      border-radius: 2%;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 100%;
+      overflow: hidden;
+  
+      // 懸停效果 - 暗化背景並顯示資訊
+      &:hover {
+        background-color: black;
+        opacity: 0.8;
+        .index-list-section__inf {
+          transform: translate(0px, -40px); // 資訊上移顯示
+        }
+      }
+    }
+  
+    // 資訊區塊樣式 - 默認隱藏，懸停時顯示
+    .index-list-section__inf {
+      color: white;
+      padding: 0.5rem;
+      border: 1px solid;
+      border-radius: 10%;
+      transform: translate(0px, 60px); // 初始位置在下方不可見
+      transition: all 0.4s ease-in-out; // 平滑過渡效果
+      background-color: black;
+      opacity: 0.8;
+    }
+  }
+  

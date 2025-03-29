@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import { useContext, useState } from "react";
 import { Link, useOutletContext, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { AppContext } from "../../store/AppContext";
@@ -81,6 +81,7 @@ const Checkout = () => {
                   errors={errors}
                   labelText="姓名"
                   register={register}
+                  isRequired={true}
                   rules={{
                     required: "使用者名稱為必填",
                     maxLength: {
@@ -88,6 +89,7 @@ const Checkout = () => {
                       message: "使用者名稱長度不超過 10",
                     },
                   }}
+                  placeholder="請輸入您的姓名"
                 ></Input>
               </div>
               <div className="mb-3">
@@ -97,6 +99,7 @@ const Checkout = () => {
                   type="tel"
                   errors={errors}
                   register={register}
+                  isRequired={true}
                   rules={{
                     required: "電話為必填",
                     minLength: {
@@ -108,22 +111,25 @@ const Checkout = () => {
                       message: "電話不超過 12 碼",
                     },
                   }}
+                  placeholder="請輸入您的聯絡電話"
                 ></Input>
               </div>
               <div className="mb-3">
                 <Input
                   id="email"
-                  labelText="Email"
+                  labelText="電子信箱"
                   type="email"
                   errors={errors}
                   register={register}
+                  isRequired={true}
                   rules={{
-                    required: "Email 為必填",
+                    required: "電子信箱為必填",
                     pattern: {
                       value: /^\S+@\S+$/i,
-                      message: "Email 格式不正確",
+                      message: "電子信箱格式不正確",
                     },
                   }}
+                  placeholder="請輸入您的電子信箱"
                 ></Input>
               </div>
               <div className="mb-3">
@@ -133,9 +139,11 @@ const Checkout = () => {
                   type="address"
                   errors={errors}
                   register={register}
+                  isRequired={true}
                   rules={{
                     required: "地址為必填",
                   }}
+                  placeholder="請輸入您的詳細地址"
                 ></Input>
               </div>
             </div>
@@ -187,7 +195,7 @@ const Checkout = () => {
                       <div className="checkout-passenger-row">
                         <div className="passenger-type">
                           <i className="bi bi-person-fill me-2 cart-icon"></i>
-                          大人 x {adultQuantity}
+                          大人 {adultQuantity}人
                         </div>
                         <div className="passenger-price">
                           NT${" "}
@@ -201,7 +209,7 @@ const Checkout = () => {
                       <div className="checkout-passenger-row">
                         <div className="passenger-type">
                           <i className="bi bi-person-fill me-2 cart-icon"></i>
-                          小孩 x {childrenQuantity}
+                          小孩 {childrenQuantity}人
                         </div>
                         <div className="passenger-price">
                           NT${" "}
