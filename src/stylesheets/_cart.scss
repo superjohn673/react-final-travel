@@ -1,0 +1,573 @@
+/* ===================================================
+ * 購物車樣式
+ * =================================================== */
+ .cart {
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  transition: all 0.3s ease;
+
+  &__section {
+    padding: 3rem 1.5rem;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+
+    &__icon {
+      font-size: 6rem;
+      color: #adb5bd;
+      animation: float 3s ease-in-out infinite;
+    }
+  }
+
+  /* ===================================================
+ * Cart Remove Button 購物車移除按鈕樣式
+ * =================================================== */
+  .cart-remove-btn {
+    top: 15px;
+    right: 15px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba($primary-color, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 10;
+    padding: 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+
+    i {
+      font-size: 1.2rem;
+      color: $primary-color-dark;
+      transition: all 0.3s ease;
+    }
+
+    &:hover {
+      background-color: $primary-color-dark;
+      border-color: $primary-color-dark;
+      transform: scale(1.1);
+      box-shadow: 0 3px 8px rgba(220, 53, 69, 0.3);
+
+      i {
+        color: white;
+      }
+    }
+
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.3);
+    }
+  }
+
+  // 空購物車樣式
+  .alert-secondary {
+    background-color: #f8f9fa;
+    border: none;
+    border-radius: 12px;
+    padding: 3rem 2rem;
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.03);
+
+    p {
+      margin-bottom: 1rem;
+
+      &.fs-2 {
+        color: #6c757d;
+        font-weight: 500;
+        position: relative;
+        display: inline-block;
+
+        &::after {
+          content: "";
+          position: absolute;
+          bottom: -8px;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 50px;
+          height: 3px;
+          background-color: #adb5bd;
+          border-radius: 3px;
+        }
+      }
+    }
+
+    .cart__section__icon {
+      color: #6c757d;
+      opacity: 0.7;
+      filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
+    }
+  }
+
+  .bg-light {
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+
+    &:hover {
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      transform: translateY(-2px);
+    }
+
+    .img-fluid {
+      height: 250px;
+      width: 100%;
+      object-fit: cover;
+      transition: all 0.5s ease;
+
+      &:hover {
+        transform: scale(1.02);
+      }
+    }
+
+    .position-relative {
+      padding: 1.5rem !important;
+
+      .product-header {
+        position: relative;
+
+        .product-tag {
+          display: inline-block;
+          background: linear-gradient(
+            45deg,
+            $primary-color,
+            $primary-color-light
+          );
+          color: white;
+          font-size: 0.8rem;
+          font-weight: 600;
+          padding: 0.3rem 0.8rem;
+          border-radius: 20px;
+          margin-bottom: 0.8rem;
+          box-shadow: 0 2px 5px rgba($primary-color, 0.3);
+          letter-spacing: 1px;
+        }
+      }
+
+      h4 {
+        color: #333;
+        font-size: 1.4rem;
+        border-bottom: 2px solid #f8f9fa;
+        padding-bottom: 0.8rem;
+        margin-bottom: 1.2rem;
+        position: relative;
+
+        &::after {
+          content: "";
+          position: absolute;
+          bottom: -2px;
+          left: 0;
+          width: 60px;
+          height: 4px;
+          background: linear-gradient(
+            45deg,
+            $primary-color,
+            $primary-color-light
+          );
+          border-radius: 2px;
+        }
+      }
+    }
+
+    // 出發日期樣式
+    .mt-2.mb-3 {
+      p {
+        background-color: #f8f9fa;
+        padding: 0.8rem 1rem;
+        border-radius: 6px;
+        border-left: 4px solid $primary-color;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        display: flex;
+        align-items: center;
+
+        .fw-bold {
+          color: $primary-color;
+          margin-right: 0.5rem;
+        }
+
+        .date-value {
+          font-weight: 500;
+          color: #495057;
+        }
+      }
+    }
+
+    // 人數選擇區塊樣式
+    .d-flex.justify-content-start.align-items-center.w-100.mb-3 {
+      background-color: #f8f9fa;
+      padding: 1rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+      flex-wrap: wrap;
+      gap: 1rem;
+
+      .input-group {
+        position: relative;
+        display: flex;
+        align-items: center;
+        flex: 0 0 auto;
+        min-width: 180px;
+
+        @media (max-width: 1200px) {
+          min-width: 160px;
+        }
+
+        @media (max-width: 576px) {
+          width: 100%;
+          justify-content: space-between;
+        }
+
+        span.fw-bold {
+          color: $primary-color;
+          background-color: rgba($primary-color, 0.1);
+          padding: 0.3rem 0.6rem;
+          border-radius: 4px;
+          margin-right: 0.5rem;
+          min-width: 45px;
+          text-align: center;
+          flex-shrink: 0;
+        }
+
+        .form-select {
+          border: 1px solid rgba($primary-color, 0.2);
+          border-radius: 4px;
+          padding: 0.4rem 0.6rem;
+          background-color: white;
+          transition: all 0.3s ease;
+          width: auto;
+          min-width: 70px;
+          flex: 1;
+
+          @media (max-width: 576px) {
+            max-width: 120px;
+          }
+
+          &:focus {
+            border-color: $primary-color;
+            box-shadow: 0 0 0 0.2rem rgba($primary-color, 0.25);
+          }
+
+          &:disabled {
+            background-color: #e9ecef;
+            opacity: 0.7;
+          }
+        }
+
+        i.bi-person-fill {
+          color: $primary-color;
+          font-size: 1.1rem;
+          flex-shrink: 0;
+        }
+      }
+    }
+
+    .btn {
+      transition: all 0.3s ease;
+
+      &:hover {
+        background-color: #f8f9fa;
+        color: $primary-color-light;
+      }
+    }
+  }
+
+  .text-decoration-line-through {
+    position: relative;
+
+    &::after {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 2px;
+      background-color: #dc3545;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  }
+
+  .text-danger {
+    font-weight: bold;
+    animation: pulse 2s infinite;
+  }
+
+  // 優惠券區域樣式
+  .input-group {
+    margin-bottom: 0.5rem;
+    width: 100%;
+    max-width: 400px;
+
+    @media (max-width: 991px) {
+      max-width: 100%;
+    }
+
+    @media (max-width: 768px) {
+      max-width: 100%;
+    }
+
+    .btn-secondary {
+      background-color: $primary-color;
+      border: none;
+      border-radius: 6px 0 0 6px;
+      padding: 0.5rem 1rem;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      color: white;
+      white-space: nowrap;
+
+      @media (max-width: 991px) {
+        padding: 0.5rem 0.8rem;
+        font-size: 0.95rem;
+      }
+
+      @media (max-width: 576px) {
+        padding: 0.5rem 0.75rem;
+        font-size: 0.9rem;
+      }
+
+      &:hover {
+        background-color: $primary-color-light;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+        transform: translateY(-1px);
+        color: white;
+      }
+    }
+
+    .form-control {
+      border-radius: 0 6px 6px 0;
+      border: 1px solid #ced4da;
+      padding: 0.5rem 1rem;
+      transition: all 0.3s ease;
+
+      @media (max-width: 991px) {
+        padding: 0.5rem 0.8rem;
+        font-size: 0.95rem;
+      }
+
+      @media (max-width: 576px) {
+        padding: 0.5rem 0.75rem;
+        font-size: 0.9rem;
+      }
+
+      &:focus {
+        border-color: $primary-color-light;
+        box-shadow: 0 0 0 0.2rem rgba($primary-color, 0.25);
+      }
+    }
+  }
+
+  .text-secondary {
+    font-size: 0.85rem;
+    margin-left: 0.5rem;
+
+    &.mt-1 {
+      display: inline-block;
+      padding: 0.5rem 0.75rem 0.5rem 2rem;
+      background-color: #f0f8ff;
+      border-left: 3px solid $primary-color;
+      border-radius: 0 4px 4px 0;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+      color: #495057;
+      font-weight: 500;
+      position: relative;
+
+      &:empty {
+        display: none;
+      }
+
+      &::before {
+        content: "ℹ";
+        position: absolute;
+        left: 0.75rem;
+        color: $primary-color;
+        font-weight: bold;
+      }
+
+      // 添加自定義類來處理不同狀態
+      &.coupon-success {
+        background-color: #e8f5e9;
+        border-left-color: #4caf50;
+
+        &::before {
+          content: "✓";
+          color: #4caf50;
+        }
+      }
+
+      &.coupon-error {
+        background-color: #ffebee;
+        border-left-color: #f44336;
+
+        &::before {
+          content: "✗";
+          color: #f44336;
+        }
+      }
+    }
+  }
+
+  /* ===================================================
+ * 優惠碼狀態樣式
+ * =================================================== */
+  .coupon-success {
+    background-color: rgba(40, 167, 69, 0.1);
+    color: #28a745;
+    padding: 0.75rem 1rem;
+    border-radius: 6px;
+    border-left: 4px solid #28a745;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(40, 167, 69, 0.1);
+    animation: fadeIn 0.5s ease;
+
+    i {
+      font-size: 1.2rem;
+      color: #28a745;
+    }
+  }
+
+  .coupon-error {
+    background-color: rgba(220, 53, 69, 0.1);
+    color: #dc3545;
+    padding: 0.75rem 1rem;
+    border-radius: 6px;
+    border-left: 4px solid #dc3545;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(220, 53, 69, 0.1);
+    animation: fadeIn 0.5s ease;
+
+    i {
+      font-size: 1.2rem;
+      color: #dc3545;
+    }
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(5px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  // 總金額區域樣式
+  .text-end {
+    padding: 1.25rem;
+    background: linear-gradient(to right, #f8f9fa, #f0f8ff);
+    border-radius: 8px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    border-left: 4px solid $primary-color;
+
+    .h5 {
+      margin-bottom: 0.75rem;
+      transition: all 0.3s ease;
+
+      &.fw-bold:not(.text-decoration-line-through) {
+        font-size: 1.3rem;
+        color: #495057;
+      }
+    }
+
+    .text-decoration-line-through {
+      opacity: 0.7;
+
+      &::after {
+        height: 2px;
+        background-color: #6c757d;
+      }
+    }
+
+    .text-danger {
+      font-size: 1.5rem;
+      position: relative;
+      color: $primary-color !important;
+
+      &::before {
+        content: "🎉";
+        position: absolute;
+        left: -25px;
+        animation: bounce 1s infinite;
+      }
+    }
+  }
+}
+
+.btn-dark {
+  transition: all 0.3s ease;
+  letter-spacing: 1px;
+  font-weight: 500;
+  background-color: $primary-color;
+  border-color: $primary-color;
+
+  &:hover:not(:disabled) {
+    background-color: $primary-color-light;
+    border-color: $primary-color-light;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba($primary-color, 0.3);
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+// 優化優惠碼狀態訊息
+.coupon-success,
+.coupon-error {
+  @media (max-width: 991px) {
+    font-size: 0.9rem;
+    padding: 0.6rem 1rem;
+  }
+
+  @media (max-width: 576px) {
+    font-size: 0.85rem;
+    padding: 0.5rem 0.8rem;
+  }
+}
+

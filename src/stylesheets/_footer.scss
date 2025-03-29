@@ -1,0 +1,204 @@
+/* ===================================================
+ * Footer 頁腳樣式
+ * =================================================== */
+ .footer-section {
+    background: linear-gradient(to right, #1a2a3a, #2c3e50);
+    color: #f8f9fa;
+    position: relative;
+    overflow: hidden;
+  
+    // 頂部裝飾元素
+    &:before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(to right, #f1c40f, #e67e22, #f1c40f);
+    }
+  
+    // 頂部區域
+    .footer-top {
+      position: relative;
+      z-index: 1;
+  
+      // 背景圖案
+      &:after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        z-index: -1;
+        opacity: 0.1;
+      }
+    }
+  
+    // Logo 區域
+    .footer-logo {
+      h3 {
+        font-weight: 700;
+        position: relative;
+        display: inline-block;
+  
+        &:after {
+          content: "";
+          position: absolute;
+          bottom: -8px;
+          left: 0;
+          width: 40px;
+          height: 3px;
+          background-color: #f1c40f;
+          border-radius: 2px;
+        }
+      }
+    }
+  
+    // 描述文字
+    .footer-description {
+      color: rgba(255, 255, 255, 0.7);
+      line-height: 1.8;
+      font-size: 0.95rem;
+      max-width: 90%;
+    }
+  
+    // 社交媒體圖標
+    .footer-social {
+      .social-icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 36px;
+        height: 36px;
+        background-color: rgba(255, 255, 255, 0.1);
+        border-radius: 50%;
+        margin-right: 12px;
+        color: #fff;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+  
+        &:hover {
+          background-color: #f1c40f;
+          color: #2c3e50;
+          transform: translateY(-3px);
+        }
+      }
+    }
+  
+    // 標題樣式
+    .footer-title {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      position: relative;
+      padding-bottom: 0.8rem;
+  
+      &:after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 40px;
+        height: 3px;
+        background-color: #f1c40f;
+        border-radius: 2px;
+      }
+    }
+  
+    // 連結列表
+    .footer-links {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+  
+      li {
+        margin-bottom: 0.8rem;
+      }
+  
+      .footer-link {
+        color: rgba(255, 255, 255, 0.7);
+        text-decoration: none;
+        transition: all 0.3s ease;
+        display: inline-block;
+        font-size: 0.95rem;
+  
+        i {
+          color: #f1c40f;
+          margin-right: 8px;
+          font-size: 0.85rem;
+        }
+  
+        &:hover {
+          color: #fff;
+          transform: translateX(5px);
+        }
+      }
+    }
+  
+    // 聯絡資訊
+    .footer-contact {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+  
+      li {
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 1rem;
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 0.95rem;
+  
+        i {
+          color: #f1c40f;
+          margin-right: 12px;
+          margin-top: 5px;
+        }
+      }
+    }
+  
+    // 底部區域
+    .footer-bottom {
+      background-color: rgba(0, 0, 0, 0.2);
+      font-size: 0.9rem;
+  
+      .copyright {
+        color: rgba(255, 255, 255, 0.6);
+      }
+  
+      .footer-payment {
+        color: rgba(255, 255, 255, 0.6);
+  
+        i {
+          font-size: 1.5rem;
+          color: rgba(255, 255, 255, 0.8);
+          transition: all 0.3s ease;
+  
+          &:hover {
+            color: #f1c40f;
+          }
+        }
+      }
+    }
+  
+    // 響應式調整
+    @media (max-width: 767.98px) {
+      .footer-title {
+        margin-top: 1.5rem;
+      }
+  
+      .footer-bottom {
+        .copyright,
+        .footer-payment {
+          text-align: center;
+        }
+  
+        .footer-payment {
+          margin-top: 1rem;
+        }
+      }
+    }
+  }
+  

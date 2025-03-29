@@ -1,0 +1,140 @@
+/* ===================================================
+ * Travel Search Form 旅遊搜索表單樣式
+ * =================================================== */
+ .travel-search-form {
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  
+    @media (max-width: 400px) {
+      padding: 1rem;
+      margin: 1rem auto;
+    }
+  
+    // 表單行樣式
+    &__row {
+      display: flex;
+      flex-wrap: wrap;
+      margin-bottom: 1rem;
+      justify-content: space-between;
+  
+      @media (max-width: 400px) {
+        flex-direction: column;
+        margin-bottom: 0.5rem;
+      }
+  
+      &:last-of-type {
+        justify-content: center;
+      }
+    }
+  
+    // 表單組樣式
+    &__group {
+      flex: 1;
+      min-width: 150px;
+      margin-bottom: 1rem;
+      margin-right: 1rem;
+  
+      @media (max-width: 400px) {
+        min-width: 100%;
+        margin-right: 0;
+        margin-bottom: 0.5rem;
+      }
+  
+      &:last-of-type {
+        margin-right: 0;
+      }
+    }
+  
+    // 輸入框樣式
+    &__input {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid #ced4da;
+      border-radius: 4px;
+      font-size: 1rem;
+      margin-top: 0.25rem;
+      transition: border-color 0.3s, box-shadow 0.3s;
+      appearance: none; // 移除默認樣式
+      // 添加自定義下拉箭頭
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'%3E%3Cpath fill='%23999' d='M2 0L0 2h4zm0 5L0 3h4z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 0.75rem center;
+      background-size: 8px 10px;
+  
+      // 焦點狀態樣式
+      &:focus {
+        border-color: #80bdff;
+        outline: none;
+        box-shadow: 0 0 0 0.1rem $primary-color;
+      }
+    }
+  
+    // 按鈕樣式
+    &__button {
+      padding: 0.7rem 3.5rem;
+      font-size: 1.25rem;
+      color: #fff;
+      background-color: $primary-color;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+  
+      // 懸停效果 - 改變顏色和添加邊框
+      &:hover {
+        background-color: white;
+        color: $primary-color;
+        border: 1px solid $primary-color;
+      }
+    }
+  
+    // 標籤樣式
+    label {
+      display: block;
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+    }
+  
+    // React Datepicker 樣式覆蓋
+    .react-datepicker-wrapper {
+      width: 100%;
+    }
+  
+    .react-datepicker__input-container {
+      width: 100%;
+    }
+  
+    .react-datepicker-popper {
+      z-index: 2;
+    }
+  
+    .react-datepicker {
+      border: 1px solid #ced4da;
+      border-radius: 4px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+  
+    .react-datepicker__header {
+      background-color: $primary-color;
+      color: #fff;
+    }
+  
+    .react-datepicker__current-month,
+    .react-datepicker__day-name {
+      color: #fff;
+    }
+  
+    .react-datepicker__day--selected {
+      background-color: $primary-color;
+      color: #fff;
+    }
+  
+    .react-datepicker__day--keyboard-selected {
+      background-color: $primary-color;
+      color: #fff;
+    }
+  }

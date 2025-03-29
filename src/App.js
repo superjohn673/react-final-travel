@@ -22,7 +22,7 @@ import WeatherJapan from "./pages/front/WeatherJapan";
 import Cart from "./pages/front/Cart";
 import Checkout from "./pages/front/Checkout";
 import Success from "./pages/front/Success";
-import Login from "./pages/Login";
+import Login from "./pages/admin/Login.js";
 import ServiceLocations from "./pages/front/ServiceLocation";
 import Information from "./pages/front/Information";
 import ContactUs from "./pages/front/ContactUs";
@@ -57,8 +57,8 @@ function App() {
             <Route path="cart" element={<Cart />} />
             <Route path="checkout" element={<Checkout />} />
             <Route path="success/:orderId" element={<Success />} />
-            <Route path="login" element={<Login />}></Route>
           </Route>
+          <Route path="login" element={<Login />}></Route>
 
           <Route path="/admin" element={<Dashboard />}>
             <Route path="products" element={<AdminProducts />}></Route>

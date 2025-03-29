@@ -55,7 +55,7 @@ const MyFavorite = () => {
                       className="btn btn-remove"
                       onClick={() => removeFromFavorites(product.id)}
                     >
-                      <FaTrashAlt />
+                      <FaTrashAlt /> 移除
                     </button>
                   </div>
                 </div>

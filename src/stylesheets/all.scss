@@ -2,4 +2,31 @@
 @import "./variables";
 @import "bootstrap/scss/bootstrap";
 
+//front
 @import "./utilities";
+@import "./navbar";
+@import "./sidebar";
+@import "./home";
+@import "./footer";
+@import "./cartprogress";
+@import"./cart";
+@import"./products";
+@import "./productdetail";
+@import "./checkout";
+@import "./success";
+@import "./travelcalendar";
+@import"./travelsearchform";
+@import "./recommendedproducts";
+@import "./memberlayout";
+@import "./userprofile";
+@import"./order";
+@import"./orderdetail";
+@import "./myfavorite";
+@import "./information";
+@import "./contactus";
+@import "./servicelocation";
+@import "./pagination";
+
+
+//admin
+@import "./login"

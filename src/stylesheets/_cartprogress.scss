@@ -1,0 +1,242 @@
+/* ===================================================
+   * Cart Progress Flow 購物車進度流程樣式
+   * =================================================== */
+   .cart-navigator {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 3rem;
+    width: 100%;
+  
+    .progress-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      width: 100%;
+      max-width: 900px;
+      padding: 0;
+      margin: 0;
+      list-style: none;
+  
+      .progress-step {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+        margin-bottom: 3rem;
+        flex: 1;
+        min-width: 120px;
+  
+        &.current {
+          .progress-label {
+            font-weight: 700;
+            color: $primary-color;
+          }
+        }
+  
+        &.completed {
+          .progress-label {
+            color: $primary-color;
+          }
+        }
+  
+        .progress-step-content {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          width: 100%;
+        }
+  
+        .progress-icon {
+          position: absolute;
+          top: -30px;
+          left: 50%;
+          transform: translateX(-50%);
+          font-size: 20px;
+          color: $primary-color;
+          animation: float 2s ease-in-out infinite;
+        }
+  
+        .progress-circle {
+          width: 50px;
+          height: 50px;
+          border-radius: 50%;
+          background-color: $secondary-color;
+          color: #fff;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          font-size: 18px;
+          font-weight: bold;
+          text-decoration: none;
+          transition: all 0.3s ease;
+          z-index: 1;
+          position: relative;
+          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  
+          &.active {
+            background-color: $primary-color;
+            color: #fff;
+            transform: scale(1.05);
+          }
+        }
+  
+        .progress-line {
+          height: 4px;
+          background-color: $secondary-color;
+          width: calc(100% - 20px);
+          position: absolute;
+          top: 25px;
+          left: 60%;
+          z-index: 0;
+  
+          &.active {
+            background-color: $primary-color;
+          }
+  
+          &.next-step {
+            background: linear-gradient(
+              to right,
+              $primary-color 50%,
+              $secondary-color 50%
+            );
+            background-size: 200% 100%;
+            animation: progress-animation 1.5s ease-in-out infinite;
+          }
+        }
+  
+        .progress-label {
+          font-size: 14px;
+          color: $text-color;
+          margin-top: 1rem;
+          text-align: center;
+          transition: all 0.3s ease;
+        }
+  
+        .step-link {
+          color: $primary-color;
+          text-decoration: none;
+  
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+  }
+  
+  @keyframes float {
+    0% {
+      transform: translateX(-50%) translateY(0px);
+    }
+    50% {
+      transform: translateX(-50%) translateY(-10px);
+    }
+    100% {
+      transform: translateX(-50%) translateY(0px);
+    }
+  }
+  
+  @keyframes progress-animation {
+    0% {
+      background-position: 100% 0;
+    }
+    100% {
+      background-position: 0 0;
+    }
+  }
+  
+  /* 響應式設計 */
+  @media (max-width: 768px) {
+    .cart-navigator {
+      .progress-container {
+        .progress-step {
+          min-width: 80px;
+  
+          .progress-circle {
+            width: 40px;
+            height: 40px;
+            font-size: 16px;
+          }
+  
+          .progress-line {
+            top: 20px;
+          }
+  
+          .progress-label {
+            font-size: 12px;
+          }
+        }
+      }
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .cart-navigator {
+      .progress-container {
+        flex-direction: row; /* 保持橫向顯示 */
+        flex-wrap: nowrap; /* 防止換行 */
+        overflow-x: auto; /* 允許水平滾動 */
+        padding-bottom: 15px; /* 為滾動條留出空間 */
+        justify-content: flex-start; /* 從左側開始 */
+        padding-top: 30px; /* 為飛機圖標留出空間 */
+  
+        .progress-step {
+          flex-direction: column; /* 恢復為縱向排列 */
+          width: auto; /* 自動寬度 */
+          min-width: 80px; /* 最小寬度 */
+          margin-right: 10px; /* 右側間距 */
+          margin-bottom: 0.5rem; /* 減少底部間距 */
+          flex-shrink: 0; /* 防止壓縮 */
+  
+          .progress-step-content {
+            flex-direction: column; /* 恢復為縱向排列 */
+            align-items: center; /* 居中對齊 */
+            position: relative; /* 確保相對定位 */
+          }
+  
+          .progress-circle {
+            margin-right: 0; /* 移除右側間距 */
+            width: 35px; /* 縮小圓圈 */
+            height: 35px; /* 縮小圓圈 */
+            font-size: 14px; /* 縮小字體 */
+          }
+  
+          .progress-line {
+            height: 3px; /* 恢復為水平線 */
+            width: calc(100% - 10px); /* 調整寬度 */
+            position: absolute;
+            top: 17px; /* 調整位置 */
+            left: 60%; /* 調整位置 */
+          }
+  
+          .progress-label {
+            margin-top: 0.5rem; /* 調整上邊距 */
+            margin-left: 0; /* 移除左邊距 */
+            font-size: 11px; /* 縮小字體 */
+            max-width: 80px; /* 限制寬度 */
+            white-space: normal; /* 允許換行 */
+            text-align: center; /* 文字居中 */
+          }
+  
+          .progress-icon {
+            top: -25px; /* 調整位置，確保在圓圈上方 */
+            left: 50%; /* 水平居中 */
+            transform: translateX(-50%); /* 水平居中 */
+            font-size: 16px; /* 縮小字體 */
+            position: absolute; /* 確保絕對定位 */
+            display: block; /* 確保顯示 */
+            z-index: 2; /* 確保在其他元素上方 */
+          }
+  
+          &.current {
+            .progress-icon {
+              display: block !important; /* 強制顯示當前步驟的飛機圖標 */
+              animation: float 2s ease-in-out infinite; /* 保持動畫 */
+            }
+          }
+        }
+      }
+    }
+  }
+  

@@ -1,4 +1,3 @@
-import React from "react";
 import ReactLoading from "react-loading";
 
 // 創建一個通用的帶有 Loading 狀態的按鈕組件

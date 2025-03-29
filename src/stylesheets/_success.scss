@@ -1,0 +1,813 @@
+/* ===================================================
+ * 報名成功頁面樣式
+ * =================================================== */
+
+ .success-page {
+    margin-bottom: 4rem;
+  
+    .success-hero-section {
+      position: relative;
+      height: 300px;
+      background-image: url("../assets/images/success/success-default.jpg");
+      background-size: cover;
+      background-position: center;
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 3rem;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      animation: fadeIn 1s ease-in-out;
+  
+      .success-hero-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.6));
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+  
+      .success-hero-content {
+        text-align: center;
+        color: white;
+  
+        .success-icon {
+          width: 90px;
+          height: 90px;
+          background: linear-gradient(
+            45deg,
+            $primary-color,
+            $primary-color-light
+          );
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin: 0 auto 1.5rem;
+          box-shadow: 0 5px 15px rgba($primary-color, 0.6);
+          animation: pulse 2.5s infinite, float 6s ease-in-out infinite;
+  
+          i {
+            font-size: 3rem;
+            color: white;
+          }
+        }
+  
+        .success-title {
+          font-size: 2.8rem;
+          font-weight: 700;
+          margin-bottom: 0.6rem;
+          text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+          animation: slideInUp 0.8s ease-out;
+        }
+  
+        .success-subtitle {
+          font-size: 1.4rem;
+          opacity: 0.9;
+          animation: slideInUp 1s ease-out;
+        }
+      }
+    }
+  
+    .success-content-section {
+      margin-bottom: 3rem;
+  
+      .section-title {
+        color: $primary-color;
+        font-size: 1.8rem;
+        font-weight: 700;
+        margin-bottom: 1.5rem;
+        position: relative;
+        padding-bottom: 0.8rem;
+  
+        &::after {
+          content: "";
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 60px;
+          height: 3px;
+          background: linear-gradient(
+            45deg,
+            $primary-color,
+            $primary-color-light
+          );
+          border-radius: 2px;
+        }
+      }
+  
+      .success-message-container {
+        background-color: white;
+        border-radius: 10px;
+        padding: 2.5rem;
+        height: 100%;
+        box-shadow: 0 3px 15px rgba(0, 0, 0, 0.08);
+        transition: all 0.3s ease;
+        position: relative;
+        z-index: 1;
+        overflow: hidden;
+  
+        &::before {
+          content: "";
+          position: absolute;
+          top: 0;
+          right: 0;
+          width: 150px;
+          height: 150px;
+          background: linear-gradient(
+            45deg,
+            rgba($primary-color, 0.05),
+            rgba($primary-color-light, 0.1)
+          );
+          border-radius: 0 0 0 100%;
+          z-index: -1;
+        }
+  
+        &:hover {
+          box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+          transform: translateY(-5px);
+        }
+  
+        p {
+          color: #555;
+          line-height: 1.7;
+          margin-bottom: 1.5rem;
+          font-size: 1.05rem;
+        }
+  
+        .success-buttons {
+          display: flex;
+          flex-wrap: wrap;
+          margin-top: 2.5rem;
+          gap: 15px;
+  
+          .payment-btn,
+          .home-btn {
+            padding: 0.9rem 1.8rem;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            min-width: 160px;
+  
+            i {
+              margin-right: 0.6rem;
+              font-size: 1.2rem;
+            }
+          }
+  
+          .payment-btn {
+            background: linear-gradient(
+              45deg,
+              $primary-color,
+              $primary-color-light
+            );
+            color: white;
+            box-shadow: 0 4px 12px rgba($primary-color, 0.4);
+            position: relative;
+            overflow: hidden;
+  
+            &::before {
+              content: "";
+              position: absolute;
+              top: 0;
+              left: -100%;
+              width: 100%;
+              height: 100%;
+              background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(255, 255, 255, 0.2),
+                transparent
+              );
+              transition: 0.5s;
+            }
+  
+            &:hover {
+              transform: translateY(-4px);
+              box-shadow: 0 6px 15px rgba($primary-color, 0.5);
+  
+              &::before {
+                left: 100%;
+              }
+            }
+  
+            &:active {
+              transform: translateY(0);
+              box-shadow: 0 4px 8px rgba($primary-color, 0.3);
+            }
+          }
+  
+          .home-btn {
+            background-color: white;
+            color: $primary-color;
+            border: 2px solid $primary-color;
+            position: relative;
+            z-index: 1;
+  
+            &::before {
+              content: "";
+              position: absolute;
+              top: 0;
+              left: 0;
+              right: 0;
+              bottom: 0;
+              background: linear-gradient(
+                45deg,
+                $primary-color,
+                $primary-color-light
+              );
+              border-radius: 6px;
+              z-index: -1;
+              opacity: 0;
+              transition: 0.3s;
+            }
+  
+            &:hover {
+              color: white;
+              border-color: transparent;
+              transform: translateY(-4px);
+  
+              &::before {
+                opacity: 1;
+              }
+            }
+  
+            &:active {
+              transform: translateY(0);
+            }
+          }
+  
+          @media (max-width: 576px) {
+            flex-direction: column;
+  
+            .payment-btn,
+            .home-btn {
+              width: 100%;
+            }
+          }
+        }
+      }
+  
+      .success-order-container {
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 3px 15px rgba(0, 0, 0, 0.08);
+        overflow: hidden;
+        transition: all 0.3s ease;
+        position: relative;
+        z-index: 1;
+  
+        &:hover {
+          box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+          transform: translateY(-5px);
+        }
+  
+        .order-header {
+          padding: 1.8rem 2rem;
+          border-bottom: 1px solid #f0f0f0;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          flex-wrap: wrap;
+          background: linear-gradient(
+            to right,
+            rgba($primary-color, 0.03),
+            rgba($primary-color-light, 0.05)
+          );
+  
+          .section-title {
+            margin-bottom: 0;
+            padding-bottom: 0;
+  
+            &::after {
+              display: none;
+            }
+          }
+  
+          .order-id {
+            font-size: 0.95rem;
+            color: #666;
+            background-color: rgba($primary-color, 0.05);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            border: 1px dashed rgba($primary-color, 0.3);
+  
+            .id-value {
+              font-weight: 600;
+              color: $primary-color;
+            }
+          }
+  
+          @media (max-width: 576px) {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 15px;
+          }
+        }
+  
+        .order-details {
+          padding: 2rem;
+  
+          .order-product {
+            margin-bottom: 2rem;
+  
+            .product-header {
+              margin-bottom: 1.8rem;
+  
+              .product-tag {
+                display: inline-block;
+                background: linear-gradient(
+                  45deg,
+                  $primary-color,
+                  $primary-color-light
+                );
+                color: white;
+                font-size: 0.8rem;
+                font-weight: 600;
+                padding: 0.3rem 1rem;
+                border-radius: 20px;
+                margin-bottom: 0.9rem;
+                box-shadow: 0 2px 5px rgba($primary-color, 0.3);
+                letter-spacing: 1px;
+              }
+  
+              .product-title {
+                color: #333;
+                font-size: 1.6rem;
+                font-weight: 700;
+                border-bottom: 2px solid #f8f9fa;
+                padding-bottom: 1rem;
+                position: relative;
+  
+                &::after {
+                  content: "";
+                  position: absolute;
+                  bottom: -2px;
+                  left: 0;
+                  width: 80px;
+                  height: 4px;
+                  background: linear-gradient(
+                    45deg,
+                    $primary-color,
+                    $primary-color-light
+                  );
+                  border-radius: 2px;
+                }
+              }
+            }
+  
+            .info-row {
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              margin-bottom: 1rem;
+              padding: 1rem 1.2rem;
+              background-color: #f8f9fa;
+              border-radius: 8px;
+              border-left: 4px solid $primary-color;
+              transition: all 0.3s ease;
+  
+              &:hover {
+                background-color: rgba($primary-color, 0.05);
+                transform: translateX(5px);
+              }
+  
+              .info-label {
+                color: $primary-color;
+                font-weight: 600;
+                display: flex;
+                align-items: center;
+  
+                i {
+                  color: $primary-color;
+                  margin-right: 0.8rem;
+                  font-size: 1.1rem;
+                }
+              }
+  
+              .info-value {
+                font-weight: 500;
+                color: #444;
+                padding: 0.4rem 0.8rem;
+                background-color: white;
+                border-radius: 4px;
+                border: 1px solid rgba($primary-color, 0.1);
+              }
+            }
+  
+            .passenger-section {
+              background-color: #f8f9fa;
+              padding: 1.2rem;
+              border-radius: 6px;
+              margin-bottom: 1.5rem;
+  
+              .section-label {
+                color: $primary-color;
+                font-weight: 600;
+                display: flex;
+                align-items: center;
+                margin-bottom: 1rem;
+  
+                i {
+                  color: $primary-color;
+                  margin-right: 0.5rem;
+                }
+              }
+  
+              .passenger-row {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 0.8rem 0;
+                border-bottom: 1px dashed rgba($primary-color, 0.2);
+  
+                &:last-child {
+                  border-bottom: none;
+                }
+  
+                .passenger-type {
+                  display: flex;
+                  align-items: center;
+                  font-weight: 500;
+                }
+  
+                .passenger-price {
+                  font-weight: 600;
+                }
+              }
+            }
+  
+            .total-section {
+              border-top: 2px solid #f8f9fa;
+              padding-top: 1.8rem;
+              margin-top: 1rem;
+  
+              .total-row {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 1.2rem;
+                padding: 0.5rem 0;
+  
+                .total-label {
+                  font-size: 1.1rem;
+                  font-weight: 600;
+                  color: #444;
+                }
+  
+                .total-value {
+                  font-size: 1.1rem;
+                  font-weight: 600;
+                  color: #444;
+                  background-color: rgba(0, 0, 0, 0.02);
+                  padding: 0.5rem 1rem;
+                  border-radius: 4px;
+                }
+  
+                &.strikethrough {
+                  .total-label,
+                  .total-value {
+                    text-decoration: line-through;
+                    color: #888;
+                  }
+                }
+  
+                &.discount {
+                  .total-label,
+                  .total-value {
+                    color: #dc3545;
+                    font-weight: 700;
+                  }
+                }
+  
+                &.deposit {
+                  margin-top: 1.5rem;
+                  padding: 1.2rem 0;
+                  border-top: 2px dashed rgba($primary-color, 0.3);
+  
+                  .total-label,
+                  .total-value {
+                    color: $primary-color;
+                    font-weight: 700;
+                    font-size: 1.3rem;
+                  }
+  
+                  .total-value {
+                    background: linear-gradient(
+                      to right,
+                      rgba($primary-color, 0.1),
+                      rgba($primary-color-light, 0.2)
+                    );
+                    border: 1px solid rgba($primary-color, 0.2);
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  // 訂單詳情區域的付款按鈕樣式
+  .payment-button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+  
+    .payment-btn {
+      padding: 0.9rem 1.8rem;
+      border-radius: 8px;
+      font-weight: 600;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      min-width: 180px;
+      background: linear-gradient(45deg, $primary-color, $primary-color-light);
+      color: white;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  
+      &:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+      }
+  
+      i {
+        margin-right: 0.6rem;
+        font-size: 1.2rem;
+      }
+    }
+  }
+  
+  @keyframes pulse {
+    0% {
+      box-shadow: 0 0 0 0 rgba($primary-color, 0.7);
+    }
+    70% {
+      box-shadow: 0 0 0 20px rgba($primary-color, 0);
+    }
+    100% {
+      box-shadow: 0 0 0 0 rgba($primary-color, 0);
+    }
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  @keyframes slideInUp {
+    from {
+      transform: translateY(30px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  
+  @keyframes float {
+    0% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-8px);
+    }
+    100% {
+      transform: translateY(0px);
+    }
+  }
+  
+  /* 報名成功推薦行程區塊樣式 */
+  .recommended-tours-section {
+    margin-top: 4rem;
+    padding: 3rem 0;
+    background: linear-gradient(
+      to bottom,
+      rgba($primary-color, 0.02),
+      rgba($primary-color-light, 0.05)
+    );
+    border-radius: 15px;
+  
+    .section-header {
+      text-align: center;
+      margin-bottom: 3rem;
+  
+      .section-title {
+        color: $primary-color;
+        font-size: 2rem;
+        font-weight: 700;
+        margin-bottom: 0.8rem;
+        position: relative;
+        display: inline-block;
+  
+        &::after {
+          content: "";
+          position: absolute;
+          bottom: -10px;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 60px;
+          height: 3px;
+          background: linear-gradient(
+            45deg,
+            $primary-color,
+            $primary-color-light
+          );
+          border-radius: 2px;
+        }
+      }
+  
+      .section-subtitle {
+        color: #666;
+        font-size: 1.1rem;
+        margin: 0;
+      }
+    }
+  
+    .tour-card {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+      transition: all 0.3s ease;
+      height: 100%;
+  
+      &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+  
+        .tour-image {
+          transform: scale(1.05);
+        }
+  
+        .tour-overlay {
+          opacity: 1;
+        }
+      }
+  
+      .tour-image {
+        height: 200px;
+        background-size: cover;
+        background-position: center;
+        position: relative;
+        transition: transform 0.5s ease;
+        overflow: hidden;
+  
+        .tour-overlay {
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background: rgba(0, 0, 0, 0.4);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          opacity: 0;
+          transition: opacity 0.3s ease;
+  
+          .view-tour-btn {
+            padding: 0.8rem 1.5rem;
+            background: white;
+            color: $primary-color;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+  
+            &:hover {
+              background: $primary-color;
+              color: white;
+              transform: translateY(0);
+            }
+          }
+        }
+      }
+  
+      &:hover {
+        .tour-overlay {
+          opacity: 1;
+        }
+      }
+  
+      .tour-content {
+        padding: 1.5rem;
+  
+        .tour-title {
+          font-size: 1.2rem;
+          font-weight: 600;
+          color: #333;
+          margin-bottom: 1rem;
+          line-height: 1.4;
+        }
+  
+        .tour-info {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-bottom: 1rem;
+          padding-bottom: 1rem;
+          border-bottom: 1px solid #f0f0f0;
+  
+          .tour-price {
+            color: $primary-color;
+            font-weight: 700;
+            font-size: 1.1rem;
+          }
+  
+          .tour-duration {
+            color: $primary-color;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+  
+            i {
+              margin-right: 0.5rem;
+              color: $primary-color;
+            }
+          }
+        }
+  
+        .tour-description {
+          color: #666;
+          font-size: 0.95rem;
+          line-height: 1.6;
+          margin: 0;
+          display: -webkit-box;
+          -webkit-line-clamp: 3;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+        }
+      }
+    }
+  
+    .explore-more-btn {
+      display: inline-flex;
+      align-items: center;
+      padding: 1rem 2rem;
+      background: linear-gradient(45deg, $primary-color, $primary-color-light);
+      color: white;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba($primary-color, 0.3);
+  
+      i {
+        margin-right: 0.8rem;
+        font-size: 1.2rem;
+      }
+  
+      &:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 20px rgba($primary-color, 0.4);
+        color: white;
+      }
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .recommended-tours-section {
+      margin-top: 3rem;
+      padding: 2rem 0;
+  
+      .section-header {
+        margin-bottom: 2rem;
+  
+        .section-title {
+          font-size: 1.8rem;
+        }
+      }
+  
+      .tour-card {
+        margin-bottom: 1.5rem;
+  
+        .tour-image {
+          .tour-overlay {
+            opacity: 1;
+            background: rgba(0, 0, 0, 0.3);
+  
+            .view-tour-btn {
+              transform: translateY(0);
+              padding: 0.6rem 1.2rem;
+              font-size: 0.9rem;
+            }
+          }
+        }
+      }
+    }
+  }

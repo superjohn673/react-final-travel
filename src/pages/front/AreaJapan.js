@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Link, Outlet, useLocation } from "react-router-dom";
 import defaultImg from "../../assets/images/area/area-default.jpg";
 import hokkaidoImg from "../../assets/images/area/area-hokkaido.jpg";

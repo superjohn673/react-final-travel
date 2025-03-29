@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Link, Outlet, useLocation } from "react-router-dom";
 import seasonDefaultImg from "../../assets/images/season/season-default.jpg";
 import seasonSpringImg from "../../assets/images/season/season-spring.jpg";

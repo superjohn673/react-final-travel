@@ -1,0 +1,445 @@
+/* ===================================================
+ * Travel Calendar Component 旅遊日曆組件樣式
+ * =================================================== */
+
+// 日曆外層包裝
+.calendar-wrapper {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  padding: 0;
+  margin: 0 auto;
+  min-height: 380px; // 設置最小高度確保空間
+  
+  // 針對中等尺寸螢幕的額外調整
+  @media (max-width: 991.98px) and (min-width: 768px) {
+    overflow: hidden; // 防止內容溢出
+    padding: 0;
+    margin: 0;
+  }
+}
+
+// 中等螢幕專用樣式 - 完全覆蓋默認樣式
+@media (max-width: 991.98px) and (min-width: 768px) {
+  .custom-calendar.md-screen {
+    width: 95% !important;
+    font-size: 11px !important;
+    
+    .react-datepicker__month-container {
+      width: 100% !important;
+      padding: 0 !important;
+    }
+    
+    .react-datepicker__month {
+      margin: 0 !important;
+    }
+    
+    .react-datepicker__header {
+      padding: 0 !important;
+    }
+    
+    .calendar-header {
+      padding: 5px !important;
+      min-height: auto !important;
+      
+      .current-month {
+        font-size: 12px !important;
+      }
+      
+      button {
+        width: 20px !important;
+        height: 20px !important;
+        padding: 0 !important;
+        
+        &.invisible {
+          visibility: hidden !important;
+          opacity: 0 !important;
+          display: block !important; // 重要：保持佔位
+        }
+      }
+    }
+    
+    .react-datepicker__day-names {
+      margin: 0 !important;
+      padding: 2px !important;
+    }
+    
+    .react-datepicker__day-name {
+      margin: 1px !important;
+      padding: 1px !important;
+      font-size: 12px !important;
+      width: 24px !important;
+      height: 18px !important;
+      line-height: 16px !important;
+    }
+    
+    .react-datepicker__day {
+      margin: 2px !important;
+      padding: 0 !important;
+      width: 24px !important;
+      height: 32px !important;
+      line-height: 14px !important;
+      font-size: 12px !important;
+      
+      &:hover {
+        transform: none !important;
+        box-shadow: none !important;
+      }
+      
+      &.saturday.selected-date {
+        .fw-bolder {
+          color: white !important;
+        }
+      }
+    }
+    
+    .day-cell {
+      .fw-bolder {
+        font-size: 12px !important;
+      }
+      
+      .fw-bolder.saturday-text {
+        color: $primary-color !important;
+      }
+      
+      small {
+        font-size: 9px !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        line-height: 1.2 !important;
+      }
+    }
+  }
+  
+  .travel-calendar.md-screen {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow: hidden !important;
+    border: none !important;
+    box-shadow: none !important;
+  }
+}
+
+.travel-calendar {
+  width: 100%;
+  margin: 0 auto;
+  border: 1px solid rgba(151, 125, 6, 0.2);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+  min-height: 380px; // 增加最小高度
+  position: relative; // 確保定位上下文
+  
+  // 添加一個占位層解決初始渲染問題
+  &::after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: transparent;
+    pointer-events: none;
+    z-index: -1;
+  }
+
+  // 自定義日曆樣式覆蓋
+  .react-datepicker {
+    width: 100%;
+    border: none;
+    font-family: inherit;
+    background-color: transparent;
+    position: relative; // 確保定位上下文
+
+    // 強制內容寬度適應容器
+    .react-datepicker__month-container {
+      width: 100%;
+      background-color: #fafafa;
+      padding: 10px;
+      min-height: 320px; // 增加最小高度
+
+      .react-datepicker__month {
+        margin: 0;
+        width: 100%;
+        min-height: 240px; // 增加最小高度
+      }
+    }
+
+    // 日曆頭部樣式
+    .calendar-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: $primary-color;
+      padding: 18px; // 增加內邊距
+      min-height: 66px; // 增加最小高度
+      width: 100%;
+
+      @media (max-width: 576px) {
+        padding: 12px;
+        min-height: 60px;
+      }
+
+      .prev-month-container,
+      .next-month-container {
+        flex: 0 0 20%;
+        text-align: center;
+      }
+
+      .current-month-container {
+        flex: 0 0 60%;
+        text-align: center;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .prev-month,
+      .next-month {
+        background-color: transparent;
+        border: none;
+        color: white;
+        cursor: pointer;
+        padding: 5px 10px;
+        width: 44px; // 增加按鈕大小
+        height: 44px; // 增加按鈕大小
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        
+        // 對不可見按鈕應用樣式但保持佔位
+        &.invisible {
+          visibility: hidden;
+          opacity: 0;
+          display: block; // 仍然保持按鈕佔位
+        }
+
+        &:hover {
+          background-color: rgba(255, 255, 255, 0.1);
+          border-radius: 50%;
+        }
+
+        &:disabled {
+          opacity: 0.5;
+          cursor: not-allowed;
+        }
+      }
+
+      .current-month {
+        font-weight: bold;
+        color: white;
+        font-size: 1.2rem; // 增加字體大小
+
+        @media (max-width: 576px) {
+          font-size: 1.1rem;
+        }
+      }
+    }
+
+    // 星期標題樣式
+    .react-datepicker__day-names {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 6px; // 增加間距
+      padding: 12px; // 增加內邊距
+      background-color: #fafafa;
+      margin: 0;
+      width: 100%;
+
+      .react-datepicker__day-name {
+        font-weight: bold;
+        text-align: center;
+        padding: 6px 0; // 增加內邊距
+        font-size: 1rem; // 增加字體大小
+        color: $primary-color;
+        margin: 0;
+
+        @media (max-width: 576px) {
+          font-size: 0.9rem;
+          padding: 5px 0;
+        }
+      }
+    }
+
+    // 日期格子樣式
+    .react-datepicker__week {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 6px; // 增加間距
+      margin: 0;
+      width: 100%;
+      margin-bottom: 6px; // 增加行間距
+
+      .react-datepicker__day {
+        aspect-ratio: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background-color: white;
+        border-radius: 8px;
+        padding: 6px; // 增加內邊距
+        transition: all 0.2s ease;
+        border: 1px solid transparent;
+        font-size: 1rem; // 增加字體大小
+        margin: 0;
+        width: auto; // 讓每個日期格子寬度自適應
+        height: 46px; // 固定高度增加空間感
+
+        @media (max-width: 576px) {
+          font-size: 0.9rem;
+          padding: 4px;
+          height: 40px;
+        }
+
+        &:not(.react-datepicker__day--disabled):hover {
+          background-color: rgba(151, 125, 6, 0.3);
+          transform: translateY(-4px) scale(1.05);
+          box-shadow: 0 4px 8px rgba(151, 125, 6, 0.3);
+          cursor: pointer;
+          border: 2px solid $primary-color;
+
+          .fw-bolder {
+            color: $primary-color;
+            transform: scale(1.1);
+            transition: transform 0.2s ease;
+          }
+
+          small {
+            color: darken($primary-color, 10%);
+            font-weight: bold;
+          }
+        }
+
+        &.react-datepicker__day--disabled {
+          background-color: #f8f8f8;
+          color: #bbb;
+          cursor: not-allowed;
+          opacity: 0.7;
+        }
+
+        &.react-datepicker__day--selected,
+        &.selected-date {
+          background-color: $primary-color;
+          color: white;
+          transform: translateY(-2px);
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+          font-weight: bold;
+
+          small {
+            color: rgba(255, 255, 255, 0.9);
+          }
+          
+          // 確保星期六被選中時文字為白色
+          .fw-bolder,
+          .saturday-text {
+            color: white !important;
+          }
+
+          &:hover {
+            background-color: darken($primary-color, 5%);
+          }
+        }
+
+        &.saturday {
+          color: $primary-color;
+          
+          // 星期六日期被選中時
+          &.selected-date {
+            color: white !important;
+            
+            .fw-bolder,
+            .saturday-text {
+              color: white !important;
+            }
+          }
+        }
+
+        small {
+          display: block;
+          margin-top: 4px; // 增加間距
+          color: $primary-color;
+          font-size: 0.8rem; // 增加字體大小
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          max-width: 100%;
+          line-height: 1.2; // 增加行高
+
+          @media (max-width: 576px) {
+            font-size: 0.75rem;
+            margin-top: 3px;
+          }
+        }
+      }
+    }
+  }
+  
+  // 覆蓋 react-datepicker 整個日曆的默認最大寬度設定
+  .custom-calendar {
+    max-width: 100% !important;
+    width: 100% !important;
+  }
+  
+  // 星期六文字樣式
+  .saturday-text {
+    color: $primary-color;
+    
+    // 被選中時改為白色
+    .selected-date & {
+      color: white !important;
+    }
+  }
+  
+  // 日曆單元格
+  .day-cell {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+// 全局覆蓋 react-datepicker 樣式
+.react-datepicker {
+  font-family: inherit !important;
+}
+
+.react-datepicker__month-container {
+  float: none !important;
+  width: 100% !important;
+}
+
+.react-datepicker__day-names,
+.react-datepicker__week {
+  display: flex !important;
+  justify-content: space-between !important;
+  width: 100% !important;
+}
+
+.react-datepicker__day,
+.react-datepicker__day-name {
+  flex: 1 !important;
+  margin: 0.166rem !important;
+  max-width: none !important;
+}
+
+// 確保日曆彈出層不受限制
+.react-datepicker-popper {
+  width: 100% !important;
+  max-width: 100% !important;
+  transform: none !important;
+  inset: auto !important;
+}
+
+// 防止日曆組件閃爍
+.react-datepicker__day, 
+.react-datepicker__day-name,
+.react-datepicker__header,
+.react-datepicker__month {
+  transition: none !important;
+  will-change: auto !important; // 提升渲染性能
+}

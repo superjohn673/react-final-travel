@@ -1,0 +1,139 @@
+/* ===================================================
+ * Member Center 會員中心樣式
+ * =================================================== */
+
+//會員中心
+.member-layout {
+    margin-top: 3rem;
+    margin-bottom: 5rem;
+  }
+  
+  .member-sidebar {
+    transition: all 0.3s ease;
+  
+    .card {
+      border: none;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba($primary-color, 0.08);
+      overflow: hidden;
+  
+      .card-header {
+        background-color: $primary-color;
+        border-bottom: none;
+        padding: 1.25rem 1.5rem;
+  
+        h5 {
+          color: white;
+          font-weight: 600;
+          margin: 0;
+          font-size: 1.25rem;
+        }
+      }
+  
+      .list-group {
+        padding: 0.75rem 0;
+  
+        .list-group-item {
+          border: none;
+          border-radius: 0;
+          padding: 0.75rem 1.5rem;
+          margin-bottom: 0.25rem;
+          transition: all 0.3s ease;
+          font-weight: 500;
+          color: $text-color;
+  
+          &:hover,
+          &.active {
+            background-color: rgba($primary-color, 0.08);
+            color: $primary-color;
+            transform: translateX(5px);
+          }
+  
+          svg {
+            color: $primary-color;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+          }
+        }
+      }
+    }
+  }
+  
+  .member-content {
+    .card {
+      border: none;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba($primary-color, 0.08);
+      overflow: hidden;
+  
+      .card-header {
+        background-color: white;
+        border-bottom: 1px solid rgba($primary-color, 0.1);
+        padding: 1.25rem 1.5rem;
+  
+        h5 {
+          color: $text-color;
+          font-weight: 600;
+          margin: 0;
+          font-size: 1.25rem;
+        }
+  
+        .btn-primary {
+          background-color: $primary-color;
+          border-color: $primary-color;
+          transition: all 0.3s ease;
+  
+          &:hover {
+            background-color: $primary-color-dark;
+            border-color: $primary-color-dark;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba($primary-color, 0.2);
+          }
+        }
+  
+        .btn-secondary {
+          background-color: $secondary-color;
+          border-color: $secondary-color;
+          color: $text-color;
+          transition: all 0.3s ease;
+  
+          &:hover {
+            background-color: darken($secondary-color, 10%);
+            border-color: darken($secondary-color, 10%);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+          }
+        }
+      }
+  
+      .card-body {
+        padding: 2rem;
+  
+        .form-group {
+          margin-bottom: 1.5rem;
+  
+          label {
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            color: $text-color;
+          }
+  
+          .form-control {
+            border-radius: 8px;
+            padding: 0.75rem 1rem;
+            border: 1px solid rgba($primary-color, 0.2);
+            transition: all 0.3s ease;
+  
+            &:focus {
+              border-color: $primary-color;
+              box-shadow: 0 0 0 0.2rem rgba($primary-color, 0.15);
+            }
+  
+            &:disabled {
+              background-color: rgba($secondary-color, 0.1);
+            }
+          }
+        }
+      }
+    }
+  }

@@ -203,7 +203,6 @@ const Cart = () => {
                           <p>
                             <span className="fw-bold">出發日期 : </span>
                             <span className="date-value">{selectedDate}</span>
-                            <i className="bi bi-calendar-event ms-2 cart-icon"></i>
                           </p>
                         </div>
                         <div className="d-flex justify-content-start align-items-center w-100 mb-3 ">
@@ -232,7 +231,6 @@ const Cart = () => {
                                 );
                               })}
                             </select>
-                            <i className="bi bi-person-fill ms-2 cart-icon"></i>
                           </div>
                           {/* 小孩select */}
                           <div className="input-group w-25 align-items-center">
@@ -259,75 +257,61 @@ const Cart = () => {
                                 );
                               })}
                             </select>
-                            <i className="bi bi-person-fill ms-2 cart-icon"></i>
                           </div>
                         </div>
                         <div className="row justify-content-between mt-5">
-                          <div className="col-12 col-md-5 mb-3">
-                            <div className="row">
-                              <div className="col-12">
-                                {" "}
-                                <div className="input-group  w-75">
-                                  <ButtonWithLoading
-                                    className="btn btn-secondary"
-                                    type="button"
-                                    id="button-addon1"
-                                    onClick={() => addCoupon(couponCode)}
-                                    isLoading={isCouponLoading}
-                                    disabled={
-                                      (adultQuantity === 0 &&
-                                        childrenQuantity === 0) ||
-                                      !couponCode.trim()
-                                    }
-                                    loadingText="處理中..."
-                                  >
-                                    使用優惠碼
-                                  </ButtonWithLoading>
-                                  <input
-                                    type="text"
-                                    className="form-control"
-                                    placeholder="請輸入優惠碼"
-                                    aria-label="Example text with button addon"
-                                    aria-describedby="button-addon1"
-                                    value={couponCode}
-                                    onChange={(e) =>
-                                      setCouponCode(e.target.value)
-                                    }
-                                    disabled={
-                                      adultQuantity === 0 &&
-                                      childrenQuantity === 0
-                                    }
-                                  />
-                                </div>
-                                <div className="">
-                                  {" "}
-                                  {localStorage.getItem("couponInfStorage") ? (
-                                    <p className="coupon-success mt-1">
-                                      <i className="bi bi-check-circle-fill me-2"></i>
-                                      {
-                                        JSON.parse(
-                                          localStorage.getItem(
-                                            "couponInfStorage"
-                                          )
-                                        ).message
-                                      }
-                                    </p>
-                                  ) : (
-                                    (couponInf.message ||
-                                      (!couponCode.trim() &&
-                                        couponCode !== "")) && (
-                                      <p className="coupon-error mt-1">
-                                        <i className="bi bi-exclamation-circle-fill me-2"></i>
-                                        {couponInf.message || "請輸入優惠碼"}
-                                      </p>
-                                    )
-                                  )}
-                                </div>
-                              </div>
+                          <div className="col-12 col-lg-6 col-md-12 mb-3">
+                            <div className="input-group">
+                              <input
+                                type="text"
+                                className="form-control"
+                                placeholder="請輸入優惠碼"
+                                aria-label="優惠碼輸入"
+                                value={couponCode}
+                                onChange={(e) => setCouponCode(e.target.value)}
+                                disabled={
+                                  adultQuantity === 0 && childrenQuantity === 0
+                                }
+                              />
+                              <ButtonWithLoading
+                                className="btn btn-secondary"
+                                type="button"
+                                onClick={() => addCoupon(couponCode)}
+                                isLoading={isCouponLoading}
+                                disabled={
+                                  (adultQuantity === 0 &&
+                                    childrenQuantity === 0) ||
+                                  !couponCode.trim()
+                                }
+                                loadingText="處理中..."
+                              >
+                                使用優惠碼
+                              </ButtonWithLoading>
+                            </div>
+                            <div className="mt-2">
+                              {localStorage.getItem("couponInfStorage") ? (
+                                <p className="coupon-success">
+                                  <i className="bi bi-check-circle-fill me-2"></i>
+                                  {
+                                    JSON.parse(
+                                      localStorage.getItem("couponInfStorage")
+                                    ).message
+                                  }
+                                </p>
+                              ) : (
+                                (couponInf.message ||
+                                  (!couponCode.trim() &&
+                                    couponCode !== "")) && (
+                                  <p className="coupon-error">
+                                    <i className="bi bi-exclamation-circle-fill me-2"></i>
+                                    {couponInf.message || "請輸入優惠碼"}
+                                  </p>
+                                )
+                              )}
                             </div>
                           </div>
-                          <div className="col-12 col-md-5 mt-5">
-                            <div className=" text-end">
+                          <div className="col-12 col-lg-5 col-md-12 mt-3 mt-lg-5">
+                            <div className="text-end">
                               <p
                                 className={`mb-0 h5 fw-bold ${
                                   localStorage.getItem("couponInfStorage")

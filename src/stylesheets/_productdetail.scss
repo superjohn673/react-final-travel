@@ -1,0 +1,1079 @@
+/* ===================================================
+ * Product Detail Page Sidebar 產品詳情頁側邊欄樣式
+ * =================================================== */
+ .product-detail-sidebar {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem;
+    background-color: #fafafa;
+    border-radius: 8px;
+    border: 1px solid rgba(151, 125, 6, 0.1);
+  
+    // 在中等螢幕尺寸下調整內邊距
+    @media (max-width: 991.98px) and (min-width: 768px) {
+      padding: 1.25rem;
+    }
+  
+    // 產品標題樣式
+    .product-title {
+      margin-bottom: 1.5rem;
+  
+      h2 {
+        font-size: 1.8rem;
+        margin-bottom: 1rem;
+        color: #333;
+        word-wrap: break-word; // 長單詞自動換行
+        line-height: 1.3;
+  
+        // 螢幕尺寸響應式調整
+        @media (max-width: 991.98px) {
+          font-size: 1.5rem;
+        }
+  
+        @media (max-width: 767.98px) {
+          font-size: 1.3rem;
+        }
+      }
+    }
+  }
+  
+  /* ===================================================
+   * Departure Date Display 出發日期顯示樣式
+   * =================================================== */
+  .departure-date {
+    padding: 1rem;
+    border-radius: 6px;
+    border-left: 4px solid $primary-color;
+    margin-bottom: 1.5rem;
+  
+    // 尚未選擇日期時的佔位樣式
+    &__placeholder {
+      background-color: rgba(220, 53, 69, 0.1);
+      border-left: 4px solid #dc3545;
+      padding: 1rem;
+      border-radius: 6px;
+  
+      p {
+        color: #dc3545;
+        font-weight: 500;
+        margin-bottom: 0;
+      }
+    }
+  
+    // 已選擇日期的樣式
+    &__selected {
+      background-color: rgba(151, 125, 6, 0.1);
+  
+      p {
+        margin-bottom: 0;
+        font-weight: 500;
+      }
+    }
+  }
+  
+  /* ===================================================
+   * Passenger Selection 人數選擇樣式
+   * =================================================== */
+  .passenger-select {
+    margin-bottom: 2rem;
+  
+    &__container {
+      border: 1px solid #e5e5e5;
+      border-radius: 8px;
+      padding: 1.25rem;
+      background-color: #fafafa;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+    }
+  
+    &__item {
+      margin-bottom: 1rem;
+  
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  
+    &__header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0.75rem;
+    }
+  
+    &__type {
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+  
+      i {
+        margin-right: 0.5rem;
+        color: $primary-color;
+      }
+    }
+  
+    &__price {
+      font-weight: 700;
+      color: #dc3545;
+    }
+  
+    .form-select {
+      border-color: rgba(151, 125, 6, 0.3);
+      transition: all 0.3s ease;
+  
+      &:focus {
+        border-color: $primary-color;
+        box-shadow: 0 0 0 0.2rem rgba(151, 125, 6, 0.2);
+      }
+    }
+  }
+  
+  /* ===================================================
+   * Travel Features 旅遊特色樣式
+   * =================================================== */
+  .tour-features {
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid rgba(151, 125, 6, 0.1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  
+    // 在中等螢幕尺寸下減少內邊距
+    @media (max-width: 991.98px) and (min-width: 768px) {
+      padding: 1.25rem;
+    }
+  
+    // 在小螢幕尺寸下進一步減少內邊距
+    @media (max-width: 767.98px) {
+      padding: 1rem;
+    }
+  
+    h5 {
+      color: $primary-color;
+      font-weight: 600;
+      position: relative;
+      padding-left: 1rem;
+  
+      &::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 4px;
+        height: 1.2em;
+        background-color: $primary-color;
+        border-radius: 2px;
+      }
+    }
+  
+    &__list {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+  
+      // 在中等螢幕尺寸(768px-992px)下改為單列顯示
+      @media (max-width: 991.98px) and (min-width: 768px) {
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+      }
+  
+      // 在小螢幕尺寸下保持單列顯示
+      @media (max-width: 767.98px) {
+        grid-template-columns: 1fr;
+        gap: 0.5rem;
+      }
+    }
+  }
+  
+  .tour-feature-item {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem;
+    background-color: #f8f9fa;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+  
+    // 在中等螢幕尺寸下減少內邊距
+    @media (max-width: 991.98px) and (min-width: 768px) {
+      padding: 0.6rem;
+      margin-bottom: 0.5rem;
+    }
+  
+    // 在小螢幕尺寸下調整樣式
+    @media (max-width: 767.98px) {
+      padding: 0.5rem;
+      margin-bottom: 0.4rem;
+    }
+  
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+  
+    i,
+    .feature-icon {
+      color: $primary-color;
+      font-size: 1.2rem;
+      margin-right: 0.75rem;
+  
+      // 在中等螢幕尺寸下減小圖標尺寸
+      @media (max-width: 991.98px) and (min-width: 768px) {
+        font-size: 1rem;
+        min-width: 20px;
+      }
+  
+      // 在小螢幕尺寸下進一步調整圖標
+      @media (max-width: 767.98px) {
+        font-size: 0.9rem;
+        min-width: 18px;
+        margin-right: 0.5rem;
+      }
+    }
+  
+    span,
+    .feature-text {
+      color: #666;
+      font-size: 0.95rem;
+  
+      // 在中等螢幕尺寸下稍微減小字體大小
+      @media (max-width: 991.98px) and (min-width: 768px) {
+        font-size: 0.9rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 100%;
+      }
+  
+      // 在小螢幕尺寸下允許文字換行以避免截斷
+      @media (max-width: 767.98px) {
+        font-size: 0.85rem;
+        white-space: normal;
+        overflow: visible;
+        line-height: 1.3;
+      }
+    }
+  }
+  
+  /* ===================================================
+   * Price Highlight 價格高亮顯示樣式
+   * =================================================== */
+  .price-highlight {
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid rgba(151, 125, 6, 0.1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  
+    &__header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px dashed rgba(151, 125, 6, 0.2);
+  
+      span {
+        &:first-child {
+          font-size: 1.1rem;
+          color: #333;
+        }
+      }
+  
+      .price-amount {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: #dc3545; // 使用紅色突出顯示價格
+      }
+    }
+  
+    &__note {
+      display: flex;
+      align-items: center;
+      color: #666;
+      font-size: 0.9rem;
+  
+      i {
+        color: $primary-color;
+      }
+    }
+  }
+  
+  /* ===================================================
+   * Booking Button 報名按鈕樣式
+   * =================================================== */
+  .booking-btn {
+    background: linear-gradient(
+      45deg,
+      $primary-color,
+      darken($primary-color, 10%)
+    ); // 漸變背景
+    color: white;
+    font-weight: 600;
+    padding: 0.9rem 0;
+    border: none;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    letter-spacing: 1px;
+    font-size: 1.1rem;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+    text-decoration: none; // 確保作為連結時沒有下劃線
+    display: inline-block; // 確保作為連結時可以設置寬度和高度
+  
+    // 禁用狀態樣式
+    &:disabled {
+      cursor: not-allowed;
+      opacity: 0.7;
+      background: linear-gradient(45deg, #d0d0d0, #a0a0a0);
+      color: #f0f0f0;
+    }
+  
+    // 啟用狀態的懸停效果
+    &:not(:disabled) {
+      &:hover {
+        transform: translateY(-5px); // 上浮效果
+        box-shadow: 0 5px 10px rgba(151, 125, 6, 0.3); // 增強陰影
+        color: white; // 確保懸停時文字顏色不變
+        text-decoration: none; // 確保懸停時沒有下劃線
+      }
+  
+      &:active {
+        transform: translateY(0); // 點擊時回到原位
+        box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+      }
+    }
+  
+    // 適應不同的圓角設置
+    &.rounded-0 {
+      border-radius: 0;
+    }
+  }
+  
+  /* ===================================================
+   * Product Description 產品描述樣式
+   * =================================================== */
+  .product-description {
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid rgba(151, 125, 6, 0.1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  
+    h5 {
+      color: $primary-color;
+      font-weight: 600;
+      position: relative;
+      padding-left: 1rem;
+  
+      &::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 4px;
+        height: 1.2em;
+        background-color: $primary-color;
+        border-radius: 2px;
+      }
+    }
+  
+    .description-text {
+      color: #666;
+      line-height: 1.8;
+      font-size: 1rem;
+  
+      @media (max-width: 991.98px) {
+        font-size: 0.95rem;
+      }
+  
+      @media (max-width: 767.98px) {
+        font-size: 0.9rem;
+      }
+    }
+  }
+  
+  /* ===================================================
+   * Flight Information Block 航班資訊區塊樣式
+   * =================================================== */
+  .flight-info {
+    margin-bottom: 4rem;
+  
+    // 航班資訊標題樣式
+    &__title {
+      position: relative;
+      text-align: center;
+      margin-bottom: 2.5rem;
+  
+      h5 {
+        font-size: 1.8rem;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+      }
+  
+      h6 {
+        font-size: 1rem;
+        color: $primary-color;
+        font-weight: 500;
+      }
+  
+      &:after {
+        content: "";
+        position: absolute;
+        bottom: -1rem;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80px;
+        height: 3px;
+        background-color: $primary-color;
+        border-radius: 3px;
+      }
+    }
+  
+    // 航班卡片樣式
+    &__card {
+      border: 1px solid #e5e5e5;
+      border-radius: 8px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      box-shadow: 0 3px 15px rgba(0, 0, 0, 0.08);
+      height: 100%;
+  
+      &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+      }
+  
+      // 航班日期和航班號區塊
+      &-header {
+        background-color: #f8f9fa;
+        padding: 1rem;
+        border-bottom: 3px solid rgba(151, 125, 6, 0.3);
+  
+        .day-number {
+          font-size: 0.9rem;
+          color: $primary-color;
+          font-weight: 600;
+        }
+  
+        .destination {
+          font-size: 1.2rem;
+          font-weight: 600;
+          margin: 0.5rem 0;
+        }
+  
+        .flight-number {
+          font-size: 1rem;
+          color: #666;
+        }
+      }
+  
+      // 航班詳細資訊區塊
+      &-body {
+        padding: 1.5rem;
+  
+        .flight-route {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+  
+          .departure,
+          .arrival {
+            flex: 1;
+  
+            .label {
+              font-size: 0.85rem;
+              color: #666;
+              margin-bottom: 0.5rem;
+            }
+  
+            .location {
+              font-size: 1.1rem;
+              font-weight: 600;
+              margin-bottom: 0.5rem;
+            }
+  
+            .time {
+              font-size: 1.3rem;
+              font-weight: 700;
+              color: #333;
+            }
+          }
+  
+          .flight-icon {
+            flex: 0 0 auto;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: $primary-color;
+            position: relative;
+  
+            &:before {
+              content: "";
+              position: absolute;
+              top: 50%;
+              left: -20px;
+              right: -20px;
+              height: 2px;
+              background: linear-gradient(
+                to right,
+                #e5e5e5,
+                $primary-color,
+                #e5e5e5
+              );
+              z-index: 0;
+            }
+  
+            i {
+              background-color: white;
+              padding: 0.5rem;
+              border-radius: 50%;
+              font-size: 1.2rem;
+              position: relative;
+              z-index: 1;
+              transform: rotate(45deg);
+              transition: all 0.3s ease;
+            }
+          }
+  
+          // 到達資訊右對齊
+          .arrival {
+            text-align: right;
+          }
+        }
+      }
+    }
+  
+    // 響應式調整
+    @media (max-width: 991.98px) {
+      &__card {
+        margin-bottom: 2rem;
+  
+        &-body {
+          .flight-route {
+            .departure,
+            .arrival {
+              .location {
+                font-size: 1rem;
+              }
+  
+              .time {
+                font-size: 1.1rem;
+              }
+            }
+          }
+        }
+      }
+    }
+  
+    @media (max-width: 767.98px) {
+      &__card-body {
+        padding: 1rem;
+      }
+    }
+  }
+  
+  /* ===================================================
+   * Tour Daily Content 行程內容樣式
+   * =================================================== */
+  .tour-daily {
+    background-color: $primary-color;
+    color: white;
+    padding: 1rem;
+  }
+  
+  .tour-daily-route {
+    font-weight: bold;
+    font-size: 1.2rem;
+  }
+  .tour-content img {
+    object-fit: cover;
+    height: 100%;
+  }
+  .booking-info-section {
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+  
+  .booking-info-title {
+    color: #666;
+    font-weight: 500;
+  }
+  
+  .booking-info-content {
+    color: #333;
+  }
+  
+  /* ===================================================
+   * Breadcrumb Navigation Prodetail 麵包屑導航樣式
+   * =================================================== */
+  .breadcrumb-nav {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    margin: 1.5rem 0;
+    font-size: 0.95rem;
+  
+    &__item {
+      display: inline-flex;
+      align-items: center;
+      color: #666;
+      transition: all 0.3s ease;
+      position: relative;
+  
+      &:hover {
+        color: $primary-color;
+      }
+  
+      &:not(:last-child) {
+        margin-right: 1.2rem;
+  
+        &:after {
+          content: "";
+          position: absolute;
+          right: -0.8rem;
+          top: 50%;
+          transform: translateY(-50%);
+          width: 6px;
+          height: 6px;
+          border-top: 1px solid #999;
+          border-right: 1px solid #999;
+          transform: translateY(-50%) rotate(45deg);
+        }
+      }
+  
+      &--active {
+        color: $primary-color;
+        font-weight: 600;
+      }
+  
+      a {
+        text-decoration: none;
+        color: inherit;
+        padding: 0.3rem 0;
+        border-bottom: 1px solid transparent;
+        transition: all 0.3s ease;
+  
+        &:hover {
+          color: $primary-color;
+          border-bottom-color: $primary-color;
+        }
+      }
+    }
+  
+    @media (max-width: 767.98px) {
+      font-size: 0.85rem;
+      margin: 1rem 0;
+  
+      &__item {
+        &:not(:last-child) {
+          margin-right: 1rem;
+  
+          &:after {
+            right: -0.7rem;
+            width: 5px;
+            height: 5px;
+          }
+        }
+      }
+    }
+  }
+  
+  /* ===================================================
+   * Product Navigation 事項列表導航樣式
+   * =================================================== */
+  .product-nav-tabs {
+    display: flex;
+    justify-content: center;
+    border-top: 1px solid rgba(151, 125, 6, 0.2);
+    border-bottom: 1px solid rgba(151, 125, 6, 0.2);
+    padding: 0;
+    margin: 3rem 0;
+    overflow-x: auto;
+  
+    // 確保在小螢幕上可以水平滾動
+    @media (max-width: 767.98px) {
+      justify-content: flex-start;
+      padding-bottom: 5px; // 為滾動條留出空間
+    }
+  
+    &__item {
+      list-style: none;
+      padding: 1rem 1.5rem;
+      position: relative;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      white-space: nowrap;
+  
+      &:not(:last-child) {
+        margin-right: 1rem;
+      }
+  
+      &:hover {
+        color: $primary-color;
+  
+        &:after {
+          width: 100%;
+        }
+      }
+  
+      // 底部指示線
+      &:after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 3px;
+        background-color: $primary-color;
+        transition: width 0.3s ease;
+      }
+  
+      // 活躍狀態
+      &.active {
+        color: $primary-color;
+        font-weight: 600;
+  
+        &:after {
+          width: 100%;
+        }
+      }
+  
+      a {
+        text-decoration: none;
+        color: inherit;
+        font-size: 1.1rem;
+  
+        @media (max-width: 767.98px) {
+          font-size: 1rem;
+        }
+      }
+    }
+  }
+  
+  /* ===================================================
+   * 行程內容圖片輪播樣式
+   * =================================================== */
+  .carousel {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    margin-bottom: 1.5rem;
+  
+    .carousel-inner {
+      .carousel-item {
+        img {
+          transition: transform 0.3s ease;
+        }
+      }
+    }
+  
+    .carousel-indicators {
+      margin-bottom: 0.5rem;
+  
+      button {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background-color: rgba(255, 255, 255, 0.5);
+        border: none;
+        margin: 0 4px;
+        transition: all 0.3s ease;
+  
+        &.active {
+          background-color: $primary-color;
+          transform: scale(1.2);
+        }
+      }
+    }
+  
+    .carousel-control-prev,
+    .carousel-control-next {
+      width: 40px;
+      height: 40px;
+      background-color: rgba(255, 255, 255, 0.8);
+      border-radius: 50%;
+      top: 50%;
+      transform: translateY(-50%);
+      opacity: 0;
+      transition: all 0.3s ease;
+  
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.9);
+        opacity: 1;
+      }
+  
+      .carousel-control-prev-icon,
+      .carousel-control-next-icon {
+        width: 20px;
+        height: 20px;
+        background-color: $primary-color;
+        border-radius: 50%;
+        padding: 8px;
+      }
+    }
+  
+    &:hover {
+      .carousel-control-prev,
+      .carousel-control-next {
+        opacity: 0.8;
+      }
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .carousel {
+      .carousel-control-prev,
+      .carousel-control-next {
+        width: 35px;
+        height: 35px;
+  
+        .carousel-control-prev-icon,
+        .carousel-control-next-icon {
+          width: 16px;
+          height: 16px;
+          padding: 6px;
+        }
+      }
+    }
+  }
+  
+  /* ===================================================
+   * Daily Itinerary 每日行程樣式優化
+   * =================================================== */
+  .tour-content {
+    margin-bottom: 4rem;
+  
+    &__title {
+      position: relative;
+      text-align: center;
+      margin-bottom: 2.5rem;
+  
+      &-main {
+        font-size: 1.8rem;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+        display: block;
+      }
+  
+      &-sub {
+        font-size: 1rem;
+        color: $primary-color;
+        font-weight: 500;
+        display: block;
+      }
+  
+      &:after {
+        content: "";
+        position: absolute;
+        bottom: -1rem;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80px;
+        height: 3px;
+        background-color: $primary-color;
+        border-radius: 3px;
+      }
+    }
+  
+    .day-container {
+      max-width: 1000px;
+      margin: 0 auto;
+      margin-bottom: 3rem;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+  
+      &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+      }
+  
+      .day-header {
+        display: flex;
+        align-items: center;
+        background-color: #f8f9fa;
+        border-bottom: 3px solid rgba(151, 125, 6, 0.3);
+  
+        .day-number {
+          background-color: $primary-color;
+          color: white;
+          padding: 1.2rem;
+          font-weight: 600;
+          font-size: 1.2rem;
+          min-width: 100px;
+          text-align: center;
+        }
+  
+        .day-route {
+          padding: 1rem 1.5rem;
+          font-weight: 600;
+          font-size: 1.2rem;
+          flex-grow: 1;
+        }
+      }
+  
+      .day-content {
+        padding: 1.5rem;
+  
+        .highlight-section {
+          margin-bottom: 2rem;
+  
+          .highlight-title {
+            font-weight: 600;
+            color: $primary-color;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+  
+            i {
+              margin-right: 0.5rem;
+            }
+          }
+  
+          .highlight-content {
+            padding-left: 1.5rem;
+            border-left: 3px solid rgba(151, 125, 6, 0.2);
+            color: #666;
+            line-height: 1.8;
+            max-width: 730px; /* 控制最大寬度 */
+            word-wrap: break-word;
+            font-size: 1rem;
+            
+            @media (max-width: 767px) {
+              font-size: 0.95rem;
+              width: 100%; /* 在手機上使用全寬 */
+              padding-right: 0.5rem;
+            }
+          }
+        }
+  
+        .info-section {
+          display: flex;
+          flex-wrap: wrap;
+          margin-top: 2rem;
+  
+          .meals-info,
+          .accommodation-info {
+            flex: 1;
+            min-width: 250px;
+            margin-bottom: 1.5rem;
+  
+            .info-title {
+              font-weight: 600;
+              margin-bottom: 1rem;
+              display: flex;
+              align-items: center;
+  
+              i {
+                color: $primary-color;
+                margin-right: 0.5rem;
+              }
+            }
+  
+            ul {
+              padding-left: 1.5rem;
+  
+              li {
+                margin-bottom: 0.5rem;
+                color: #666;
+              }
+            }
+  
+            p {
+              padding-left: 1.5rem;
+              color: #666;
+              line-height: 1.6;
+            }
+          }
+        }
+      }
+    }
+  }
+  
+  /* ===================================================
+   * 費用說明和預訂須知樣式優化
+   * =================================================== */
+  .info-section {
+    margin-bottom: 4rem;
+  
+    &__title {
+      position: relative;
+      text-align: center;
+      margin-bottom: 2.5rem;
+  
+      &-text {
+        font-size: 1.8rem;
+        font-weight: 700;
+        position: relative;
+        display: inline-block;
+  
+        &:after {
+          content: "";
+          position: absolute;
+          bottom: -0.8rem;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 80px;
+          height: 3px;
+          background-color: $primary-color;
+          border-radius: 3px;
+        }
+      }
+    }
+  
+    .info-container {
+      max-width: 900px;
+      margin: 0 auto;
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 3px 15px rgba(0, 0, 0, 0.05);
+      overflow: hidden;
+    }
+  
+    .info-block {
+      margin-bottom: 2rem;
+  
+      &:last-child {
+        margin-bottom: 0;
+      }
+  
+      .info-header {
+        background-color: #f8f9fa;
+        padding: 1rem 1.5rem;
+        border-left: 4px solid $primary-color;
+        margin-bottom: 1rem;
+  
+        .info-title {
+          font-size: 1.3rem;
+          font-weight: 600;
+          color: #333;
+          margin: 0;
+        }
+      }
+  
+      .info-content {
+        padding: 0 1.5rem 1rem;
+  
+        ul {
+          padding-left: 1.5rem;
+          margin-bottom: 0;
+  
+          li {
+            margin-bottom: 0.8rem;
+            color: #666;
+            line-height: 1.6;
+  
+            &:last-child {
+              margin-bottom: 0;
+            }
+          }
+        }
+      }
+    }
+  }
+  
+  

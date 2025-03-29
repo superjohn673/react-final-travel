@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from "react";
+import { useEffect, useState, useContext } from "react";
 import { Link, useParams } from "react-router-dom";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
 import Loading from "../../components/Loading";
@@ -7,7 +7,6 @@ import { formatNumberWithCommas } from "../../utils/helpers";
 
 const CityJapan = () => {
   const { name } = useParams();
-  const [cityProducts, setCityProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const {
     products,
@@ -30,26 +29,23 @@ const CityJapan = () => {
     fetchProducts();
   }, [getAllProducts]);
 
-  useEffect(() => {
-    const cityCategories = {
-      kanto: "關東",
-      kansai: "關西",
-      hokkaido: "北海道",
-      tohoku: "東北",
-      hokuriku: "北陸",
-      kyushu: "九州",
-    };
+  const cityCategories = {
+    kanto: "關東",
+    kansai: "關西",
+    hokkaido: "北海道",
+    tohoku: "東北",
+    hokuriku: "北陸",
+    kyushu: "九州",
+  };
 
-    const tourTypes = ["經典", "美學", "鐵道", "深度"];
+  const tourTypes = ["經典", "美學", "鐵道", "深度"];
 
-    const filterCityProducts = products.filter((product) =>
-      tourTypes.some(
-        (type) => product.category === `${type}${cityCategories[name]}`
-      )
-    );
-
-    setCityProducts(filterCityProducts);
-  }, [products, name]);
+  // 直接計算過濾後的產品列表
+  const filterCityProducts = products.filter((product) =>
+    tourTypes.some(
+      (type) => product.category === `${type}${cityCategories[name]}`
+    )
+  );
 
   const handleFavorite = (product) => {
     if (favorites && favorites.some((item) => item.id === product.id)) {
@@ -63,7 +59,7 @@ const CityJapan = () => {
     <>
       <Loading isLoading={isLoading} />
       <div className="row tour">
-        {cityProducts.map((product) => {
+        {filterCityProducts.map((product) => {
           const isFavorite = favorites.some((item) => item.id === product.id);
 
           return (

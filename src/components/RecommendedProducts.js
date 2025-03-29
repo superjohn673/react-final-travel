@@ -1,4 +1,3 @@
-import React from "react";
 import { Link } from "react-router-dom";
 import Slider from "react-slick";
 import foodImg from "../assets/images/recommend/rmd-food.jpg";

@@ -1,0 +1,333 @@
+/* ===================================================
+ * Navbar 導航列樣式
+ * =================================================== */
+// 控制導航列在滾動時的顯示與隱藏效果
+.sticky-top.show {
+    top: 0;
+  }
+  
+  .sticky-top.hide {
+    top: -100px; /* 根據 NavBar 的高度調整這個值 */
+  }
+  
+  // 導航欄容器樣式
+  .navbar-container {
+    box-shadow: 0 2px 8px rgba($primary-color, 0.08);
+    border-bottom: 1px solid rgba($primary-color, 0.15);
+    background-color: white;
+  }
+  
+  // 導航項目樣式
+  .nav-item {
+    transition: all 0.3s ease;
+    cursor: pointer;
+    color: $text-color;
+  
+    &:hover {
+      transform: translateY(-3px);
+      color: $primary-color;
+    }
+  }
+  
+  // 品牌名稱樣式
+  .navbar-brand {
+    font-family: "Kalam", cursive !important;
+    font-size: 2rem !important;
+    transition: all 0.3s ease;
+    color: $primary-color !important;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+    font-weight: 600;
+    padding: 0;
+    margin: 0;
+    line-height: 1.2;
+  
+    &:hover {
+      color: $primary-color-dark !important;
+      text-shadow: 2px 2px 4px rgba($primary-color, 0.2);
+    }
+  }
+  
+  // 選單圖標樣式
+  .menu-icon {
+    font-size: 2.5rem;
+    transition: all 0.3s ease;
+    color: $primary-color;
+  
+    &:hover {
+      color: $primary-color-dark;
+      transform: scale(1.1);
+    }
+  }
+  
+  // Layout 購物車圖標樣式
+  .cart-icon {
+    color: $primary-color;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+  
+    &:hover {
+      color: $primary-color-light;
+      transform: scale(1.1);
+    }
+  }
+  
+  // Layout 購物車徽章樣式
+  .cart-badge {
+    background-color: $primary-color-dark;
+    transition: all 0.3s ease;
+  
+    &:hover {
+      background-color: $primary-color-light;
+      transform: scale(1.1);
+    }
+  }
+  
+  // 購物車容器樣式
+  .cart-container {
+    position: relative;
+  
+    // 增加一個隱形的區域，讓滑鼠移動時有更大的交互空間
+    &::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      right: 0;
+      width: 320px; // 與購物車預覽寬度相同
+      height: 40px; // 進一步增加緩衝區高度
+      background-color: transparent;
+      z-index: 999; // 確保緩衝區在其他元素之上
+    }
+  }
+  
+  // 購物車觸發區域
+  .cart-trigger {
+    // 增加一個隱形的區域，擴大觸發區域
+    &::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: -20px;
+      right: -20px;
+      height: 20px;
+      background-color: transparent;
+    }
+  }
+  
+  // 購物車預覽樣式
+  .cart-preview {
+    position: absolute;
+    top: calc(100% + 15px); // 增加一點距離，讓緩衝區生效
+    right: 0;
+    width: 320px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15); // 增強陰影效果
+    z-index: 1000;
+    overflow: hidden;
+    animation: fadeInDown 0.3s ease;
+    border: 1px solid rgba($primary-color, 0.1);
+    margin-top: 10px; // 增加與購物車圖標的距離
+  
+    // 增加一個偽元素作為連接購物車圖標和預覽區塊的橋樑
+    &::before {
+      content: "";
+      position: absolute;
+      top: -30px; // 向上延伸
+      left: 0;
+      right: 0;
+      height: 30px;
+      background-color: transparent;
+      z-index: -1; // 放在預覽區塊下方
+    }
+  
+    // 空購物車樣式
+    &__empty {
+      padding: 30px 25px; // 增加內部間距，特別是上下間距
+      text-align: center;
+      color: $text-color;
+      min-height: 200px; // 設定最小高度，確保空購物車有足夠的可點擊區域
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+  
+      p {
+        margin: 15px 0;
+        font-size: 0.95rem;
+        color: rgba($text-color, 0.8);
+      }
+    }
+  
+    &__icon {
+      font-size: 2.5rem; // 增大圖標尺寸
+      color: $primary-color;
+      margin-bottom: 15px;
+      opacity: 0.8;
+    }
+  
+    &__link {
+      display: inline-block;
+      padding: 8px 20px; // 增加按鈕大小
+      background-color: $primary-color;
+      color: white;
+      border-radius: 4px;
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: all 0.3s ease;
+      margin-top: 10px;
+      font-weight: 500;
+  
+      &:hover {
+        background-color: $primary-color-dark;
+        transform: translateY(-2px);
+        box-shadow: 0 3px 8px rgba($primary-color, 0.3);
+      }
+    }
+  
+    // 有內容的購物車樣式
+    &__content {
+      max-height: 400px;
+      overflow-y: auto;
+  
+      // 自定義滾動條樣式
+      &::-webkit-scrollbar {
+        width: 6px;
+      }
+  
+      &::-webkit-scrollbar-track {
+        background: rgba($primary-color, 0.05);
+      }
+  
+      &::-webkit-scrollbar-thumb {
+        background-color: rgba($primary-color, 0.3);
+        border-radius: 3px;
+      }
+    }
+  
+    &__header {
+      padding: 12px 15px;
+      background-color: rgba($primary-color, 0.1);
+      border-bottom: 1px solid rgba($primary-color, 0.1);
+  
+      h6 {
+        margin: 0;
+        color: $primary-color-dark;
+        font-weight: 600;
+      }
+    }
+  
+    &__item {
+      display: flex;
+      padding: 12px 15px;
+      border-bottom: 1px solid rgba($primary-color, 0.1);
+      transition: background-color 0.3s ease;
+  
+      &:hover {
+        background-color: rgba($primary-color, 0.03);
+      }
+    }
+  
+    &__image {
+      width: 60px;
+      height: 60px;
+      margin-right: 12px;
+      border-radius: 4px;
+      overflow: hidden;
+  
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+  
+    &__info {
+      flex: 1;
+    }
+  
+    &__title {
+      margin: 0 0 5px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: $text-color;
+      // 文字超出顯示省略號
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  
+    // 新增的詳細資訊樣式
+    &__details {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+  
+    &__detail-item {
+      display: flex;
+      align-items: center;
+      font-size: 0.8rem;
+      color: rgba($text-color, 0.7);
+  
+      i {
+        margin-right: 5px;
+        font-size: 0.9rem;
+        color: $primary-color;
+        width: 16px;
+        text-align: center;
+      }
+  
+      span {
+        flex: 1;
+      }
+    }
+  
+    &__price {
+      margin-top: 4px;
+      font-weight: 600;
+      color: $primary-color-dark !important;
+  
+      i,
+      span {
+        color: $primary-color-dark;
+      }
+    }
+  
+    &__checkout {
+      display: block;
+      padding: 12px 15px; // 增加按鈕高度
+      background-color: $primary-color;
+      color: white;
+      text-align: center;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      letter-spacing: 1px; // 增加字母間距
+  
+      &:hover {
+        background-color: $primary-color-dark;
+      }
+    }
+  }
+  
+  // 購物車預覽動畫 - 優化動畫效果
+  @keyframes fadeInDown {
+    from {
+      opacity: 0;
+      transform: translateY(-15px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  // 漢堡選單按鈕樣式
+  .navbar-toggler {
+    border: 1px solid rgba($primary-color, 0.2);
+    transition: all 0.3s ease;
+  
+    &:hover {
+      border-color: $primary-color;
+    }
+  }

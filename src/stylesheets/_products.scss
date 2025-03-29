@@ -1,0 +1,61 @@
+/* ===================================================
+ * Product 產品主題頁面頭部列表樣式
+ * =================================================== */
+ .product-head-list__title {
+    color: black;
+    padding: 1rem 3rem;
+    background-color: white;
+    border: 1px solid $primary-color;
+    border-radius: 5px;
+    &:hover {
+      background-color: white;
+      color: rgb(126, 104, 7);
+    }
+  }
+  
+  // 啟用狀態的樣式
+  .product-head-list__title.active {
+    background-color: $primary-color;
+    color: white;
+  }
+  
+  /* ===================================================
+   * Travel Product Card 旅遊產品卡片樣式
+   * =================================================== */
+  .tour {
+    .card {
+      transition: all 0.3s ease;
+      border: 1px solid rgba(0, 0, 0, 0.125);
+  
+      // 懸停效果 - 上浮並添加陰影
+      &:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        border-color: $primary-color;
+  
+        .card-img-top {
+          filter: brightness(1.05); // 圖片輕微增亮
+        }
+  
+        .tour__name {
+          color: $primary-color;
+        }
+      }
+      .position-absolute {
+        z-index: 5;
+        transition: transform 0.2s;
+  
+        &:hover {
+          transform: scale(1.2); // 絕對定位元素懸停時放大
+        }
+      }
+    }
+    .tour__name {
+      color: black;
+      transition: filter 0.3s ease;
+    }
+    .tour__price {
+      color: black;
+      font-size: 1.2rem;
+    }
+  }
